@@ -23,4 +23,10 @@ Route::get('/layout', function () {
 
 Route::get('/beranda', function () {
     return view('beranda');
+Route::get('/regulasi', function(){
+    return view('regulasi');
+});
+
+Route::get('/maklumat', function(){
+    return view('maklumat');
 });

@@ -241,7 +241,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END: Top Menu -->
         <!--BEGIN: LOGIN -->
         <!-- BEGIN: Content -->
-        @yield('content')
+        
         
         <div class="content">
             <div class="grid grid-cols-12 gap-6">
@@ -253,7 +253,7 @@ License: You must have a valid license purchased only from themeforest(the above
                            
                         </div>
                         <div class="intro-y box p-5 mt-12 sm:mt-5">
-                           
+                            @yield('content')
                         </div>
                     </div>
                     <!-- END: Official Store -->
