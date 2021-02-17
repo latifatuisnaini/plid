@@ -23,6 +23,12 @@ Route::get('/layout', function () {
 
 Route::get('/beranda', function () {
     return view('beranda');
+});
+
+Route::get('/profil', function () {
+    return view('profil');
+});
+
 Route::get('/regulasi', function(){
     return view('regulasi');
 });

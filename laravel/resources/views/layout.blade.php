@@ -34,14 +34,14 @@ License: You must have a valid license purchased only from themeforest(the above
             </div>
             <ul class="border-t border-theme-24 py-5 hidden">
                 <li>
-                    <a href="index.html" class="menu menu--active">
+                    <a href="{{url('/beranda')}}" class="menu menu--active">
                         <div class="menu__icon">  </div>
                         <div class="menu__title"> BERANDA </div>
                     </a>
                 </li>
               
                 <li>
-                    <a href="index.html" class="menu menu--active">
+                    <a href="{{url('/profil')}}" class="menu menu--active">
                         <div class="menu__icon">  </div>
                         <div class="menu__title"> PROFIL </div>
                     </a>
@@ -146,14 +146,14 @@ License: You must have a valid license purchased only from themeforest(the above
         <nav class="top-nav">
             <ul>
             <li>
-                    <a href="index.html" class="top-menu">
+                    <a href="{{url('/beranda')}}" class="top-menu">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> BERANDA </div>
                     </a>
                 </li>
               
                 <li>
-                    <a href="index.html" class="top-menu">
+                    <a href="{{url('/profil')}}" class="top-menu">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> PROFIL </div>
                     </a>
@@ -250,7 +250,6 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="col-span-12 xl:col-span-8 mt-6">
                         <div class="intro-y block sm:flex items-center h-10">
                             
-                           
                         </div>
                         <div class="intro-y box p-5 mt-12 sm:mt-5">
                             @yield('content')
