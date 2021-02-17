@@ -134,7 +134,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- BEGIN: Logo -->
                 <a href="" class="-intro-x hidden md:flex">
                     <img src="dist/images/logo_pt_pal_putih.png" style="width:8rem;">
-                    <span class="text-white text-lg ml-3"> <span class="font-medium">PUSAT LAYANAN INFORMASI DAN DOKUMENTASI</span> </span>
+                    <span class="text-white text-lg ml-3"><span class="font-medium" style="font-size: 20px;">PUSAT LAYANAN INFORMASI DAN DOKUMENTASI</span> </span>
                 </a>
                 <!-- END: Logo -->
                 <!-- BEGIN: Breadcrumb -->
@@ -252,8 +252,11 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!-- BEGIN: Official Store -->
                     <div class="col-span-12 xl:col-span-8 mt-6">
                         <div class="intro-y block sm:flex items-center h-10">
-                            
+                 
                            
+                        </div>
+                        <div class="intro-y box p-5 mt-12 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">
+                            @yield('namehalaman')
                         </div>
                         <div class="intro-y box p-5 mt-12 sm:mt-5">
                             @yield('content')
