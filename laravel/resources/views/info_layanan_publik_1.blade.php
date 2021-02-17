@@ -17,10 +17,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <meta name="description" content="Midone admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
         <meta name="keywords" content="admin template, Midone admin template, dashboard template, flat admin template, responsive admin template, web app">
         <meta name="author" content="LEFT4CODE">
-        <title>
-           @yield('title') | PLID PT. PAL Indonesia (Persero) 
-        </title>
-        
+        <title>Dashboard - Midone - Tailwind HTML Admin Template</title>
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="dist/css/app.css" />
         <!-- END: CSS Assets-->
@@ -31,20 +28,20 @@ License: You must have a valid license purchased only from themeforest(the above
         <div class="mobile-menu md:hidden">
             <div class="mobile-menu-bar">
                 <a href="" class="flex mr-auto">
-                    <img alt="Midone Tailwind HTML Admin Template" class="w-6" src="dist/images/logo_pt_pal_putih.png">
+                    <img alt="Midone Tailwind HTML Admin Template" class="w-6" src="dist/images/logo-pal.png">
                 </a>
                 <a href="javascript:;" id="mobile-menu-toggler"> <i data-feather="bar-chart-2" class="w-8 h-8 text-white transform -rotate-90"></i> </a>
             </div>
             <ul class="border-t border-theme-24 py-5 hidden">
                 <li>
-                    <a href="{{url('/beranda')}}" class="menu menu--active">
+                    <a href="index.html" class="menu menu--active">
                         <div class="menu__icon">  </div>
                         <div class="menu__title"> BERANDA </div>
                     </a>
                 </li>
               
                 <li>
-                    <a href="{{url('/profil')}}" class="menu menu--active">
+                    <a href="index.html" class="menu menu--active">
                         <div class="menu__icon">  </div>
                         <div class="menu__title"> PROFIL </div>
                     </a>
@@ -99,15 +96,15 @@ License: You must have a valid license purchased only from themeforest(the above
                     </a>
                     <ul class="">
                         <li>
-                            <a href="" class="menu">
+                            <a href="index.html" class="menu">
                                 <div class="menu__icon">  </div>
                                 <div class="menu__title"> Prosedur Permohonan </div>
                             </a>
                         </li>
                         <li>
-                            <a class="menu">
+                            <a href="simple-menu-light-dashboard.html" class="menu">
                                 <div class="menu__icon">  </div>
-                                <div src="regpermohonan" class="menu__title"> Registrasi Permohonan </div>
+                                <div class="menu__title"> Registrasi Permohonan </div>
                             </a>
                         </li>
                     </ul>
@@ -129,12 +126,12 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <!-- END: Mobile Menu -->
         <!-- BEGIN: Top Bar -->
-        <div class="border-b border-theme-24 -mt-10 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 pt-3 md:pt-0 mb-5">
+        <div class="border-b border-theme-24 -mt-10 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 pt-3 md:pt-0 mb-10">
             <div class="top-bar-boxed flex items-center">
                 <!-- BEGIN: Logo -->
                 <a href="" class="-intro-x hidden md:flex">
-                    <img src="dist/images/logo_pt_pal_putih.png" style="width:8rem;">
-                    <span class="text-white text-lg ml-3"><span class="font-medium" style="font-size: 20px;">PUSAT LAYANAN INFORMASI DAN DOKUMENTASI</span> </span>
+                    <img  class="w-10" src="dist/images/logo-pal2.jpg">
+                    <span class="text-white text-lg ml-3"> <span class="font-medium">PUSAT LAYANAN INFORMASI DAN DOKUMENTASI</span> </span>
                 </a>
                 <!-- END: Logo -->
                 <!-- BEGIN: Breadcrumb -->
@@ -149,28 +146,28 @@ License: You must have a valid license purchased only from themeforest(the above
         <nav class="top-nav">
             <ul>
             <li>
-                    <a href="{{url('/beranda')}}" class="top-menu @if(request() -> segment(1) == 'BERANDA') top-menu--active @endif">
+                    <a href="index.html" class="top-menu">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> BERANDA </div>
                     </a>
                 </li>
               
                 <li>
-                    <a href="{{url('/profil')}}" class="top-menu @if(request() -> segment(1) == 'PROFIL') top-menu--active @endif">
+                    <a href="index.html" class="top-menu">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> PROFIL </div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="index.html" class="top-menu @if(request()->segment(1) == 'regulasi') top-menu--active @endif">
+                    <a href="index.html" class="top-menu">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> REGULASI </div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="index.html" class="top-menu @if(request() -> segment(1) == 'MAKLUMAT') top-menu--active @endif">
+                    <a href="index.html" class="top-menu">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> MAKLUMAT </div>
                     </a>
@@ -178,7 +175,7 @@ License: You must have a valid license purchased only from themeforest(the above
               
 
                 <li>
-                    <a href="javascript:;" class="top-menu @if(request() -> segment(1) == 'INFORMASI PUBLIK') top-menu--active @endif">
+                    <a href="javascript:;" class="top-menu">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> INFORMASI PUBLIK <i data-feather="chevron-down" class="menu__sub-icon"></i> </div>
                     </a>
@@ -208,7 +205,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 </li>
                 <li>
                 <li>
-                    <a href="javascript:;" class="top-menu @if(request() -> segment(1) == 'LAYANAN PUBLIK') top-menu--active @endif">
+                    <a href="javascript:;" class="top-menu">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> LAYANAN PUBLIK <i data-feather="chevron-down" class="menu__sub-icon"></i> </div>
                     </a>
@@ -228,13 +225,13 @@ License: You must have a valid license purchased only from themeforest(the above
                     </ul>
                 </li>
                 <li>
-                    <a href="side-menu-light-inbox.html" class="top-menu @if(request() -> segment(1) == 'AGENDA') top-menu--active @endif">
+                    <a href="side-menu-light-inbox.html" class="top-menu">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> AGENDA </div>
                     </a>
                 </li>
                 <li>
-                    <a href="side-menu-light-file-manager.html" class="top-menu @if(request() -> segment(1) == 'FAQ') top-menu--active @endif">
+                    <a href="side-menu-light-file-manager.html" class="top-menu">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> FAQ </div>
                     </a>
@@ -246,22 +243,98 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN: Content -->
         
         
-        <div class="content">
+       <div class="content">
             <div class="grid grid-cols-12 gap-6">
                 <div class="col-span-12 xxl:col-span-9 grid grid-cols-12 gap-6">
                     <!-- BEGIN: Official Store -->
                     <div class="col-span-12 xl:col-span-8 mt-6">
                         <div class="intro-y block sm:flex items-center h-10">
-                            
-                 
-                           
-                        </div>
-                        <div class="intro-y box p-5 mt-12 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">
-                            @yield('namehalaman')
                         </div>
                         <div class="intro-y box p-5 mt-12 sm:mt-5">
                             @yield('content')
+                            <h2 class="text-lg font-medium truncate mr-5">
+                              Informasi yang wajib disediakan dan diumumkan secara berkala
+                            </h2>
+                            <h5 class="text-lg font-small truncate mr-5">
+                              Informasi Tentang Profile PT PAL Indonesia (Persero)
+                            </h5>
+                            <table class="table mt-5">
+                             <thead>
+                                 <tr class="bg-gray-200 text-gray-700">
+                                     <th class="whitespace-no-wrap">No</th>
+                                     <th class="whitespace-no-wrap">Judul</th>
+                                     <th class="whitespace-no-wrap">Keterangan</th>
+                                     <th class="whitespace-no-wrap">Option</th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr>
+                                     <td class="border-b dark:border-dark-5">1</td>
+                                     <td class="border-b dark:border-dark-5">Company Profile PT PAL Indonesia (Persero)</td>
+                                     <td class="border-b dark:border-dark-5"></td>
+                                     <td class="border-b dark:border-dark-5">
+                                        <button class="button w-24 mr-1 mb-2 bg-theme-1 text-white">View</button>
+                                    </td>
+                                 </tr>
+
+                                 <tr>
+                                     <td class="border-b dark:border-dark-5">2</td>
+                                     <td class="border-b dark:border-dark-5">Alamat Lengkap PT PAL Indonesia (Persero)</td>
+                                     <td class="border-b dark:border-dark-5"></td>
+                                     <td class="border-b dark:border-dark-5">
+                                        <button class="button w-24 mr-1 mb-2 bg-theme-1 text-white">Download</button>
+                                    </td>
+                                 </tr>
+
+                                 <tr>
+                                     <td class="border-b dark:border-dark-5">3</td>
+                                     <td class="border-b dark:border-dark-5">Visi dan Misi PT PAL Indonesia (Persero)</td>
+                                     <td class="border-b dark:border-dark-5"></td>
+                                     <td class="border-b dark:border-dark-5">
+                                        <button class="button w-24 mr-1 mb-2 bg-theme-1 text-white">View</button>
+                                    </td>
+                                 </tr>
+
+                                 <tr>
+                                     <td class="border-b dark:border-dark-5">4</td>
+                                     <td class="border-b dark:border-dark-5">Tugas dan Fungsi PT PAL Indonesia (Persero)</td>
+                                     <td class="border-b dark:border-dark-5"></td>
+                                     <td class="border-b dark:border-dark-5">
+                                        <button class="button w-24 mr-1 mb-2 bg-theme-1 text-white">Download</button>
+                                    </td>
+                                 </tr>
+
+                                 <tr>
+                                     <td class="border-b dark:border-dark-5">5</td>
+                                     <td class="border-b dark:border-dark-5">Struktur Organisasi PT PAL Indonesia (Persero)</td>
+                                     <td class="border-b dark:border-dark-5"></td>
+                                     <td class="border-b dark:border-dark-5">
+                                        <button class="button w-24 mr-1 mb-2 bg-theme-1 text-white">View</button>
+                                    </td>
+                                 </tr>
+
+                                 <tr>
+                                     <td class="border-b dark:border-dark-5">6</td>
+                                     <td class="border-b dark:border-dark-5">   Alamat Kantor PT PAL Indonesia (Persero)</td>
+                                     <td class="border-b dark:border-dark-5"></td>
+                                     <td class="border-b dark:border-dark-5">
+                                        <button class="button w-24 mr-1 mb-2 bg-theme-1 text-white">Download</button>
+                                    </td>
+                                 </tr>
+
+                                 <tr>
+                                     <td class="border-b dark:border-dark-5">7</td>
+                                     <td class="border-b dark:border-dark-5">Profile Pejabat PT PAL Indonesia (Persero)</td>
+                                     <td class="border-b dark:border-dark-5"></td>
+                                     <td class="border-b dark:border-dark-5">
+                                        <button class="button w-24 mr-1 mb-2 bg-theme-1 text-white">View</button>
+                                    </td>
+                                 </tr>
+
+                             </tbody>
+                            </table>
                         </div>
+
                     </div>
                     <!-- END: Official Store -->
                     <!-- BEGIN: Weekly Best Sellers -->
