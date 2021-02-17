@@ -41,6 +41,10 @@ Route::get('/info_layanan_publik_1', function(){
     return view('info_layanan_publik_1');
 });
 
+Route::get('/info_layanan_publik_2', function(){
+    return view('info_layanan_publik_2');
+});
+
 Route::get('/info_layanan_publik_3', function(){
     return view('info_layanan_publik_3');
 });
