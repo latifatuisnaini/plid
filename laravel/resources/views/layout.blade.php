@@ -286,8 +286,9 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="my-auto mx-auto xl:mx-5 bg-white xl:bg-transparent sm:py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
                         <div class="intro-x mt-2 text-gray-500 xl:hidden text-center">A few more clicks to sign in to your account. Manage all your e-commerce accounts in one place</div>
                         <div class="intro-x mt-8">
-
-                            <input type="text" class="intro-x login__input input input--lg border border-gray-500 block" placeholder="Email">
+                            Email
+                            <input type="text" class="intro-x login__input input input--lg border border-gray-500 block mt-4" width="200px" placeholder="Email"><br>
+                            Password
                             <input type="password" class="intro-x login__input input input--lg border border-gray-500 block mt-4" placeholder="Password">
                         </div>
                         
