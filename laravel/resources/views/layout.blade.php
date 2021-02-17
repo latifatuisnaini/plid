@@ -149,28 +149,28 @@ License: You must have a valid license purchased only from themeforest(the above
         <nav class="top-nav">
             <ul>
             <li>
-                    <a href="{{url('/beranda')}}" class="top-menu @if(request() -> segment(1) == 'BERANDA') top-menu--active @endif">
+                    <a href="{{url('/beranda')}}" class="top-menu @if(request() -> segment(1) == 'beranda') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> BERANDA </div>
                     </a>
                 </li>
               
                 <li>
-                    <a href="{{url('/profil')}}" class="top-menu @if(request() -> segment(1) == 'PROFIL') top-menu--active @endif">
+                    <a href="{{url('/profil')}}" class="top-menu @if(request() -> segment(1) == 'profil') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> PROFIL </div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="index.html" class="top-menu @if(request()->segment(1) == 'regulasi') top-menu--active @endif">
+                    <a href="{{url('/regulasi')}}" class="top-menu @if(request()->segment(1) == 'regulasi') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> REGULASI </div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="index.html" class="top-menu @if(request() -> segment(1) == 'MAKLUMAT') top-menu--active @endif">
+                    <a href="{{url('/maklumat')}}" class="top-menu @if(request() -> segment(1) == 'maklumat') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> MAKLUMAT </div>
                     </a>
@@ -228,13 +228,13 @@ License: You must have a valid license purchased only from themeforest(the above
                     </ul>
                 </li>
                 <li>
-                    <a href="side-menu-light-inbox.html" class="top-menu @if(request() -> segment(1) == 'AGENDA') top-menu--active @endif">
+                    <a href="side-menu-light-inbox.html" class="top-menu @if(request() -> segment(1) == 'agenda') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> AGENDA </div>
                     </a>
                 </li>
                 <li>
-                    <a href="side-menu-light-file-manager.html" class="top-menu @if(request() -> segment(1) == 'FAQ') top-menu--active @endif">
+                    <a href="side-menu-light-file-manager.html" class="top-menu @if(request() -> segment(1) == 'faq') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> FAQ </div>
                     </a>
