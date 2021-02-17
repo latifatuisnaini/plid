@@ -249,8 +249,11 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!-- BEGIN: Official Store -->
                     <div class="col-span-12 xl:col-span-8 mt-6">
                         <div class="intro-y block sm:flex items-center h-10">
-                            
+                 
                            
+                        </div>
+                        <div class="intro-y box p-5 mt-12 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">
+                            @yield('namehalaman')
                         </div>
                         <div class="intro-y box p-5 mt-12 sm:mt-5">
                             @yield('content')
