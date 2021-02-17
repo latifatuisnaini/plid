@@ -36,3 +36,11 @@ Route::get('/regulasi', function(){
 Route::get('/maklumat', function(){
     return view('maklumat');
 });
+
+Route::get('/lp_prosedurp', function(){
+    return view('lp_prosedurp');
+});
+
+Route::get('/lp_registrasip', function(){
+    return view('lp_registrasip');
+});
