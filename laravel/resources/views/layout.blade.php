@@ -160,7 +160,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 </li>
 
                 <li>
-                    <a href="index.html" class="top-menu">
+                    <a href="index.html" class="top-menu @if(request()->segment(1) == 'regulasi') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> REGULASI </div>
                     </a>
