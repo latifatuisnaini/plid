@@ -1,6 +1,9 @@
 @extends('layout')
+@section('namehalaman')
+    <h2 class="text-lg font-medium mr-auto">
+        MAKLUMAT
+    </h2>
+@endsection
 @section('content')
-    <div class="row">
-        
-    </div>
+    <img href="#" src="{{ asset('dist/images/maklumat.png') }}">
 @endsection
