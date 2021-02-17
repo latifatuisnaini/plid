@@ -18,7 +18,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <meta name="keywords" content="admin template, Midone admin template, dashboard template, flat admin template, responsive admin template, web app">
         <meta name="author" content="LEFT4CODE">
         <title>
-           @yield('title') | PLID PT. PAL Indonesia (Persero) 
+            PLID PT. PAL Indonesia (Persero)
         </title>
         
         <!-- BEGIN: CSS Assets-->
@@ -105,9 +105,9 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                         </li>
                         <li>
-                            <a class="menu">
+                            <a href="lp_registrasip" class="menu">
                                 <div class="menu__icon">  </div>
-                                <div src="regpermohonan" class="menu__title"> Registrasi Permohonan </div>
+                                <div class="menu__title"> Registrasi Permohonan </div>
                             </a>
                         </li>
                     </ul>
@@ -149,14 +149,14 @@ License: You must have a valid license purchased only from themeforest(the above
         <nav class="top-nav">
             <ul>
             <li>
-                    <a href="index.html" class="top-menu @if(request() -> segment(1) == 'BERANDA') top-menu--active @endif">
+                    <a href="index.html" class="top-menu ">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> BERANDA </div>
                     </a>
                 </li>
               
                 <li>
-                    <a href="index.html" class="top-menu @if(request() -> segment(1) == 'PROFIL') top-menu--active @endif">
+                    <a href="index.html" class="top-menu ">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> PROFIL </div>
                     </a>
@@ -170,7 +170,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 </li>
 
                 <li>
-                    <a href="index.html" class="top-menu @if(request() -> segment(1) == 'MAKLUMAT') top-menu--active @endif">
+                    <a href="index.html" class="top-menu">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> MAKLUMAT </div>
                     </a>
@@ -178,7 +178,7 @@ License: You must have a valid license purchased only from themeforest(the above
               
 
                 <li>
-                    <a href="javascript:;" class="top-menu @if(request() -> segment(1) == 'INFORMASI PUBLIK') top-menu--active @endif">
+                    <a href="javascript:;" class="top-menu ">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> INFORMASI PUBLIK <i data-feather="chevron-down" class="menu__sub-icon"></i> </div>
                     </a>
@@ -208,7 +208,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 </li>
                 <li>
                 <li>
-                    <a href="javascript:;" class="top-menu @if(request() -> segment(1) == 'LAYANAN PUBLIK') top-menu--active @endif">
+                    <a href="javascript:;" class="top-menu ">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> LAYANAN PUBLIK <i data-feather="chevron-down" class="menu__sub-icon"></i> </div>
                     </a>
@@ -220,7 +220,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                         </li>
                         <li>
-                            <a href="simple-menu-light-dashboard.html" class="top-menu">
+                            <a href="lp_registrasip" class="top-menu">
                                 <div class="top-menu__icon">  </div>
                                 <div class="top-menu__title"> Registrasi Permohonan </div>
                             </a>
@@ -228,13 +228,13 @@ License: You must have a valid license purchased only from themeforest(the above
                     </ul>
                 </li>
                 <li>
-                    <a href="side-menu-light-inbox.html" class="top-menu @if(request() -> segment(1) == 'AGENDA') top-menu--active @endif">
+                    <a href="side-menu-light-inbox.html" class="top-menu">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> AGENDA </div>
                     </a>
                 </li>
                 <li>
-                    <a href="side-menu-light-file-manager.html" class="top-menu @if(request() -> segment(1) == 'FAQ') top-menu--active @endif">
+                    <a href="side-menu-light-file-manager.html" class="top-menu ">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> FAQ </div>
                     </a>
@@ -253,7 +253,6 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="col-span-12 xl:col-span-8 mt-6">
                         <div class="intro-y block sm:flex items-center h-10">
                  
-                           
                         </div>
                         <div class="intro-y box p-5 mt-12 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">
                             @yield('namehalaman')
