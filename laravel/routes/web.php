@@ -28,3 +28,7 @@ Route::get('/regulasi', function(){
 Route::get('/maklumat', function(){
     return view('maklumat');
 });
+
+Route::get('/info_layanan_publik', function(){
+    return view('info_layanan_publik_1');
+});
