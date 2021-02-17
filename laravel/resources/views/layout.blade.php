@@ -31,7 +31,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <div class="mobile-menu md:hidden">
             <div class="mobile-menu-bar">
                 <a href="" class="flex mr-auto">
-                    <img alt="Midone Tailwind HTML Admin Template" class="w-6" src="dist/images/logo-pal.png">
+                    <img alt="Midone Tailwind HTML Admin Template" class="w-6" src="dist/images/logo_pt_pal_putih.png">
                 </a>
                 <a href="javascript:;" id="mobile-menu-toggler"> <i data-feather="bar-chart-2" class="w-8 h-8 text-white transform -rotate-90"></i> </a>
             </div>
@@ -129,11 +129,11 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <!-- END: Mobile Menu -->
         <!-- BEGIN: Top Bar -->
-        <div class="border-b border-theme-24 -mt-10 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 pt-3 md:pt-0 mb-10">
+        <div class="border-b border-theme-24 -mt-10 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 pt-3 md:pt-0 mb-5">
             <div class="top-bar-boxed flex items-center">
                 <!-- BEGIN: Logo -->
                 <a href="" class="-intro-x hidden md:flex">
-                    <img  class="w-10" src="dist/images/logo-pal2.jpg">
+                    <img src="dist/images/logo_pt_pal_putih.png" style="width:8rem;">
                     <span class="text-white text-lg ml-3"> <span class="font-medium">PUSAT LAYANAN INFORMASI DAN DOKUMENTASI</span> </span>
                 </a>
                 <!-- END: Logo -->
