@@ -20,3 +20,11 @@ Route::get('/', function () {
 Route::get('/layout', function () {
     return view('layout');
 });
+
+Route::get('/regulasi', function(){
+    return view('regulasi');
+});
+
+Route::get('/maklumat', function(){
+    return view('maklumat');
+});
