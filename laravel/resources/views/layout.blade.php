@@ -24,6 +24,8 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="dist/css/app.css" />
         <!-- END: CSS Assets-->
+        @yield('css')
+
     </head>
     <!-- END: Head -->
     <body class="app">
@@ -149,28 +151,28 @@ License: You must have a valid license purchased only from themeforest(the above
         <nav class="top-nav">
             <ul>
             <li>
-                    <a href="{{url('/beranda')}}" class="top-menu @if(request() -> segment(1) == 'BERANDA') top-menu--active @endif">
+                    <a href="{{url('/beranda')}}" class="top-menu @if(request() -> segment(1) == 'beranda') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> BERANDA </div>
                     </a>
                 </li>
               
                 <li>
-                    <a href="{{url('/profil')}}" class="top-menu @if(request() -> segment(1) == 'PROFIL') top-menu--active @endif">
+                    <a href="{{url('/profil')}}" class="top-menu @if(request() -> segment(1) == 'profil') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> PROFIL </div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="index.html" class="top-menu @if(request()->segment(1) == 'regulasi') top-menu--active @endif">
+                    <a href="{{url('/regulasi')}}" class="top-menu @if(request()->segment(1) == 'regulasi') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> REGULASI </div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="index.html" class="top-menu">
+                    <a href="{{url('/maklumat')}}" class="top-menu @if(request() -> segment(1) == 'maklumat') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> MAKLUMAT </div>
                     </a>
@@ -185,21 +187,21 @@ License: You must have a valid license purchased only from themeforest(the above
                     <ul class="">
                     <br>
                         <li>
-                            <a href="index.html" class="top-menu">
+                            <a href="{{url('/info_layanan_publik_1')}}" class="top-menu">
                                
                                 <div class="top-menu__title"> Informasi yang wajib <br>disediakan dan diumumkan <br>secara berkala  </div>
                             </a>
                         </li>
                         <br>
                         <li>
-                            <a href="simple-menu-light-dashboard.html" class="top-menu">
+                            <a href="{{url('/info_layanan_publik_2')}}" class="top-menu">
                                
                                 <div class="top-menu__title"> Informasi yang wajib <br>diumumkan secara <br>serta - merta </div>
                             </a>
                         </li>
                         <br>
                         <li>
-                            <a href="top-menu-light-dashboard.html" class="top-menu">
+                            <a href="{{url('/info_layanan_publik_3')}}" class="top-menu">
                                
                                 <div class="top-menu__title">  Informasi yang wajib sedia <br>setiap saat</div>
                             </a>
@@ -214,13 +216,13 @@ License: You must have a valid license purchased only from themeforest(the above
                     </a>
                     <ul class="">
                         <li>
-                            <a href="index.html" class="top-menu">
+                            <a href="{{url('/lp_prosedur')}}" class="top-menu">
                                 <div class="top-menu__icon">  </div>
                                 <div class="top-menu__title"> Prosedur Permohonan </div>
                             </a>
                         </li>
                         <li>
-                            <a href="lp_registrasip" class="top-menu">
+                            <a href="{{url('/lp_registrasip')}}" class="top-menu">
                                 <div class="top-menu__icon">  </div>
                                 <div class="top-menu__title"> Registrasi Permohonan </div>
                             </a>
@@ -228,13 +230,13 @@ License: You must have a valid license purchased only from themeforest(the above
                     </ul>
                 </li>
                 <li>
-                    <a href="side-menu-light-inbox.html" class="top-menu">
+                    <a href="{{url('/agenda')}}" class="top-menu">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> AGENDA </div>
                     </a>
                 </li>
                 <li>
-                    <a href="side-menu-light-file-manager.html" class="top-menu ">
+                    <a href="{{url('/faq')}}" class="top-menu ">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> FAQ </div>
                     </a>
@@ -249,7 +251,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <div class="content">
             <div class="grid grid-cols-12 gap-6">
                 <div class="col-span-12 xxl:col-span-9 grid grid-cols-12 gap-6">
-                    <!-- BEGIN: Official Store -->
+                    <!-- BEGIN: Content -->
                     <div class="col-span-12 xl:col-span-8 mt-6">
                         <div class="intro-y block sm:flex items-center h-10">
                             
@@ -266,26 +268,30 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!-- BEGIN: Weekly Best Sellers -->
                     <div class="col-span-12 xl:col-span-4 mt-6">
                         <div class="intro-y flex items-center h-10" >
-                            <h2 class="text-lg font-medium truncate mr-5">
-                               Login Permohonan Informasi
-                            </h2>
                         </div>
+                            <div class="intro-y box p-5 mt-12 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">
+                                <h2 class="text-lg font-medium mr-auto">
+                                    Login Permohonan Informasi
+                                 </h2>
+                            </div>
+                            
+                       
                          <!-- <div class="text-center">
      <div class="dropdown inline-block" data-placement="bottom-start"> <button class="dropdown-toggle button flex items-center inline-block bg-theme-1 text-white"> Filter Dropdown <i data-feather="chevron-down" class="w-4 h-4 ml-2"></i> </button>
          <div class="dropdown-box">
              <div class="dropdown-box__content box p-5"> -->
                         <div class="mt-5">
                             <div class="intro-y">
-                                <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
+                                <div class="box py-4 mb-3 flex items-center zoom-in">
                                    <!-- BEGIN: Login Form -->
-                    <div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0" style="background: grey;">
-                    <div class="my-auto mx-auto xl:ml-20 bg-white xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
-                        
+                    <div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
+                    <div class="my-auto mx-auto xl:mx-5 bg-white xl:bg-transparent sm:py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
                         <div class="intro-x mt-2 text-gray-500 xl:hidden text-center">A few more clicks to sign in to your account. Manage all your e-commerce accounts in one place</div>
-                        <div class="intro-x mt-8">
-
-                            <input type="text" class="intro-x login__input input input--lg border border-gray-500 block" placeholder="Email">
-                            <input type="password" class="intro-x login__input input input--lg border border-gray-500 block mt-4" placeholder="Password">
+                        <div class="intro-x mt-5">
+                            Email
+                            <input type="text" class="intro-x login__input input input--lg border border-gray-500 block mt-4" style="width: 130%" placeholder="Email"><br>
+                            Password
+                            <input type="password" class="intro-x login__input input input--lg border border-gray-500 block mt-4" style="width: 130%" placeholder="Password">
                         </div>
                         
                         <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
@@ -313,5 +319,6 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="https://maps.googleapis.com/maps/api/js?key=["your-google-map-api"]&libraries=places"></script>
         <script src="dist/js/app.js"></script>
         <!-- END: JS Assets-->
+        @yield('script')
     </body>
 </html>
