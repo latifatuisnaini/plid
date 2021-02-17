@@ -149,28 +149,28 @@ License: You must have a valid license purchased only from themeforest(the above
         <nav class="top-nav">
             <ul>
             <li>
-                    <a href="index.html" class="top-menu">
+                    <a href="/beranda" class="top-menu">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> BERANDA </div>
                     </a>
                 </li>
               
                 <li>
-                    <a href="index.html" class="top-menu">
+                    <a href="/profil" class="top-menu">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> PROFIL </div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="index.html" class="top-menu @if(request()->segment(1) == 'regulasi') top-menu--active @endif">
+                    <a href="/regulasi" class="top-menu @if(request()->segment(1) == 'regulasi') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> REGULASI </div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="index.html" class="top-menu">
+                    <a href="/maklumat" class="top-menu @if(request()->segment(1) == 'maklumat') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> MAKLUMAT </div>
                     </a>
@@ -185,7 +185,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <ul class="">
                     <br>
                         <li>
-                            <a href="index.html" class="top-menu">
+                            <a href="" class="top-menu">
                                
                                 <div class="top-menu__title"> Informasi yang wajib <br>disediakan dan diumumkan <br>secara berkala  </div>
                             </a>
@@ -249,7 +249,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <div class="content">
             <div class="grid grid-cols-12 gap-6">
                 <div class="col-span-12 xxl:col-span-9 grid grid-cols-12 gap-6">
-                    <!-- BEGIN: Official Store -->
+                    <!-- BEGIN: Content -->
                     <div class="col-span-12 xl:col-span-8 mt-6">
                         <div class="intro-y block sm:flex items-center h-10">
                  
@@ -266,10 +266,14 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!-- BEGIN: Weekly Best Sellers -->
                     <div class="col-span-12 xl:col-span-4 mt-6">
                         <div class="intro-y flex items-center h-10" >
-                            <h2 class="text-lg font-medium truncate mr-5">
-                               Login Permohonan Informasi
-                            </h2>
                         </div>
+                            <div class="intro-y box p-5 mt-12 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">
+                                <h2 class="text-lg font-medium mr-auto">
+                                    Login Permohonan Informasi
+                                 </h2>
+                            </div>
+                            
+                       
                          <!-- <div class="text-center">
      <div class="dropdown inline-block" data-placement="bottom-start"> <button class="dropdown-toggle button flex items-center inline-block bg-theme-1 text-white"> Filter Dropdown <i data-feather="chevron-down" class="w-4 h-4 ml-2"></i> </button>
          <div class="dropdown-box">
