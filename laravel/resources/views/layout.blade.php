@@ -149,28 +149,28 @@ License: You must have a valid license purchased only from themeforest(the above
         <nav class="top-nav">
             <ul>
             <li>
-                    <a href="{{url('/beranda')}}" class="top-menu @if(request() -> segment(1) == 'BERANDA') top-menu--active @endif">
+                    <a href="{{url('/beranda')}}" class="top-menu @if(request() -> segment(1) == 'beranda') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> BERANDA </div>
                     </a>
                 </li>
               
                 <li>
-                    <a href="{{url('/profil')}}" class="top-menu @if(request() -> segment(1) == 'PROFIL') top-menu--active @endif">
+                    <a href="{{url('/profil')}}" class="top-menu @if(request() -> segment(1) == 'profil') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> PROFIL </div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="/regulasi" class="top-menu @if(request()->segment(1) == 'regulasi') top-menu--active @endif">
+                    <a href="{{url('/regulasi')}}" class="top-menu @if(request()->segment(1) == 'regulasi') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> REGULASI </div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="/maklumat" class="top-menu @if(request()->segment(1) == 'maklumat') top-menu--active @endif">
+                    <a href="{{url('/maklumat')}}" class="top-menu @if(request() -> segment(1) == 'maklumat') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> MAKLUMAT </div>
                     </a>
