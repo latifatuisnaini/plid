@@ -1,14 +1,12 @@
 @extends('layout')
-
-@section('content')
-
-
- <div class="col-span-12 xl:col-span-8 mt-6">
+@section('namehalaman')
+    <div class="col-span-12 xl:col-span-8 mt-6">
         <div class="intro-y block sm:flex items-center h-10">
-        <i data-feather="credit-card"></i><h2 class="ml-2"> E-PPID  </h2>      
+        <i data-feather="credit-card"></i><h2 class="text-lg font-medium mr-auto"> E-PPID  </h2>      
         </div>
 </div>
-
+@endsection
+@section('content')
 <div class="block xl:grid grid-cols-2 gap-4">
                 <div class="hidden xl:flex flex-col min-h-screen">
                     <div class="my-auto">
