@@ -17,7 +17,10 @@ License: You must have a valid license purchased only from themeforest(the above
         <meta name="description" content="Midone admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
         <meta name="keywords" content="admin template, Midone admin template, dashboard template, flat admin template, responsive admin template, web app">
         <meta name="author" content="LEFT4CODE">
-        <title>Dashboard - Midone - Tailwind HTML Admin Template</title>
+        <title>
+            PLID | PT. PAL Indonesia (Persero) 
+        </title>
+        @yield('title')
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="dist/css/app.css" />
         <!-- END: CSS Assets-->
@@ -28,7 +31,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <div class="mobile-menu md:hidden">
             <div class="mobile-menu-bar">
                 <a href="" class="flex mr-auto">
-                    <img alt="Midone Tailwind HTML Admin Template" class="w-6" src="dist/images/logo-pal.png">
+                    <img alt="Midone Tailwind HTML Admin Template" class="w-6" src="dist/images/logo_pt_pal_putih.png">
                 </a>
                 <a href="javascript:;" id="mobile-menu-toggler"> <i data-feather="bar-chart-2" class="w-8 h-8 text-white transform -rotate-90"></i> </a>
             </div>
@@ -104,7 +107,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <li>
                             <a href="simple-menu-light-dashboard.html" class="menu">
                                 <div class="menu__icon">  </div>
-                                <div class="menu__title"> Registrasi Permohonan </div>
+                                <div href="regpermohonan" class="menu__title"> Registrasi Permohonan </div>
                             </a>
                         </li>
                     </ul>
@@ -126,12 +129,12 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <!-- END: Mobile Menu -->
         <!-- BEGIN: Top Bar -->
-        <div class="border-b border-theme-24 -mt-10 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 pt-3 md:pt-0 mb-10">
+        <div class="border-b border-theme-24 -mt-10 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 pt-3 md:pt-0 mb-5">
             <div class="top-bar-boxed flex items-center">
                 <!-- BEGIN: Logo -->
                 <a href="" class="-intro-x hidden md:flex">
-                    <img  class="w-10" src="dist/images/logo-pal2.jpg">
-                    <span class="text-white text-lg ml-3"> <span class="font-medium">PUSAT LAYANAN INFORMASI DAN DOKUMENTASI</span> </span>
+                    <img src="dist/images/logo_pt_pal_putih.png" style="width:8rem;">
+                    <span class="text-white text-lg ml-3"><span class="font-medium" style="font-size: 20px;">PUSAT LAYANAN INFORMASI DAN DOKUMENTASI</span> </span>
                 </a>
                 <!-- END: Logo -->
                 <!-- BEGIN: Breadcrumb -->
@@ -249,8 +252,11 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!-- BEGIN: Official Store -->
                     <div class="col-span-12 xl:col-span-8 mt-6">
                         <div class="intro-y block sm:flex items-center h-10">
-                            
+                 
                            
+                        </div>
+                        <div class="intro-y box p-5 mt-12 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">
+                            @yield('namehalaman')
                         </div>
                         <div class="intro-y box p-5 mt-12 sm:mt-5">
                             @yield('content')

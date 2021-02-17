@@ -32,3 +32,11 @@ Route::get('/maklumat', function(){
 Route::get('/info_layanan_publik', function(){
     return view('info_layanan_publik_1');
 });
+
+Route::get('/lp_prosedurp', function(){
+    return view('lp_prosedurp');
+});
+
+Route::get('/lp_registrasip', function(){
+    return view('lp_registrasip');
+});
