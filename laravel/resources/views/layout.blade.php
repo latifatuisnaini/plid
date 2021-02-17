@@ -180,7 +180,7 @@ License: You must have a valid license purchased only from themeforest(the above
               
 
                 <li>
-                    <a href="javascript:;" class="top-menu ">
+                    <a href="javascript:;" class="top-menu @if(request() -> segment(1) == 'info_layanan_publik_1'  || request() -> segment(1) == 'info_layanan_publik_2' || request() -> segment(1) == 'info_layanan_publik_3') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> INFORMASI PUBLIK <i data-feather="chevron-down" class="menu__sub-icon"></i> </div>
                     </a>
