@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/layout', function () {
     return view('layout');
 });
+
+Route::get('/beranda', function () {
+    return view('beranda');
+});
