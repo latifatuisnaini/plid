@@ -53,14 +53,14 @@ License: You must have a valid license purchased only from themeforest(the above
                 </li>
 
                 <li>
-                    <a href="index.html" class="menu menu--active">
+                    <a href="{{url('/regulasi')}}" class="menu menu--active">
                         <div class="menu__icon">  </div>
                         <div class="menu__title"> REGULASI </div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="index.html" class="menu menu--active">
+                    <a href="{{url('/maklumat')}}" class="menu menu--active">
                         <div class="menu__icon">  </div>
                         <div class="menu__title"> MAKLUMAT </div>
                     </a>
@@ -74,19 +74,19 @@ License: You must have a valid license purchased only from themeforest(the above
                     </a>
                     <ul class="">
                         <li>
-                            <a href="index.html" class="menu">
+                            <a href="{{url('/info_layanan_publik_1')}}" class="menu">
                                 <div class="menu__icon">  </div>
                                 <div class="menu__title"> Informasi yang wajib disediakan dan diumumkan secara berkala </div>
                             </a>
                         </li>
                         <li>
-                            <a href="simple-menu-light-dashboard.html" class="menu">
+                            <a href="{{url('/info_layanan_publik_2')}}" class="menu">
                                 <div class="menu__icon">  </div>
                                 <div class="menu__title"> Informasi yang wajib diumumkan secara serta - merta </div>
                             </a>
                         </li>
                         <li>
-                            <a href="top-menu-light-dashboard.html" class="menu">
+                            <a href="{{url('/info_layanan_publik_3')}}" class="menu">
                                 <div class="menu__icon">  </div>
                                 <div class="menu__title">  Informasi yang wajib sedia setiap saat</div>
                             </a>
@@ -101,13 +101,13 @@ License: You must have a valid license purchased only from themeforest(the above
                     </a>
                     <ul class="">
                         <li>
-                            <a href="" class="menu">
+                            <a href="{{url('/lp_prosedurp')}}" class="menu">
                                 <div class="menu__icon">  </div>
                                 <div class="menu__title"> Prosedur Permohonan </div>
                             </a>
                         </li>
                         <li>
-                            <a href="lp_registrasip" class="menu">
+                            <a href="{{url('/lp_registrasip')}}" class="menu">
                                 <div class="menu__icon">  </div>
                                 <div class="menu__title"> Registrasi Permohonan </div>
                             </a>
@@ -115,13 +115,13 @@ License: You must have a valid license purchased only from themeforest(the above
                     </ul>
                 </li>
                 <li>
-                    <a href="side-menu-light-inbox.html" class="menu">
+                    <a href="{{url('/agenda')}}" class="menu">
                         <div class="menu__icon">  </div>
                         <div class="menu__title"> AGENDA </div>
                     </a>
                 </li>
                 <li>
-                    <a href="side-menu-light-file-manager.html" class="menu">
+                    <a href="{{url('/faq')}}" class="menu">
                         <div class="menu__icon">  </div>
                         <div class="menu__title"> FAQ </div>
                     </a>
@@ -289,9 +289,9 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="intro-x mt-2 text-gray-500 xl:hidden text-center">A few more clicks to sign in to your account. Manage all your e-commerce accounts in one place</div>
                         <div class="intro-x mt-5">
                             Email
-                            <input type="text" class="intro-x login__input input input--lg border border-gray-500 block mt-4" style="width: 130%" placeholder="Email"><br>
+                            <input type="text" class="intro-x login__input input input--lg border border-gray-500 block mt-4" style="width: 100%" placeholder="Email"><br>
                             Password
-                            <input type="password" class="intro-x login__input input input--lg border border-gray-500 block mt-4" style="width: 130%" placeholder="Password">
+                            <input type="password" class="intro-x login__input input input--lg border border-gray-500 block mt-4" style="width: 100%" placeholder="Password">
                         </div>
                         
                         <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
