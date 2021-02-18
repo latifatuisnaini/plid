@@ -252,31 +252,24 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="grid grid-cols-12 gap-6">
                 <div class="col-span-12 xxl:col-span-9 grid grid-cols-12 gap-6">
                     <!-- BEGIN: Content -->
-                    <div class="col-span-12 xl:col-span-8 mt-6">
-                        <div class="intro-y block sm:flex items-center h-10">
-                            
-                 
-                        </div>
-                        <div class="intro-y box p-5 mt-12 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">
+                    <div class="col-span-12 xl:col-span-8">
+                        <div class="intro-y box p-5 mt-5 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">
                             @yield('namehalaman')
                         </div>
                         
-                        <div class="intro-y box p-5 mt-12 sm:mt-5">
+                        <div class="intro-y box p-5 mt-5 sm:mt-5">
                             @yield('content')
                         </div>
                         @yield('cardlp')
                     </div>
                     <!-- END: Official Store -->
                     <!-- BEGIN: Weekly Best Sellers -->
-                    <div class="col-span-12 xl:col-span-4 mt-6">
-                        <div class="intro-y flex items-center h-10" >
+                    <div class="col-span-12 xl:col-span-4">
+                        <div class="intro-y box p-5 mt-5 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">
+                            <h2 class="text-lg font-medium mr-auto">
+                                Login Permohonan Informasi
+                                </h2>
                         </div>
-                            <div class="intro-y box p-5 mt-12 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">
-                                <h2 class="text-lg font-medium mr-auto">
-                                    Login Permohonan Informasi
-                                 </h2>
-                            </div>
-                            
                        
                          <!-- <div class="text-center">
      <div class="dropdown inline-block" data-placement="bottom-start"> <button class="dropdown-toggle button flex items-center inline-block bg-theme-1 text-white"> Filter Dropdown <i data-feather="chevron-down" class="w-4 h-4 ml-2"></i> </button>
