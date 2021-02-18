@@ -45,3 +45,7 @@ Route::get('/lp_registrasip', function(){
 Route::get('/agenda', function(){
     return view('agenda');
 });
+
+Route::get('/faq', function(){
+    return view('faq');
+});

@@ -271,12 +271,12 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="col-span-12 xl:col-span-4 mt-6">
                         <div class="intro-y flex items-center h-10" >
                         </div>
-                            <div class="intro-y box p-5 mt-12 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">
-                                <h2 class="text-lg font-medium mr-auto">
+                            <div class="intro-y box p-5 mt-12 sm:mt-5 bg-blue-400 text-white flex flex-row" style="background-color: #1c3faa;">
+                                <i data-feather="lock"></i>
+                                <h2 class="text-lg font-medium mr-auto ml-3">
                                     Login Permohonan Informasi
                                  </h2>
                             </div>
-                            
                        
                          <!-- <div class="text-center">
      <div class="dropdown inline-block" data-placement="bottom-start"> <button class="dropdown-toggle button flex items-center inline-block bg-theme-1 text-white"> Filter Dropdown <i data-feather="chevron-down" class="w-4 h-4 ml-2"></i> </button>
