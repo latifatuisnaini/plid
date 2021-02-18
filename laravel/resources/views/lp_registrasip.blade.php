@@ -1,9 +1,10 @@
 @extends('layout')
 
 @section('namehalaman')
-    <h2 class="text-lg font-medium mr-auto">
-        REGISTRASI PERMOHONAN
-    </h2>
+<div class="flex flex-row">
+    <i data-feather="users"></i>
+    <h2 class="text-lg font-medium mr-auto ml-3"> REGISTRASI PERMOHONAN</h2>
+</div>
 @endsection
 
 @section('content')
