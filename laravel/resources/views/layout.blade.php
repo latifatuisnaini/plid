@@ -101,7 +101,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </a>
                     <ul class="">
                         <li>
-                            <a href="" class="menu">
+                            <a href="lp_prosedurp" class="menu">
                                 <div class="menu__icon">  </div>
                                 <div class="menu__title"> Prosedur Permohonan </div>
                             </a>
@@ -210,13 +210,13 @@ License: You must have a valid license purchased only from themeforest(the above
                 </li>
                 <li>
                 <li>
-                    <a href="javascript:;" class="top-menu ">
+                    <a href="javascript:;" class="top-menu @if(request() -> segment(1) == 'lp_prosedurp'  || request() -> segment(1) == 'lp_registrasip') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> LAYANAN PUBLIK <i data-feather="chevron-down" class="menu__sub-icon"></i> </div>
                     </a>
                     <ul class="">
                         <li>
-                            <a href="{{url('/lp_prosedur')}}" class="top-menu">
+                            <a href="{{url('/lp_prosedurp')}}" class="top-menu">
                                 <div class="top-menu__icon">  </div>
                                 <div class="top-menu__title"> Prosedur Permohonan </div>
                             </a>
@@ -230,13 +230,13 @@ License: You must have a valid license purchased only from themeforest(the above
                     </ul>
                 </li>
                 <li>
-                    <a href="{{url('/agenda')}}" class="top-menu">
+                    <a href="{{url('/agenda')}}" class="top-menu @if(request() -> segment(1) == 'agenda') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> AGENDA </div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{url('/faq')}}" class="top-menu ">
+                    <a href="{{url('/faq')}}" class="top-menu @if(request() -> segment(1) == 'faq') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> FAQ </div>
                     </a>
@@ -260,9 +260,11 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="intro-y box p-5 mt-12 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">
                             @yield('namehalaman')
                         </div>
+                        
                         <div class="intro-y box p-5 mt-12 sm:mt-5">
                             @yield('content')
                         </div>
+                        @yield('cardlp')
                     </div>
                     <!-- END: Official Store -->
                     <!-- BEGIN: Weekly Best Sellers -->
@@ -284,28 +286,28 @@ License: You must have a valid license purchased only from themeforest(the above
                             <div class="intro-y">
                                 <div class="box py-4 mb-3 flex items-center zoom-in">
                                    <!-- BEGIN: Login Form -->
-                    <div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
-                    <div class="my-auto mx-auto xl:mx-5 bg-white xl:bg-transparent sm:py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
-                        <div class="intro-x mt-2 text-gray-500 xl:hidden text-center">A few more clicks to sign in to your account. Manage all your e-commerce accounts in one place</div>
-                        <div class="intro-x mt-5">
-                            Email
-                            <input type="text" class="intro-x login__input input input--lg border border-gray-500 block mt-4" style="width: 130%" placeholder="Email"><br>
-                            Password
-                            <input type="password" class="intro-x login__input input input--lg border border-gray-500 block mt-4" style="width: 130%" placeholder="Password">
-                        </div>
-                        
-                        <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
-                            <button class="button button--lg w-full xl:w-32 text-white bg-theme-1 xl:mr-3 align-top">Submit</button>
-                            <button class="button button--lg xl:w-32 mr-1 mb-2 bg-theme-9 text-white">Daftar</button>
-                        </div>
-                        <div class="intro-x mt-10 xl:mt-24 text-gray-700 dark:text-gray-600 text-center xl:text-left">
-                            By signin up, you agree to our 
-                            <br>
-                            <a class="text-theme-1 dark:text-theme-10" href="">Terms and Conditions</a> & <a class="text-theme-1 dark:text-theme-10" href="">Privacy Policy</a> 
-                        </div>
-                    </div>
-                </div>
-                <!-- END: Login Form -->
+                                        <div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
+                                        <div class="my-auto mx-auto xl:mx-5 bg-white xl:bg-transparent sm:py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
+                                            <div class="intro-x mt-2 text-gray-500 xl:hidden text-center">A few more clicks to sign in to your account. Manage all your e-commerce accounts in one place</div>
+                                            <div class="intro-x mt-5">
+                                                Email
+                                                <input type="text" class="intro-x login__input input input--lg border border-gray-500 block mt-4" style="width: 100%" placeholder="Email"><br>
+                                                Password
+                                                <input type="password" class="intro-x login__input input input--lg border border-gray-500 block mt-4" style="width: 100%" placeholder="Password">
+                                            </div>
+                                            
+                                            <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
+                                                <button class="button button--lg w-full xl:w-32 text-white bg-theme-1 xl:mr-3 align-top">Submit</button>
+                                                <button class="button button--lg xl:w-32 mr-1 mb-2 bg-theme-9 text-white">Daftar</button>
+                                            </div>
+                                            <div class="intro-x mt-10 xl:mt-24 text-gray-700 dark:text-gray-600 text-center xl:text-left">
+                                                By signin up, you agree to our 
+                                                <br>
+                                                <a class="text-theme-1 dark:text-theme-10" href="">Terms and Conditions</a> & <a class="text-theme-1 dark:text-theme-10" href="">Privacy Policy</a> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END: Login Form -->
                                     
                     <!-- END: Weekly Best Sellers -->
        

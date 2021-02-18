@@ -12,7 +12,7 @@
 			Formulir ini digunakan untuk registrasi pemohon. Dengan mendaftar di Sistem Informasi PPID, pemohon mendapatkan kemudahan dalam mengajukan permohonan informasi maupun pengajuan keberatan secara online. Pemohon dinyatakan berhasil mendaftar apabila telah memenuhi semua kelengkapan yang dibutuhkan dan mendapatkan email komfirmasi dari pengelola Sistem Informasi PPID.
 		</i>
 	</p>
-            <div class="p-5" id="horizontal-form">
+            <div class="p-3" id="horizontal-form">
                 <div class="preview">
                     <div class="flex flex-col sm:flex-row items-center">
                         <label class="w-full sm:w-20 sm:text-left sm:mr-5">Jenis Pemohon</label>
