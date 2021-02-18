@@ -33,7 +33,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <div class="mobile-menu md:hidden">
             <div class="mobile-menu-bar">
                 <a href="" class="flex mr-auto">
-                    <img alt="Midone Tailwind HTML Admin Template" class="w-6" src="dist/images/logo_pt_pal_putih.png">
+                    <img alt="Midone Tailwind HTML Admin Template" src="{{ asset('dist/images/logo_pt_pal_putih.png')}}" style="width:7rem;">
                 </a>
                 <a href="javascript:;" id="mobile-menu-toggler"> <i data-feather="bar-chart-2" class="w-8 h-8 text-white transform -rotate-90"></i> </a>
             </div>
