@@ -210,13 +210,13 @@ License: You must have a valid license purchased only from themeforest(the above
                 </li>
                 <li>
                 <li>
-                    <a href="javascript:;" class="top-menu ">
+                    <a href="javascript:;" class="top-menu @if(request() -> segment(1) == 'lp_prosedurp'  || request() -> segment(1) == 'lp_registrasip') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> LAYANAN PUBLIK <i data-feather="chevron-down" class="menu__sub-icon"></i> </div>
                     </a>
                     <ul class="">
                         <li>
-                            <a href="{{url('/lp_prosedur')}}" class="top-menu">
+                            <a href="{{url('/lp_prosedurp')}}" class="top-menu">
                                 <div class="top-menu__icon">  </div>
                                 <div class="top-menu__title"> Prosedur Permohonan </div>
                             </a>
@@ -230,13 +230,13 @@ License: You must have a valid license purchased only from themeforest(the above
                     </ul>
                 </li>
                 <li>
-                    <a href="{{url('/agenda')}}" class="top-menu">
+                    <a href="{{url('/agenda')}}" class="top-menu @if(request() -> segment(1) == 'agenda') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> AGENDA </div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{url('/faq')}}" class="top-menu ">
+                    <a href="{{url('/faq')}}" class="top-menu @if(request() -> segment(1) == 'faq') top-menu--active @endif">
                         <div class="top-menu__icon">  </div>
                         <div class="top-menu__title"> FAQ </div>
                     </a>
@@ -260,9 +260,11 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="intro-y box p-5 mt-12 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">
                             @yield('namehalaman')
                         </div>
+                        
                         <div class="intro-y box p-5 mt-12 sm:mt-5">
                             @yield('content')
                         </div>
+                        @yield('cardlp')
                     </div>
                     <!-- END: Official Store -->
                     <!-- BEGIN: Weekly Best Sellers -->
