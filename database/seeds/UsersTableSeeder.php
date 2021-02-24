@@ -15,7 +15,14 @@ class UsersTableSeeder extends Seeder
         
 
         \DB::table('users')->delete();
-        
+        \DB::table('users')->insert([
+            'NAMA_LENGKAP' => 'Admin',
+            'TIPE_USER' => '1',
+            'email' => 'deaamartya3@gmail.com',
+            'password' => bcrypt('admin')
+        ]);
+
+
         
         
     }

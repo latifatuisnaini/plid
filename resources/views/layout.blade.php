@@ -279,12 +279,14 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="box py-4 mb-3 flex items-center zoom-in">
                                    <!-- BEGIN: Login Form -->
                     <div class="h-screen xl:h-auto flex xl:py-0 my-5 xl:my-0 px-5">
+                    <form method="POST" action="{{ route('login') }}">
+                    @csrf
                     <div class="my-auto mx-auto xl:mx-5 bg-white xl:bg-transparent sm:py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
                         <div class="intro-x mt-5">
                             Email
-                            <input type="text" class="intro-x login__input input input--lg border border-gray-500 block mt-4" style="width: 100%" placeholder="Email"><br>
+                            <input type="email" name="email" class="intro-x login__input input input--lg border border-gray-500 block mt-4" style="width: 100%" placeholder="Email"><br>
                             Password
-                            <input type="password" class="intro-x login__input input input--lg border border-gray-500 block mt-4" style="width: 100%" placeholder="Password">
+                            <input type="password" name="password" class="intro-x login__input input input--lg border border-gray-500 block mt-4" style="width: 100%" placeholder="Password">
                         </div>
                         
                         <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
@@ -297,6 +299,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <a class="text-theme-1 dark:text-theme-10" href="">Terms and Conditions</a> & <a class="text-theme-1 dark:text-theme-10" href="">Privacy Policy</a> 
                         </div>
                     </div>
+                    </form>
                 </div>
                 <!-- END: Login Form -->
                                     
