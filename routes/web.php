@@ -50,12 +50,12 @@ Route::get('/faq', function(){
     return view('faq');
 });
 
+// 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-// ->middleware(['first', 'second'])
 
-Route::prefix('admin')->group(function(){
+Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::get('/','AdminController@index');
     Route::resource('/user','UserController');
 });
