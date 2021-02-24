@@ -49,3 +49,10 @@ Route::get('/agenda', function(){
 Route::get('/faq', function(){
     return view('faq');
 });
+
+// ->middleware(['first', 'second'])
+
+Route::prefix('admin')->group(function(){
+    Route::get('/','AdminController@index');
+    Route::get('/user','AdminController@index');
+});
