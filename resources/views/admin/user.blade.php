@@ -67,13 +67,14 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 
 </style>
 @endsection
-@section('namehalaman')
-<div class="flex flex-row">
-    <i data-feather="list"></i>
-    <h2 class="text-lg font-medium mr-auto ml-1"> Table User</h2>
-</div>
-@endsection
 @section('content')
+<div class="intro-y box p-5 mt-5 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">                        
+    <div class="flex flex-row">
+        <i data-feather="list"></i>
+        <h2 class="text-lg font-medium mr-auto ml-3"> Table User</h2>
+    </div>
+</div>
+
 <div class="intro-y box p-5 mt-5">
 
 <!--Container-->
@@ -85,33 +86,32 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
         <table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <thead>
                 <tr>
-                    <!--<th data-priority="1">Nomor Identitas</th>-->
+                    <th data-priority="1">Nomor Identitas</th>
                     <th data-priority="2">Nama Lengkap</th>
                     <th data-priority="3">No. Telp</th>
                     <th data-priority="4">Pekerjaan</th>
-                    <th data-priority="5">Aksi</th>
-                    <th data-priority="6"></th>
+                    <th data-priority="5">Status Konfirmasi</th>
+                    <th data-priority="6">Tools</th>
                 </tr>
             </thead>
-                
-                <!-- Rest of your data (refer to https://datatables.net/examples/server_side/ for server side processing)-->
             <tbody>
-                    @foreach($users as $u)
-                    <tr>
-                    <!-- <td>{{$u->NOMOR_IDENTITAS}}</td> -->
-                        <td>{{$u->NAMA_LENGKAP}}</td>
-                        <td>{{$u->NO_TLP}}</td>
-                        <td>{{$u->PEKERJAAN}}</td>
-                        <td>
-                            <a href="">
-                                <button class="button w-32 mr-2 mb-2 flex items-center justify-center bg-blue-300 dark:text-gray-300"> <i data-feather="paperclip" class="w-4 h-4 mr-2"></i> Konfirmasi</button>
-                            </a>
-                        </td>
-                        <td>
-                            <a data-toggle="modal" data-target="#detail_{{ $u->ID_USER }}"  class="button w-32 mr-2 mb-2 flex items-center justify-center bg-green-300 dark:text-gray-300"> <i data-feather="more-vertical" class="w-4 h-4 mr-2"></i>Detail</a>
-                        </td>
-                    </tr>
-                    @endforeach
+            @foreach($users as $u)
+                <tr>
+                    <td>{{$u->NOMOR_IDENTITAS}}</td>
+                    <td>{{$u->NAMA_LENGKAP}}</td>
+                    <td>{{$u->NO_TLP}}</td>
+                    <td>{{$u->PEKERJAAN}}</td>
+                    <td>{{$u->STATUS_KONFIRMASI}}</td>
+                    <td>
+                        <a href="{{url('/admin/user')}}">
+                            <button class="button w-32 mr-2 mb-2 flex items-center justify-center bg-blue-300 dark:text-gray-300"> <i data-feather="paperclip" class="w-4 h-4 mr-2"></i>Konfirmasi </button>
+                        </a>
+                        <a href="{{url('/admin/detail')}}">
+                            <button class="button w-32 mr-2 mb-2 flex items-center justify-center bg-green-300 dark:text-gray-300"> <i data-feather="more-horizontal" class="w-4 h-4 mr-5"></i>Detail </button>
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
 

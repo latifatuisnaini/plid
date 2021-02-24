@@ -12,7 +12,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN: Head -->
     <head>
         <meta charset="utf-8">
-        <link href="dist/images/logo.svg" rel="shortcut icon">
+        <link href="{{ asset('dist/images/favicon.png')}}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Midone admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
         <meta name="keywords" content="admin template, Midone admin template, dashboard template, flat admin template, responsive admin template, web app">
@@ -281,12 +281,22 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="h-screen xl:h-auto flex xl:py-0 my-5 xl:my-0 px-5">
                     <form method="POST" action="{{ route('login') }}">
                     @csrf
+                    @error('email')
+                            <div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-31 text-theme-6"> <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i> Email dan Password Salah </div>
+                            @enderror
                     <div class="my-auto mx-auto xl:mx-5 bg-white xl:bg-transparent sm:py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
                         <div class="intro-x mt-5">
                             Email
-                            <input type="email" name="email" class="intro-x login__input input input--lg border border-gray-500 block mt-4" style="width: 100%" placeholder="Email"><br>
+                            <input type="email" name="email" class="intro-x login__input input input--lg border border-gray-500 block mt-4" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus style="width: 100%" placeholder="Email">
+                            
+                        <br>
                             Password
-                            <input type="password" name="password" class="intro-x login__input input input--lg border border-gray-500 block mt-4" style="width: 100%" placeholder="Password">
+                            <input type="password" name="password" class="intro-x login__input input input--lg border border-gray-500 block mt-4" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" style="width: 100%" placeholder="Password" >
+                            @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
                         
                         <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
