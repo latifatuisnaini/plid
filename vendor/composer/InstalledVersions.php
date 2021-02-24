@@ -25,8 +25,8 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => 'v7.0.0',
-    'version' => '7.0.0.0',
+    'pretty_version' => '1.0.0+no-version-set',
+    'version' => '1.0.0.0',
     'aliases' => 
     array (
     ),
@@ -75,6 +75,33 @@ private static $installed = array (
       array (
       ),
       'reference' => '8f8a6e48c5ecb0f991c2fdcf5f154a47d85f9ffd',
+    ),
+    'doctrine/cache' => 
+    array (
+      'pretty_version' => '1.10.2',
+      'version' => '1.10.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '13e3381b25847283a91948d04640543941309727',
+    ),
+    'doctrine/dbal' => 
+    array (
+      'pretty_version' => '2.12.1',
+      'version' => '2.12.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'adce7a954a1c2f14f85e94aed90c8489af204086',
+    ),
+    'doctrine/event-manager' => 
+    array (
+      'pretty_version' => '1.1.1',
+      'version' => '1.1.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '41370af6a30faa9dc0368c4a6814d596e81aba7f',
     ),
     'doctrine/inflector' => 
     array (
@@ -423,6 +450,15 @@ private static $installed = array (
         0 => 'v7.30.4',
       ),
     ),
+    'kitloong/laravel-migrations-generator' => 
+    array (
+      'pretty_version' => '4.4.2',
+      'version' => '4.4.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '15b36cbf38019bf5d96dd960c7a865fa5f931d48',
+    ),
     'kodova/hamcrest-php' => 
     array (
       'replaced' => 
@@ -441,8 +477,8 @@ private static $installed = array (
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => 'v7.0.0',
-      'version' => '7.0.0.0',
+      'pretty_version' => '1.0.0+no-version-set',
+      'version' => '1.0.0.0',
       'aliases' => 
       array (
       ),
@@ -456,6 +492,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'daae1c43f1300fe88c05d83db6f3d8f76677ad88',
+    ),
+    'laravel/ui' => 
+    array (
+      'pretty_version' => 'v2.4.0',
+      'version' => '2.4.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f5398544a9cd4804a42d09ce51735e37cd51ea2d',
     ),
     'league/commonmark' => 
     array (
@@ -550,6 +595,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '943b5d70cc5ae7483f6aff6ff43d7e34592ca0f5',
+    ),
+    'orangehill/iseed' => 
+    array (
+      'pretty_version' => 'v3.0.1',
+      'version' => '3.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '874f77a20d49aa4c6c5fec2daf0daa070514e013',
     ),
     'phar-io/manifest' => 
     array (
@@ -729,8 +783,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'psr/simple-cache' => 
@@ -777,6 +831,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'cd4032040a750077205918c86049aa0f43d22947',
+    ),
+    'reliese/laravel' => 
+    array (
+      'pretty_version' => 'v0.0.19',
+      'version' => '0.0.19.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1f10ed43802b2a07ee7f308e9a87ca875cfb02ba',
     ),
     'rhumsaa/uuid' => 
     array (
