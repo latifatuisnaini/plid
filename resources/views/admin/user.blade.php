@@ -70,7 +70,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 @section('namehalaman')
 <div class="flex flex-row">
     <i data-feather="list"></i>
-    <h2 class="text-lg font-medium mr-auto ml-1"> Table User</h2>
+    <h2 class="text-lg font-medium mr-auto ml-3"> Table User</h2>
 </div>
 @endsection
 @section('content')
@@ -85,34 +85,26 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
         <table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <thead>
                 <tr>
-                    <th data-priority="1">Name</th>
-                    <th data-priority="2">Position</th>
-                    <th data-priority="3">Office</th>
-                    <th data-priority="4">Age</th>
-                    <th data-priority="5">Start date</th>
-                    <th data-priority="6">Salary</th>
+                    <th data-priority="1">Nomor Identitas</th>
+                    <th data-priority="2">Nama Lengkap</th>
+                    <th data-priority="3">No. Telp</th>
+                    <th data-priority="4">Pekerjaan</th>
+                    <th data-priority="5">Konfirmasi</th>
                 </tr>
             </thead>
             <tbody>
+            @foreach($users as $u)
                 <tr>
-                    <td>Tina May</td>
-                    <td>Coffee Manager</td>
-                    <td>Ljubljana</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
+                    <td>{{$u->NOMOR_IDENTITAS}}</td>
+                    <td>{{$u->NAMA_LENGKAP}}</td>
+                    <td>{{$u->NO_TLP}}</td>
+                    <td>{{$u->PEKERJAAN}}</td>
+                    <td>
+                        <button class="button px-2 mr-1 mb-2 bg-theme-9 dark:text-gray-300"> <span class="w-5 h-5 flex items-center justify-center"> <i data-feather="more-horizontal" class="w-4 h-4"></i> </span> </button>
+                        <button class="button px-2 mr-1 mb-2 bg-blue-300 dark:text-gray-300"> <span class="w-5 h-5 flex items-center justify-center"> <i data-feather="paperclip" class="w-4 h-4"></i> </span> </button>
+                    </td>
                 </tr>
-                
-                <!-- Rest of your data (refer to https://datatables.net/examples/server_side/ for server side processing)-->
-                
-                <tr>
-                    <td>Donna Snider</td>
-                    <td>Customer Support</td>
-                    <td>New York</td>
-                    <td>27</td>
-                    <td>2011/01/25</td>
-                    <td>$112,000</td>
-                </tr>
+            @endforeach
             </tbody>
             
         </table>
