@@ -25,11 +25,18 @@ class HomeController extends Controller
     public function index()
     {
         $tipe_user=Auth::user()->TIPE_USER;
+        $status_konfirmasi=Auth::user()->STATUS_KONFIRMASI;
         if($tipe_user==1){
             return redirect('admin');
         }
-        else{
-            return redirect('user');
+        else if($tipe_user==2){
+            if($status_konfirmasi==1){
+                return redirect()->back()->with('email');
+                @Session('email')
+            }
+            else{
+                return redirect('user');
+            }
         }
     }
 }
