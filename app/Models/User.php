@@ -6,33 +6,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-/**
- * Class User
- * 
- * @property int $ID_USER
- * @property int $ID_JENIS_IDENTITAS
- * @property int $ID_JENIS_PEMOHON
- * @property string $NOMOR_IDENTITAS
- * @property string $NAMA_LENGKAP
- * @property string $NPWP
- * @property string $EMAIL
- * @property string $PEKERJAAN
- * @property string $ALAMAT
- * @property string $NO_TLP
- * @property string $NO_FAX
- * @property string $PASSWORD
- * 
- * @property JenisPemohon $jenis_pemohon
- * @property JenisIdentita $jenis_identita
- * @property Collection|Permohonan[] $permohonans
- *
- * @package App\Models
- */
-class User extends Model
+class User extends Authenticatable
 {
+    use Notifiable;
+	
 	protected $table = 'users';
 	protected $primaryKey = 'ID_USER';
 	public $timestamps = false;
