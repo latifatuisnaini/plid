@@ -591,9 +591,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!-- END: Account Menu -->
                 </div>
                 <!-- END: Top Bar -->
-                <div class="intro-y box p-5 mt-5 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">
-                            @yield('namehalaman')
-                        </div>
+                
                 @yield('content')
             </div>
             <!-- END: Content -->
