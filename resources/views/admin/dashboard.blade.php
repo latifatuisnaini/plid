@@ -78,15 +78,15 @@
             </div>
             <div class="intro-y box p-5 mt-12 sm:mt-5">
                 <div class="flex flex-col xl:flex-row xl:items-center">
-                    <div class="flex">
+                    <div class="flex mb-5">
                         <div>
                             <div class="text-theme-20 dark:text-gray-300 text-lg xl:text-xl font-bold">{{ $jml_permohonan_this_month }}</div>
-                            <div class="text-gray-600 dark:text-gray-600">This Month</div>
+                            <div class="text-gray-600 dark:text-gray-600">Bulan Ini</div>
                         </div>
                         <div class="w-px h-12 border border-r border-dashed border-gray-300 dark:border-dark-5 mx-4 xl:mx-6"></div>
                         <div>
                             <div class="text-gray-600 dark:text-gray-600 text-lg xl:text-xl font-medium">{{ $jml_permohonan_last_month }}</div>
-                            <div class="text-gray-600 dark:text-gray-600">Last Month</div>
+                            <div class="text-gray-600 dark:text-gray-600">Bulan Lalu</div>
                         </div>
                     </div>
                     <!--
@@ -99,7 +99,10 @@
                     -->
                 </div>
                 <div class="report-chart">
+                <!--
                     <canvas id="report-line-chart" height="160" class="mt-6"></canvas>
+                    -->
+                    <canvas id="line-chart" height="160" class="mt-6"></canvas>
                 </div>
             </div>
         </div>
@@ -135,4 +138,39 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+var ctx = document.getElementById('line-chart').getContext('2d');
+var myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct', 'Nov', 'Dec'],
+    datasets: [{ 
+        data: [
+            <?php echo $januari ?>,
+            <?php echo $februari ?>,
+            <?php echo $maret ?>,
+            <?php echo $april ?>,
+            <?php echo $mei ?>,
+            <?php echo $juni ?>,
+            <?php echo $juli ?>,
+            <?php echo $agustus ?>,
+            <?php echo $september ?>,
+            <?php echo $oktober ?>,
+            <?php echo $november ?>,
+            <?php echo $desember ?>
+        ],
+        borderColor: "#3e95cd",
+        fill: false
+      }]
+  },
+  options: {
+    legend: {
+        display: false
+    }
+  }
+});
+
+</script>
 @endsection
