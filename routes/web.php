@@ -57,5 +57,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::get('/','AdminController@index');
-    Route::get('/user','AdminController@index');
+    Route::get('/user','UserController@index');
 });

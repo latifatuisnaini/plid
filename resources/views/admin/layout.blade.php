@@ -20,7 +20,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <title>
             PPID PT. PAL Indonesia (Persero)
         </title>
-        
+
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="{{asset('dist/css/app.css')}}" />
         <!-- END: CSS Assets-->
@@ -647,10 +647,13 @@ License: You must have a valid license purchased only from themeforest(the above
 
         <!-- BEGIN: JS Assets-->
         <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=["your-google-map-api"]&libraries=places"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=["your-google-map-api"]&libraries=places></script>
         <script src="{{asset('dist/js/app.js')}}"></script>
         <!-- END: JS Assets-->
 
         @yield('script')
+
+        
+
     </body>
 </html>
