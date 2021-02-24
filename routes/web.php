@@ -49,3 +49,7 @@ Route::get('/agenda', function(){
 Route::get('/faq', function(){
     return view('faq');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
