@@ -85,61 +85,34 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
         <table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <thead>
                 <tr>
-<<<<<<< Updated upstream
-                    <th data-priority="1">Name</th>
-                    <th data-priority="2">Position</th>
-                    <th data-priority="3">Office</th>
-                    <th data-priority="4">Age</th>
-                    <th data-priority="5">Start date</th>
-                    <th data-priority="6">Salary</th>
-=======
                     <!--<th data-priority="1">Nomor Identitas</th>-->
                     <th data-priority="2">Nama Lengkap</th>
                     <th data-priority="3">No. Telp</th>
                     <th data-priority="4">Pekerjaan</th>
                     <th data-priority="5">Aksi</th>
                     <th data-priority="6"></th>
-
->>>>>>> Stashed changes
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-<<<<<<< Updated upstream
-                    <td>Tina May</td>
-                    <td>Coffee Manager</td>
-                    <td>Ljubljana</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
-                </tr>
                 
                 <!-- Rest of your data (refer to https://datatables.net/examples/server_side/ for server side processing)-->
-                
-                <tr>
-                    <td>Donna Snider</td>
-                    <td>Customer Support</td>
-                    <td>New York</td>
-                    <td>27</td>
-                    <td>2011/01/25</td>
-                    <td>$112,000</td>
-=======
+            <tbody>
+                    @foreach($users as $u)
+                    <tr>
                     <!-- <td>{{$u->NOMOR_IDENTITAS}}</td> -->
-                    <td>{{$u->NAMA_LENGKAP}}</td>
-                    <td>{{$u->NO_TLP}}</td>
-                    <td>{{$u->PEKERJAAN}}</td>
-                    <td>
-                        <a href="">
-                            <button class="button w-32 mr-2 mb-2 flex items-center justify-center bg-blue-300 dark:text-gray-300"> <i data-feather="paperclip" class="w-4 h-4 mr-2"></i> Konfirmasi</button>
-                        </a>
-                    </td>
-                    <td>
-                        <a data-toggle="modal" data-target="#detail_{{ $u->ID_USER }}"  class="button w-32 mr-2 mb-2 flex items-center justify-center bg-green-300 dark:text-gray-300"> <i data-feather="more-vertical" class="w-4 h-4 mr-2"></i>Detail</a>
-                    </td>
->>>>>>> Stashed changes
-                </tr>
+                        <td>{{$u->NAMA_LENGKAP}}</td>
+                        <td>{{$u->NO_TLP}}</td>
+                        <td>{{$u->PEKERJAAN}}</td>
+                        <td>
+                            <a href="">
+                                <button class="button w-32 mr-2 mb-2 flex items-center justify-center bg-blue-300 dark:text-gray-300"> <i data-feather="paperclip" class="w-4 h-4 mr-2"></i> Konfirmasi</button>
+                            </a>
+                        </td>
+                        <td>
+                            <a data-toggle="modal" data-target="#detail_{{ $u->ID_USER }}"  class="button w-32 mr-2 mb-2 flex items-center justify-center bg-green-300 dark:text-gray-300"> <i data-feather="more-vertical" class="w-4 h-4 mr-2"></i>Detail</a>
+                        </td>
+                    </tr>
+                    @endforeach
             </tbody>
-            
         </table>
 
         @foreach($users as $u)
