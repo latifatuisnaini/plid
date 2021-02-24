@@ -15,58 +15,58 @@
 	</p>
             <div class="p-3" id="horizontal-form">
                 <div class="preview">
-                    <div class="flex flex-col sm:flex-row items-center flex-auto mt-3">
-                        <label class="w-30 text-left mr-12">Jenis Pemohon</label>
-                        <select class="input border mt-2 flex-1">
+                    <div class="flex flex-col sm:flex-row items-center mt-3">
+                        <label class="w-full sm:w-20 sm:text-left sm:mr-12">Jenis Pemohon</label>
+                        <select class="input border border-gray-500 mt-3 flex-1">
                             <option>PERORANGAN</option>
                             <option>KELOMPOK ORANG</option>
                             <option>BADAN HUKUM</option>
                         </select>
                     </div>
-                    <div class="flex flex-col sm:flex-row items-center flex-auto mt-3">
-                        <label class="w-30 text-left mr-12">Jenis Identitas</label>
-                        <select class="input border mt-2 flex-1">
+                    <div class="flex flex-col sm:flex-row items-center mt-4">
+                        <label class="w-full sm:w-20 sm:text-left sm:mr-12">Jenis Identitas</label>
+                        <select class="input border border-gray-500 mt-3 flex-1">
                             <option>KTP</option>
                             <option>PENGESAHAN BADAN USAHA</option>
                             <option>SURAT KUASA</option>
                             <option>BADAN PUBLIK</option>
                         </select>
                     </div>
-                    <div class="flex flex-col sm:flex-row items-center flex-auto mt-3">
-                        <label class="sm:w-30 sm:text-left sm:mr-12">Nomor Identitas</label>
-                            <input type="password" class="input border mt-2 flex-1" >
+                    <div class="flex flex-col sm:flex-row items-center flex-auto mt-4">
+                        <label class="w-full sm:w-20 sm:text-left sm:mr-12">Nomor Identitas</label>
+                            <input type="password" class="input border border-gray-500 mt-2 flex-1" >
                     </div>
-                    <div class="flex flex-col sm:flex-row items-center flex-auto mt-3">
-                        <label class="sm:w-30 sm:text-left sm:mr-12">Nama Lengkap</label>
-                            <input type="password" class="input border mt-2 flex-1" >
+                    <div class="flex flex-col sm:flex-row items-center flex-auto mt-4">
+                        <label class="w-full sm:w-20 sm:text-left sm:mr-12">Nama Lengkap</label>
+                            <input type="password" class="input border border-gray-500 mt-2 flex-1" >
                     </div>
-                    <div class="flex flex-col sm:flex-row items-center mt-3">
-                        <label class="sm:w-30 sm:text-left sm:mr-12">NPWP</label>
-                            <input type="password" class="input w-full border mt-2 flex-1" >
+                    <div class="flex flex-col sm:flex-row items-center mt-4">
+                        <label class="w-full sm:w-20 sm:text-left sm:mr-12">NPWP</label>
+                            <input type="password" class="input w-full border border-gray-500 mt-2 flex-1" >
                     </div>
-                    <div class="flex flex-col sm:flex-row items-center mt-3">
-                        <label class="sm:w-30 sm:text-left sm:mr-12">Email *</label>
-                            <input type="email" class="input w-full border mt-2 flex-1" >
+                    <div class="flex flex-col sm:flex-row items-center mt-4">
+                        <label class="w-full sm:w-20 sm:text-left sm:mr-12">Email *</label>
+                            <input type="email" class="input w-full border border-gray-500 mt-2 flex-1" >
                     </div>
-                    <div class="flex flex-col sm:flex-row items-center mt-3">
-                        <label class="w-30 text-left mr-12">Pekerjaan</label>
-                            <input type="password" class="input w-full border mt-2 flex-1">
+                    <div class="flex flex-col sm:flex-row items-center mt-4">
+                        <label class="w-full sm:w-20 sm:text-left sm:mr-12">Pekerjaan</label>
+                            <input type="password" class="input w-full border border-gray-500 mt-2 flex-1">
                     </div>
-                    <div class="flex flex-col sm:flex-row items-center mt-3">
+                    <div class="flex flex-col sm:flex-row items-center mt-4">
                         <label class="w-full sm:w-20 sm:text-left sm:mr-12">Alamat</label>
-                            <textarea class="input w-full border mt-2 flex-1"></textarea>
+                            <textarea class="input w-full border border-gray-500 mt-2 flex-1"></textarea>
                     </div>
-                    <div class="flex flex-col sm:flex-row items-center mt-3">
+                    <div class="flex flex-col sm:flex-row items-center mt-4">
                         <label class="w-full sm:w-20 sm:text-left sm:mr-12">No Telp</label>
-                            <input type="password" class="input w-full border mt-2 flex-1">
+                            <input type="password" class="input w-full border border-gray-500 mt-2 flex-1">
                     </div>
-                    <div class="flex flex-col sm:flex-row items-center mt-3">
+                    <div class="flex flex-col sm:flex-row items-center mt-4">
                         <label class="w-full sm:w-20 sm:text-left sm:mr-12">No Fax</label>
-                            <input type="password" class="input w-full border mt-2 flex-1">
+                            <input type="password" class="input w-full border border-gray-500 mt-2 flex-1">
                     </div>
-                    <div class="flex flex-col sm:flex-row items-center mt-3">
+                    <div class="flex flex-col sm:flex-row items-center mt-4">
                         <label class="w-full sm:w-20 sm:text-left sm:mr-12">Password</label>
-                            <input type="password" class="input w-full border mt-2 flex-1">
+                            <input type="password" class="input w-full border border-gray-500 mt-2 flex-1">
                     </div>
                     <button type="cancel" class="button bg-theme-1 text-white mt-5">Cancel</button>
                     <button type="submit" class="button bg-theme-1 text-white mt-5">Submit</button>
