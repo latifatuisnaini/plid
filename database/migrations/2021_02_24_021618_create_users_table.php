@@ -28,7 +28,8 @@ class CreateUsersTable extends Migration
             $table->string('NO_FAX', 15)->nullable();
             $table->string('password');
             $table->boolean('STATUS_KONFIRMASI')->nullable();
-
+            $table->timestamp('created_at', 0);
+            $table->timestamp('updated_at', 0)->nullable();
         });
     }
 

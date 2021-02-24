@@ -19,7 +19,8 @@ class UsersTableSeeder extends Seeder
             'NAMA_LENGKAP' => 'Admin',
             'TIPE_USER' => '1',
             'email' => 'deaamartya3@gmail.com',
-            'password' => bcrypt('admin')
+            'password' => bcrypt('admin'),
+            'created_at' => date('Y-m-d h:i:s')
         ]);
 
 
