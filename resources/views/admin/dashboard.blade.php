@@ -73,7 +73,7 @@
         <div class="col-span-12 lg:col-span-8 mt-8">
             <div class="intro-y block sm:flex items-center h-10">
                 <h2 class="text-lg font-medium truncate mr-5">
-                    Grafik Jumlah Permohonan Tahun 2021
+                    Grafik Jumlah Permohonan Tahun {{ $current_year }}
                 </h2>
             </div>
             <div class="intro-y box p-5 mt-12 sm:mt-5">
@@ -113,43 +113,20 @@
                 </h2>
             </div>
             <div class="mt-5">
+            @foreach($list_permohonan as $list)
                 <div class="intro-y">
                     <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
+                        <div class="w-10 h-10 flex-none image-fit rounded-md overflow-hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30S" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text mx-auto"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        </div>
                         <div class="ml-4 mr-auto">
-                            <div class="text-gray-600 text-xs mb-2">2 December 2021</div>
-                            <div class="font-medium">Russell Crowe</div>
-                            <div class="font-medium">Dokumen A</div>
-                            
+                            <div class="text-gray-600 text-xs mb-2">{{ $list->tgl_permohonan }}</div>
+                            <div class="font-medium">{{ $list->NAMA_LENGKAP }}</div>
+                            <div class="font-medium">{{ $list->DOKUMEN_PERMOHONAN }}</div>
                         </div>
                     </div>
                 </div>
-                <div class="intro-y">
-                    <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
-                        <div class="ml-4 mr-auto">
-                            <div class="text-gray-600 text-xs mb-2">2 December 2021</div>
-                            <div class="font-medium">Russell Crowe</div>
-                            <div class="font-medium">Dokumen A</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="intro-y">
-                    <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
-                        <div class="ml-4 mr-auto">
-                            <div class="text-gray-600 text-xs mb-2">2 December 2021</div>
-                            <div class="font-medium">Russell Crowe</div>
-                            <div class="font-medium">Dokumen A</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="intro-y">
-                    <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
-                        <div class="ml-4 mr-auto">
-                            <div class="text-gray-600 text-xs mb-2">2 December 2021</div>
-                            <div class="font-medium">Russell Crowe</div>
-                            <div class="font-medium">Dokumen A</div>
-                        </div>
-                    </div>
-                </div>
+            @endforeach
                 <a href="" class="intro-y w-full block text-center rounded-md py-4 border border-dotted border-theme-15 dark:border-dark-5 text-theme-16 dark:text-gray-600">View More</a> 
             </div>
         </div>
