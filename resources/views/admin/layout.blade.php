@@ -640,6 +640,9 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!-- END: Account Menu -->
                 </div>
                 <!-- END: Top Bar -->
+                <div class="intro-y box p-5 mt-5 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">
+                            @yield('namehalaman')
+                        </div>
                 @yield('content')
             </div>
             <!-- END: Content -->
@@ -650,6 +653,8 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="https://maps.googleapis.com/maps/api/js?key=["your-google-map-api"]&libraries=places></script>
         <script src="{{asset('dist/js/app.js')}}"></script>
         <!-- END: JS Assets-->
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
         @yield('script')
 
