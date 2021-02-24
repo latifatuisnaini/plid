@@ -85,16 +85,27 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
         <table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <thead>
                 <tr>
+<<<<<<< Updated upstream
                     <th data-priority="1">Name</th>
                     <th data-priority="2">Position</th>
                     <th data-priority="3">Office</th>
                     <th data-priority="4">Age</th>
                     <th data-priority="5">Start date</th>
                     <th data-priority="6">Salary</th>
+=======
+                    <!--<th data-priority="1">Nomor Identitas</th>-->
+                    <th data-priority="2">Nama Lengkap</th>
+                    <th data-priority="3">No. Telp</th>
+                    <th data-priority="4">Pekerjaan</th>
+                    <th data-priority="5">Aksi</th>
+                    <th data-priority="6"></th>
+
+>>>>>>> Stashed changes
                 </tr>
             </thead>
             <tbody>
                 <tr>
+<<<<<<< Updated upstream
                     <td>Tina May</td>
                     <td>Coffee Manager</td>
                     <td>Ljubljana</td>
@@ -112,10 +123,51 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <td>27</td>
                     <td>2011/01/25</td>
                     <td>$112,000</td>
+=======
+                    <!-- <td>{{$u->NOMOR_IDENTITAS}}</td> -->
+                    <td>{{$u->NAMA_LENGKAP}}</td>
+                    <td>{{$u->NO_TLP}}</td>
+                    <td>{{$u->PEKERJAAN}}</td>
+                    <td>
+                        <a href="">
+                            <button class="button w-32 mr-2 mb-2 flex items-center justify-center bg-blue-300 dark:text-gray-300"> <i data-feather="paperclip" class="w-4 h-4 mr-2"></i> Konfirmasi</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a data-toggle="modal" data-target="#detail_{{ $u->ID_USER }}"  class="button w-32 mr-2 mb-2 flex items-center justify-center bg-green-300 dark:text-gray-300"> <i data-feather="more-vertical" class="w-4 h-4 mr-2"></i>Detail</a>
+                    </td>
+>>>>>>> Stashed changes
                 </tr>
             </tbody>
             
         </table>
+
+        @foreach($users as $u)
+         <div class="modal" id="detail_{{ $u->ID_USER }}">
+            <div class="modal__content">
+                <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
+             <h2 class="font-medium text-base mr-auto">Detail User</h2>
+         </div>
+         <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+            <div class="col-span-12 sm:col-span-6"> 
+                <label>Nama Lengkap</label>
+                <div class="text">{{ $u->NAMA_LENGKAP }}</div>
+            </div>
+             <div class="col-span-12 sm:col-span-6"> <label>To</label> <input type="text" class="input w-full border mt-2 flex-1" placeholder="example@gmail.com"> </div>
+             <div class="col-span-12 sm:col-span-6"> <label>Subject</label> <input type="text" class="input w-full border mt-2 flex-1" placeholder="Important Meeting"> </div>
+             <div class="col-span-12 sm:col-span-6"> <label>Has the Words</label> <input type="text" class="input w-full border mt-2 flex-1" placeholder="Job, Work, Documentation"> </div>
+             <div class="col-span-12 sm:col-span-6"> <label>Doesn't Have</label> <input type="text" class="input w-full border mt-2 flex-1" placeholder="Job, Work, Documentation"> </div>
+             <div class="col-span-12 sm:col-span-6"> <label>Size</label> <select class="input w-full border mt-2 flex-1">
+                     <option>10</option>
+                     <option>25</option>
+                     <option>35</option>
+                     <option>50</option>
+                 </select> </div>
+         </div>
+         <div class="px-5 py-3 text-right border-t border-gray-200 dark:border-dark-5"> <button type="button" class="button w-20 border text-gray-700 dark:border-dark-5 dark:text-gray-300 mr-1">Cancel</button> <button type="button" class="button w-20 bg-theme-1 text-white">Send</button> </div>
+     </div>
+ </div>
+        @endforeach
         
         
     </div>

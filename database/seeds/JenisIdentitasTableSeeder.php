@@ -15,6 +15,18 @@ class JenisIdentitasTableSeeder extends Seeder
         
 
         \DB::table('jenis_identitas')->delete();
+        \DB::table('jenis_identitas')->insert([
+        	"JENIS_IDENTITAS" => "KTP"
+        ]);
+        \DB::table('jenis_identitas')->insert([
+        	"JENIS_IDENTITAS" => "PENGESAHAN BADAN USAHA"
+        ]);
+        \DB::table('jenis_identitas')->insert([
+        	"JENIS_IDENTITAS" => "SURAT KUASA"
+        ]);
+        \DB::table('jenis_identitas')->insert([
+        	"JENIS_IDENTITAS" => "BADAN PUBLIK"
+        ]);
         
         
         
