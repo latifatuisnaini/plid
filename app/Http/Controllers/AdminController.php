@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Permohonan;
 use App\Models\User;
 use Illuminate\Support\Carbon;
+use DB;
 
 class AdminController extends Controller
 {
@@ -22,7 +23,15 @@ class AdminController extends Controller
         $jml_permohonan_last_month  = Permohonan::whereMonth(
             'tanggal', '=', Carbon::now()->subMonth()->month
         )->count('ID_PERMOHONAN');
-        return view('admin.dashboard', compact('permohonan_open', 'permohonan_diproses', 'permohonan_diterima', 'konfirmasi', 'jml_permohonan_last_month', 'jml_permohonan_this_month'));
+
+        $list_permohonan = Permohonan::select(DB::raw('DATE_FORMAT(permohonan.TANGGAL, "%d-%b-%Y") as tgl_permohonan'), 'permohonan.DOKUMEN_PERMOHONAN', 'users.NAMA_LENGKAP')
+        ->join('users', 'users.ID_USER', '=', 'permohonan.ID_USER')
+        ->orderByDesc('ID_PERMOHONAN')
+        ->limit(4)
+        ->get();
+        
+        $current_year = date('Y');
+        return view('admin.dashboard', compact('permohonan_open', 'permohonan_diproses', 'permohonan_diterima', 'konfirmasi', 'jml_permohonan_last_month', 'jml_permohonan_this_month', 'current_year', 'list_permohonan'));
     }
 
 }
