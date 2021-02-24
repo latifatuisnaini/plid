@@ -50,9 +50,9 @@ Route::get('/faq', function(){
     return view('faq');
 });
 
-// ->middleware(['first', 'second'])
+// 
 
-Route::prefix('admin')->group(function(){
+Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::get('/','AdminController@index');
     Route::get('/user','AdminController@index');
 });
