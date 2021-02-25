@@ -283,7 +283,10 @@ License: You must have a valid license purchased only from themeforest(the above
                     @csrf
                     @error('email')
                             <div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-31 text-theme-6"> <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i> Email dan Password Salah </div>
-                            @enderror
+                    @enderror
+                    @if(session()->has('errorEmail'))
+                            <div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-31 text-theme-6"> <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i> {{@session('errorEmail') }}</div>
+                    @endif
                     <div class="my-auto mx-auto xl:mx-5 bg-white xl:bg-transparent sm:py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
                         <div class="intro-x mt-5">
                             Email
