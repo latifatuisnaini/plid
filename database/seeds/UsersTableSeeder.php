@@ -20,6 +20,7 @@ class UsersTableSeeder extends Seeder
         \DB::table('users')->insert([
             'NAMA_LENGKAP' => 'Admin',
             'TIPE_USER' => '1',
+            'STATUS_KONFIRMASI' => '1',
             'email' => 'deaamartya3@gmail.com',
             'password' => bcrypt('admin'),
             'created_at' => date('Y-m-d h:i:s')
@@ -27,7 +28,7 @@ class UsersTableSeeder extends Seeder
         \DB::table('users')->insert([
             'NAMA_LENGKAP' => 'user',
             'TIPE_USER' => '2',
-            'STATUS_KONFIRMASI' => '1',
+            'STATUS_KONFIRMASI' => '0',
             'email' => 'icha@gmail.com',
             'password' => bcrypt('user'),
             'created_at' => date('Y-m-d h:i:s')
@@ -35,7 +36,7 @@ class UsersTableSeeder extends Seeder
         \DB::table('users')->insert([
             'NAMA_LENGKAP' => 'user2',
             'TIPE_USER' => '2',
-            'STATUS_KONFIRMASI' => '2',
+            'STATUS_KONFIRMASI' => '1',
             'email' => 'ichahaha@gmail.com',
             'password' => bcrypt('icha'),
             'created_at' => date('Y-m-d h:i:s')
@@ -45,6 +46,7 @@ class UsersTableSeeder extends Seeder
 
         $users = [];
         for ($i = 0; $i < 100; $i++) {
+            $email = $faker->email;
             $users[] = [
                 'TIPE_USER' => rand(1,2),
                 'ID_JENIS_IDENTITAS' => rand(1,4),
@@ -52,12 +54,12 @@ class UsersTableSeeder extends Seeder
                 'NOMOR_IDENTITAS' => $faker->nik(),
                 'NAMA_LENGKAP' => $faker->firstName." ".$faker->lastName,
                 'NPWP' =>$faker->nik(),
-                'email' =>$faker->email,
+                'email' =>$email,
                 'PEKERJAAN' => $faker->jobTitle,
                 'ALAMAT' => $faker->streetAddress,
                 'NO_TLP' => "081333654616",
                 'NO_FAX' => "081333654619",
-                'password' => $faker->password,
+                'password' => bcrypt($email),
                 'STATUS_KONFIRMASI' => rand(0,1),
                 'created_at' => date('Y-m-d h:i:s'),
             ];
