@@ -103,9 +103,9 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <td>{{$u->NO_TLP}}</td>
                     <td>{{$u->PEKERJAAN}}</td>
                     <td>
-                        @if( $u->STATUS_KONFIRMASI == 1 || $u->STATUS_KONFIRMASI == null ) 
+                        @if( $u->STATUS_KONFIRMASI == 1 ) 
                             Aktif
-                        @else
+                        @elseif ( $u->STATUS_KONFIRMASI == null )
                             Belum Aktif
                         @endif
                     </td>
