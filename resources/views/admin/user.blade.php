@@ -101,11 +101,22 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <td>{{$u->NAMA_LENGKAP}}</td>
                     <td>{{$u->NO_TLP}}</td>
                     <td>{{$u->PEKERJAAN}}</td>
-                    <td>{{$u->STATUS_KONFIRMASI}}</td>
                     <td>
-                        <a href="{{url('/admin/user')}}">
-                            <button class="button w-32 mr-2 mb-2 flex items-center justify-center bg-blue-300 dark:text-gray-300"> <i data-feather="paperclip" class="w-4 h-4 mr-2"></i>Konfirmasi </button>
-                        </a>
+                        @if( $u->STATUS_KONFIRMASI == 1 || $u->STATUS_KONFIRMASI == null ) 
+                            Aktif
+                        @else
+                            Belum Aktif
+                        @endif
+                    </td>
+                    <td>
+                        <form action="{{ route('user.update', $u->ID_USER) }}" method="post">
+                            @method('PUT')
+                            @csrf
+                            @if( $u->STATUS_KONFIRMASI == 0) 
+                                    <button  type="submit" class="button w-32 mr-2 mb-2 flex items-center justify-center bg-blue-300 dark:text-gray-300"> <i data-feather="paperclip" class="w-4 h-4 mr-2"></i>Konfirmasi </button>
+                            @endif
+                            
+                        </form> 
                         <a href="{{url('/admin/detail')}}">
                             <button class="button w-32 mr-2 mb-2 flex items-center justify-center bg-green-300 dark:text-gray-300"> <i data-feather="more-horizontal" class="w-4 h-4 mr-5"></i>Detail </button>
                         </a>

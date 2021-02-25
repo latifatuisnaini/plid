@@ -34,7 +34,8 @@ class User extends Authenticatable
 		'ALAMAT',
 		'NO_TLP',
 		'NO_FAX',
-		'PASSWORD'
+		'PASSWORD',
+		'STATUS_KONFIRMASI'
 	];
 
 	public function jenis_pemohon()
