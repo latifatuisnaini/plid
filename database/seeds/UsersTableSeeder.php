@@ -20,6 +20,7 @@ class UsersTableSeeder extends Seeder
         \DB::table('users')->insert([
             'NAMA_LENGKAP' => 'Admin',
             'TIPE_USER' => '1',
+            'STATUS_KONFIRMASI' => '1',
             'email' => 'deaamartya3@gmail.com',
             'password' => bcrypt('admin'),
             'created_at' => date('Y-m-d h:i:s')
@@ -35,7 +36,7 @@ class UsersTableSeeder extends Seeder
         \DB::table('users')->insert([
             'NAMA_LENGKAP' => 'user2',
             'TIPE_USER' => '2',
-            'STATUS_KONFIRMASI' => '2',
+            'STATUS_KONFIRMASI' => '0',
             'email' => 'ichahaha@gmail.com',
             'password' => bcrypt('icha'),
             'created_at' => date('Y-m-d h:i:s')
