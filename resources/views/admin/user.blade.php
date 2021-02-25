@@ -71,7 +71,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 <div class="intro-y box p-5 mt-5 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">                        
     <div class="flex flex-row">
         <i data-feather="list"></i>
-        <h2 class="text-lg font-medium mr-auto ml-3"> Table User</h2>
+        <h2 class="text-lg font-medium mr-auto ml-3">Table User</h2>
     </div>
 </div>
 
@@ -91,7 +91,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <th data-priority="3">No. Telp</th>
                     <th data-priority="4">Pekerjaan</th>
                     <th data-priority="5">Status Konfirmasi</th>
-                    <th data-priority="6">Tools</th>
+                    <th data-priority="6">Aksi</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -124,8 +125,87 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 </tr>
             @endforeach
             </tbody>
-            
         </table>
+
+        @foreach($users as $u)
+         <div class="modal" id="detail_{{ $u->ID_USER }}">
+            <div class="modal__content modal__content--lg p-5">
+                <div class="modal-header">
+                    <div class="modal__content relative"><a data-dismiss="modal"class="absolute right-0 top-0 mt-3 mr-0"> <i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
+                    </div>
+                    <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
+                        <h2 class="font-medium text-base mr-auto">DETAIL USER ID {{ $u->ID_USER }}</h2>
+                    </div>
+                </div>
+        <div class="modal-body">
+         <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+            <div class="col-span-12 sm:col-span-6"> 
+                <label class="font-medium">Nomor Identitas</label>
+                <div class="text">{{ $u->NOMOR_IDENTITAS }}</div>
+            </div>
+
+            <div class="col-span-12 sm:col-span-6"> 
+                <label class="font-medium">NPWP</label>
+                <div class="text">{{ $u->NPWP }}</div>
+            </div>
+
+            <div class="col-span-12 sm:col-span-6"> 
+                <label class="font-medium">Nama Lengkap</label>
+                <div class="text">{{ $u->NAMA_LENGKAP }}</div>
+            </div>
+
+            <div class="col-span-12 sm:col-span-6"> 
+                <label class="font-medium">Email</label>
+                <div class="text">{{ $u->email }}</div>
+            </div>
+
+            <div class="col-span-12 sm:col-span-6">
+                <label class="font-medium">Pekerjaan</label>
+                <div class="text">{{ $u->PEKERJAAN }}</div>
+            </div>
+
+            <div class="col-span-12 sm:col-span-6"> 
+                <label class="font-medium">Alamat</label>
+                <div class="text">{{ $u->ALAMAT }}</div>
+            </div>
+
+            <div class="col-span-12 sm:col-span-6">
+                <label class="font-medium">No.Telp</label>
+                <div class="text">{{ $u->NO_TLP }}</div>
+            </div>
+
+            <div class="col-span-12 sm:col-span-6">
+                <label class="font-medium">No.Fax</label>
+                <div class="text">{{ $u->NO_FAX }}</div>
+            </div>
+         </div>
+         <hr>
+         <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+         <div class="col-span-12">
+                <h2 class="font-medium text-base mr-auto">Berkas</h2>
+            </div>
+
+            <div class="col-span-12 sm:col-span-6">
+                <div class="text">KTP</div>
+            </div>
+
+            <div class="col-span-12 sm:col-span-6">
+                <a href=""><button class="button w-32 flex items-left justify-left bg-purple-700 text-white"><i data-feather="eye" class="w-4 h-4 mr-2"></i>Pratinjau</button></a>
+            </div>
+
+            <div class="col-span-12 sm:col-span-6">
+                <div class="text">NPWP</div>
+            </div>
+
+            <div class="col-span-12 sm:col-span-6">
+                <a href=""><button class="button w-32 flex items-left justify-left bg-purple-700 text-white"><i data-feather="eye" class="w-4 h-4 mr-2"></i>Pratinjau</button></a>
+            </div>
+
+            </div>
+        </div>
+     </div>
+ </div>
+        @endforeach
         
         
     </div>

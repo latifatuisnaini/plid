@@ -24,15 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $tipe_user=Auth::user()->TIPE_USER;
-        $status_konfirmasi=Auth::user()->STATUS_KONFIRMASI;
-        if($tipe_user==1){
+        if(Auth::user()->TIPE_USER == "1" || Auth::user()->TIPE_USER == 1){
             return redirect('admin');
         }
-        else if($tipe_user==2){
-            if($status_konfirmasi==1){
-                return redirect()->back()->with('email');
-                @Session('email')
+        else {
+            if(Auth::user()->STATUS_KONFIRMASI == "0" || Auth::user()->STATUS_KONFIRMASI == 0){
+                Auth::logout();
+                return redirect()->back()->with('errorEmail','Akun Anda belum dikonfirmasi oleh Admin.');
             }
             else{
                 return redirect('user');

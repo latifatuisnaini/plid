@@ -20,12 +20,14 @@ class User extends Authenticatable
 
 	protected $casts = [
 		'ID_JENIS_IDENTITAS' => 'int',
-		'ID_JENIS_PEMOHON' => 'int'
+		'ID_JENIS_PEMOHON' => 'int',
+		'TIPE_USER' => 'int'
 	];
 
 	protected $fillable = [
 		'ID_JENIS_IDENTITAS',
 		'ID_JENIS_PEMOHON',
+		'TIPE_USER',
 		'NOMOR_IDENTITAS',
 		'NAMA_LENGKAP',
 		'NPWP',
