@@ -83,7 +83,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
     <!--Card-->
     <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
     
-        <table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+        <table id="example" class="stripe hover display" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <thead>
                 <tr>
                     <th data-priority="1">Nomor Identitas</th>
@@ -92,7 +92,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <th data-priority="4">Pekerjaan</th>
                     <th data-priority="5">Status Konfirmasi</th>
                     <th data-priority="6">Aksi</th>
-
                 </tr>
             </thead>
             <tbody>
@@ -114,10 +113,10 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             @method('PUT')
                             @csrf
                             @if( $u->STATUS_KONFIRMASI == 0) 
-                                    <button  type="submit" class="button w-32 mr-2 mb-2 flex items-center justify-center bg-blue-300 dark:text-gray-300"> <i data-feather="paperclip" class="w-4 h-4 mr-2"></i>Konfirmasi </button>
+                                <button href="javascript:;" title="Konfirmasi Status User" type="submit" class="tooltip button px-2 mr-1 mb-2 bg-blue-300 dark:text-gray-300"><span class="w-5 h-5 flex items-center justify-center"> <i data-feather="user-check" class="w-4 h-4 "></i></span> </button>  
                             @endif
+                            <button href="javascript:;" title="Detail User" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300"><a data-toggle="modal" data-target="#detail_{{ $u->ID_USER }}"><span class="w-5 h-5 flex items-center justify-center"> <i data-feather="more-horizontal" class="w-4 h-4 "></i></span></a> </button> 
                         </form>
-                        <a data-toggle="modal" data-target="#detail_{{ $u->ID_USER }}" class="button w-32 mr-2 mb-2 flex items-center justify-center bg-green-300 dark:text-gray-300"><i data-feather="more-horizontal" class="w-4 h-4 mr-5"></i>Detail</a>
                     </td>
                 </tr>
             @endforeach
