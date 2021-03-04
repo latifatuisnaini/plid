@@ -13,16 +13,16 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $permohonan_open = Permohonan::where('ID_STATUS', '1')->count('ID_PERMOHONAN');
-        $permohonan_diproses = Permohonan::where('ID_STATUS', '2')->count('ID_PERMOHONAN');
-        $permohonan_diterima = Permohonan::where('ID_STATUS', '3')->count('ID_PERMOHONAN');
-        $konfirmasi = User::where('STATUS_KONFIRMASI', '0')->count('ID_USER');
+        $permohonan_open = Permohonan::where('ID_STATUS', '1')->whereYear('TANGGAL', date('Y'))->count();
+        $permohonan_diproses = Permohonan::where('ID_STATUS', '2')->whereYear('TANGGAL', date('Y'))->count();
+        $permohonan_diterima = Permohonan::where('ID_STATUS', '3')->whereYear('TANGGAL', date('Y'))->count();
+        $konfirmasi = User::where('STATUS_KONFIRMASI', '0')->whereYear('created_at', date('Y'))->count();
         $jml_permohonan_this_month  = Permohonan::whereMonth(
             'tanggal', '=', Carbon::now()->month
-        )->count('ID_PERMOHONAN');
+        )->whereYear('TANGGAL', date('Y'))->count();
         $jml_permohonan_last_month  = Permohonan::whereMonth(
             'tanggal', '=', Carbon::now()->subMonth()->month
-        )->count('ID_PERMOHONAN');
+        )->whereYear('TANGGAL', date('Y'))->count();
 
         $list_permohonan = Permohonan::select(DB::raw('DATE_FORMAT(permohonan.TANGGAL, "%d %M %Y") as tgl_permohonan'), 'permohonan.DOKUMEN_PERMOHONAN', 'users.NAMA_LENGKAP')
         ->join('users', 'users.ID_USER', '=', 'permohonan.ID_USER')
