@@ -38,9 +38,8 @@ Route::get('/lp_prosedurp', function(){
     return view('lp_prosedurp');
 });
 
-Route::get('/lp_registrasip', function(){
-    return view('lp_registrasip');
-});
+Route::get('/lp_registrasip', 'RegistrasiController@create');
+Route::post('/lp_registrasip/store', 'RegistrasiController@store');
 
 Route::get('/agenda', function(){
     return view('agenda');

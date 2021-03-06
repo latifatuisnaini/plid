@@ -10,19 +10,19 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class KategoriDokuman
+ * Class KategoriDokumen
  * 
  * @property int $ID_KATEGORI
  * @property int $ID_JENIS_KATEGORI
  * @property string $KATEGORI
  * @property int $NOMOR_URUT
  * 
- * @property JenisKategoriDokuman $jenis_kategori_dokuman
- * @property Collection|Dokuman[] $dokumen
+ * @property JenisKategoriDokumen $jenis_kategori_dokumen
+ * @property Collection|Dokumen[] $dokumen
  *
  * @package App\Models
  */
-class KategoriDokuman extends Model
+class KategoriDokumen extends Model
 {
 	protected $table = 'kategori_dokumen';
 	protected $primaryKey = 'ID_KATEGORI';
@@ -39,13 +39,13 @@ class KategoriDokuman extends Model
 		'NOMOR_URUT'
 	];
 
-	public function jenis_kategori_dokuman()
+	public function jenis_kategori_dokumen()
 	{
-		return $this->belongsTo(JenisKategoriDokuman::class, 'ID_JENIS_KATEGORI');
+		return $this->belongsTo(JenisKategoriDokumen::class, 'ID_JENIS_KATEGORI');
 	}
 
 	public function dokumen()
 	{
-		return $this->hasMany(Dokuman::class, 'ID_KATEGORI');
+		return $this->hasMany(Dokumen::class, 'ID_KATEGORI');
 	}
 }

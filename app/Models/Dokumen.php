@@ -9,7 +9,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Dokuman
+ * Class Dokumen
  * 
  * @property int $ID_DOKUMEN
  * @property int $ID_KATEGORI
@@ -18,12 +18,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $NOMOR_URUT
  * @property string $LINK_FILE
  * 
- * @property JenisDokuman $jenis_dokuman
- * @property KategoriDokuman $kategori_dokuman
+ * @property JenisDokumen $jenis_dokumen
+ * @property KategoriDokumen $kategori_dokumen
  *
  * @package App\Models
  */
-class Dokuman extends Model
+class Dokumen extends Model
 {
 	protected $table = 'dokumen';
 	protected $primaryKey = 'ID_DOKUMEN';
@@ -43,13 +43,13 @@ class Dokuman extends Model
 		'LINK_FILE'
 	];
 
-	public function jenis_dokuman()
+	public function jenis_dokumen()
 	{
-		return $this->belongsTo(JenisDokuman::class, 'ID_JENIS_DOKUMEN');
+		return $this->belongsTo(JenisDokumen::class, 'ID_JENIS_DOKUMEN');
 	}
 
-	public function kategori_dokuman()
+	public function kategori_dokumen()
 	{
-		return $this->belongsTo(KategoriDokuman::class, 'ID_KATEGORI');
+		return $this->belongsTo(KategoriDokumen::class, 'ID_KATEGORI');
 	}
 }

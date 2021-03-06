@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class JenisIdentita
+ * Class JenisIdentitas
  * 
  * @property int $ID_JENIS_IDENTITAS
  * @property string $JENIS_IDENTITAS
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class JenisIdentita extends Model
+class JenisIdentitas extends Model
 {
 	protected $table = 'jenis_identitas';
 	protected $primaryKey = 'ID_JENIS_IDENTITAS';
