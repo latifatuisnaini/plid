@@ -36,6 +36,8 @@ class User extends Authenticatable
 		'ALAMAT',
 		'NO_TLP',
 		'NO_FAX',
+		'FILE_NPWP',
+		'FILE_KTP',
 		'PASSWORD',
 		'STATUS_KONFIRMASI'
 	];
