@@ -52,7 +52,6 @@ class RegistrasiController extends Controller
             'no_tlp' => 'required|string|max:15|regex:/^[0-9]+$/',
             'no_fax'=> 'required|string|max:15|regex:/^[0-9]+$/',
             'password_pemohon' => 'required|string',
-
         ]);
 
         User::insert([
