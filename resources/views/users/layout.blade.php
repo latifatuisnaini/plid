@@ -46,7 +46,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 </li>
                
                 <li>
-                    <a href="{{url('/users/permohonan')}}" class="menu">
+                    <a href="{{url('/users/permohonan')}}" class="menu menu--active">
                         <div class="menu__icon"> <i data-feather="inbox"></i> </div>
                         <div class="menu__title"> Permohonan </div>
                     </a>
