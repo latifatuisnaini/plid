@@ -56,7 +56,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::get('/','AdminController@index');
-    
+
     Route::resource('/user','UserController');
     Route::get('/user/edit/{id}', 'UserController@edit');
 
@@ -67,6 +67,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
 
 Route::prefix('users')->middleware(['auth'])->group(function(){
     Route::get('/','UsersController@index');
-//     Route::resource('/users','UsersController');
-//     Route::get('/users/edit/{id}', 'UsersController@edit');
+    Route::resource('/permohonan','PermohonanController');
+    Route::get('/users/permohonan', 'PermohonanController@index');
+
 });
