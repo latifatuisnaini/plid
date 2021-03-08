@@ -10,9 +10,11 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('admin.user', [
-            'users' => User::all()
-        ]);
+        $users = User::where('STATUS_KONFIRMASI','=',"1") 
+        ->orWhere('STATUS_KONFIRMASI','=',"0")
+        ->get();
+        
+        return view('admin.user', compact('users'));
     }
     
     public function edit($id){
@@ -21,10 +23,6 @@ class UserController extends Controller
     }
 
     public function update($id){
-
-        // $this->validate($request,[
-    	// 	'STATUS_KONFIRMASI' => 'required'
-    	// ]);
         $user = User::find($id);
         $user->STATUS_KONFIRMASI = 1;
         $user->save();
