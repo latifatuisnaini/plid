@@ -33,7 +33,7 @@ class HomeController extends Controller
                 return redirect()->back()->with('errorEmail','Akun Anda belum dikonfirmasi oleh Admin.');
             }
             else{
-                return redirect('user');
+                return redirect('users');
             }
         }
     }
