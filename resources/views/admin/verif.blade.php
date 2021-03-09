@@ -131,7 +131,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <div class="modal__content relative"> <a data-dismiss="modal" href="javascript:;" class="absolute right-0 top-0 mt-3 mr-3"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
                     </div>
                     <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
-                        <h2 class="font-bold text-2xl flex"><i data-feather="user" class="w-8 h-8"></i>DETAIL USER ID {{ $u->NAMA_LENGKAP }}</h2>
+                        <h2 class="font-bold text-2xl flex"><i data-feather="user" class="w-8 h-8"></i>DETAIL USER : {{ $u->NAMA_LENGKAP }}</h2>
                     </div>
                 </div>
             <div class="modal-body">
@@ -180,18 +180,17 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
             </div>    
             
             <div class="p-5 grid grid-cols-12 gap-4 row-gap-3 border-gray-200 dark:border-dark-5">
-                <div class="col-span-12">
-                    <h2 class="font-semibold text-lg mr-auto">Berkas</h2>
+            
+                <div class="col-span-12 sm:col-span-6">
+                    <h2 class="font-semibold text-base mr-auto">Berkas</h2>
+                </div>
+
+                <div class="col-span-12 sm:col-span-6">
+                    <div class="text-base"></div>
                 </div>
 
                 <div class="col-span-12 sm:col-span-6">
                     <div class="text-base">KTP</div>
-                </div>
-            
-                <div class="col-span-12 sm:col-span-6">
-                    <div class="w-full h-64 image-fit">
-                        <img alt="File KTP" src="{{ asset('dist/images/preview-8.jpg')}}" data-action="zoom" class="w-full rounded-md"> 
-                    </div>
                 </div>
 
                 <div class="col-span-12 sm:col-span-6">
@@ -200,10 +199,32 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 
                 <div class="col-span-12 sm:col-span-6">
                     <div class="w-full h-64 image-fit">
+                        <img alt="File KTP" src="{{ asset('dist/images/preview-8.jpg')}}" data-action="zoom" class="w-full rounded-md"> 
+                    </div>
+                </div>
+
+                <div class="col-span-12 sm:col-span-6">
+                    <div class="w-full h-64 image-fit">
                         <img alt="File NPWP" src="{{ asset('dist/images/preview-8.jpg')}}" data-action="zoom" class="w-full rounded-md"> 
                     </div> 
                 </div>
-                
+
+                <div class="col-span-12 sm:col-span-6">
+                    <form action="{{ route('verif.update1') }}" method="post">
+                        @csrf
+                        <input type="hidden" value="{{ $u->ID_USER }}" name="ID_USER">
+                        <button class="button px-12 mr-1 mb-2  bg-gray-300 text-gray-700" type="submit" style="float: right;"><span class="w-20 h-5 flex items-center justify-center"> Tolak </span></button>
+                    </form> 
+                </div>
+
+                <div class="col-span-12 sm:col-span-6">
+                    <form action="{{ route('verif.update', $u->ID_USER) }}" method="post">
+                        @method('PUT')
+                        @csrf
+                        <button class="button px-12 mr-1 mb-2  bg-theme-1 text-white" type="submit"><span class="w-20 h-5 flex items-center justify-center"> Terima </span></button> 
+                    </form>
+                </div>
+
             </div>
 
             </div>
