@@ -37,10 +37,6 @@ class Permohonan extends Model
 		'ID_STATUS' => 'int'
 	];
 
-	protected $dates = [
-		'TANGGAL'
-	];
-
 	protected $fillable = [
 		'ID_USER',
 		'ID_STATUS',
