@@ -69,7 +69,7 @@ class UsersTableSeeder extends Seeder
                 'NO_TLP' => "081333654616",
                 'NO_FAX' => "081333654619",
                 'password' => bcrypt($email),
-                'STATUS_KONFIRMASI' => rand(0,3),
+                'STATUS_KONFIRMASI' => rand(0,4),
                 'created_at' => date('Y-m-d h:i:s'),
             ];
         }
