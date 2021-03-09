@@ -92,7 +92,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
         </div>
 
         <div class="p-6 mt-6 lg:mt-0 rounded shadow">
-            <table id="example" class="stripe hover display" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+            <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
                 <thead>
                     <tr>
                         <th data-priority="1">ID Permohonan</th>
@@ -102,7 +102,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <th data-priority="5">Status Permohonan</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="text-align: center;">
                 @foreach($permohonan as $p)
                     <tr>
                         <td>{{$p->ID_PERMOHONAN}}</td>
@@ -122,8 +122,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 <div class="modal-header">
                     <div class="modal__content relative"> <a data-dismiss="modal" href="javascript:;" class="absolute right-0 top-0 mt-3 mr-0"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
                     </div>
-                    <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
-                        <h2 class="font-bold text-2xl flex"><i data-feather="folder" class="w-8 h-8"></i>Tambah Dokumen Permohonan</h2>
+                    <div class="flex items-center py-3 sm:py-3 border-b border-gray-200 dark:border-dark-5">
+                        <h2 class="font-bold text-2xl flex"><i data-feather="folder" class="w-8 h-8 mr-3"></i>Tambah Dokumen Permohonan</h2>
                     </div>
                 </div>
                     <div class="modal-body">
@@ -145,10 +145,15 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             <input type="text" class="datepicker input pl-12 border" data-single-mode="true">
                         </div>
                     </div>
+                    </form>
+                    </div>
+
+                <div class="modal-footer mt-5">
                     <div class="px-5 pb-8 text-right">
-                    <button type="button" class="button w-24 shadow-md mr-1 mb-2 bg-gray-200 text-gray-600" data-dismiss="modal">Cancel</button> 
+                    <button type="button" class="button w-24 shadow-md mr-1 mb-2 bg-red-500 text-white" data-dismiss="modal">Cancel</button> 
                     <button class="button items-right justify-right bg-theme-1 text-white shadow-md" type="submit">Simpan</button>
                     </div>
+                </div>
 
                 </div>
             </div>
