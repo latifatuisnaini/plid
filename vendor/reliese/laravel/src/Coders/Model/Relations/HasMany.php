@@ -25,22 +25,31 @@ class HasMany extends HasOneOrMany
      */
     public function name()
     {
+        if ($this->parent->shouldPluralizeTableName()) {
+            $relationBaseName = Str::plural(Str::singular($this->related->getTable(true)));
+        } else {
+            $relationBaseName = $this->related->getTable(true);
+        }
+
+        if ($this->parent->shouldLowerCaseTableName()) {
+            $relationBaseName = strtolower($relationBaseName);
+        }
+
         switch ($this->parent->getRelationNameStrategy()) {
             case 'foreign_key':
-                $relationName = RelationHelper::stripSuffixFromForeignKey(
-                    $this->parent->usesSnakeAttributes(),
-                    $this->localKey(),
-                    $this->foreignKey()
-                );
-                if (Str::snake($relationName) === Str::snake($this->parent->getClassName())) {
-                    $relationName = Str::plural($this->related->getClassName());
-                } else {
-                    $relationName = Str::plural($this->related->getClassName()) . 'Where' . ucfirst(Str::singular($relationName));
+                $suffix = preg_replace("/[^a-zA-Z0-9]?{$this->localKey()}$/", '', $this->foreignKey());
+
+                $relationName = $relationBaseName;
+
+                // Don't make relations such as users_user, just leave it as 'users'.
+                if ($this->parent->getTable(true) !== $suffix) {
+                    $relationName .= "_{$suffix}";
                 }
+
                 break;
-            default:
             case 'related':
-                $relationName = Str::plural($this->related->getClassName());
+            default:
+                $relationName = $relationBaseName;
                 break;
         }
 
