@@ -68,6 +68,12 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 </style>
 @endsection
 @section('content')
+@if(Session::has('success'))
+<div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-14 text-theme-10"> <i data-feather="alert-circle" class="w-6 h-6 mr-2"></i>{{@session::get('success') }}</div>
+@elseif(Session::has('alert_error'))
+<div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-31 text-theme-6"> <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i>{{@session::get('alert_error') }}</div>
+@endif
+
 <div class="intro-y box p-5 mt-5 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">                        
     <div class="flex flex-row">
         <i data-feather="list"></i>
@@ -82,7 +88,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 
         <div class="text-right">
             <!--Card-->
-            <a data-toggle="modal" data-target="#tambah_dokumen_permohonan" class="button inline-block bg-theme-1 text-white">(+) Tambah Dokumen Permohonan</a>
+            <a data-toggle="modal" data-target="#tambah_dokumen_permohonan" class="button w-32 mb-2 flex items-center justify-center bg-theme-1 text-white tombol-tambah-dokumen-permohonan" style="margin-left: 750px;"><i data-feather="plus-circle" class="w-6 h-6 mr-2"></i>Tambah</a>
         </div>
 
         <div class="p-6 mt-6 lg:mt-0 rounded shadow">
@@ -93,6 +99,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <th data-priority="2">Dokumen Permohonan</th>
                         <th data-priority="3">Keterangan</th>
                         <th data-priority="4">Tanggal</th>
+                        <th data-priority="5">Status Permohonan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -102,13 +109,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <td>{{$p->DOKUMEN_PERMOHONAN}}</td>
                         <td>{{$p->KETERANGAN}}</td>
                         <td>{{$p->TANGGAL}}</td>
-                        <td>
-                            @if( $p->STATUS_KONFIRMASI == 1 ) 
-                                Aktif
-                            @elseif ( $u->STATUS_KONFIRMASI == 0 )
-                                Belum Aktif
-                            @endif
-                        </td>
+                        <td>{{$p->status->STATUS}}</td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -126,6 +127,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     </div>
                 </div>
                     <div class="modal-body">
+                    <form action="{{ route('permohonan.store') }}" method="POST" class="needs-validation" novalidate id="tambah-dokumen-permohonan">
+                    @csrf
                     <div class="flex flex-col sm:flex-row items-center mt-3"> 
                         <label class="w-full sm:w-20 sm:text-left sm:mr-5">Dokumen Permohonan</label> 
                             <input type="text" class="input w-full border mt-2 flex-1" placeholder="Dokumen Permohonan"> 
@@ -144,15 +147,12 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     </div>
                     <div class="px-5 pb-8 text-right">
                     <button type="button" class="button w-24 shadow-md mr-1 mb-2 bg-gray-200 text-gray-600" data-dismiss="modal">Cancel</button> 
-                    <button class="button items-right justify-right bg-theme-1 text-white" type="submit">Simpan</button>
+                    <button class="button items-right justify-right bg-theme-1 text-white shadow-md" type="submit">Simpan</button>
                     </div>
-                    
 
-
- </div>
+                </div>
             </div>
         </div>
-
     </div>
     <!--/container-->
 </div>
