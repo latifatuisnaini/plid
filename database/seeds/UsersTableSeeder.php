@@ -42,6 +42,15 @@ class UsersTableSeeder extends Seeder
             'created_at' => date('Y-m-d h:i:s')
         ]);
 
+        \DB::table('users')->insert([
+            'NAMA_LENGKAP' => 'lat',
+            'TIPE_USER' => '2',
+            'STATUS_KONFIRMASI' => '3',
+            'email' => 'lat@gmail.com',
+            'password' => bcrypt('lat'),
+            'created_at' => date('Y-m-d h:i:s')
+        ]);
+
         $faker = Faker::create('id_ID');
 
         $users = [];
