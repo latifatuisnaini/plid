@@ -283,7 +283,7 @@ class Factory
         $imports = [];
         foreach ($dependencies as $dependencyClass) {
             // Skip when the same class
-            if ($dependencyClass == $model->getQualifiedUserClassName()) {
+            if (trim($dependencyClass, "\\") == trim($model->getQualifiedUserClassName(), "\\")) {
                 continue;
             }
 
@@ -401,7 +401,8 @@ class Factory
             $properties = array_diff($properties, $excludedConstants);
 
             foreach ($properties as $property) {
-                $body .= $this->class->constant(strtoupper($property), $property);
+                $constantName = Str::upper(Str::snake($property));
+                $body .= $this->class->constant($constantName, $property);
             }
         }
 
