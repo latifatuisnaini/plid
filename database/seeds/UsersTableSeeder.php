@@ -48,7 +48,7 @@ class UsersTableSeeder extends Seeder
         for ($i = 0; $i < 100; $i++) {
             $email = $faker->email;
             $users[] = [
-                'TIPE_USER' => rand(1,2),
+                'TIPE_USER' => '2',
                 'ID_JENIS_IDENTITAS' => rand(1,4),
                 'ID_JENIS_PEMOHON' => rand(1,3),
                 'NOMOR_IDENTITAS' => $faker->nik(),
