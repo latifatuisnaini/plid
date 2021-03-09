@@ -10,8 +10,26 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $konfirmasi = User::where('STATUS_KONFIRMASI', '0');
-        return view('users.dashboard');
+       
+     
+        
+            if(User::where("STATUS_KONFIRMASI" == "3") || User::where("STATUS_KONFIRMASI" == 3)){
+                $verified="Belum Aktif";
+             
+            }
+            else{
+                if(User::where("STATUS_KONFIRMASI" == "4") || User::where("STATUS_KONFIRMASI" == 4)){
+                $verified="Aktif";
+             
+            }
+            else{
+                
+            }
+        }
+
+
+        
+        return view('users.dashboard', compact('verified'));
     }
     
     
