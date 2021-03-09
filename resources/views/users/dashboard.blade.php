@@ -101,11 +101,7 @@
                             <a href="" class="intro-y w-full block text-center rounded-md py-4 border border-dotted border-theme-15 dark:border-dark-5 text-theme-16 dark:text-gray-600">View More</a>
                             
                         </div>
-                    </div>
-                    @endif
-                </div>
-            </div>
-        </div>
+                                  </div>
     </div>
 </div>
 

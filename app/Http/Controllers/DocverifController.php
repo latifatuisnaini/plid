@@ -25,7 +25,13 @@ class DocverifController extends Controller
         $user = User::find($id);
         $user->STATUS_KONFIRMASI = 3;
         $user->save();
-     	return redirect()->route('verif.index');
-         
-    } 
+     	return redirect()->route('verif.index'); 
+    }
+    
+    public function update1(Request $request){
+        $user = User::find($request->ID_USER);
+        $user->STATUS_KONFIRMASI = 4;
+        $user->save();
+     	return redirect()->route('verif.index');     
+    }
 }
