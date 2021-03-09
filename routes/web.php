@@ -56,8 +56,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::get('/','AdminController@index');
+
     Route::resource('/user','UserController');
     Route::get('/user/edit/{id}', 'UserController@edit');
+
+    Route::resource('/verif','DocverifController');
+    Route::get('/verif/edit/{id}', 'DocverifController@edit');
 
 });
 

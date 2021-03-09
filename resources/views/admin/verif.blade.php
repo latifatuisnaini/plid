@@ -70,7 +70,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 @section('content')
 <div class="intro-y box p-5 mt-5 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">                        
     <div class="flex flex-row">
-        <i data-feather="list"></i>
+        <i data-feather="file-text"></i>
         <h2 class="text-lg font-medium mr-auto ml-3">Table User</h2>
     </div>
 </div>
@@ -90,7 +90,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <th data-priority="2">Nama Lengkap</th>
                     <th data-priority="3">No. Telp</th>
                     <th data-priority="4">Pekerjaan</th>
-                    <th data-priority="5">Status Konfirmasi</th>
+                    <th data-priority="5">Status Dokumen</th>
                     <th data-priority="6">Aksi</th>
                 </tr>
             </thead>
@@ -102,25 +102,20 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <td>{{$u->NO_TLP}}</td>
                     <td>{{$u->PEKERJAAN}}</td>
                     <td>
-                        @if( $u->STATUS_KONFIRMASI == 1 ) 
+                        @if( $u->STATUS_KONFIRMASI == 2 ) 
                             <div class="text-center">
-                                <div class="flex items-center justify-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> Aktif </div>
+                                <div class="flex items-center justify-center text-theme-6"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> Belum Aktif </div>
                             </div>
-                        @elseif ( $u->STATUS_KONFIRMASI == 0 )
-                        <div class="text-center">  
-                            <div class="flex items-center justify-center text-theme-6"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> Belum Aktif </div>
-                        </div>
                         @endif
                     </td>
                     <td>
                         <form action="{{ route('user.update', $u->ID_USER) }}" method="post">
                             @method('PUT')
                             @csrf
-                            @if( $u->STATUS_KONFIRMASI == 0 ) 
-                                <button href="javascript:;" title="Konfirmasi Status User" type="submit" class="tooltip button px-2 mr-1 mb-2 bg-blue-300 dark:text-gray-300"><span class="w-5 h-5 flex items-center justify-center"> <i data-feather="user-check" class="w-4 h-4 "></i></span> </button>
+                            @if( $u->STATUS_KONFIRMASI == 2 )
+                            <div class="text-center">
                                 <button href="javascript:;" title="Detail User" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300"><a data-toggle="modal" data-target="#detail_{{ $u->ID_USER }}"><span class="w-5 h-5 flex items-center justify-center"> <i data-feather="more-horizontal" class="w-4 h-4 "></i></span></a> </button>  
-                            @elseif( $u->STATUS_KONFIRMASI == 1 )
-                            <button href="javascript:;" title="Detail User" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300"><a data-toggle="modal" data-target="#detail_{{ $u->ID_USER }}"><span class="w-5 h-5 flex items-center justify-center"> <i data-feather="more-horizontal" class="w-4 h-4 "></i></span></a> </button> 
+                            </div>
                             @endif
                         </form>
                     </td>
@@ -136,7 +131,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <div class="modal__content relative"> <a data-dismiss="modal" href="javascript:;" class="absolute right-0 top-0 mt-3 mr-3"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
                     </div>
                     <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
-                        <h2 class="font-bold text-2xl flex"><i data-feather="user" class="w-8 h-8"></i>DETAIL USER ID {{ $u->ID_USER }}</h2>
+                        <h2 class="font-bold text-2xl flex"><i data-feather="user" class="w-8 h-8"></i>DETAIL USER ID {{ $u->NAMA_LENGKAP }}</h2>
                     </div>
                 </div>
             <div class="modal-body">
@@ -182,7 +177,9 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     </div>
                 </div>
                 <hr>
-                <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+            </div>    
+            
+            <div class="p-5 grid grid-cols-12 gap-4 row-gap-3 border-gray-200 dark:border-dark-5">
                 <div class="col-span-12">
                     <h2 class="font-semibold text-lg mr-auto">Berkas</h2>
                 </div>
@@ -190,9 +187,11 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 <div class="col-span-12 sm:col-span-6">
                     <div class="text-base">KTP</div>
                 </div>
-
+            
                 <div class="col-span-12 sm:col-span-6">
-                    <a href=""><button class="button w-32 flex items-left justify-left bg-purple-700 text-white"><i data-feather="eye" class="w-4 h-4 mr-2"></i>Pratinjau</button></a>
+                    <div class="w-full h-64 image-fit">
+                        <img alt="File KTP" src="{{ asset('dist/images/preview-8.jpg')}}" data-action="zoom" class="w-full rounded-md"> 
+                    </div>
                 </div>
 
                 <div class="col-span-12 sm:col-span-6">
@@ -200,11 +199,13 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 </div>
 
                 <div class="col-span-12 sm:col-span-6">
-                    <a href=""><button class="button w-32 flex items-left justify-left bg-purple-700 text-white"><i data-feather="eye" class="w-4 h-4 mr-2"></i>Pratinjau</button></a>
+                    <div class="w-full h-64 image-fit">
+                        <img alt="File NPWP" src="{{ asset('dist/images/preview-8.jpg')}}" data-action="zoom" class="w-full rounded-md"> 
+                    </div> 
                 </div>
-
-                </div>
+                
             </div>
+
             </div>
         </div>
         @endforeach

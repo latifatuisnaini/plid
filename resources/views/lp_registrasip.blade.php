@@ -52,9 +52,10 @@
                             <label class="w-full sm:w-20 sm:text-left sm:mr-12">NPWP</label>
                                 <input type="text" name="NPWP" class="input w-full border border-gray-500 mt-2 flex-1" required>
                         </div>
-                        <div class="flex flex-col sm:flex-row items-center mt-4 input-form">
+                        <div class="flex flex-col sm:flex-row items-center mt-4 input-form @error('email_pemohon') has-error @enderror">
                             <label class="w-full sm:w-20 sm:text-left sm:mr-12">Email *</label>
                             <input type="email" name="email_pemohon" class="input w-full border border-gray-500 mt-2 flex-1" required>
+                            
                         </div>
                         <div class="flex flex-col sm:flex-row items-center mt-4 input-form">
                             <label class="w-full sm:w-20 sm:text-left sm:mr-12">Pekerjaan</label>
@@ -64,9 +65,10 @@
                             <label class="w-full sm:w-20 sm:text-left sm:mr-12">Alamat</label>
                             <textarea name="alamat" class="input w-full border border-gray-500 mt-2 flex-1" required></textarea>
                         </div>
-                        <div class="flex flex-col sm:flex-row items-center mt-4 input-form">
+                        <div class="flex flex-col sm:flex-row items-center mt-4 input-form @error('no_tlp') has-error @enderror">
                             <label class="w-full sm:w-20 sm:text-left sm:mr-12">No Telp</label>
                             <input type="number" name="no_tlp" class="input w-full border border-gray-500 mt-2 flex-1" required>
+                            @error('no_tlp') <div class="pristine-error text-theme-6 mt-2">Nomor telepon tidak valid. </div>@enderror
                         </div>
                         <div class="flex flex-col sm:flex-row items-center mt-4 input-form">
                             <label class="w-full sm:w-20 sm:text-left sm:mr-12">No Fax</label>
