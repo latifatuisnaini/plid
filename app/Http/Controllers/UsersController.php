@@ -2,34 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Permohonan;
 use DB;
 class UsersController extends Controller
 {
     public function index()
     {
-       
-     
-        
-            if(User::where("STATUS_KONFIRMASI" == "3") || User::where("STATUS_KONFIRMASI" == 3)){
+      
+            if(Auth::user()->STATUS_KONFIRMASI == "0" || Auth::user()->STATUS_KONFIRMASI == 0 || Auth::user()->STATUS_KONFIRMASI == "1" || Auth::user()->STATUS_KONFIRMASI == 1 || Auth::user()->STATUS_KONFIRMASI == "2" || Auth::user()->STATUS_KONFIRMASI == 2){
                 $verified="Belum Aktif";
-             
             }
             else{
-                if(User::where("STATUS_KONFIRMASI" == "4") || User::where("STATUS_KONFIRMASI" == 4)){
+                if(Auth::user()->STATUS_KONFIRMASI == "3" || Auth::user()->STATUS_KONFIRMASI == 3){
                 $verified="Aktif";
-             
-            }
-            else{
-                
+           
+                // $status_permohonan= Permohonan::select(DB::raw('DATE_FORMAT(permohonan.TANGGAL, "%d %M %Y") as tgl_permohonan'), 'permohonan.DOKUMEN_PERMOHONAN', 'users.NAMA_LENGKAP')
+                // ->join('users', 'users.ID_USER', '=', 'permohonan.ID_USER')
+                // ->join('status','status.ID_STATUS', '=', 'permohonan.ID_STATUS')
+                // ->get();   
+                    
             }
         }
-
-
-        
-        return view('users.dashboard', compact('verified'));
+        $list_permohonan = Permohonan::select(DB::raw('DATE_FORMAT(permohonan.TANGGAL, "%d %M %Y") as tgl_permohonan'), 'permohonan.DOKUMEN_PERMOHONAN', 'status.STATUS')
+        ->join('status', 'status.ID_STATUS', '=', 'permohonan.ID_STATUS')
+        ->orderByDesc('ID_PERMOHONAN')
+        ->limit(4)
+        ->get();
+               
+        return view('users.dashboard', compact('verified', 'list_permohonan'));
     }
     
 }
