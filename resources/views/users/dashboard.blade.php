@@ -9,14 +9,32 @@
             </h2>
             <a href="" class="ml-auto flex text-theme-1 dark:text-theme-10"> <i data-feather="refresh-ccw" class="w-4 h-4 mr-3"></i> Reload Data </a>
         </div>
+        @if(Auth::user()->STATUS_KONFIRMASI == 1)
         <div class="rounded-md px-5 py-4 mb-2 bg-theme-31 text-theme-6">
             <div class="flex items-center">
                 <i data-feather="alert-triangle" class="mr-2"></i>
                 <div class="font-medium text-lg">Anda belum mengupload dokumen pendukung</div>
             </div>
             <div class="mt-3">Untuk mengajukan permohonan dokumen, anda harus mengupload dokumen pendukung berupa NPWP dan KTP.</div>
-            <button class="button w-32 mr-2 mb-2 mt-3 flex items-center justify-center bg-theme-6 text-white"> <i data-feather="upload-cloud" class="w-6 h-6 mr-2"></i> Upload </button>
+            <div class="text-center"> <a href="javascript:;" data-toggle="modal" data-target="#modal-upload" class="button w-32 mr-2 mb-2 mt-3 flex items-center justify-center bg-theme-6 text-white"><i data-feather="upload-cloud" class="w-6 h-6 mr-2"></i> Upload </a> </div>
         </div>
+        @elseif(Auth::user()->STATUS_KONFIRMASI == 2)
+        <div class="rounded-md px-5 py-4 mb-2 bg-theme-17 text-theme-11">
+            <div class="flex items-center">
+                <i data-feather="alert-triangle" class="mr-2"></i>
+                <div class="font-medium text-lg">Berkas Anda sedang dalam proses verifikasi.</div>
+            </div>
+            <div class="mt-3">Dokumen pendukung anda sedang dalam proses verifikasi oleh Admin. Mohon tunggu max. 24 jam</div>
+        </div>
+        @elseif(Auth::user()->STATUS_KONFIRMASI == 4)
+        <div class="rounded-md px-5 py-4 mb-2 bg-theme-31 text-theme-6">
+            <div class="flex items-center">
+                <i data-feather="alert-triangle" class="mr-2"></i>
+                <div class="font-medium text-lg">Berkas Anda ditolak. Mohon upload ulang.</div>
+            </div>
+            <div class="text-center"> <a href="javascript:;" data-toggle="modal" data-target="#modal-upload" class="button w-32 mr-2 mb-2 mt-3 flex items-center justify-center bg-theme-6 text-white"><i data-feather="upload-cloud" class="w-6 h-6 mr-2"></i> Upload </a> </div>
+        </div>
+        @endif
         <div class="grid grid-cols-12 gap-6 mt-5">
                 <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
                     <div class="report-box zoom-in">
@@ -59,18 +77,74 @@
                         </div>
             </div>
         </div>
-        
         </div>
     </div>
 </div>
 
+@if(Auth::user()->STATUS_KONFIRMASI == 1 || Auth::user()->STATUS_KONFIRMASI == 4)
+<div class="modal" id="modal-upload">
+    <div class="modal__content">
+    <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
+        <h2 class="font-medium text-base mr-auto">Upload Dokumen Pendukung</h2>
+    </div>
+    <form action="{{ url('users/upload_dok')}}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+            <div class="col-span-12">
+                <label>NPWP</label>
+                <input type="file" class="input w-full border mt-2 flex-1" accept="image/png, image/jpeg" name="NPWP" id="input-npwp" required>
+                <img class="mt-2" id="preview-npwp" height="80" src=""/>
+            </div>
+            <div class="col-span-12">
+                <label>KTP</label>
+                <input type="file" class="input w-full border mt-2 flex-1" accept="image/png, image/jpeg" name="KTP" id="input-ktp" required> 
+                <img class="mt-2" id="preview-ktp" height="80" src=""/>
+            </div>
+        </div>
+        <div class="px-5 py-3 text-right border-t border-gray-200 dark:border-dark-5">
+            <button type="button" class="button w-20 border text-gray-700 dark:border-dark-5 dark:text-gray-300 mr-1" data-dismiss="modal">Cancel</button> 
+            <button type="submit" class="button w-20 bg-theme-1 text-white">Submit</button>
+        </div>
+    </form>
+    </div>
+</div>
+@endif
+@endsection
+
+@section('script')
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
-var ctx = document.getElementById('line-chart').getContext('2d');
-options: {
-    legend: {
-        display: false
+function readURLNPWP(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('#preview-npwp').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
     }
-  }
+}
+function readURLKTP(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('#preview-ktp').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
+    }
+}
+
+$("#input-npwp").change(function() {
+    readURLNPWP(this);
+    console.log(this);
+});
+
+$("#input-ktp").change(function() {
+    readURLKTP(this);
+});
+
 </script>
 @endsection

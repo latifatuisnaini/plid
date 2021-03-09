@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Permohonan;
 use DB;
+use Storage;
+
 class UsersController extends Controller
 {
     public function index()
@@ -17,7 +19,7 @@ class UsersController extends Controller
                 $verified="Belum Aktif";
             }
             else{
-                if(Auth::user()->STATUS_KONFIRMASI == "3" || Auth::user()->STATUS_KONFIRMASI == 3){
+                if(Auth::user()->STATUS_KONFIRMASI == "3" || Auth::user()->STATUS_KONFIRMASI == 3 || Auth::user()->STATUS_KONFIRMASI == "4" || Auth::user()->STATUS_KONFIRMASI == 4){
                 $verified="Aktif";
            
                 // $status_permohonan= Permohonan::select(DB::raw('DATE_FORMAT(permohonan.TANGGAL, "%d %M %Y") as tgl_permohonan'), 'permohonan.DOKUMEN_PERMOHONAN', 'users.NAMA_LENGKAP')
@@ -34,6 +36,31 @@ class UsersController extends Controller
         ->get();
                
         return view('users.dashboard', compact('verified', 'list_permohonan'));
+    }
+
+    public function uploadDokumen(Request $request)
+    {
+        $request->validate([
+            'NPWP' => 'required|file|image|mimes:jpeg,png,jpg|max:5000',
+            'KTP' => 'required|file|image|mimes:jpeg,png,jpg|max:5000'
+        ]);
+
+        $id_user = Auth::user()->ID_USER;
+        $user = User::find($id_user);
+
+        $npwp = 'NPWP_'.$id_user.'.'.$request->file('NPWP')->extension();
+        Storage::disk('public')->putFileAs('dokumen',$request->NPWP,$npwp);
+
+        $ktp = 'KTP_'.$id_user.'.'.$request->file('KTP')->extension();
+        Storage::disk('public')->putFileAs('dokumen',$request->KTP,$ktp);
+
+        $user->update([
+            'FILE_NPWP' => $npwp,
+            'FILE_KTP' => $ktp,
+            'STATUS_KONFIRMASI' => 2
+        ]);
+
+        return redirect('users');
     }
     
 }
