@@ -109,14 +109,16 @@
         <!-- END: Sales Report -->
        
         <!-- BEGIN: Weekly Best Sellers -->
+        @if(count($list_permohonan) > 0)
         <div class="col-span-12 xl:col-span-4 mt-6">
             <div class="intro-y flex items-center h-10">
                 <h2 class="text-lg font-medium truncate mr-5">
                     Permohonan Dokumen Terbaru
                 </h2>
             </div>
+            
             <div class="mt-5">
-            @if(count($list_permohonan) > 0)
+            
                 @foreach($list_permohonan as $list)
                     <div class="intro-y">
                         <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
@@ -131,13 +133,12 @@
                         </div>
                     </div>
                 @endforeach
-            @else
-                Belum Ada Data Permohonan Baru
               
-            @endif
+           
                 <a href="" class="intro-y w-full mt-4 block text-center rounded-md py-4 border border-dotted border-theme-15 dark:border-dark-5 text-theme-16 dark:text-gray-600">View More</a> 
             </div>
         </div>
+        @endif
         <!-- END: Weekly Best Sellers -->
        
         </div>
