@@ -90,7 +90,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             <i data-feather="alert-triangle" class="mr-2" style="width: 250px; height: 250px; margin:auto;"></i>
                             <div class="font-medium text-3xl" style="text-align:center">Akun Anda belum aktif.</div>
                         </div>
-                        <div class="mt-3 mb-5 text-xl" style="text-align:center">Mohon maaf, Anda belum dapat mengajukan permohonan dokumen.</div>
+                        <div class="mt-3 mb-5 text-xl" style="text-align:center">Mohon maaf, Anda belum dapat mengajukan permohonan dokumen. <br> Silahkan upload KTP Anda terlebih dahulu.</div>
                     </div>
 </div>
 @elseif(Auth::user()->STATUS_KONFIRMASI == 2)
