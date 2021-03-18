@@ -127,7 +127,7 @@
                             </div>
                             <div class="ml-4 mr-auto">
                                 <div class="text-gray-600 text-xs mb-2">{{ $list->tgl_permohonan }}</div>
-                                <div class="font-medium">{{ $list->NAMA_LENGKAP }}</div>
+                                <div >{{ $list->NAMA_LENGKAP }}</div>
                                 <div class="font-medium">{{ $list->DOKUMEN_PERMOHONAN }}</div>
                             </div>
                         </div>
