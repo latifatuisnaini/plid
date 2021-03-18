@@ -69,9 +69,9 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 @endsection
 @section('content')
 @if(Session::has('success'))
-<div class="rounded-md w-35 flex items-center px-5 py-4 mb-2 bg-theme-14 text-theme-10"> <i data-feather="alert-circle" class="w-6 h-6 mr-2"></i>{{@session::get('success') }}</div>
+<div class="rounded-md w-35 flex items-center px-5 py-4 mb-2 ml-5 bg-theme-18 text-theme-9"> <i data-feather="alert-circle" class="w-6 h-6 mr-2"></i>{{@session::get('success') }}</div>
 @elseif(Session::has('alert_error'))
-<div class="rounded-md w-35 flex items-center px-5 py-4 mb-2 bg-theme-31 text-theme-6"> <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i>{{@session::get('alert_error') }}</div>
+<div class="rounded-md w-35 flex items-center px-5 py-4 mb-2 ml-5 bg-theme-31 text-theme-6"> <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i>{{@session::get('alert_error') }}</div>
 @endif
 
 <div class="content">
@@ -83,7 +83,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
     
 </div>
 
-@if(Auth::user()->STATUS_KONFIRMASI == 0)
+@if(Auth::user()->STATUS_KONFIRMASI == 1)
 <div class="col-span-6" >
                     <div class="rounded-md px-5 py-4 mb-2 bg-theme-31 text-theme-6">
                         <div class="place-content-center">
@@ -91,6 +91,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             <div class="font-medium text-3xl" style="text-align:center">Akun Anda belum aktif.</div>
                         </div>
                         <div class="mt-3 mb-5 text-xl" style="text-align:center">Mohon maaf, Anda belum dapat mengajukan permohonan dokumen. <br> Silahkan upload KTP Anda terlebih dahulu.</div>
+                        <div class="text-center"> <a href="{{ url('/users') }}" class="button w-32 mr-2 mb-5 mt-3 flex items-center justify-center bg-theme-6 text-white" style="margin:auto;"><i data-feather="upload-cloud" class="w-6 h-6 mr-2" ></i> Upload </a> </div>
                     </div>
 </div>
 @elseif(Auth::user()->STATUS_KONFIRMASI == 2)
@@ -103,7 +104,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <div class="mt-3 mb-5 text-xl" style="text-align:center">Mohon maaf, Anda belum dapat mengajukan permohonan dokumen.<br> KTP Anda sedang menunggu diverifikasi.</div>
                     </div>
 </div>
-@elseif(Auth::user()->STATUS_KONFIRMASI == 1 || Auth::user()->STATUS_KONFIRMASI == 3)
+@elseif(Auth::user()->STATUS_KONFIRMASI == 3)
 <div class="intro-y box mt-5">
     <!--Container-->
     <!--Card-->
@@ -183,6 +184,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     @csrf
 
                     <input type="hidden" name="ID_USER" value="{{ Auth::user()->ID_USER }}">
+                    
                     <div class="flex flex-col sm:flex-row items-center mt-3"> 
                         <label class="w-full sm:w-20 sm:text-left sm:mr-5">Dokumen Permohonan</label> 
                             <input type="text" class="input w-full border mt-2 flex-1" placeholder="Dokumen Permohonan" name="DOKUMEN_PERMOHONAN" required >
