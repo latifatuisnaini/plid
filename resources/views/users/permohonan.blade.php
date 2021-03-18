@@ -74,6 +74,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 <div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-31 text-theme-6"> <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i>{{@session::get('alert_error') }}</div>
 @endif
 
+<div class="content">
 <div class="intro-y box p-5 mt-5 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">                        
     <div class="flex flex-row">
         <i data-feather="list"></i>
@@ -88,8 +89,22 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 
         <div class="text-right">
             <!--Card-->
-            <a data-toggle="modal" data-target="#tambah_dokumen_permohonan" class="button w-32 mb-2 flex items-center justify-center bg-theme-1 text-white tombol-tambah-dokumen-permohonan" style="margin-left: 750px;"><i data-feather="plus-circle" class="w-6 h-6 mr-2"></i>Tambah</a>
+            <a data-toggle="modal" data-target="#tambah_dokumen_permohonan" class="button w-32 mb-2 flex items-center justify-center bg-theme-1 text-white tombol-tambah-dokumen-permohonan" style="margin-left: 710px;"><i data-feather="plus-circle" class="w-6 h-6 mr-2"></i>Tambah</a>
         </div>
+
+        @if(Session::has('succcess'))
+                                    <div class="alert alert-arrow-left alert-icon-left alert-light-primary mb-4" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                                        {{ Session::get('succcess') }}
+                                    </div>
+                                @elseif(Session::has('alert_error'))
+                                    <div class="alert alert-arrow-right alert-icon-right alert-light-danger mb-4" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
+                                        {{ Session::get('alert_error') }}
+                                    </div>
+                                @endif
 
         <div class="p-6 mt-6 lg:mt-0 rounded shadow">
             <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
@@ -109,12 +124,24 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <td>{{$p->DOKUMEN_PERMOHONAN}}</td>
                         <td>{{$p->KETERANGAN}}</td>
                         <td>{{$p->TANGGAL}}</td>
-                        <td>{{$p->status->STATUS}}</td>
+                        <td>
+                            <div class="mt-1 mb-1"> 
+                            @if ($p->status->ID_STATUS == 1)
+                                <span class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-9 text-white">{{$p->status->STATUS}}
+                                </span>
+                            @elseif ($p->status->ID_STATUS == 2)
+                                <span class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-12 text-white">{{$p->status->STATUS}}
+                                </span>
+                            @endif
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
+    </div>
+</div>
         <!--/Card-->
 
         <div class="modal" id="tambah_dokumen_permohonan">
@@ -131,36 +158,34 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     @csrf
                     <div class="flex flex-col sm:flex-row items-center mt-3"> 
                         <label class="w-full sm:w-20 sm:text-left sm:mr-5">Dokumen Permohonan</label> 
-                            <input type="text" class="input w-full border mt-2 flex-1" placeholder="Dokumen Permohonan"> 
+                            <input type="text" class="input w-full border mt-2 flex-1 placeholder="Dokumen Permohonan" name="DOKUMEN_PERMOHONAN" required >
                     </div>
                     <div class="flex flex-col sm:flex-row items-center mt-3"> 
                         <label class="w-full sm:w-20 sm:text-left sm:mr-5">Keterangan</label> 
-                            <textarea class="input w-full border mt-2 flex-1"> </textarea>
+                            <textarea class="input w-full border mt-2 flex-1" name="KETERANGAN"> </textarea>
                     </div>
                     <div class="flex flex-col sm:flex-row items-center mt-3"> 
                     <label class="w-full sm:w-20 sm:text-left sm:mr-5">Tanggal</label> 
                         <div class="relative">
                             <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4"><i data-feather="calendar" class="w-4 h-4"></i> 
                             </div> 
-                            <input type="text" class="datepicker input pl-12 border" data-single-mode="true">
+                            <input type="text" class="datepicker input pl-12 border" data-single-mode="true" name="TANGGAL" required>
                         </div>
                     </div>
-                    </form>
+                    
                     </div>
 
                 <div class="modal-footer mt-5">
-                    <div class="px-5 pb-8 text-right">
+                    <div class="text-right">
                     <button type="button" class="button w-24 shadow-md mr-1 mb-2 bg-red-500 text-white" data-dismiss="modal">Cancel</button> 
-                    <button class="button items-right justify-right bg-theme-1 text-white shadow-md" type="submit">Simpan</button>
+                    <button class="button items-right w-24 shadow-md mr-1 mb-2 justify-right bg-theme-1 text-white shadow-md" type="submit">Simpan</button>
+                    </form>
                     </div>
                 </div>
+                
 
                 </div>
             </div>
-        </div>
-    </div>
-    <!--/container-->
-</div>
 @endsection
 
 @section('script')
@@ -168,6 +193,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script>
+console.log('Sudah masuk');
 $(document).ready(function() {
 
     var table = $('#example').DataTable( {
@@ -177,6 +203,6 @@ $(document).ready(function() {
         .responsive.recalc();
 
 });
-console.log('Sudah masuk');
+
 </script>
 @endsection

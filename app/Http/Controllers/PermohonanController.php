@@ -12,7 +12,7 @@ class PermohonanController extends Controller
 {
     public function index()
     {
-
+        
         return view('users.permohonan', [
             'permohonan' => Permohonan::all()
         ]);
@@ -27,13 +27,14 @@ class PermohonanController extends Controller
         $request->validate([
             'DOKUMEN_PERMOHONAN'=> 'required|string|max:100|regex:/^[0-9.\a-zA-Z ]+$/',
             'KETERANGAN'=> 'required|string|max:255|regex:/^[0-9.\a-zA-Z ]+$/',
-            'TANGGAL'=>'required|date',
+            'TANGGAL'=>'required',
         ]);
         Permohonan::insert([
             'DOKUMEN_PERMOHONAN'=> $request->DOKUMEN_PERMOHONAN,
             'KETERANGAN'=> $request->KETERANGAN,
             'TANGGAL'=> $request->TANGGAL,
             'ID_STATUS'=>1,
+            
         ]);
 
         return redirect('/users/permohonan')->with('success', 'Data Permohonan Berhasil Ditambahkan');
