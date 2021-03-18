@@ -83,11 +83,11 @@
 <div class="container w-full ">
     
 
-    @if(Auth::user()->STATUS_KONFIRMASI == 1)
-        <div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-18 text-theme-9"> <i data-feather="check-circle" class="w-6 h-6 mr-2"></i> Awesome alert with icon <i data-feather="x" class="w-4 h-4 ml-auto alert-del"></i> </div>  
-        <br>	
-    @endif	 
+    @if( session('message') )
+        <div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-18 text-theme-9"> <i data-feather="check-circle" class="w-6 h-6 mr-2"></i> Dokumen Verifikasi User berhasil disimpan </div>  
+    @endif
 
+    <br>
     <!--Card-->
     <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
 
