@@ -65,50 +65,54 @@
                     <div class="report-box zoom-in">
                         <div class="box p-5">
                             <div class="flex">
-                                <i data-feather="file-text" class="report-box__icon text-theme-10"></i> 
+                                <i data-feather="file-text" class="report-box__icon text-theme-33"></i> 
                             </div>
+                            <div class="text-3xl font-bold leading-8 mt-6">{{ $permohonan_open }}</div>
                             <div class="text-base text-gray-600 mt-1">Jumlah Permohonan</div>
-                            <div class="mt-4"> 
-                            <span class="px-3 py-2 rounded bg-theme-1 text-white mr-1">6</span>
+                            <div class="mt-4">
+                            <span class="px-3 py-2 rounded-full bg-theme-33 text-white mr-1">Status : Open</span> 
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
                     <div class="report-box zoom-in">
-                        <div class="box p-5">
+                    <div class="box p-5">
                             <div class="flex">
-                                <i data-feather="file-text" class="report-box__icon text-theme-10"></i> 
+                                <i data-feather="file-text" class="report-box__icon text-theme-12"></i> 
                             </div>
+                            <div class="text-3xl font-bold leading-8 mt-6">{{ $permohonan_diproses }}</div>
                             <div class="text-base text-gray-600 mt-1">Jumlah Permohonan</div>
-                            <div class="mt-4"> 
-                            <span class="px-3 py-2 rounded bg-theme-1 text-white mr-1">6</span>
+                            <div class="mt-4">
+                            <span class="px-3 py-2 rounded-full bg-theme-12 text-white mr-1">Status : Sedang di Proses</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
                     <div class="report-box zoom-in">
-                        <div class="box p-5">
+                    <div class="box p-5">
                             <div class="flex">
-                                <i data-feather="file-text" class="report-box__icon text-theme-10"></i> 
+                                <i data-feather="file-text" class="report-box__icon text-theme-9"></i> 
                             </div>
+                            <div class="text-3xl font-bold leading-8 mt-6">{{ $permohonan_diterima }}</div>
                             <div class="text-base text-gray-600 mt-1">Jumlah Permohonan</div>
-                            <div class="mt-4"> 
-                            <span class="px-3 py-2 rounded bg-theme-1 text-white mr-1">6</span>
+                            <div class="mt-4">
+                            <span class="px-3 py-2 rounded-full bg-theme-9 text-white mr-1">Status : Diterima</span> 
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
                     <div class="report-box zoom-in">
-                        <div class="box p-5">
+                    <div class="box p-5">
                             <div class="flex">
-                                <i data-feather="file-text" class="report-box__icon text-theme-10"></i> 
+                                <i data-feather="file-text" class="report-box__icon text-theme-6"></i> 
                             </div>
+                            <div class="text-3xl font-bold leading-8 mt-6">{{ $permohonan_ditolak }}</div>
                             <div class="text-base text-gray-600 mt-1">Jumlah Permohonan</div>
-                            <div class="mt-4"> 
-                            <span class="px-3 py-2 rounded bg-theme-1 text-white mr-1">6</span>
+                            <div class="mt-4">
+                            <span class="px-3 py-2 rounded-full bg-theme-6 text-white mr-1">Status : Ditolak</span> 
                             </div>
                         </div>
                     </div>
@@ -131,11 +135,19 @@
                                     <div class="font-medium">{{ $list->DOKUMEN_PERMOHONAN }}</div>
                                     <div class="text-gray-600 text-xs">{{ $list->tgl_permohonan }}</div>
                                 </div>
-                                <div class="py-1 px-2 rounded-full text-xs bg-theme-9 text-white cursor-pointer font-medium">{{ $list->STATUS }}</div>
+                            @if($list->STATUS == 'Open')
+                                <div class="py-1 px-2 rounded-full text-xs bg-theme-33 text-white cursor-pointer font-medium">{{ $list->STATUS }}</div>
+                                @elseif($list->STATUS == 'Sedang diproses')
+                                 <div class="py-1 px-2 rounded-full text-xs bg-theme-12 text-white cursor-pointer font-medium">{{ $list->STATUS }}</div>
+                                    @elseif($list->STATUS == 'Diterima')
+                                     <div class="py-1 px-2 rounded-full text-xs bg-theme-9 text-white cursor-pointer font-medium">{{ $list->STATUS }}</div>
+                                     @elseif($list->STATUS == 'Ditolak')
+                                        <div class="py-1 px-2 rounded-full text-xs bg-theme-6 text-white cursor-pointer font-medium">{{ $list->STATUS }}</div>
+                            @endif
                             </div>
                         </div>
                         @endforeach                               
-                        <a href="" class="intro-y w-full block text-center rounded-md py-4 border border-dotted border-theme-15 dark:border-dark-5 text-theme-16 dark:text-gray-600">View More</a>
+                        <a href="/users/permohonan" class="intro-y w-full block text-center rounded-md py-4 border border-dotted border-theme-15 dark:border-dark-5 text-theme-16 dark:text-gray-600">View More</a>
                         
                     </div>
                 </div>
