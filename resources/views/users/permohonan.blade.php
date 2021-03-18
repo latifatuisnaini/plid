@@ -80,19 +80,16 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
         <i data-feather="list"></i>
         <h2 class="text-lg font-medium mr-auto ml-3">Permohonan </h2>
     </div>
+    
 </div>
 
-
-<div class="intro-y box p-5 mt-5">
+<div class="intro-y box mt-5">
     <!--Container-->
+    <!--Card-->
+    <a href ="javascript:;" data-toggle="modal" data-target="#tambah_dokumen_permohonan" class="button w-32 mb-5 mr-6 mt-4 flex items-center justify-center bg-theme-1 text-white tombol-tambah-dokumen-permohonan" style="float:right;" ><i data-feather="plus-circle" class="w-6 h-6 mr-2"></i>Tambah</a>
+    
     <div class="container w-full">
-
-        <div class="text-right">
-            <!--Card-->
-            <a data-toggle="modal" data-target="#tambah_dokumen_permohonan" class="button w-32 mb-2 flex items-center justify-center bg-theme-1 text-white tombol-tambah-dokumen-permohonan" style="margin-left: 710px;"><i data-feather="plus-circle" class="w-6 h-6 mr-2"></i>Tambah</a>
-        </div>
-
-        @if(Session::has('succcess'))
+                        @if(Session::has('succcess'))
                                     <div class="alert alert-arrow-left alert-icon-left alert-light-primary mb-4" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
@@ -127,10 +124,16 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <td>
                             <div class="mt-1 mb-1"> 
                             @if ($p->status->ID_STATUS == 1)
-                                <span class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-9 text-white">{{$p->status->STATUS}}
+                                <span class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-33 text-white">{{$p->status->STATUS}}
                                 </span>
                             @elseif ($p->status->ID_STATUS == 2)
                                 <span class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-12 text-white">{{$p->status->STATUS}}
+                                </span>
+                            @elseif ($p->status->ID_STATUS == 3)
+                                <span class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-9 text-white">{{$p->status->STATUS}}
+                                </span>
+                            @elseif ($p->status->ID_STATUS == 4)
+                                <span class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-6 text-white">{{$p->status->STATUS}}
                                 </span>
                             @endif
                             </div>
@@ -156,10 +159,13 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <div class="modal-body">
                     <form action="{{ route('permohonan.store') }}" method="POST" class="needs-validation" novalidate id="tambah-dokumen-permohonan">
                     @csrf
+
+                    <input type="hidden" name="ID_USER" value="{{ Auth::user()->ID_USER }}">
                     <div class="flex flex-col sm:flex-row items-center mt-3"> 
                         <label class="w-full sm:w-20 sm:text-left sm:mr-5">Dokumen Permohonan</label> 
-                            <input type="text" class="input w-full border mt-2 flex-1 placeholder="Dokumen Permohonan" name="DOKUMEN_PERMOHONAN" required >
+                            <input type="text" class="input w-full border mt-2 flex-1" placeholder="Dokumen Permohonan" name="DOKUMEN_PERMOHONAN" required >
                     </div>
+                    
                     <div class="flex flex-col sm:flex-row items-center mt-3"> 
                         <label class="w-full sm:w-20 sm:text-left sm:mr-5">Keterangan</label> 
                             <textarea class="input w-full border mt-2 flex-1" name="KETERANGAN"> </textarea>
@@ -169,7 +175,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <div class="relative">
                             <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4"><i data-feather="calendar" class="w-4 h-4"></i> 
                             </div> 
-                            <input type="text" class="datepicker input pl-12 border" data-single-mode="true" name="TANGGAL" required>
+                            <input class="datepicker input pl-12 border" data-single-mode="true" name="TANGGAL" id ="TANGGAL" required>
                         </div>
                     </div>
                     
@@ -203,6 +209,22 @@ $(document).ready(function() {
         .responsive.recalc();
 
 });
+
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+ 
+console.log(formatDate('Sun May 11,2014'));
 
 </script>
 @endsection
