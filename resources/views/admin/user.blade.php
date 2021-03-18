@@ -191,16 +191,10 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <div class="text-base">KTP</div>
                 </div>
 
-                <div class="col-span-12 sm:col-span-6">
-                    <a href=""><button class="button w-32 flex items-left justify-left bg-purple-700 text-white"><i data-feather="eye" class="w-4 h-4 mr-2"></i>Pratinjau</button></a>
-                </div>
-
-                <div class="col-span-12 sm:col-span-6">
-                    <div class="text-base">NPWP</div>
-                </div>
-
-                <div class="col-span-12 sm:col-span-6">
-                    <a href=""><button class="button w-32 flex items-left justify-left bg-purple-700 text-white"><i data-feather="eye" class="w-4 h-4 mr-2"></i>Pratinjau</button></a>
+                <div class="col-span-12 ">
+                    <div class="w-full h-64 image-fit">
+                        <img alt="File KTP" src="{{ asset('dist/images/preview-8.jpg')}}" data-action="zoom" class="w-full rounded-md"> 
+                    </div>
                 </div>
 
                 </div>
