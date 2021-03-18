@@ -17,7 +17,7 @@
                             <i data-feather="alert-triangle" class="mr-2"></i>
                             <div class="font-medium text-lg">Anda belum mengupload dokumen pendukung</div>
                         </div>
-                        <div class="mt-3">Untuk mengajukan permohonan dokumen, anda harus mengupload dokumen pendukung berupa NPWP dan KTP.</div>
+                        <div class="mt-3">Untuk mengajukan permohonan dokumen, anda harus mengupload dokumen pendukung berupa KTP.</div>
                         <div class="text-center"> <a href="javascript:;" data-toggle="modal" data-target="#modal-upload" class="button w-32 mr-2 mb-2 mt-3 flex items-center justify-center bg-theme-6 text-white"><i data-feather="upload-cloud" class="w-6 h-6 mr-2"></i> Upload </a> </div>
                     </div>
                     @elseif(Auth::user()->STATUS_KONFIRMASI == 2)
@@ -154,11 +154,6 @@
         @csrf
         <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
             <div class="col-span-12">
-                <label>NPWP</label>
-                <input type="file" class="input w-full border mt-2 flex-1" accept="image/png, image/jpeg" name="NPWP" id="input-npwp" required>
-                <img class="mt-2" id="preview-npwp" height="80" src=""/>
-            </div>
-            <div class="col-span-12">
                 <label>KTP</label>
                 <input type="file" class="input w-full border mt-2 flex-1" accept="image/png, image/jpeg" name="KTP" id="input-ktp" required> 
                 <img class="mt-2" id="preview-ktp" height="80" src=""/>
@@ -177,17 +172,6 @@
 @section('script')
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
-function readURLNPWP(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function(e) {
-            $('#preview-npwp').attr('src', e.target.result);
-        }
-
-        reader.readAsDataURL(input.files[0]); // convert to base64 string
-    }
-}
 function readURLKTP(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -199,12 +183,6 @@ function readURLKTP(input) {
         reader.readAsDataURL(input.files[0]); // convert to base64 string
     }
 }
-
-$("#input-npwp").change(function() {
-    readURLNPWP(this);
-    console.log(this);
-});
-
 $("#input-ktp").change(function() {
     readURLKTP(this);
 });

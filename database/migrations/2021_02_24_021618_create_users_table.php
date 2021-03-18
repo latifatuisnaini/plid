@@ -26,7 +26,6 @@ class CreateUsersTable extends Migration
             $table->text('ALAMAT')->nullable();
             $table->string('NO_TLP', 15)->nullable();
             $table->string('NO_FAX', 15)->nullable();
-            $table->text('FILE_NPWP')->nullable();
             $table->text('FILE_KTP')->nullable();
             $table->string('password');
             $table->boolean('STATUS_KONFIRMASI')->nullable();
