@@ -15,12 +15,12 @@
                     <div class="report-box zoom-in">
                         <div class="box p-5">
                             <div class="flex">
-                                <i data-feather="file-text" class="report-box__icon text-theme-10"></i> 
+                                <i data-feather="file-text" class="report-box__icon text-theme-33"></i> 
                             </div>
                             <div class="text-3xl font-bold leading-8 mt-6">{{ $permohonan_open }}</div>
                             <div class="text-base text-gray-600 mt-1">Jumlah Permohonan</div>
                             <div class="mt-4"> 
-                            <span class="px-3 py-2 rounded-full bg-theme-1 text-white mr-1">Status : Open</span>
+                            <span class="px-3 py-2 rounded-full bg-theme-33 text-white mr-1">Status : Open</span>
                             </div>
                         </div>
                     </div>
@@ -109,30 +109,36 @@
         <!-- END: Sales Report -->
        
         <!-- BEGIN: Weekly Best Sellers -->
+        @if(count($list_permohonan) > 0)
         <div class="col-span-12 xl:col-span-4 mt-6">
             <div class="intro-y flex items-center h-10">
                 <h2 class="text-lg font-medium truncate mr-5">
                     Permohonan Dokumen Terbaru
                 </h2>
             </div>
+            
             <div class="mt-5">
-            @foreach($list_permohonan as $list)
-                <div class="intro-y">
-                    <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
-                        <div class="w-10 h-10 flex-none image-fit rounded-md overflow-hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30S" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text mx-auto"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                        </div>
-                        <div class="ml-4 mr-auto">
-                            <div class="text-gray-600 text-xs mb-2">{{ $list->tgl_permohonan }}</div>
-                            <div class="font-medium">{{ $list->NAMA_LENGKAP }}</div>
-                            <div class="font-medium">{{ $list->DOKUMEN_PERMOHONAN }}</div>
+            
+                @foreach($list_permohonan as $list)
+                    <div class="intro-y">
+                        <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
+                            <div class="w-10 h-10 flex-none image-fit rounded-md overflow-hidden">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30S" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text mx-auto"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                            </div>
+                            <div class="ml-4 mr-auto">
+                                <div class="text-gray-600 text-xs mb-2">{{ $list->tgl_permohonan }}</div>
+                                <div class="font-medium">{{ $list->NAMA_LENGKAP }}</div>
+                                <div class="font-medium">{{ $list->DOKUMEN_PERMOHONAN }}</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
-                <a href="" class="intro-y w-full block text-center rounded-md py-4 border border-dotted border-theme-15 dark:border-dark-5 text-theme-16 dark:text-gray-600">View More</a> 
+                @endforeach
+              
+           
+                <a href="" class="intro-y w-full mt-4 block text-center rounded-md py-4 border border-dotted border-theme-15 dark:border-dark-5 text-theme-16 dark:text-gray-600">View More</a> 
             </div>
         </div>
+        @endif
         <!-- END: Weekly Best Sellers -->
        
         </div>
