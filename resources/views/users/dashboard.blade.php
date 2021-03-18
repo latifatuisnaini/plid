@@ -65,7 +65,7 @@
                     <div class="report-box zoom-in">
                         <div class="box p-5">
                             <div class="flex">
-                                <i data-feather="file-text" class="report-box__icon text-theme-10"></i> 
+                                <i data-feather="file-text" class="report-box__icon text-theme-33"></i> 
                             </div>
                             <div class="text-3xl font-bold leading-8 mt-6">{{ $permohonan_open }}</div>
                             <div class="text-base text-gray-600 mt-1">Jumlah Permohonan</div>
