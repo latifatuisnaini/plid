@@ -14,28 +14,34 @@ class UsersController extends Controller
 {
     public function index()
     {
-      
+        $permohonan_open = Permohonan::where('ID_STATUS', '=', '1')->whereYear('TANGGAL', date('Y'))
+        ->where('ID_USER', '=', Auth::user()->ID_USER)
+        ->count();
+        $permohonan_diproses = Permohonan::where('ID_STATUS', '=', '2')->whereYear('TANGGAL', date('Y'))
+        ->where('ID_USER', '=', Auth::user()->ID_USER)
+        ->count();
+        $permohonan_diterima = Permohonan::where('ID_STATUS', '=', '3')->whereYear('TANGGAL', date('Y'))
+        ->where('ID_USER', '=', Auth::user()->ID_USER)
+        ->count();
+        $permohonan_ditolak = Permohonan::where('ID_STATUS', '=', '4')->whereYear('TANGGAL', date('Y'))
+        ->where('ID_USER', '=', Auth::user()->ID_USER)
+        ->count();
             if(Auth::user()->STATUS_KONFIRMASI == "0" || Auth::user()->STATUS_KONFIRMASI == 0 || Auth::user()->STATUS_KONFIRMASI == "1" || Auth::user()->STATUS_KONFIRMASI == 1 || Auth::user()->STATUS_KONFIRMASI == "2" || Auth::user()->STATUS_KONFIRMASI == 2 || Auth::user()->STATUS_KONFIRMASI == "4" || Auth::user()->STATUS_KONFIRMASI == 4){
                 $verified="Belum Aktif";
             }
             else{
                 if(Auth::user()->STATUS_KONFIRMASI == "3" || Auth::user()->STATUS_KONFIRMASI == 3 ){
-                $verified="Aktif";
-           
-                // $status_permohonan= Permohonan::select(DB::raw('DATE_FORMAT(permohonan.TANGGAL, "%d %M %Y") as tgl_permohonan'), 'permohonan.DOKUMEN_PERMOHONAN', 'users.NAMA_LENGKAP')
-                // ->join('users', 'users.ID_USER', '=', 'permohonan.ID_USER')
-                // ->join('status','status.ID_STATUS', '=', 'permohonan.ID_STATUS')
-                // ->get();   
-                    
+                $verified="Aktif";     
             }
         }
         $list_permohonan = Permohonan::select(DB::raw('DATE_FORMAT(permohonan.TANGGAL, "%d %M %Y") as tgl_permohonan'), 'permohonan.DOKUMEN_PERMOHONAN', 'status.STATUS')
         ->join('status', 'status.ID_STATUS', '=', 'permohonan.ID_STATUS')
+        ->where('ID_USER', '=', Auth::user()->ID_USER)
         ->orderByDesc('ID_PERMOHONAN')
         ->limit(4)
         ->get();
                
-        return view('users.dashboard', compact('verified', 'list_permohonan'));
+        return view('users.dashboard', compact('verified', 'list_permohonan', 'permohonan_open', 'permohonan_diproses', 'permohonan_diterima', 'permohonan_ditolak'));
     }
 
     public function uploadDokumen(Request $request)
