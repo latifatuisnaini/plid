@@ -75,7 +75,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 @endif
 
 <div class="content">
-<div class="intro-y box p-5 mt-5 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">                        
+<div class="intro-y box p-5 mt-5 mb-5 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">                        
     <div class="flex flex-row">
         <i data-feather="list"></i>
         <h2 class="text-lg font-medium mr-auto ml-3">Permohonan </h2>
@@ -83,13 +83,31 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
     
 </div>
 
+@if(Auth::user()->STATUS_KONFIRMASI == 0)
+<div class="col-span-6 ml-2 mt-5">
+                    <div class="rounded-md px-5 py-4 mb-2 bg-theme-31 text-theme-6">
+                        <div class="flex items-center">
+                            <i data-feather="alert-triangle" class="mr-2"></i>
+                            <div class="font-medium text-lg">Akun Anda belum aktif.</div>
+                        </div>
+                        <div class="mt-3">Mohon maaf, Anda belum dapat mengajukan permohonan dokumen.</div>
+                    </div>
+</div>
+@elseif(Auth::user()->STATUS_KONFIRMASI == 2)
+<div class="col-span-6 ml-2">
+                    <div class="rounded-md px-5 py-4 mb-2 bg-theme-31 text-theme-6">
+                        <div class="flex items-center">
+                            <i data-feather="alert-triangle" class="mr-2"></i>
+                            <div class="font-medium text-lg">Akun Anda belum aktif.</div>
+                        </div>
+                        <div class="mt-3">Mohon maaf, Anda belum dapat mengajukan permohonan dokumen. KTP Anda sedang menunggu diverifikasi.</div>
+                    </div>
+</div>
+@elseif(Auth::user()->STATUS_KONFIRMASI == 1 || Auth::user()->STATUS_KONFIRMASI == 3)
 <div class="intro-y box mt-5">
     <!--Container-->
     <!--Card-->
-    <a href ="javascript:;" data-toggle="modal" data-target="#tambah_dokumen_permohonan" class="button mb-5 mr-6 mt-4 flex items-center justify-center bg-theme-1 text-white tombol-tambah-dokumen-permohonan" style="float:right;" ><i data-feather="plus-circle" class="w-6 h-6 mr-2"></i>Tambah Permohonan</a>
-    
-    <div class="container w-full">
-                        @if(Session::has('succcess'))
+    @if(Session::has('succcess'))
                                     <div class="alert alert-arrow-left alert-icon-left alert-light-primary mb-4" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
@@ -102,6 +120,10 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                                         {{ Session::get('alert_error') }}
                                     </div>
                                 @endif
+    
+    <a href ="javascript:;" data-toggle="modal" data-target="#tambah_dokumen_permohonan" class="button mb-5 mr-6 mt-4 flex items-center justify-center bg-theme-1 text-white tombol-tambah-dokumen-permohonan" style="float:right;" ><i data-feather="plus-circle" class="w-6 h-6 mr-2"></i>Tambah Permohonan</a>
+    
+    <div class="container w-full">
 
         <div class="p-6 mt-6 lg:mt-0 rounded shadow">
             <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
@@ -150,7 +172,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
         <div class="modal" id="tambah_dokumen_permohonan">
             <div class="modal__content modal__content--lg py-5 pl-5 pr-5 ml-auto">
                 <div class="modal-header">
-                    <div class="modal__content relative"> <a data-dismiss="modal" href="javascript:;" class="absolute right-0 top-0 mt-3 mr-0"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
+                    <div class="modal__content relative"> <a data-dismiss="modal" href="javascript:;" class="top-0 mt-3 mr-0" style="float: right;"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
                     </div>
                     <div class="flex items-center py-3 sm:py-3 border-b border-gray-200 dark:border-dark-5">
                         <h2 class="font-bold text-2xl flex"><i data-feather="folder" class="w-8 h-8 mr-3"></i>Tambah Dokumen Permohonan</h2>
@@ -192,6 +214,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 
                 </div>
             </div>
+@endif
 @endsection
 
 @section('script')
