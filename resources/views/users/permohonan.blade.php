@@ -69,9 +69,9 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 @endsection
 @section('content')
 @if(Session::has('success'))
-<div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-14 text-theme-10"> <i data-feather="alert-circle" class="w-6 h-6 mr-2"></i>{{@session::get('success') }}</div>
+<div class="rounded-md w-35 flex items-center px-5 py-4 mb-2 bg-theme-14 text-theme-10"> <i data-feather="alert-circle" class="w-6 h-6 mr-2"></i>{{@session::get('success') }}</div>
 @elseif(Session::has('alert_error'))
-<div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-31 text-theme-6"> <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i>{{@session::get('alert_error') }}</div>
+<div class="rounded-md w-35 flex items-center px-5 py-4 mb-2 bg-theme-31 text-theme-6"> <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i>{{@session::get('alert_error') }}</div>
 @endif
 
 <div class="content">
@@ -84,23 +84,23 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 </div>
 
 @if(Auth::user()->STATUS_KONFIRMASI == 0)
-<div class="col-span-6 ml-2 mt-5">
+<div class="col-span-6" >
                     <div class="rounded-md px-5 py-4 mb-2 bg-theme-31 text-theme-6">
-                        <div class="flex items-center">
-                            <i data-feather="alert-triangle" class="mr-2"></i>
-                            <div class="font-medium text-lg">Akun Anda belum aktif.</div>
+                        <div class="place-content-center">
+                            <i data-feather="alert-triangle" class="mr-2" style="width: 250px; height: 250px; margin:auto;"></i>
+                            <div class="font-medium text-3xl" style="text-align:center">Akun Anda belum aktif.</div>
                         </div>
-                        <div class="mt-3">Mohon maaf, Anda belum dapat mengajukan permohonan dokumen.</div>
+                        <div class="mt-3 mb-5 text-xl" style="text-align:center">Mohon maaf, Anda belum dapat mengajukan permohonan dokumen.</div>
                     </div>
 </div>
 @elseif(Auth::user()->STATUS_KONFIRMASI == 2)
-<div class="col-span-6 ml-2">
-                    <div class="rounded-md px-5 py-4 mb-2 bg-theme-31 text-theme-6">
-                        <div class="flex items-center">
-                            <i data-feather="alert-triangle" class="mr-2"></i>
-                            <div class="font-medium text-lg">Akun Anda belum aktif.</div>
+<div class="col-span-6">
+                    <div class="rounded-md px-5 py-5 mb-2 bg-theme-31 text-theme-6 " >
+                        <div class="place-content-center">
+                            <i data-feather="alert-triangle" class="mr-2" style="width: 250px; height: 250px; margin:auto;"></i>
+                            <div class="font-medium text-3xl" style="text-align:center">Akun Anda belum aktif.</div>
                         </div>
-                        <div class="mt-3">Mohon maaf, Anda belum dapat mengajukan permohonan dokumen. KTP Anda sedang menunggu diverifikasi.</div>
+                        <div class="mt-3 mb-5 text-xl" style="text-align:center">Mohon maaf, Anda belum dapat mengajukan permohonan dokumen.<br> KTP Anda sedang menunggu diverifikasi.</div>
                     </div>
 </div>
 @elseif(Auth::user()->STATUS_KONFIRMASI == 1 || Auth::user()->STATUS_KONFIRMASI == 3)
@@ -142,7 +142,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <td>{{$p->ID_PERMOHONAN}}</td>
                         <td>{{$p->DOKUMEN_PERMOHONAN}}</td>
                         <td>{{$p->KETERANGAN}}</td>
-                        <td>{{$p->TANGGAL}}</td>
+                        <td>{{ date('d-m-Y', strtotime($p->TANGGAL)) }}</td>
                         <td>
                             <div class="mt-1 mb-1"> 
                             @if ($p->status->ID_STATUS == 1)
