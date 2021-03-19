@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $LINK_DOWNLOAD
  * @property Carbon $TGL_FEEDBACK
  * @property Carbon $WAKTU_ESTIMASI
+ * @property string $NAMA_FILE
+ * @property Carbon $EXPIRED_DATE
  * 
  * @property Permohonan $permohonan
  *
@@ -35,7 +37,8 @@ class Feedback extends Model
 
 	protected $dates = [
 		'TGL_FEEDBACK',
-		'WAKTU_ESTIMASI'
+		'WAKTU_ESTIMASI',
+		'EXPIRED_DATE'
 	];
 
 	protected $fillable = [
@@ -43,7 +46,9 @@ class Feedback extends Model
 		'KETERANGAN',
 		'LINK_DOWNLOAD',
 		'TGL_FEEDBACK',
-		'WAKTU_ESTIMASI'
+		'WAKTU_ESTIMASI',
+		'NAMA_FILE',
+		'EXPIRED_DATE'
 	];
 
 	public function permohonan()

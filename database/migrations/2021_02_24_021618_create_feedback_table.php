@@ -20,6 +20,8 @@ class CreateFeedbackTable extends Migration
             $table->string('LINK_DOWNLOAD');
             $table->timestamp('TGL_FEEDBACK')->useCurrent();
             $table->dateTime('WAKTU_ESTIMASI');
+            $table->string('NAMA_FILE');
+            $table->date('EXPIRED_DATE');
         });
     }
 
