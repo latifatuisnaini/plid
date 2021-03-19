@@ -49,7 +49,7 @@ class User extends Authenticatable
 
 	public function jenis_identita()
 	{
-		return $this->belongsTo(JenisIdentita::class, 'ID_JENIS_IDENTITAS');
+		return $this->belongsTo(JenisIdentitas::class, 'ID_JENIS_IDENTITAS');
 	}
 
 	public function permohonans()

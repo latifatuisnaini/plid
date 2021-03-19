@@ -63,7 +63,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::resource('/verif','DocverifController');
     Route::get('/verif/edit/{id}', 'DocverifController@edit');
     Route::post('/verif/update1', 'DocverifController@update1')->name('verif.update1');
-
+    Route::get('/permohonan-open','AdminPermohonanController@index');
 });
 
 Route::prefix('users')->middleware(['auth'])->group(function(){
