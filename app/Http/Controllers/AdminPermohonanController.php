@@ -19,6 +19,12 @@ class AdminPermohonanController extends Controller
         return view('admin.permohonan-open', compact('permohonans'));
     }
 
+    public function indexConfirm()
+    {
+        $permohonan_confirm = Permohonan::where('ID_STATUS',3)->orWhere('ID_STATUS', 4)->orderBy('ID_PERMOHONAN','DESC')->get();
+        return view('admin.permohonan-confirm', compact('permohonan_confirm'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

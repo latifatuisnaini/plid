@@ -73,7 +73,7 @@
 <div class="intro-y box p-5 mt-5 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">                        
     <div class="flex flex-row">
         <i data-feather="file-text"></i>
-        <h2 class="text-lg font-medium mr-auto ml-3">Table User</h2>
+        <h2 class="text-lg font-medium mr-auto ml-3">Table Verifikasi Dokumen User</h2>
     </div>
 </div>
 
@@ -112,7 +112,7 @@
                     <td>
                         @if( $u->STATUS_KONFIRMASI == 2 ) 
                             <div class="text-center">
-                                <div class="flex items-center justify-center text-theme-6"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> Belum Aktif </div>
+                                <div class="flex items-center justify-center text-theme-6"> <i data-feather="x-square" class="w-4 h-4 mr-2"></i> Belum Aktif </div>
                             </div>
                         @endif
                     </td>
