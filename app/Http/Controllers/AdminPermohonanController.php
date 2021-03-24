@@ -25,6 +25,22 @@ class AdminPermohonanController extends Controller
         return view('admin.permohonan-confirm', compact('permohonan_confirm'));
     }
 
+    public function tolakPermohonan($id)
+    {
+        Permohonan::find($id)->update([
+            'ID_STATUS' => 4
+        ]);
+        return response()->json('success');
+    }
+
+    public function terimaPermohonan($id)
+    {
+        Permohonan::find($id)->update([
+            'ID_STATUS' => 2
+        ]);
+        return response()->json('success');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
