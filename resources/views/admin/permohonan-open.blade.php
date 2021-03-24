@@ -99,13 +99,13 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <td>{{$u->KETERANGAN}}</td>
                     <td>{{ date('d F Y',strtotime($u->TANGGAL)) }}</td>
                     <td>
-                        <button href="javascript:;" title="Detail Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
-                            <a data-toggle="modal" data-target="#detail_{{ $u->ID_PERMOHONAN }}">
+                        <a data-toggle="modal" data-target="#detail_{{ $u->ID_PERMOHONAN }}">
+                            <button href="javascript:;" title="Detail Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
                                 <span class="w-5 h-5 flex items-center justify-center">
                                     <i data-feather="more-horizontal" class="w-4 h-4 "></i>
                                 </span>
-                            </a>
-                        </button>
+                            </button>
+                        </a>
                     </td>
                 </tr>
             @endforeach
@@ -150,6 +150,22 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             </a>
                         </div>
                         <hr class="col-span-12">
+
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg pb-12">Estimasi</label>
+                            <div class="relative mx-auto"> 
+                                <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4"> 
+                                    <i data-feather="calendar" class="w-4 h-4"></i> 
+                                </div> 
+                                <input type="text" class="datepicker input pl-12 border" data-single-mode="true" name="estimasi"> 
+                            </div> 
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg">Keterangan</label>
+                            
+                        </div>
+
                         <div class="col-span-12 sm:col-span-6" style="justify-self: end;">
                             <button class="button button--lg w-32 mr-2 mb-2 mt-2 flex items-center justify-center bg-theme-6 text-white btn-tolak" id="tolak_{{$u->ID_PERMOHONAN}}" type="button"> 
                                 <i data-feather="x" class="w-8 h-8 mr-2"></i> Tolak
@@ -157,9 +173,64 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         </div>
         
                         <div class="col-span-12 sm:col-span-6">
-                            <button class="button button--lg w-32 mr-2 mb-2 mt-2 flex items-center justify-center bg-theme-9 text-white btn-terima" id="terima_{{$u->ID_PERMOHONAN}}" type="button"> 
-                                <i data-feather="check" class="w-8 h-8 mr-2"></i> Terima
-                            </button>
+                            <a data-toggle="modal" data-target="#upload_{{ $u->ID_PERMOHONAN }}">
+                                <button class="button button--lg w-32 mr-2 mb-2 mt-2 flex items-center justify-center bg-theme-9 text-white btn-terima" id="terima_{{$u->ID_PERMOHONAN}}" type="button"> 
+                                    <i data-feather="check" class="w-8 h-8 mr-2"></i> Terima
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="upload_{{ $u->ID_PERMOHONAN }}">
+            <div class="modal__content modal__content--lg py-5 pl-3 pr-1 ml-auto">
+                <div class="modal-header">
+                    <div class="modal__content relative"> 
+                    </div>
+                    <div class="flex px-2 sm:pb-3 sm:pt-1 border-b border-gray-200 dark:border-dark-5">
+                        <h2 class="font-bold text-2xl flex"><i data-feather="info" class="w-8 h-8 mr-2"></i>Upload Dokumen Permohonan #{{ $u->ID_PERMOHONAN }}</h2>
+                        <a data-dismiss="modal" href="javascript:;" class="mr-3 ml-auto" id="closeup_{{$u->ID_PERMOHONAN}}"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg">Nama Dokumen</label>
+                            <div class="text-base">{{ $u->DOKUMEN_PERMOHONAN }}</div>
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg">Keterangan</label>
+                            <div class="text-base">{{ $u->KETERANGAN }}</div>
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg">Tanggal</label>
+                            <div class="text-base">{{ $u->TANGGAL }}</div>
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg">Diajukan Oleh</label>
+                            <div class="text-base">{{ $u->user->NAMA_LENGKAP }}</div>
+                            <a href="{{ route('user.show',$u->user->ID_USER) }}" target="_blank">
+                                <button class="button w-32 mr-2 mb-2 mt-2 flex items-center justify-center bg-theme-1 text-white"> 
+                                    <i data-feather="external-link" class="w-6 h-6 mr-2"></i> Detail User 
+                                </button>
+                            </a>
+                        </div>
+                        <hr class="col-span-12">
+                        <div class="col-span-12">
+                            <form data-single="true" action="{{ url('permohonan/upload-dokumen') }}" class="dropzone border-gray-200 border-dashed" method="POST"> 
+                                <div class="fallback"> 
+                                    <input name="file" type="file" /> 
+                                </div> 
+                                <div class="dz-message" data-dz-message> 
+                                    <div class="text-lg font-medium">Drop files here or click to upload.</div> <div class="text-gray-600">This is just a demo dropzone. Selected files are    
+                                        <span class="font-medium">not</span> actually uploaded. 
+                                    </div> 
+                                </div> 
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -202,7 +273,8 @@ $(document).ready(function() {
         var id = $(this).attr('id').substr(7);
         console.log(id);
         $.post("/admin/permohonan/terima/"+id,{_token : '{{ csrf_token() }}'}, function(){
-            $("#close_"+id).click();
+            $("#close_"+id)[0].click();
+
         });
     });
 });

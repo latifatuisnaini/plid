@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Permohonan;
+use Storage;
 
 class AdminPermohonanController extends Controller
 {
@@ -48,6 +49,22 @@ class AdminPermohonanController extends Controller
         Permohonan::find($id)->update([
             'ID_STATUS' => 2
         ]);
+        return response()->json('success');
+    }
+
+    public function uploadDokumen(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|file'
+        ]);
+
+        
+        Storage::disk('public')->putFileAs('dokumen',$request->KTP,$ktp);
+
+        $permohonan->update([
+            'file' => $nama_file,
+        ]);
+
         return response()->json('success');
     }
 
