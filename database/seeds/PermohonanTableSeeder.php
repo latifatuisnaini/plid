@@ -16,17 +16,63 @@ class PermohonanTableSeeder extends Seeder
         \DB::table('permohonan')->delete();
         $faker = Faker::create('id_ID');
 
+        // $users = [];
+        // for ($i = 0; $i < 500; $i++) {
+        //     $users[] = [
+        //         'ID_USER' => rand(5,100),
+        //         'ID_STATUS' => rand(1,4),
+        //         'DOKUMEN_PERMOHONAN' => "Nama dokumen".$i,
+        //         'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
+        //         'TANGGAL' => date('Y-m-d'),
+        //     ];
+        // }
         $users = [];
-        for ($i = 0; $i < 500; $i++) {
+        for ($i = 0; $i < 200; $i++) {
             $users[] = [
                 'ID_USER' => rand(5,100),
-                'ID_STATUS' => rand(1,4),
+                'ID_STATUS' => 1,
                 'DOKUMEN_PERMOHONAN' => "Nama dokumen".$i,
                 'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
                 'TANGGAL' => date('Y-m-d'),
             ];
         }
         DB::table('permohonan')->insert($users);
+
+        $users2 = [];
+        for ($i = 0; $i < 100; $i++) {
+            $users2[] = [
+                'ID_USER' => rand(5,100),
+                'ID_STATUS' => 2,
+                'DOKUMEN_PERMOHONAN' => "Nama dokumen".$i,
+                'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
+                'TANGGAL' => date('Y-m-d'),
+            ];
+        }
+        DB::table('permohonan')->insert($users2);
+
+        $users3 = [];
+        for ($i = 0; $i < 100; $i++) {
+            $users3[] = [
+                'ID_USER' => rand(5,100),
+                'ID_STATUS' => 3,
+                'DOKUMEN_PERMOHONAN' => "Nama dokumen".$i,
+                'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
+                'TANGGAL' => date('Y-m-d'),
+            ];
+        }
+        DB::table('permohonan')->insert($users3);
+
+        $users4 = [];
+        for ($i = 0; $i < 100; $i++) {
+            $users4[] = [
+                'ID_USER' => rand(5,100),
+                'ID_STATUS' => 4,
+                'DOKUMEN_PERMOHONAN' => "Nama dokumen".$i,
+                'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
+                'TANGGAL' => date('Y-m-d'),
+            ];
+        }
+        DB::table('permohonan')->insert($users4);
         
     }
 }

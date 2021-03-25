@@ -131,7 +131,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <div class="modal__content relative"> <a data-dismiss="modal" href="javascript:;" class="absolute right-0 top-0 mt-3 mr-3"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
                     </div>
                     <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
-                        <h2 class="font-bold text-2xl flex"><i data-feather="user" class="w-8 h-8"></i>DETAIL PERMOHONAN ID {{ $p->ID_PERMOHONAN }}</h2>
+                        <h2 class="font-bold text-2xl flex"><i data-feather="file-text" class="w-8 h-8"></i>DETAIL PERMOHONAN ID {{ $p->ID_PERMOHONAN }}</h2>
                     </div>
                 </div>
             <div class="modal-body">
@@ -147,35 +147,62 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     </div>
 
                     <div class="col-span-12 sm:col-span-6"> 
-                        <label class="font-semibold text-lg">Tanggal</label>
-                        <div class="text-base">{{ $p->TANGGAL }}</div>
+                        <label class="font-semibold text-lg">Tanggal Pengajuan</label>
+                        <div class="text-base">{{ date('d-m-Y',strtotime($p->TANGGAL)) }}</div>
                     </div>
 
                     <div class="col-span-12 sm:col-span-6"> 
+                        <label class="font-semibold text-lg">Status</label>
+                        @if($p->ID_STATUS == 3)
+                            <div class="text-base">
+                            <div class="flex items-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
+                            </div>
+                        @else
+                            <div class="text-base">
+                            <div class="flex items-center text-theme-6"> <i data-feather="x-square" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
+                            </div>
+                        @endif
+                        <!-- <div class="text-base">{{ $p->status->STATUS }}</div> -->
+                    </div>
+
+                    @if($p->ID_STATUS == 3)
+                    <div class="col-span-12 sm:col-span-6"> 
+                        <label class="font-semibold text-lg">Expired Date :</label>
+                        @if($p->EXPIRED_DATE != '')
+                            <div class="text-base">{{ $p->EXPIRED_DATE }}</div>
+                        @endif
+                    </div>
+
+                    <div class="col-span-12 sm:col-span-6"> 
+                        <label class="font-semibold text-lg">Nama File :</label>
+                        @if($p->NAMA_FILE != '')
+                            <div class="text-base">{{ $p->NAMA_FILE}}</div>
+                        @endif
+                    </div>
+
+                    @else
+                    <div class="col-span-12 sm:col-span-6"> 
                         <label class="font-semibold text-lg">Diajukan Oleh :</label>
                         <div class="text-base">{{ $p->user->NAMA_LENGKAP }}</div>
+                    </div>
+                    <div class="col-span-12 sm:col-span-6 mt-2">
                         <button class="button w-32 mr-2 mb-2 flex items-center justify-center bg-theme-1 text-white"> 
-                            <i data-feather="activity" class="w-4 h-4 mr-2"></i> Detail User 
+                            <i data-feather="user" class="w-4 h-4 mr-2"></i> Detail User 
                         </button>
                     </div>
-                    
-                </div>
-                <hr>
-                <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
-                <div class="col-span-12">
-                    <h2 class="font-semibold text-lg mr-auto">Berkas</h2>
-                </div>
-
-                <div class="col-span-12 sm:col-span-6">
-                    <div class="text-base">Dokumen</div>
-                </div>
-
-                <div class="col-span-12 ">
-                    <div class="w-full h-64 image-fit">
-                        <img alt="File KTP" src="{{ asset('dist/images/preview-8.jpg')}}" data-action="zoom" class="w-full rounded-md"> 
+                    @endif
+                
+                    @if($p->ID_STATUS == 3)
+                    <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg">Diajukan Oleh :</label>
+                            <div class="text-base">{{ $p->user->NAMA_LENGKAP }}</div>
                     </div>
-                </div>
-
+                    <div class="col-span-12 sm:col-span-6 mt-2">
+                        <button class="button w-32 mr-2 mb-2 flex items-center justify-center bg-theme-1 text-white"> 
+                            <i data-feather="user" class="w-4 h-4 mr-2"></i> Detail User 
+                        </button>
+                    </div>
+                    @endif
                 </div>
             </div>
             </div>
