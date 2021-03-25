@@ -65,6 +65,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::post('/verif/update1', 'DocverifController@update1')->name('verif.update1');
     Route::get('/permohonan-open','AdminPermohonanController@index');
     Route::get('/permohonan-confirm','AdminPermohonanController@indexConfirm');
+    Route::get('/permohonan-pending','AdminPermohonanController@indexPending');
 });
 
 Route::prefix('users')->middleware(['auth'])->group(function(){
