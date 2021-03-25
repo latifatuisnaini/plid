@@ -147,20 +147,21 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <td>
                             <div class="mt-1 mb-1"> 
                             @if ($p->status->ID_STATUS == 1)
-                                <span class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-33 text-white">{{$p->status->STATUS}}
-                                </span>
+                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-33 text-white">{{$p->status->STATUS}}</a>
                             @elseif ($p->status->ID_STATUS == 2)
-                                <span class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-12 text-white">{{$p->status->STATUS}}
-                                </span>
+                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-12 text-white">{{$p->status->STATUS}}</a>
                             @elseif ($p->status->ID_STATUS == 3)
-                                <span class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-9 text-white">{{$p->status->STATUS}}
-                                </span>
+                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-9 text-white">{{$p->status->STATUS}}</a>
                             @elseif ($p->status->ID_STATUS == 4)
-                                <span class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-6 text-white">{{$p->status->STATUS}}
-                                </span>
+                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-6 text-white">{{$p->status->STATUS}}</a>
                             @endif
                             </div>
                         </td>
+                        
+                        <!-- @if($p->status->ID_STATUS == 3) -->
+                        <!-- <a href=""><button class="button flex items-right shadow-md justify-right bg-theme-1 text-white shadow-md"><i data-feather="download" class="w-5 h-5 mr-1" ></i> Download </button></a> -->
+                        <!-- @endif -->
+                        
                     </tr>
                 @endforeach
                 </tbody>
@@ -169,7 +170,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
     </div>
 </div>
         <!--/Card-->
-
+<!-- Modal Tambah Dokumen Permohonan -->
         <div class="modal" id="tambah_dokumen_permohonan">
             <div class="modal__content modal__content--lg py-5 pl-5 pr-5 ml-auto">
                 <div class="modal-header">
@@ -216,7 +217,62 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 
                 </div>
             </div>
+
+@foreach($permohonan as $p)
+<!-- Modal Detail Dokumen Permohonan -->
+<div class="modal" id="detail_dokumen_permohonan">
+            <div class="modal__content modal__content--lg py-5 pl-5 pr-5 ml-auto">
+                <div class="modal-header">
+                    <div class="modal__content relative"> <a data-dismiss="modal" href="javascript:;" class="top-0 mt-3 mr-0" style="float: right;"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
+                    </div>
+                    <div class="flex items-center py-3 sm:py-3 border-b border-gray-200 dark:border-dark-5">
+                        <h2 class="font-bold text-2xl flex"><i data-feather="folder" class="w-8 h-8 mr-3"></i>Detail Dokumen Permohonan</h2>
+                    </div>
+                </div>
+                    <div class="modal-body">
+                    <form action="{{ route('permohonan.store') }}" method="POST" class="needs-validation" novalidate id="detail-dokumen-permohonan">
+                    @csrf
+
+                    <input type="hidden" name="ID_USER" value="{{ Auth::user()->ID_USER }}">
+                    
+                    <div class="flex flex-col sm:flex-row items-center mt-3"> 
+                        <label class="w-full sm:w-20 sm:text-left sm:mr-5">Dokumen Permohonan</label> 
+                            <input type="text" class="input w-full border mt-2 flex-1" placeholder="Dokumen Permohonan" name="DOKUMEN_PERMOHONAN" value="{{ $p->DOKUMEN_PERMOHONAN }}" required >
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row items-center mt-3"> 
+                        <label class="w-full sm:w-20 sm:text-left sm:mr-5">Keterangan</label> 
+                            <textarea class="input w-full border mt-2 flex-1" name="KETERANGAN"> </textarea>
+                    </div>
+                    <div class="flex flex-col sm:flex-row items-center mt-3"> 
+                    <label class="w-full sm:w-20 sm:text-left sm:mr-5">Tanggal</label> 
+                        <div class="relative">
+                            <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4"><i data-feather="calendar" class="w-4 h-4"></i> 
+                            </div> 
+                            <input class="datepicker input pl-12 border" data-single-mode="true" name="TANGGAL" id ="TANGGAL" value="{{ $p }}" required>
+                        </div>
+                    </div>
+                    
+                    </div>
+
+                <div class="modal-footer mt-5">
+                    <div class="text-right">
+                    <button type="button" class="button w-24 shadow-md mr-1 mb-2 bg-red-500 text-white" data-dismiss="modal">Cancel</button> 
+                    <button class="button items-right w-24 shadow-md mr-1 mb-2 justify-right bg-theme-1 text-white shadow-md" type="submit">Simpan</button>
+                    </form>
+                    </div>
+                </div>
+                
+
+                </div>
+            </div>
+@endforeach
+    
 @endif
+
+
+
+
 @endsection
 
 @section('script')
