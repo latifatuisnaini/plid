@@ -66,7 +66,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::get('/permohonan-open','AdminPermohonanController@indexOpen');
     Route::get('/permohonan-confirm','AdminPermohonanController@indexConfirm');
     Route::get('/permohonan-pending','AdminPermohonanController@indexPending');
-
 });
 
 Route::prefix('users')->middleware(['auth'])->group(function(){
