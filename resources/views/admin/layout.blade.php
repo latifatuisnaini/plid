@@ -24,7 +24,20 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="{{asset('dist/css/app.css')}}" />
         <!-- END: CSS Assets-->
+        <style>
+            .badge {
+                position: absolute;
+                top: -10px;
+                right: -10px;
+                padding: 5px 10px;
+                border-radius: 50%;
+                background-color: greenyellow;
+                color: white;
+                }
+        </style>
         @yield('css')
+
+
 
     </head>
     <!-- END: Head -->
@@ -137,8 +150,10 @@ License: You must have a valid license purchased only from themeforest(the above
                         <a href="{{url('/admin/permohonan-confirm')}}" class="side-menu @if(request() -> segment(1) == 'admin' && request()->segment(2) == 'permohonan-confirm') side-menu--active @endif">
                             <div class="side-menu__icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                                
                             </div>
                             <div class="side-menu__title"> Permohonan : Confirm </div>
+                            <span class="badge" title="3 Permohonan ditolak">3</span>
                         </a>
                     </li>
                 </ul>

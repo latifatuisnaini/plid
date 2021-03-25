@@ -88,7 +88,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 <tr>
                     <th data-priority="3">Tanggal</th>
                     <th data-priority="1">Nama Dokumen</th>
-                    <th data-priority="2">Keterangan</th>
+                    <th data-priority="2" width="40%">Keterangan Dokumen</th>
                     <th data-priority="2">Status</th>
                     <th data-priority="6">Aksi</th>
                 </tr>
@@ -110,14 +110,15 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             </div>
                     @endif
                     </td>
-                    <td>
+                    <td style="text-align: center;">
+                    <a data-toggle="modal" data-target="#detail_{{ $p->ID_PERMOHONAN }}">
                         <button href="javascript:;" title="Detail Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
-                            <a data-toggle="modal" data-target="#detail_{{ $p->ID_PERMOHONAN }}">
                                 <span class="w-5 h-5 flex items-center justify-center">
                                     <i data-feather="more-horizontal" class="w-4 h-4 "></i>
                                 </span>
-                            </a>
+                            
                         </button>
+                    </a>
                     </td>
                 </tr>
             @endforeach
@@ -128,10 +129,12 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
         <div class="modal" id="detail_{{ $p->ID_PERMOHONAN }}">
             <div class="modal__content modal__content--lg py-5 pl-3 pr-1 ml-auto">
                 <div class="modal-header">
-                    <div class="modal__content relative"> <a data-dismiss="modal" href="javascript:;" class="absolute right-0 top-0 mt-3 mr-3"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
+                    <div class="modal__content relative"> 
                     </div>
-                    <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
-                        <h2 class="font-bold text-2xl flex"><i data-feather="file-text" class="w-8 h-8"></i>DETAIL PERMOHONAN ID {{ $p->ID_PERMOHONAN }}</h2>
+
+                    <div class="flex px-2 sm:pb-3 sm:pt-1 border-b border-gray-200 dark:border-dark-5">
+                        <h2 class="font-bold text-2xl flex"><i data-feather="info" class="w-8 h-8 mr-2"></i>Detail Permohonan #{{ $p->ID_PERMOHONAN }}</h2>
+                        <a data-dismiss="modal" href="javascript:;" class="mr-3 ml-auto" id="close_{{$p->ID_PERMOHONAN}}"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
                     </div>
                 </div>
             <div class="modal-body">
@@ -142,7 +145,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     </div>
 
                     <div class="col-span-12 sm:col-span-6"> 
-                        <label class="font-semibold text-lg">Keterangan</label>
+                        <label class="font-semibold text-lg">Keterangan Dokumen</label>
                         <div class="text-base">{{ $p->KETERANGAN }}</div>
                     </div>
 
@@ -167,28 +170,28 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 
                     @if($p->ID_STATUS == 3)
                     <div class="col-span-12 sm:col-span-6"> 
-                        <label class="font-semibold text-lg">Expired Date :</label>
-                        @if($p->EXPIRED_DATE != '')
-                            <div class="text-base">{{ $p->EXPIRED_DATE }}</div>
-                        @endif
+                        <label class="font-semibold text-lg">Expired Date File</label>
+                        <div class="text-base">{{ date('d-m-Y',strtotime($p->EXPIRED_DATE)) }}</div>
                     </div>
 
                     <div class="col-span-12 sm:col-span-6"> 
-                        <label class="font-semibold text-lg">Nama File :</label>
-                        @if($p->NAMA_FILE != '')
-                            <div class="text-base">{{ $p->NAMA_FILE}}</div>
-                        @endif
+                        <label class="font-semibold text-lg">Keterangan </label>
+                        <div class="text-base">{{ $p->KETERANGAN_FEEDBACK }}</div>
                     </div>
 
                     @else
-                    <div class="col-span-12 sm:col-span-6"> 
+                    <div class="col-span-12 sm:col-span-6 mt-2"> 
                         <label class="font-semibold text-lg">Diajukan Oleh :</label>
                         <div class="text-base">{{ $p->user->NAMA_LENGKAP }}</div>
+                        <a href="{{ route('user.show',$p->ID_USER) }}" target="_blank">
+                            <button class="button w-32 mr-2 mb-2 mt-2 flex items-center justify-center bg-theme-1 text-white"> 
+                                <i data-feather="external-link" class="w-4 h-4 mr-2"></i> Detail User 
+                            </button>
+                        </a>
                     </div>
                     <div class="col-span-12 sm:col-span-6 mt-2">
-                        <button class="button w-32 mr-2 mb-2 flex items-center justify-center bg-theme-1 text-white"> 
-                            <i data-feather="user" class="w-4 h-4 mr-2"></i> Detail User 
-                        </button>
+                        <label class="font-semibold text-lg">Keterangan </label>
+                        <div class="text-base">{{ $p->KETERANGAN_FEEDBACK }}</div>
                     </div>
                     @endif
                 
@@ -196,11 +199,20 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <div class="col-span-12 sm:col-span-6"> 
                             <label class="font-semibold text-lg">Diajukan Oleh :</label>
                             <div class="text-base">{{ $p->user->NAMA_LENGKAP }}</div>
+                            <a href="{{ route('user.show',$p->ID_USER) }}" target="_blank">
+                                <button class="button w-32 mr-2 mb-2 mt-2 flex items-center justify-center bg-theme-1 text-white"> 
+                                    <i data-feather="external-link" class="w-4 h-4 mr-2"></i> Detail User 
+                                </button>
+                            </a>
                     </div>
-                    <div class="col-span-12 sm:col-span-6 mt-2">
-                        <button class="button w-32 mr-2 mb-2 flex items-center justify-center bg-theme-1 text-white"> 
-                            <i data-feather="user" class="w-4 h-4 mr-2"></i> Detail User 
-                        </button>
+                    <div class="col-span-12 sm:col-span-6">
+                        <label class="font-semibold text-lg">Nama File </label>
+                        <div class="text-base">{{ $p->NAMA_FILE}}</div>
+                        <a href="{{ route('user.show',$p->ID_USER) }}" target="_blank">
+                                <button class="button w-40 mr-2 mb-2 mt-2 flex items-center justify-center bg-theme-1 text-white"> 
+                                    <i data-feather="download" class="w-4 h-4 mr-2"></i> Download File 
+                                </button>
+                        </a>
                     </div>
                     @endif
                 </div>
