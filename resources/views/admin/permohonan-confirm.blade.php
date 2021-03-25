@@ -79,7 +79,17 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 
 <!--Container-->
 <div class="container w-full ">
-      		 
+
+    <div class="intro-y block sm:flex items-center h-10">
+        <h2 class="text-lg font-medium truncate mr-5">
+            Weekly Top Products
+        </h2>
+        <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
+            <!-- <button class="button box flex items-center shadow-md bg-gray-200 text-gray-700"> <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel </button> -->
+            <button class="ml-3 button box flex items-center shadow-md bg-gray-200 text-gray-700"> <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to PDF </button>
+        </div>
+    </div>  <br>
+
     <!--Card-->
     <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
     
