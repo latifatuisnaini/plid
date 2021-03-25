@@ -71,7 +71,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 <div class="intro-y box p-5 mt-5 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">                        
     <div class="flex flex-row">
         <i data-feather="list"></i>
-        <h2 class="text-lg font-medium mr-auto ml-3">Table Permohonan yang Sudah Dikonfirmasi</h2>
+        <h2 class="text-lg font-medium mr-auto ml-3">Table Permohonan User yang Sudah Dikonfirmasi</h2>
     </div>
 </div>
 

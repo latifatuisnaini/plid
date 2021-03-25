@@ -93,7 +93,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 </tr>
             </thead>
             <tbody>
-            @foreach($permohonans as $u)
+            @foreach($permohonan_pending as $u)
                 <tr>
                     <td>{{$u->DOKUMEN_PERMOHONAN}}</td>
                     <td>{{$u->KETERANGAN}}</td>
@@ -112,7 +112,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
             </tbody>
         </table>
 
-        @foreach($permohonans as $u)
+        @foreach($permohonan_pending as $u)
         <div class="modal" id="detail_{{ $u->ID_USER }}">
             <div class="modal__content modal__content--lg py-5 pl-3 pr-1 ml-auto">
                 <div class="modal-header">

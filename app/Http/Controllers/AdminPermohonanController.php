@@ -13,7 +13,7 @@ class AdminPermohonanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexOpen()
     {
         $permohonans = Permohonan::where('ID_STATUS',1)->orderBy('ID_PERMOHONAN','DESC')->get();
         return view('admin.permohonan-open', compact('permohonans'));
@@ -23,6 +23,12 @@ class AdminPermohonanController extends Controller
     {
         $permohonan_confirm = Permohonan::where('ID_STATUS',3)->orWhere('ID_STATUS', 4)->orderBy('ID_PERMOHONAN','DESC')->get();
         return view('admin.permohonan-confirm', compact('permohonan_confirm'));
+    }
+
+    public function indexPending()
+    {
+        $permohonan_pending = Permohonan::where('ID_STATUS',2)->orderBy('ID_PERMOHONAN','DESC')->get();
+        return view('admin.permohonan-pending', compact('permohonan_pending'));
     }
 
     /**
