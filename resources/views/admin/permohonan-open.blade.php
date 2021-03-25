@@ -99,8 +99,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <td>{{$u->KETERANGAN}}</td>
                     <td>{{ date('d F Y',strtotime($u->TANGGAL)) }}</td>
                     <td>
-                        <button href="javascript:;" title="Detail User" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
-                            <a data-toggle="modal" data-target="#detail_{{ $u->ID_USER }}">
+                        <button href="javascript:;" title="Detail Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
+                            <a data-toggle="modal" data-target="#detail_{{ $u->ID_PERMOHONAN }}">
                                 <span class="w-5 h-5 flex items-center justify-center">
                                     <i data-feather="more-horizontal" class="w-4 h-4 "></i>
                                 </span>
@@ -113,59 +113,56 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
         </table>
 
         @foreach($permohonans as $u)
-        <div class="modal" id="detail_{{ $u->ID_USER }}">
+        <div class="modal" id="detail_{{ $u->ID_PERMOHONAN }}">
             <div class="modal__content modal__content--lg py-5 pl-3 pr-1 ml-auto">
                 <div class="modal-header">
-                    <div class="modal__content relative"> <a data-dismiss="modal" href="javascript:;" class="absolute right-0 top-0 mt-3 mr-3"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
+                    <div class="modal__content relative"> 
                     </div>
-                    <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
-                        <h2 class="font-bold text-2xl flex"><i data-feather="user" class="w-8 h-8"></i>DETAIL USER ID {{ $u->ID_USER }}</h2>
-                    </div>
-                </div>
-            <div class="modal-body">
-                <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
-                    <div class="col-span-12 sm:col-span-6"> 
-                        <label class="font-semibold text-lg">Nama Dokumen</label>
-                        <div class="text-base">{{ $u->DOKUMEN_PERMOHONAN }}</div>
-                    </div>
-
-                    <div class="col-span-12 sm:col-span-6"> 
-                        <label class="font-semibold text-lg">Keterangan</label>
-                        <div class="text-base">{{ $u->KETERANGAN }}</div>
-                    </div>
-
-                    <div class="col-span-12 sm:col-span-6"> 
-                        <label class="font-semibold text-lg">Tanggal</label>
-                        <div class="text-base">{{ $u->TANGGAL }}</div>
-                    </div>
-
-                    <div class="col-span-12 sm:col-span-6"> 
-                        <label class="font-semibold text-lg">Diajukan Oleh :</label>
-                        <div class="text-base">{{ $u->user->NAMA_LENGKAP }}</div>
-                        <button class="button w-32 mr-2 mb-2 flex items-center justify-center bg-theme-1 text-white"> 
-                            <i data-feather="activity" class="w-4 h-4 mr-2"></i> Detail User 
-                        </button>
-                    </div>
-                    
-                </div>
-                <hr>
-                <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
-                <div class="col-span-12">
-                    <h2 class="font-semibold text-lg mr-auto">Berkas</h2>
-                </div>
-
-                <div class="col-span-12 sm:col-span-6">
-                    <div class="text-base">KTP</div>
-                </div>
-
-                <div class="col-span-12 ">
-                    <div class="w-full h-64 image-fit">
-                        <img alt="File KTP" src="{{ asset('dist/images/preview-8.jpg')}}" data-action="zoom" class="w-full rounded-md"> 
+                    <div class="flex px-2 sm:pb-3 sm:pt-1 border-b border-gray-200 dark:border-dark-5">
+                        <h2 class="font-bold text-2xl flex"><i data-feather="info" class="w-8 h-8 mr-2"></i>Detail Permohonan #{{ $u->ID_PERMOHONAN }}</h2>
+                        <a data-dismiss="modal" href="javascript:;" class="mr-3 ml-auto" id="close_{{$u->ID_PERMOHONAN}}"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
                     </div>
                 </div>
+                <div class="modal-body">
+                    <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg">Nama Dokumen</label>
+                            <div class="text-base">{{ $u->DOKUMEN_PERMOHONAN }}</div>
+                        </div>
 
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg">Keterangan</label>
+                            <div class="text-base">{{ $u->KETERANGAN }}</div>
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg">Tanggal</label>
+                            <div class="text-base">{{ $u->TANGGAL }}</div>
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg">Diajukan Oleh</label>
+                            <div class="text-base">{{ $u->user->NAMA_LENGKAP }}</div>
+                            <a href="{{ route('user.show',$u->user->ID_USER) }}" target="_blank">
+                                <button class="button w-32 mr-2 mb-2 mt-2 flex items-center justify-center bg-theme-1 text-white"> 
+                                    <i data-feather="external-link" class="w-6 h-6 mr-2"></i> Detail User 
+                                </button>
+                            </a>
+                        </div>
+                        <hr class="col-span-12">
+                        <div class="col-span-12 sm:col-span-6" style="justify-self: end;">
+                            <button class="button button--lg w-32 mr-2 mb-2 mt-2 flex items-center justify-center bg-theme-6 text-white btn-tolak" id="tolak_{{$u->ID_PERMOHONAN}}" type="button"> 
+                                <i data-feather="x" class="w-8 h-8 mr-2"></i> Tolak
+                            </button>
+                        </div>
+        
+                        <div class="col-span-12 sm:col-span-6">
+                            <button class="button button--lg w-32 mr-2 mb-2 mt-2 flex items-center justify-center bg-theme-9 text-white btn-terima" id="terima_{{$u->ID_PERMOHONAN}}" type="button"> 
+                                <i data-feather="check" class="w-8 h-8 mr-2"></i> Terima
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
         @endforeach
@@ -183,15 +180,31 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 <!--Datatables -->
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
 $(document).ready(function() {
-
     var table = $('#example').DataTable( {
             responsive: true
         } )
         .columns.adjust()
         .responsive.recalc();
-
+    $(".btn-tolak").on('click',function(){
+        var id = $(this).attr('id').substr(6);
+        $.post("/admin/permohonan/tolak/"+id,{_token : '{{ csrf_token() }}'}, function(){
+            Swal.fire({
+                title: 'Sukses!',
+                text: 'Status permohonan berhasil diubah menjadi Ditolak.',
+                icon: 'success',
+            });
+        });
+    });
+    $(".btn-terima").on('click',function(){
+        var id = $(this).attr('id').substr(7);
+        console.log(id);
+        $.post("/admin/permohonan/terima/"+id,{_token : '{{ csrf_token() }}'}, function(){
+            $("#close_"+id).click();
+        });
+    });
 });
 </script>
 @endsection

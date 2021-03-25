@@ -71,7 +71,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 <div class="intro-y box p-5 mt-5 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">                        
     <div class="flex flex-row">
         <i data-feather="list"></i>
-        <h2 class="text-lg font-medium mr-auto ml-3">Table Permohonan User yang Belum Dikonfirmasi</h2>
+        <h2 class="text-lg font-medium mr-auto ml-3">Table Permohonan yang Sedang Diproses</h2>
     </div>
 </div>
 
@@ -93,14 +93,14 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 </tr>
             </thead>
             <tbody>
-            @foreach($permohonan_pending as $u)
+            @foreach($permohonan_pending as $pp)
                 <tr>
-                    <td>{{$u->DOKUMEN_PERMOHONAN}}</td>
-                    <td>{{$u->KETERANGAN}}</td>
-                    <td>{{ date('d F Y',strtotime($u->TANGGAL)) }}</td>
+                    <td>{{$pp->DOKUMEN_PERMOHONAN}}</td>
+                    <td>{{$pp->KETERANGAN}}</td>
+                    <td>{{ date('d F Y',strtotime($pp->TANGGAL)) }}</td>
                     <td>
                         <button href="javascript:;" title="Detail User" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
-                            <a data-toggle="modal" data-target="#detail_{{ $u->ID_USER }}">
+                            <a data-toggle="modal" data-target="#detail_{{ $pp->ID_USER }}">
                                 <span class="w-5 h-5 flex items-center justify-center">
                                     <i data-feather="more-horizontal" class="w-4 h-4 "></i>
                                 </span>
@@ -112,36 +112,36 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
             </tbody>
         </table>
 
-        @foreach($permohonan_pending as $u)
-        <div class="modal" id="detail_{{ $u->ID_USER }}">
+        @foreach($permohonan_pending as $pp)
+        <div class="modal" id="detail_{{ $pp->ID_USER }}">
             <div class="modal__content modal__content--lg py-5 pl-3 pr-1 ml-auto">
                 <div class="modal-header">
                     <div class="modal__content relative"> <a data-dismiss="modal" href="javascript:;" class="absolute right-0 top-0 mt-3 mr-3"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
                     </div>
                     <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
-                        <h2 class="font-bold text-2xl flex"><i data-feather="user" class="w-8 h-8"></i>DETAIL USER ID {{ $u->ID_USER }}</h2>
+                        <h2 class="font-bold text-2xl flex"><i data-feather="user" class="w-8 h-8"></i>DETAIL USER ID {{ $pp->ID_USER }}</h2>
                     </div>
                 </div>
             <div class="modal-body">
                 <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                     <div class="col-span-12 sm:col-span-6"> 
                         <label class="font-semibold text-lg">Nama Dokumen</label>
-                        <div class="text-base">{{ $u->DOKUMEN_PERMOHONAN }}</div>
+                        <div class="text-base">{{ $pp->DOKUMEN_PERMOHONAN }}</div>
                     </div>
 
                     <div class="col-span-12 sm:col-span-6"> 
                         <label class="font-semibold text-lg">Keterangan</label>
-                        <div class="text-base">{{ $u->KETERANGAN }}</div>
+                        <div class="text-base">{{ $pp->KETERANGAN }}</div>
                     </div>
 
                     <div class="col-span-12 sm:col-span-6"> 
                         <label class="font-semibold text-lg">Tanggal</label>
-                        <div class="text-base">{{ $u->TANGGAL }}</div>
+                        <div class="text-base">{{ $pp->TANGGAL }}</div>
                     </div>
 
                     <div class="col-span-12 sm:col-span-6"> 
                         <label class="font-semibold text-lg">Diajukan Oleh :</label>
-                        <div class="text-base">{{ $u->user->NAMA_LENGKAP }}</div>
+                        <div class="text-base">{{ $pp->user->NAMA_LENGKAP }}</div>
                         <button class="button w-32 mr-2 mb-2 flex items-center justify-center bg-theme-1 text-white"> 
                             <i data-feather="activity" class="w-4 h-4 mr-2"></i> Detail User 
                         </button>
