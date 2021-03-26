@@ -24,7 +24,20 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="{{asset('dist/css/app.css')}}" />
         <!-- END: CSS Assets-->
+        <style>
+            .badge {
+                position: absolute;
+                top: -10px;
+                right: -10px;
+                padding: 5px 10px;
+                border-radius: 50%;
+                background-color: greenyellow;
+                color: white;
+                }
+        </style>
         @yield('css')
+
+
 
     </head>
     <!-- END: Head -->
@@ -105,7 +118,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <li>
                         <a href="{{url('/admin/permohonan-open')}}" class="side-menu @if(request() -> segment(1) == 'admin' && request()->segment(2) == 'permohonan-open') side-menu--active @endif">
                             <div class="side-menu__icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-square"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                             </div>
                             <div class="side-menu__title"> Permohonan : Open </div>
                         </a>
@@ -113,7 +126,22 @@ License: You must have a valid license purchased only from themeforest(the above
                     <li>
                         <a href="{{url('/admin/permohonan-pending')}}" class="side-menu @if(request() -> segment(1) == 'admin' && request()->segment(2) == 'permohonan-pending') side-menu--active @endif">
                             <div class="side-menu__icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-square"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                                <svg width="24" height="24" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
+                                    <g fill="none" fill-rule="evenodd">
+                                        <g transform="translate(1 1)" stroke-width="2.5">
+                                            <circle stroke-opacity=".6" cx="18" cy="18" r="18"/>
+                                            <path d="M36 18c0-9.94-8.06-18-18-18">
+                                                <!-- <animateTransform
+                                                    attributeName="transform"
+                                                    type="rotate"
+                                                    from="0 18 18"
+                                                    to="360 18 18"
+                                                    dur="1s"
+                                                    repeatCount="indefinite"/> -->
+                                            </path>
+                                        </g>
+                                    </g>
+                                </svg>
                             </div>
                             <div class="side-menu__title"> Permohonan : Pending </div>
                         </a>
@@ -121,9 +149,11 @@ License: You must have a valid license purchased only from themeforest(the above
                     <li>
                         <a href="{{url('/admin/permohonan-confirm')}}" class="side-menu @if(request() -> segment(1) == 'admin' && request()->segment(2) == 'permohonan-confirm') side-menu--active @endif">
                             <div class="side-menu__icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-square"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                                
                             </div>
                             <div class="side-menu__title"> Permohonan : Confirm </div>
+                            <span class="badge" title="3 Permohonan ditolak">3</span>
                         </a>
                     </li>
                 </ul>
@@ -134,7 +164,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- BEGIN: Top Bar -->
                 <div class="top-bar">
                     <!-- BEGIN: Breadcrumb -->
-                    <div class="-intro-x breadcrumb mr-auto hidden sm:flex"> <a href="" class="">Application</a> <i data-feather="chevron-right" class="breadcrumb__icon"></i> <a href="" class="breadcrumb--active">
+                    <div class="-intro-x breadcrumb mr-auto hidden sm:flex"> <a href="" class="">Pusat Pelayanan Informasi dan Dokumentasi</a> <i data-feather="chevron-right" class="breadcrumb__icon"></i> <a href="" class="breadcrumb--active">
                         @if(request()->segment(2) != '')
                         {{ ucwords(request()->segment(2)) }}
                         @else
