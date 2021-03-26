@@ -32,14 +32,28 @@ class FeedbackTableSeeder extends Seeder
         DB::table('feedback')->insert($feedback);
 
         $feedback2 = [];
-        for ($i = 0; $i < 50; $i++) {
+        for ($j = 0; $j < 50; $j++) {
             $feedback2[] = [
                 'ID_PERMOHONAN' => rand(401,500),
-                'KETERANGAN' => "isi keterangan feedback".$i,
-                'LINK_DOWNLOAD' => "link_download".$i,
+                'KETERANGAN' => "isi keterangan feedback".$j,
+                'LINK_DOWNLOAD' => "link_download".$j,
                 'TGL_FEEDBACK' => date('Y-m-d'),
                 'WAKTU_ESTIMASI' => date('Y-m-d'),
-                'NAMA_FILE' => "Nama file".$i,
+                'NAMA_FILE' => "Nama file".$j,
+                'EXPIRED_DATE' => date('Y-m-d'),
+            ];
+        }
+        DB::table('feedback')->insert($feedback2);
+
+        $feedback3 = [];
+        for ($k = 0; $k < 50; $k++) {
+            $feedback3[] = [
+                'ID_PERMOHONAN' => rand(201,300),
+                'KETERANGAN' => "isi keterangan feedback".$k,
+                'LINK_DOWNLOAD' => "link_download".$k,
+                'TGL_FEEDBACK' => date('Y-m-d'),
+                'WAKTU_ESTIMASI' => date('Y-m-d'),
+                'NAMA_FILE' => "Nama file".$k,
                 'EXPIRED_DATE' => date('Y-m-d'),
             ];
         }

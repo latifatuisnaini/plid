@@ -68,6 +68,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::get('/permohonan-pending','AdminPermohonanController@indexPending');
     Route::post('/permohonan/tolak/{id}','AdminPermohonanController@tolakPermohonan');
     Route::post('/permohonan/terima/{id}','AdminPermohonanController@terimaPermohonan');
+    Route::post('/permohonan/upload-dokumen','AdminPermohonanController@uploadDokumen');
 });
 
 Route::prefix('users')->middleware(['auth'])->group(function(){

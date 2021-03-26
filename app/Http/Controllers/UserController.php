@@ -36,5 +36,4 @@ class UserController extends Controller
         return view('admin.detail_user',compact('user'));
     }
 
-
 }

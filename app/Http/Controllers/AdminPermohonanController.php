@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Permohonan;
+use App\Models\Feedback;
+
 
 class AdminPermohonanController extends Controller
 {
@@ -35,20 +37,67 @@ class AdminPermohonanController extends Controller
         return view('admin.permohonan-pending', compact('permohonan_pending'));
     }
 
-    public function tolakPermohonan($id)
+    public function tolakPermohonan(Request $request,$id)
     {
         Permohonan::find($id)->update([
             'ID_STATUS' => 4
         ]);
+
+        Feedback::insert([
+            'WAKTU_ESTIMASI' => date('Y-m-d',strtotime($request->estimasi)),
+            'KETERANGAN' => $request->keterangan,
+            'ID_PERMOHONAN' => $id,
+            'KETERANGAN_ESTIMASI' => $request->keterangan_estimasi
+        ]);
+
         return response()->json('success');
     }
 
-    public function terimaPermohonan($id)
+    public function terimaPermohonan(Request $request,$id)
     {
         Permohonan::find($id)->update([
-            'ID_STATUS' => 2
+            'ID_STATUS' => 2,
         ]);
+
+        Feedback::insert([
+            'WAKTU_ESTIMASI' => date('Y-m-d',strtotime($request->estimasi)),
+            'KETERANGAN' => $request->keterangan,
+            'ID_PERMOHONAN' => $id,
+            'KETERANGAN_ESTIMASI' => $request->keterangan_estimasi
+        ]);
+
         return response()->json('success');
+    }
+
+    public function uploadDokumen(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|file'
+        ]);
+
+        
+        Storage::disk('public')->putFileAs('dokumen',$request->KTP,$ktp);
+
+        $permohonan->update([
+            'file' => $nama_file,
+        ]);
+
+        return response()->json('success');
+    }
+
+    public function uploadDokumen(Request $request)
+    {
+        $request->validate([
+            'LINK_DOWNLOAD' => 'required|file|image|mimes:jpeg,png,jpg,doc,docx,pdf|max:5000'
+        ]);
+
+        $feedback = Feedback::find($request);
+        $permohonan = Permohonan::find($feedback);
+
+        $link_download = 'LINK_DOWNLOAD_'.$request.'.'.$request->file('LINK_DOWNLOAD')->extension();
+        
+
+        return redirect('admin.permohonan-pending');
     }
 
     /**
