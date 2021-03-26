@@ -98,6 +98,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </div>
                             <div class="side-menu__title"> Dashboard </div>
                         </a>
+                        
                     </li>
                     <li>
                         <a href="{{url('/admin/user')}}" class="side-menu @if(request() -> segment(1) == 'admin' && request()->segment(2) == 'user') side-menu--active @endif">

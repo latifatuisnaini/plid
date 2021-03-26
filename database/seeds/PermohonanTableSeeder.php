@@ -39,11 +39,11 @@ class PermohonanTableSeeder extends Seeder
         DB::table('permohonan')->insert($users);
 
         $users2 = [];
-        for ($i = 0; $i < 100; $i++) {
+        for ($j = 200; $j < 300; $j++) {
             $users2[] = [
                 'ID_USER' => rand(5,100),
                 'ID_STATUS' => 2,
-                'DOKUMEN_PERMOHONAN' => "Nama dokumen".$i,
+                'DOKUMEN_PERMOHONAN' => "Nama dokumen".$j,
                 'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
                 'TANGGAL' => date('Y-m-d'),
             ];
@@ -51,11 +51,11 @@ class PermohonanTableSeeder extends Seeder
         DB::table('permohonan')->insert($users2);
 
         $users3 = [];
-        for ($i = 0; $i < 100; $i++) {
+        for ($k = 300; $k < 400; $k++) {
             $users3[] = [
                 'ID_USER' => rand(5,100),
                 'ID_STATUS' => 3,
-                'DOKUMEN_PERMOHONAN' => "Nama dokumen".$i,
+                'DOKUMEN_PERMOHONAN' => "Nama dokumen".$k,
                 'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
                 'TANGGAL' => date('Y-m-d'),
             ];
@@ -63,11 +63,11 @@ class PermohonanTableSeeder extends Seeder
         DB::table('permohonan')->insert($users3);
 
         $users4 = [];
-        for ($i = 0; $i < 100; $i++) {
+        for ($l = 400; $l < 500; $l++) {
             $users4[] = [
                 'ID_USER' => rand(5,100),
                 'ID_STATUS' => 4,
-                'DOKUMEN_PERMOHONAN' => "Nama dokumen".$i,
+                'DOKUMEN_PERMOHONAN' => "Nama dokumen".$l,
                 'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
                 'TANGGAL' => date('Y-m-d'),
             ];
