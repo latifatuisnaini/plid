@@ -149,27 +149,23 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <td>
                             <div class="mt-1 mb-1"> 
                             @if ($p->status->ID_STATUS == 1)
-                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-33 text-white">{{$p->status->STATUS}}</a>
+                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-33 text-white" id="status_{{$p->ID_PERMOHONAN}}">{{$p->status->STATUS}}</a>
                             @elseif ($p->status->ID_STATUS == 2)
-                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-12 text-white">Diproses</a>
+                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-12 text-white" id="status_{{$p->ID_PERMOHONAN}}">Diproses</a>
                             @elseif ($p->status->ID_STATUS == 3)
-                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-9 text-white">{{$p->status->STATUS}}</a>
+                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-9 text-white" id="status_{{$p->ID_PERMOHONAN}}">{{$p->status->STATUS}}</a>
                             @elseif ($p->status->ID_STATUS == 4)
-                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-6 text-white">{{$p->status->STATUS}}</a>
+                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-6 text-white" id="status_{{$p->ID_PERMOHONAN}}">{{$p->status->STATUS}}</a>
                             @endif
                             </div>
                         </td>
                         <td>
                             <div class="mt-1 mb-1"> 
-                            @if ($p->status->ID_STATUS == 3)
-                            <a href="javascript:;" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-33 text-white"><i data-feather="download" class="w-6 h-6 mr-2"></i>Download</a>
-                            @endif
+                            
+                            <button href="javascript:;" title="Detail User" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300"><a data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}"><span class="w-5 h-5 flex items-center justify-center"> <i data-feather="more-horizontal" class="w-4 h-4 "></i></span></a> </button>  
+                         
                             </div>
                         </td>
-                        
-                        <!-- @if($p->status->ID_STATUS == 3) -->
-                        <!-- <a href=""><button class="button flex items-right shadow-md justify-right bg-theme-1 text-white shadow-md"><i data-feather="download" class="w-5 h-5 mr-1" ></i> Download </button></a> -->
-                        <!-- @endif -->
                         
                     </tr>
                 @endforeach
@@ -178,7 +174,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
         </div>
     </div>
 </div>
-        <!--/Card-->
+
 <!-- Modal Tambah Dokumen Permohonan -->
         <div class="modal" id="tambah_dokumen_permohonan">
             <div class="modal__content modal__content--lg py-5 pl-5 pr-5 ml-auto">
@@ -187,7 +183,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     </div>
                      <div class="flex px-2 sm:pb-3 sm:pt-1 border-b border-gray-200 dark:border-dark-5">
                         <h2 class="font-bold text-2xl flex"><i data-feather="info" class="w-8 h-8 mr-2"></i>Tambah Permohonan</h2>
-                        <a data-dismiss="modal" href="javascript:;" class="mr-3 ml-auto" id="close_{{$p->ID_PERMOHONAN}}"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
+                        <a data-dismiss="modal" href="javascript:;" class="mr-3 ml-auto"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
                     </div>
                 </div>
                     <div class="modal-body">
@@ -243,7 +239,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     </div>
                 <div class="flex px-2 sm:pb-3 sm:pt-1 border-b border-gray-200 dark:border-dark-5">
                         <h2 class="font-bold text-2xl flex"><i data-feather="info" class="w-8 h-8 mr-2"></i>Detail Permohonan #{{ $p->ID_PERMOHONAN }}</h2>
-                        <a data-dismiss="modal" href="javascript:;" class="mr-3 ml-auto" id="close_{{$p->ID_PERMOHONAN}}"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
+                        <a data-dismiss="modal" href="javascript:;" class="mr-3 ml-auto"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
                     </div>
                     
                 </div>
@@ -272,35 +268,76 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     </div>
                     </div>
 
-                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
+                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3 mb-5">
                     <div class="col-span-12">
                         <label class="font-semibold text-lg">Status</label> 
                         @if ( $p->status->ID_STATUS == 4 )
                         <div class="text-base">
-                                <div class="flex items-center text-theme-6"> <i data-feather="x-square" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
+                                <div class="flex items-center text-theme-6 text-lg"> <i data-feather="x-square" class="w-5 h-5 mr-2"></i> {{$p->status->STATUS}} </div>
                         </div>
                         @elseif ( $p->status->ID_STATUS == 3 )
                         <div class="text-base">
-                                <div class="flex items-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
+                                <div class="flex items-center text-theme-9 text-lg"> <i data-feather="check-square" class="w-5 h-5 mr-2"></i> {{$p->status->STATUS}} </div>
                             </div>
                         @elseif ( $p->status->ID_STATUS == 2 )
                         <div class="text-base">
-                                <div class="flex items-center text-theme-11"> <i data-feather="loader" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
+                                <div class="flex items-center text-theme-11 text-lg"> <i data-feather="loader" class="w-5 h-5 mr-2"></i> {{$p->status->STATUS}} </div>
                             </div>
                         @elseif ( $p->status->ID_STATUS == 1 )
                         <div class="text-base">
-                                <div class="flex items-center text-theme-1"> <i data-feather="file-plus" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
+                                <div class="flex items-center text-theme-1 text-lg"> <i data-feather="file-plus" class="w-5 h-5 mr-2"></i> {{$p->status->STATUS}} </div>
                             </div>
                         @endif
                     </div>
                  </div>
                     </div>
-               
+                @if(isset($p->feedback))
                 <hr>
+                @if($p->ID_STATUS == 2)
+                <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
+                <div class="col-span-12">
+                    <h2 class="font-semibold text-lg mr-auto">Tanggal Estimasi</h2>
+                    <div class="text-base">{{ $p->feedback->WAKTU_ESTIMASI }}</div>
+                </div>
+                </div>
+                <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
+                <div class="col-span-12">
+                    <h2 class="font-semibold text-lg mr-auto">Keterangan Estimasi</h2>
+                    <div class="text-base">{{ $p->feedback->KETERANGAN_ESTIMASI }}</div>
+                </div>
+                </div>
+                @endif
+                @if($p->ID_STATUS == 3)
+                <div class="container w-full">
+                <div class="p-6 mt-6 lg:mt-0 rounded shadow">
+                    <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+                    <thead>
+                        <tr>
+                            <th data-priority="1">Nama Dokumen</th>
+                            <th data-priority="2">Ukuran File</th>
+                            <th data-priority="3">Expired Date</th>
+                        </tr>
+                    </thead>
+                    </table>
+                </div>
+                <tbody style="text-align: center;">
+                @foreach($feedback as $f)
+                    <tr>
+                        <td>{{$f->NAMA_FILE}}</td>
+                        <td>{{$f->KETERANGAN}}</td>
+                        <td>{{$f->EXPIRED_DATE}}</td>
+                        <td>
+                        </td>
+                    </tr>
+                </tbody>
+                @endforeach
+                </div>
+
+                @endif
                 <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
                 <div class="col-span-12">
                     <h2 class="font-semibold text-lg mr-auto">Keterangan Status Dokumen</h2>
-                    <div class="text-base">{{ $p->feedback()->KETERANGAN }}</div>
+                    <div class="text-base">{{ $p->feedback->KETERANGAN }}</div>
                 </div>
                 </div>
 
@@ -310,6 +347,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <div class="text-base">{{ date('h:i:s , d F Y ',strtotime($p->feedback->TGL_FEEDBACK)) }}</div>
                 </div>
                 </div>
+                
+                @endif
 
                 <div class="modal-footer mt-5">
                     </form>
@@ -345,8 +384,7 @@ $(document).ready(function() {
     $('tbody tr').on('click',function(){
         var id = $(this).attr('id');
         console.log('detail_dokumen_permohonan_'+id);
-        $("#close_"+id)[0].click();
-
+        $("#status_"+id)[0].click();
         // var modal = document.getElementById("detail_dokumen_permohonan_"+id);
         // modal.classList.toggle("show");
         // modal.classList.toggle("flex");

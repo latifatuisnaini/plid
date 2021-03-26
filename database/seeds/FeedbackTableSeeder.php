@@ -18,9 +18,9 @@ class FeedbackTableSeeder extends Seeder
         $faker = Faker::create('id_ID');
         
         $feedback = [];
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $feedback[] = [
-                'ID_PERMOHONAN' => rand(301,400),
+                'ID_PERMOHONAN' => 300+$i,
                 'KETERANGAN' => "isi keterangan feedback".$i,
                 'LINK_DOWNLOAD' => "link_download".$i,
                 'TGL_FEEDBACK' => date('Y-m-d'),
@@ -46,9 +46,9 @@ class FeedbackTableSeeder extends Seeder
         DB::table('feedback')->insert($feedback2);
 
         $feedback3 = [];
-        for ($k = 0; $k < 50; $k++) {
+        for ($k = 0; $k < 100; $k++) {
             $feedback3[] = [
-                'ID_PERMOHONAN' => rand(201,300),
+                'ID_PERMOHONAN' => 200+$k,
                 'KETERANGAN' => "isi keterangan feedback".$k,
                 'LINK_DOWNLOAD' => "link_download".$k,
                 'TGL_FEEDBACK' => date('Y-m-d'),
@@ -57,7 +57,7 @@ class FeedbackTableSeeder extends Seeder
                 'EXPIRED_DATE' => date('Y-m-d'),
             ];
         }
-        DB::table('feedback')->insert($feedback2);
+        DB::table('feedback')->insert($feedback3);
         
         
     }
