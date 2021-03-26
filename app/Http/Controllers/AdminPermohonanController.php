@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Permohonan;
+use App\Models\Feedback;
+
 
 class AdminPermohonanController extends Controller
 {
@@ -49,6 +51,21 @@ class AdminPermohonanController extends Controller
             'ID_STATUS' => 2
         ]);
         return response()->json('success');
+    }
+
+    public function uploadDokumen(Request $request)
+    {
+        $request->validate([
+            'LINK_DOWNLOAD' => 'required|file|image|mimes:jpeg,png,jpg,doc,docx,pdf|max:5000'
+        ]);
+
+        $feedback = Feedback::find($request);
+        $permohonan = Permohonan::find($feedback);
+
+        $link_download = 'LINK_DOWNLOAD_'.$request.'.'.$request->file('LINK_DOWNLOAD')->extension();
+        
+
+        return redirect('admin.permohonan-pending');
     }
 
     /**
