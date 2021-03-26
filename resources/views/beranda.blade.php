@@ -12,13 +12,13 @@
 <div class="px-2">
   <div class="flex -mx-2">
     <div class="w-1/4 px-2">
-    <img src="{{ asset('dist/images/gambar_beranda.jpg') }}">
+    <img src="{{ asset('dist/images/PALBRO PALINA.png') }}">
     </div>
     <div class="w-3/4 px-2">
     <p class="mb-2"><b>Selamat Datang di Layanan e-PPID</b></p>
     <p>
-    Terima kasih telah mengunjungi layanan e-PPID PT Pelabuhan Indonesia III (Persero). 
-    Layanan ini merupakan sarana layanan online bagi pemohon informasi publik sebagai salah satu wujud pelaksanaan keterbukaan informasi publik di PT Pelabuhan Indonesia III (Persero).  
+    Terima kasih telah mengunjungi layanan e-PPID PT PAL Indonesia (Persero). 
+    Layanan ini merupakan sarana layanan online bagi pemohon informasi publik sebagai salah satu wujud pelaksanaan keterbukaan informasi publik di PT PAL Indonesia (Persero).  
     Informasi yang kami sediakan meliputi:
     </p>
     <p class="mt-2 mb-2">
@@ -33,7 +33,7 @@
     <br>
     Informasi lebih lanjut dapat menghubungi:
     <br>
-    PPID PT Pelabuhan Indonesia III (Persero)
+    PPID PT PAL Indonesia (Persero)
     <br>
     
         Jl. Perak Timur No. 610 

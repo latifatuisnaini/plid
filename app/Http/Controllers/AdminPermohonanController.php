@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Permohonan;
 use App\Models\Feedback;
+use \Barryvdh\DomPDF\PDF;
 
 
 class AdminPermohonanController extends Controller
@@ -18,7 +19,9 @@ class AdminPermohonanController extends Controller
     public function indexOpen()
     {
         $permohonans = Permohonan::where('ID_STATUS',1)->orderBy('ID_PERMOHONAN','DESC')->get();
-        return view('admin.permohonan-open', compact('permohonans'));
+        $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
+        $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
+        return view('admin.permohonan-open', compact('permohonans', 'permohonan_open_notif', 'permohonan_diproses_notif'));
     }
 
     public function indexConfirm()
@@ -28,13 +31,17 @@ class AdminPermohonanController extends Controller
         'permohonan.KETERANGAN', 'feedback.EXPIRED_DATE', 'feedback.NAMA_FILE', 'feedback.KETERANGAN AS KETERANGAN_FEEDBACK')
         ->join('feedback', 'feedback.ID_PERMOHONAN', '=', 'permohonan.ID_PERMOHONAN')
         ->where('ID_STATUS',3)->orWhere('ID_STATUS', 4)->orderBy('permohonan.ID_PERMOHONAN','DESC')->get();
-        return view('admin.permohonan-confirm', compact('permohonan_confirm'));
+        $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
+        $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
+        return view('admin.permohonan-confirm', compact('permohonan_confirm', 'permohonan_open_notif', 'permohonan_diproses_notif'));
     }
 
     public function indexPending()
     {
         $permohonan_pending = Permohonan::where('ID_STATUS',2)->orderBy('ID_PERMOHONAN','DESC')->get();
-        return view('admin.permohonan-pending', compact('permohonan_pending'));
+        $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
+        $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
+        return view('admin.permohonan-pending', compact('permohonan_pending', 'permohonan_open_notif', 'permohonan_diproses_notif'));
     }
 
     public function tolakPermohonan(Request $request,$id)
@@ -64,22 +71,6 @@ class AdminPermohonanController extends Controller
             'KETERANGAN' => $request->keterangan,
             'ID_PERMOHONAN' => $id,
             'KETERANGAN_ESTIMASI' => $request->keterangan_estimasi
-        ]);
-
-        return response()->json('success');
-    }
-
-    public function uploadDokumen(Request $request)
-    {
-        $request->validate([
-            'file' => 'required|file'
-        ]);
-
-        
-        Storage::disk('public')->putFileAs('dokumen',$request->KTP,$ktp);
-
-        $permohonan->update([
-            'file' => $nama_file,
         ]);
 
         return response()->json('success');

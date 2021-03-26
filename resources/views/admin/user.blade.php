@@ -118,9 +118,23 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             @csrf
                             @if( $u->STATUS_KONFIRMASI == 0 ) 
                                 <button href="javascript:;" title="Konfirmasi Status User" type="submit" class="tooltip button px-2 mr-1 mb-2 bg-blue-300 dark:text-gray-300"><span class="w-5 h-5 flex items-center justify-center"> <i data-feather="user-check" class="w-4 h-4 "></i></span> </button>
-                                <button href="javascript:;" title="Detail User" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300"><a data-toggle="modal" data-target="#detail_{{ $u->ID_USER }}"><span class="w-5 h-5 flex items-center justify-center"> <i data-feather="more-horizontal" class="w-4 h-4 "></i></span></a> </button>  
+
+                                <a data-toggle="modal" data-target="#detail_{{ $u->ID_USER }}">
+                                    <button href="javascript:;" title="Detail User" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
+                                        <span class="w-5 h-5 flex items-center justify-center"> 
+                                            <i data-feather="more-horizontal" class="w-4 h-4 "></i>
+                                        </span>
+                                    </button>
+                                </a>  
+
                             @elseif( $u->STATUS_KONFIRMASI == 1 )
-                            <button href="javascript:;" title="Detail User" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300"><a data-toggle="modal" data-target="#detail_{{ $u->ID_USER }}"><span class="w-5 h-5 flex items-center justify-center"> <i data-feather="more-horizontal" class="w-4 h-4 "></i></span></a> </button> 
+                                <a data-toggle="modal" data-target="#detail_{{ $u->ID_USER }}">
+                                    <button href="javascript:;" title="Detail User" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
+                                        <span class="w-5 h-5 flex items-center justify-center"> 
+                                            <i data-feather="more-horizontal" class="w-4 h-4 "></i>
+                                        </span>
+                                    </button>
+                                </a>  
                             @endif
                         </form>
                     </td>
@@ -133,11 +147,14 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
         <div class="modal" id="detail_{{ $u->ID_USER }}">
             <div class="modal__content modal__content--lg py-5 pl-3 pr-1 ml-auto">
                 <div class="modal-header">
-                    <div class="modal__content relative"> <a data-dismiss="modal" href="javascript:;" class="absolute right-0 top-0 mt-3 mr-3"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
+                    <div class="modal__content relative">
                     </div>
-                    <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
-                        <h2 class="font-bold text-2xl flex"><i data-feather="user" class="w-8 h-8"></i>DETAIL USER ID {{ $u->ID_USER }}</h2>
-                    </div>
+
+                        <div class="flex px-2 sm:pb-3 sm:pt-1 border-b border-gray-200 dark:border-dark-5">
+                            <h2 class="font-bold text-2xl flex"><i data-feather="info" class="w-8 h-8 mr-3"></i>DETAIL USER ID {{ $u->ID_USER }}</h2>
+                            <a data-dismiss="modal" href="javascript:;" class="mr-3 ml-auto" id="close_{{$u->ID_USER}}"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
+                        </div>
+
                 </div>
             <div class="modal-body">
                 <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
