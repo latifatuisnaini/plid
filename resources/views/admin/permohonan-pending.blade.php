@@ -85,7 +85,9 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
             Print Tabel Permohonan yang Sudah Dikonfirmasi
         </h2> -->
         <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
-            <button class="ml-3 button box flex items-center shadow-md bg-gray-200 text-gray-700 buttons-html5 buttons-pdf" id="print"> <i data-feather="printer" class="hidden sm:block w-4 h-4 mr-2"></i> Print Tabel Permohonan  </button>
+            <a target="_blank" href="{{url('/admin/cetak-permohonan-pending')}}">
+                <button class="ml-3 button box flex items-center shadow-md bg-gray-200 text-gray-700 buttons-html5 buttons-pdf" id="print"> <i data-feather="printer" class="hidden sm:block w-4 h-4 mr-2"></i> Print Tabel Permohonan  </button>
+            </a>
         </div>
     </div>  
     <br>
@@ -168,20 +170,28 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         </div>
                        
         
-                        <div class="text-center"> <a href="javascript:;" data-toggle="modal" data-target="#modal_{{ $pp->ID_PERMOHONAN }}"  class="button w-32 mr-2 mb-5 mt-3 flex items-center justify-center bg-theme-6 text-white" style="margin:auto;"><i data-feather="upload-cloud" class="w-6 h-6 mr-2" ></i> Upload </a> </div>
+                        <div class="text-center"> <a href="javascript:;" data-toggle="modal" data-target="#modal_{{ $pp->ID_PERMOHONAN }}"  class="button w-32 mr-2 mb-5 mt-3 flex items-center justify-center bg-theme-9 text-white" style="margin:auto;"><i data-feather="upload-cloud" class="w-6 h-6 mr-2" ></i> Upload </a> </div>
                         <div class="modal" id="modal-upload">
-
-                        @foreach($permohonan_pending as $pp)
-    <div class="modal__content" id="modal_{{ $pp->ID_PERMOHONAN }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        @endforeach
+    @foreach($permohonan_pending as $pp)
+    <div class="modal" id="modal_{{ $pp->ID_PERMOHONAN }}">
+    <div class="modal__content" >
     <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
-        <h2 class="font-medium text-base mr-auto">Upload Dokumen Pendukung</h2>
+        <h2 class="font-medium text-base mr-auto">Upload Dokumen Permohonan</h2>
     </div>
-        <form action="{{ url('/admin/permohonan-pending/upload_dok')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('/admin/permohonan-pending/upload-dokumen')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                 <div class="col-span-12">
-                    <label>KTP</label>
-                    <input type="file" class="input w-full border mt-2 flex-1" accept="image/png, image/jpeg" name="KTP" id="input-ktp" required> 
+                    <label>Dokumen Permohonan</label>
+                    <input type="hidden" value="{{ $pp->ID_PERMOHONAN }}" name="ID_PERMOHONAN">
+                    <input type="file" class="input w-full border mt-2 flex-1" accept="file/zip, file/doc, file/docx, file/pdf" name="LINK_DOWNLOAD" id="input-ktp" required> 
                     <img class="mt-2" id="preview-ktp" height="80" src=""/>
                 </div>
             </div>
@@ -192,12 +202,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
         </form>
     </div>
     @endforeach
-</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endforeach
+
         
         
     </div>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Permohonan;
 use App\Models\Feedback;
 use \Barryvdh\DomPDF\PDF;
+use Storage;
 
 
 class AdminPermohonanController extends Controller
@@ -76,19 +77,50 @@ class AdminPermohonanController extends Controller
         return response()->json('success');
     }
 
+    
+
     public function uploadDokumen(Request $request)
     {
         $request->validate([
-            'LINK_DOWNLOAD' => 'required|file|image|mimes:jpeg,png,jpg,doc,docx,pdf|max:5000'
+            'LINK_DOWNLOAD' => 'required|file|mimes:jpeg,png,jpg,doc,docx,pdf,zip'
         ]);
 
-        $feedback = Feedback::find($request);
-        $permohonan = Permohonan::find($feedback);
+        $feedback = Feedback::where('ID_PERMOHONAN', $request->ID_PERMOHONAN)->pluck('ID_FEEDBACK')->first();
+        //dd($request->ID_PERMOHONAN);
+        $feedbacks = Feedback::find($feedback);
 
-        $link_download = 'LINK_DOWNLOAD_'.$request.'.'.$request->file('LINK_DOWNLOAD')->extension();
-        
+        $link_download = date('Y-m-d_h:i:s').'_'.$request->file('LINK_DOWNLOAD')->getClientOriginalName();
+        Storage::disk('public')->put('dokumen/'.$link_download,$request->LINK_DOWNLOAD);
 
-        return redirect('admin.permohonan-pending');
+        $feedbacks->update([
+            'LINK_DOWNLOAD' => $link_download
+        ]);
+        return redirect('admin/permohonan-pending');
+    }
+
+    public function cetakpdfOpen()
+    {
+        $permohonans = Permohonan::where('ID_STATUS',1)->orderBy('ID_PERMOHONAN','DESC')->get();
+        $pdf = \PDF::loadView('/admin/cetak-permohonan-open', compact('permohonans'), ['permohonan' => $permohonans])->setPaper("f4");
+        return $pdf->stream();
+    }
+
+    public function cetakpdfConfirm()
+    {
+        $permohonan_confirm = Permohonan::select('permohonan.ID_PERMOHONAN', 'permohonan.ID_USER', 
+        'permohonan.ID_STATUS','permohonan.TANGGAL', 'permohonan.DOKUMEN_PERMOHONAN', 
+        'permohonan.KETERANGAN', 'feedback.EXPIRED_DATE', 'feedback.NAMA_FILE', 'feedback.KETERANGAN AS KETERANGAN_FEEDBACK')
+        ->join('feedback', 'feedback.ID_PERMOHONAN', '=', 'permohonan.ID_PERMOHONAN')
+        ->where('ID_STATUS',3)->orWhere('ID_STATUS', 4)->orderBy('permohonan.ID_PERMOHONAN','DESC')->get();
+        $pdf = \PDF::loadView('/admin/cetak-permohonan-confirm',compact('permohonan_confirm'),  ['permohonan' => $permohonan_confirm])->setPaper("f4");
+        return $pdf->stream();
+    }
+
+    public function cetakpdfPending()
+    {
+        $permohonan_pending = Permohonan::where('ID_STATUS',2)->orderBy('ID_PERMOHONAN','DESC')->get();
+        $pdf = \PDF::loadView('/admin/cetak-permohonan-pending', compact('permohonan_pending'), ['permohonan' => $permohonan_pending])->setPaper("f4");
+        return $pdf->stream();
     }
 
     /**

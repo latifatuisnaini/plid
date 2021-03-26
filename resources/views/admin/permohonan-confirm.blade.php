@@ -85,7 +85,7 @@
             Print Tabel Permohonan yang Sudah Dikonfirmasi
         </h2> -->
         <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
-            <a href="{{url('/admin/cetak-permohonan-confirm')}}">
+            <a target="_blank" href="{{url('/admin/cetak-permohonan-confirm')}}">
                 <button class="ml-3 button box flex items-center shadow-md bg-gray-200 text-gray-700 buttons-html5 buttons-pdf" id="print"> <i data-feather="printer" class="hidden sm:block w-4 h-4 mr-2"></i> Print Tabel Permohonan  </button>
             </a>
         </div>
