@@ -31,7 +31,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 right: -10px;
                 padding: 5px 10px;
                 border-radius: 50%;
-                background-color: greenyellow;
+                background-color: red;
                 color: white;
                 }
         </style>
@@ -60,22 +60,63 @@ License: You must have a valid license purchased only from themeforest(the above
                
                 <li>
                     <a href="{{url('/admin/user')}}" class="menu">
-                        <div class="menu__icon"> <i data-feather="inbox"></i> </div>
+                        <div class="menu__icon"> <i data-feather="users"></i> </div>
                         <div class="menu__title"> User </div>
                     </a>
                 </li>
 
                 <li>
                     <a href="{{url('/admin/verif')}}" class="menu">
-                        <div class="menu__icon"> <i data-feather="inbox"></i> </div>
+                        <div class="menu__icon"> <i data-feather="check-square"></i> </div>
                         <div class="menu__title"> Verifikasi Dokumen User </div>
                     </a>
                 </li>
 
                 <li>
                     <a href="{{url('/admin/permohonan-open')}}" class="menu">
-                        <div class="menu__icon"> <i data-feather="inbox"></i> </div>
+                        <div class="menu__icon"> <i data-feather="file-plus"></i> </div>
                         <div class="menu__title">Permohonan : Open</div>
+                        @if($permohonan_open_notif > 0)
+                                <span class="badge" title="Terdapat {{ $permohonan_open_notif }} permohonan berstatus 'open'">@if($permohonan_open_notif > 99)99+@else {{ $permohonan_open_notif }} @endif</span>
+                        @endif
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{url('/admin/permohonan-pending')}}" class="menu">
+                        <div class="menu__icon">
+                        <svg width="24" height="24" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
+                                    <g fill="none" fill-rule="evenodd">
+                                        <g transform="translate(1 1)" stroke-width="2.5">
+                                            <circle stroke-opacity=".6" cx="18" cy="18" r="18"/>
+                                            <path d="M36 18c0-9.94-8.06-18-18-18">
+                                                <!-- <animateTransform
+                                                    attributeName="transform"
+                                                    type="rotate"
+                                                    from="0 18 18"
+                                                    to="360 18 18"
+                                                    dur="1s"
+                                                    repeatCount="indefinite"/> -->
+                                            </path>
+                                        </g>
+                                    </g>
+                                </svg>
+                        
+                        </div>
+                        <div class="menu__title">Permohonan : Pending</div>
+                        @if($permohonan_diproses_notif > 0)
+                                <span class="badge" title="Terdapat {{ $permohonan_diproses_notif }} permohonan berstatus 'sedang diproses'">@if($permohonan_diproses_notif > 99)99+@else {{ $permohonan_diproses_notif }} @endif</span>
+                        @endif
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{url('/admin/permohonan-confirm')}}" class="menu">
+                        <div class="menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        
+                        </div>
+                        <div class="menu__title">Permohonan : Confirm</div>
                     </a>
                 </li>
                 
@@ -121,6 +162,10 @@ License: You must have a valid license purchased only from themeforest(the above
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                             </div>
                             <div class="side-menu__title"> Permohonan : Open </div>
+                            @if($permohonan_open_notif > 0)
+                                <span class="badge" title="Terdapat {{ $permohonan_open_notif }} permohonan berstatus 'open'">@if($permohonan_open_notif > 99)99+@else {{ $permohonan_open_notif }} @endif</span>
+                            @endif
+                            
                         </a>
                     </li>
                     <li>
@@ -144,16 +189,17 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </svg>
                             </div>
                             <div class="side-menu__title"> Permohonan : Pending </div>
+                            @if($permohonan_diproses_notif > 0)
+                                <span class="badge" title="Terdapat {{ $permohonan_diproses_notif }} permohonan berstatus 'sedang diproses'">@if($permohonan_diproses_notif > 99)99+@else{{ $permohonan_diproses_notif }}@endif</span>
+                            @endif
                         </a>
                     </li>
                     <li>
                         <a href="{{url('/admin/permohonan-confirm')}}" class="side-menu @if(request() -> segment(1) == 'admin' && request()->segment(2) == 'permohonan-confirm') side-menu--active @endif">
                             <div class="side-menu__icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                                
                             </div>
                             <div class="side-menu__title"> Permohonan : Confirm </div>
-                            <span class="badge" title="3 Permohonan ditolak">3</span>
                         </a>
                     </li>
                 </ul>

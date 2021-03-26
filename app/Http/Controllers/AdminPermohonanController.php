@@ -16,7 +16,9 @@ class AdminPermohonanController extends Controller
     public function indexOpen()
     {
         $permohonans = Permohonan::where('ID_STATUS',1)->orderBy('ID_PERMOHONAN','DESC')->get();
-        return view('admin.permohonan-open', compact('permohonans'));
+        $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
+        $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
+        return view('admin.permohonan-open', compact('permohonans', 'permohonan_open_notif', 'permohonan_diproses_notif'));
     }
 
     public function indexConfirm()
@@ -26,13 +28,17 @@ class AdminPermohonanController extends Controller
         'permohonan.KETERANGAN', 'feedback.EXPIRED_DATE', 'feedback.NAMA_FILE', 'feedback.KETERANGAN AS KETERANGAN_FEEDBACK')
         ->join('feedback', 'feedback.ID_PERMOHONAN', '=', 'permohonan.ID_PERMOHONAN')
         ->where('ID_STATUS',3)->orWhere('ID_STATUS', 4)->orderBy('permohonan.ID_PERMOHONAN','DESC')->get();
-        return view('admin.permohonan-confirm', compact('permohonan_confirm'));
+        $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
+        $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
+        return view('admin.permohonan-confirm', compact('permohonan_confirm', 'permohonan_open_notif', 'permohonan_diproses_notif'));
     }
 
     public function indexPending()
     {
         $permohonan_pending = Permohonan::where('ID_STATUS',2)->orderBy('ID_PERMOHONAN','DESC')->get();
-        return view('admin.permohonan-pending', compact('permohonan_pending'));
+        $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
+        $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
+        return view('admin.permohonan-pending', compact('permohonan_pending', 'permohonan_open_notif', 'permohonan_diproses_notif'));
     }
 
     public function tolakPermohonan($id)
