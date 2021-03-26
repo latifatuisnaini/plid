@@ -130,12 +130,13 @@
                                 <div >{{ $list->NAMA_LENGKAP }}</div>
                                 <div class="font-medium">{{ $list->DOKUMEN_PERMOHONAN }}</div>
                             </div>
+                            <div class="py-1 px-2 rounded-full text-xs bg-theme-10 text-white cursor-pointer font-medium">NEW</div>
                         </div>
                     </div>
                 @endforeach
               
            
-                <a href="" class="intro-y w-full mt-4 block text-center rounded-md py-4 border border-dotted border-theme-15 dark:border-dark-5 text-theme-16 dark:text-gray-600">View More</a> 
+                <a href="{{ route('permohonan-open') }}" class="intro-y w-full mt-4 block text-center rounded-md py-4 border border-dotted border-theme-15 dark:border-dark-5 text-theme-16 dark:text-gray-600">View More</a> 
             </div>
         </div>
         @endif

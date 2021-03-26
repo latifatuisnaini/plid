@@ -16,8 +16,10 @@ class PermohonanController extends Controller
     {
        $permohonan=Permohonan::
        select('*')->where('ID_USER', Auth::user()->ID_USER)->get();
-
-       return view('users.permohonan', compact('permohonan'));
+        $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
+        $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
+        
+       return view('users.permohonan', compact('permohonan','permohonan_open_notif', 'permohonan_diproses_notif'));
     }
 
     public function create(){

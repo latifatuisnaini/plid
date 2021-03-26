@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Permohonan;
 
 class DocverifController extends Controller
 {
@@ -12,8 +13,10 @@ class DocverifController extends Controller
     {
         $users = User::where('STATUS_KONFIRMASI','=',"2") 
         ->get();
+        $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
+        $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
         
-        return view('admin.verif', compact('users'));
+        return view('admin.verif', compact('users','permohonan_open_notif', 'permohonan_diproses_notif'));
     }
 
     public function edit($id){

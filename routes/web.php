@@ -63,7 +63,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::resource('/verif','DocverifController');
     Route::get('/verif/edit/{id}', 'DocverifController@edit');
     Route::post('/verif/update1', 'DocverifController@update1')->name('verif.update1');
-    Route::get('/permohonan-open','AdminPermohonanController@indexOpen');
+    Route::get('/permohonan-open','AdminPermohonanController@indexOpen')->name('permohonan-open');
     Route::get('/permohonan-confirm','AdminPermohonanController@indexConfirm');
     Route::get('/permohonan-pending','AdminPermohonanController@indexPending');
     Route::post('/permohonan/tolak/{id}','AdminPermohonanController@tolakPermohonan');
