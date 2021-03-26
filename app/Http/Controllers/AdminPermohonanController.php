@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Permohonan;
 use App\Models\Feedback;
 use \Barryvdh\DomPDF\PDF;
+use Storage;
 
 
 class AdminPermohonanController extends Controller
@@ -76,19 +77,25 @@ class AdminPermohonanController extends Controller
         return response()->json('success');
     }
 
+    
+
     public function uploadDokumen(Request $request)
     {
         $request->validate([
-            'LINK_DOWNLOAD' => 'required|file|image|mimes:jpeg,png,jpg,doc,docx,pdf|max:5000'
+            'LINK_DOWNLOAD' => 'required|file|mimes:jpeg,png,jpg,doc,docx,pdf,zip'
         ]);
 
-        $feedback = Feedback::find($request);
-        $permohonan = Permohonan::find($feedback);
+        $feedback = Feedback::where('ID_PERMOHONAN', $request->ID_PERMOHONAN)->pluck('ID_FEEDBACK')->first();
+        //dd($request->ID_PERMOHONAN);
+        $feedbacks = Feedback::find($feedback);
 
-        $link_download = 'LINK_DOWNLOAD_'.$request.'.'.$request->file('LINK_DOWNLOAD')->extension();
-        
+        $link_download = date('Y-m-d_h:i:s').'_'.$request->file('LINK_DOWNLOAD')->getClientOriginalName();
+        Storage::disk('public')->put('dokumen/'.$link_download,$request->LINK_DOWNLOAD);
 
-        return redirect('admin.permohonan-pending');
+        $feedbacks->update([
+            'LINK_DOWNLOAD' => $link_download
+        ]);
+        return redirect('admin/permohonan-pending');
     }
 
     /**
