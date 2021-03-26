@@ -22,7 +22,6 @@
                 <th data-priority="1" width="20%">Nama Dokumen</th>
                 <th data-priority="2" width="30%">Keterangan Dokumen</th>
                 <th data-priority="2">Status</th>
-                <th data-priority="6">Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -33,30 +32,14 @@
                 <td>{{$p->KETERANGAN}}</td>
                 <td>
                 @if($p->ID_STATUS == 3)
-                        <div class="text-center">
-                            <div class="flex items-center justify-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
-                        </div>
+                    <!-- <div class="text-center"> -->
+                        <div class="flex items-center justify-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
+                    <!-- </div> -->
                 @else
-                    <div class="text-center">
-                            <div class="flex items-center justify-center text-theme-6"> <i data-feather="x-square" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
-                        </div>
+                    <!-- <div class="text-center"> -->
+                        <div class="flex items-center justify-center text-theme-6"> <i data-feather="x-square" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
+                    <!-- </div> -->
                 @endif
-                </td>
-                <td style="text-align: center;">
-                    <a data-toggle="modal" data-target="#detail_{{ $p->ID_PERMOHONAN }}">
-                        <button href="javascript:;" title="Detail Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
-                            <span class="w-5 h-5 flex items-center justify-center">
-                                <i data-feather="more-horizontal" class="w-4 h-4 "></i>
-                            </span>
-                        </button>
-                    </a>
-                    <div id="print">
-                        <button href="javascript:;" title="Print Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-blue-300 dark:text-gray-300">
-                            <span class="w-5 h-5 flex items-center justify-center">
-                                <i data-feather="printer" class="w-4 h-4 "></i>
-                            </span>
-                        </button>
-                    </div>
                 </td>
             </tr>
         @endforeach
