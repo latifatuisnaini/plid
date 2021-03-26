@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Permohonan;
 use Storage;
 use App\Models\Feedback;
+use \Barryvdh\DomPDF\PDF;
 
 class AdminPermohonanController extends Controller
 {
@@ -83,6 +84,34 @@ class AdminPermohonanController extends Controller
         ]);
 
         return response()->json('success');
+    }
+
+    public function cetakpdfOpen()
+    {
+        $permohonans = Permohonan::where('ID_STATUS',1)->orderBy('ID_PERMOHONAN','DESC')->get();
+        $pdf = PDF::loadView('admin.cetak-permohonan-open', compact('permohonans'), ['permohonan' => $permohonans]);
+        $pdf->setPaper("f4");
+        return $pdf->stream();
+    }
+
+    public function cetakpdfConfirm()
+    {
+        $permohonan_confirm = Permohonan::select('permohonan.ID_PERMOHONAN', 'permohonan.ID_USER', 
+        'permohonan.ID_STATUS','permohonan.TANGGAL', 'permohonan.DOKUMEN_PERMOHONAN', 
+        'permohonan.KETERANGAN', 'feedback.EXPIRED_DATE', 'feedback.NAMA_FILE', 'feedback.KETERANGAN AS KETERANGAN_FEEDBACK')
+        ->join('feedback', 'feedback.ID_PERMOHONAN', '=', 'permohonan.ID_PERMOHONAN')
+        ->where('ID_STATUS',3)->orWhere('ID_STATUS', 4)->orderBy('permohonan.ID_PERMOHONAN','DESC')->get();
+        $pdf = PDF::loadView('/admin/cetak-permohonan-confirm',  ['permohonan' => $permohonan_confirm]);
+        $pdf->setPaper("f4");
+        return $pdf->stream();
+    }
+
+    public function cetakpdfPending()
+    {
+        $permohonan_pending = Permohonan::where('ID_STATUS',2)->orderBy('ID_PERMOHONAN','DESC')->get();
+        $pdf = PDF::loadView('admin.cetak-permohonan-pending', compact('permohonan_pending'), ['permohonan' => $permohonan_pending]);
+        $pdf->setPaper("f4");
+        return $pdf->stream();
     }
 
     /**

@@ -69,6 +69,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::post('/permohonan/tolak/{id}','AdminPermohonanController@tolakPermohonan');
     Route::post('/permohonan/terima/{id}','AdminPermohonanController@terimaPermohonan');
     Route::post('/permohonan/upload-dokumen','AdminPermohonanController@uploadDokumen');
+    Route::get('/cetak-permohonan-open','AdminPermohonanController@cetakpdfOpen');
+    Route::get('/cetak-permohonan-pending','AdminPermohonanController@cetakpdfPending');
+    Route::get('/cetak-permohonan-confirm','AdminPermohonanController@cetakpdfConfirm');
 });
 
 Route::prefix('users')->middleware(['auth'])->group(function(){

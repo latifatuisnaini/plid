@@ -85,7 +85,9 @@
             Print Tabel Permohonan yang Sudah Dikonfirmasi
         </h2> -->
         <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
-            <button class="ml-3 button box flex items-center shadow-md bg-gray-200 text-gray-700 buttons-html5 buttons-pdf" id="print"> <i data-feather="printer" class="hidden sm:block w-4 h-4 mr-2"></i> Print Tabel Permohonan  </button>
+            <a href="{{url('/admin/cetak-permohonan-confirm')}}">
+                <button class="ml-3 button box flex items-center shadow-md bg-gray-200 text-gray-700 buttons-html5 buttons-pdf" id="print"> <i data-feather="printer" class="hidden sm:block w-4 h-4 mr-2"></i> Print Tabel Permohonan  </button>
+            </a>
         </div>
     </div>  
     <br>
@@ -97,8 +99,8 @@
             <thead>
                 <tr>
                     <th data-priority="3">Tanggal</th>
-                    <th data-priority="1" width="20%">Nama Dokumen</th>
-                    <th data-priority="2" width="30%">Keterangan Dokumen</th>
+                    <th data-priority="1">Nama Dokumen</th>
+                    <th data-priority="2" width="40%">Keterangan Dokumen</th>
                     <th data-priority="2">Status</th>
                     <th data-priority="6">Aksi</th>
                 </tr>
@@ -128,13 +130,13 @@
                                 </span>
                             </button>
                         </a>
-                        <div id="print">
+                        <!-- <div id="print"> -->
                             <button href="javascript:;" title="Print Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-blue-300 dark:text-gray-300">
                                 <span class="w-5 h-5 flex items-center justify-center">
                                     <i data-feather="printer" class="w-4 h-4 "></i>
                                 </span>
                             </button>
-                        </div>
+                        <!-- </div> -->
                     </td>
                 </tr>
             @endforeach
@@ -262,13 +264,13 @@ $(document).ready(function() {
 
     var table = $('#view').DataTable( {
         responsive: true,
-        dom: 'Bfrtip',
-        buttons: [
-            {
-                extend: 'pdfHtml5',
-                download: 'open'
-            }
-        ]
+        // dom: 'Bfrtip',
+        // buttons: [
+        //     {
+        //         extend: 'pdfHtml5',
+        //         download: 'open'
+        //     }
+        // ]
     } )
     .columns.adjust()
     .responsive.recalc();
