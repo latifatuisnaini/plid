@@ -139,7 +139,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 </thead>
                 <tbody style="text-align: center;">
                 @foreach($permohonan as $p)
-                    <tr>
+                    <tr id="{{$p->ID_PERMOHONAN}}">
                         <td>{{$p->ID_PERMOHONAN}}</td>
                         <td>{{$p->DOKUMEN_PERMOHONAN}}</td>
                         <td>{{$p->KETERANGAN}}</td>
@@ -147,13 +147,13 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <td>
                             <div class="mt-1 mb-1"> 
                             @if ($p->status->ID_STATUS == 1)
-                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-33 text-white">{{$p->status->STATUS}}</a>
+                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-33 text-white">{{$p->status->STATUS}}</a>
                             @elseif ($p->status->ID_STATUS == 2)
-                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-12 text-white">{{$p->status->STATUS}}</a>
+                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-12 text-white">{{$p->status->STATUS}}</a>
                             @elseif ($p->status->ID_STATUS == 3)
-                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-9 text-white">{{$p->status->STATUS}}</a>
+                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-9 text-white">{{$p->status->STATUS}}</a>
                             @elseif ($p->status->ID_STATUS == 4)
-                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-6 text-white">{{$p->status->STATUS}}</a>
+                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-6 text-white">{{$p->status->STATUS}}</a>
                             @endif
                             </div>
                         </td>
@@ -188,12 +188,12 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     
                     <div class="flex flex-col sm:flex-row items-center mt-3"> 
                         <label class="w-full sm:w-20 sm:text-left sm:mr-5">Dokumen Permohonan</label> 
-                            <input type="text" class="input w-full border mt-2 flex-1" placeholder="Dokumen Permohonan" name="DOKUMEN_PERMOHONAN" required >
+                            <input type="text" class="input w-full border mt-2 flex-1" placeholder="Dokumen Permohonan" name="DOKUMEN_PERMOHONAN" id="DOKUMEN_PERMOHONAN" required >
                     </div>
                     
                     <div class="flex flex-col sm:flex-row items-center mt-3"> 
                         <label class="w-full sm:w-20 sm:text-left sm:mr-5">Keterangan</label> 
-                            <textarea class="input w-full border mt-2 flex-1" name="KETERANGAN"> </textarea>
+                            <textarea class="input w-full border mt-2 flex-1" name="KETERANGAN" id="KETERANGAN"> </textarea>
                     </div>
                     <div class="flex flex-col sm:flex-row items-center mt-3"> 
                     <label class="w-full sm:w-20 sm:text-left sm:mr-5">Tanggal</label> 
@@ -220,40 +220,40 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 
 @foreach($permohonan as $p)
 <!-- Modal Detail Dokumen Permohonan -->
-<div class="modal" id="detail_dokumen_permohonan">
+<div class="modal" id="detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}">
             <div class="modal__content modal__content--lg py-5 pl-5 pr-5 ml-auto">
                 <div class="modal-header">
                     <div class="modal__content relative"> <a data-dismiss="modal" href="javascript:;" class="top-0 mt-3 mr-0" style="float: right;"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
                     </div>
                     <div class="flex items-center py-3 sm:py-3 border-b border-gray-200 dark:border-dark-5">
-                        <h2 class="font-bold text-2xl flex"><i data-feather="folder" class="w-8 h-8 mr-3"></i>Detail Dokumen Permohonan</h2>
+                        <h2 class="font-bold text-2xl flex"><i data-feather="file-text" class="w-8 h-8 mr-3"></i>Detail Dokumen Permohonan #{{ $p->ID_PERMOHONAN }}</h2>
                     </div>
                 </div>
                     <div class="modal-body">
-                    <form action="{{ route('permohonan.store') }}" method="POST" class="needs-validation" novalidate id="detail-dokumen-permohonan">
-                    @csrf
-
-                    <input type="hidden" name="ID_USER" value="{{ Auth::user()->ID_USER }}">
-                    
-                    <div class="flex flex-col sm:flex-row items-center mt-3"> 
-                        <label class="w-full sm:w-20 sm:text-left sm:mr-5">Dokumen Permohonan</label> 
-                            <input type="text" class="input w-full border mt-2 flex-1" placeholder="Dokumen Permohonan" name="DOKUMEN_PERMOHONAN" value="{{ $p->DOKUMEN_PERMOHONAN }}" required >
+                    <div class="flex sm:flex-row items-center mt-3"> 
+                        <label class="w-full sm:w-20 sm:text-left sm:mr-5 font-medium">Dokumen Permohonan</label> 
+                        <div class="text-base">{{ $p->DOKUMEN_PERMOHONAN }}</div>
                     </div>
                     
                     <div class="flex flex-col sm:flex-row items-center mt-3"> 
-                        <label class="w-full sm:w-20 sm:text-left sm:mr-5">Keterangan</label> 
-                            <textarea class="input w-full border mt-2 flex-1" name="KETERANGAN"> </textarea>
+                        <label class="w-full sm:w-20 sm:text-right sm:mr-5 font-medium">Keterangan</label> 
+                        <div class="text-base ml-2">{{ $p->KETERANGAN }}</div>
                     </div>
-                    <div class="flex flex-col sm:flex-row items-center mt-3"> 
-                    <label class="w-full sm:w-20 sm:text-left sm:mr-5">Tanggal</label> 
+                    <div class="flex flex-col sm:flex-row items-center mt-3 mb-5"> 
+                    <label class="w-full sm:w-20 sm:text-left sm:mr-5 font-medium">Tanggal</label> 
                         <div class="relative">
-                            <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4"><i data-feather="calendar" class="w-4 h-4"></i> 
-                            </div> 
-                            <input class="datepicker input pl-12 border" data-single-mode="true" name="TANGGAL" id ="TANGGAL" value="{{ $p }}" required>
+                                <div class="text-base">{{ date('d-m-Y', strtotime($p->TANGGAL)) }}</div>
                         </div>
                     </div>
-                    
-                    </div>
+                </div>
+                <hr>
+                <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+                <div class="col-span-12">
+                    <h2 class="font-semibold text-lg mr-auto">Berkas</h2>
+                </div>
+                </div>
+
+    
 
                 <div class="modal-footer mt-5">
                     <div class="text-right">
@@ -288,6 +288,20 @@ $(document).ready(function() {
         } )
         .columns.adjust()
         .responsive.recalc();
+
+    $('tbody tr').on('click',function(){
+        var id = $(this).attr('id');
+        console.log('detail_dokumen_permohonan_'+id);
+        $('');
+        // var modal = document.getElementById("detail_dokumen_permohonan_"+id);
+        // modal.classList.toggle("show");
+        // modal.classList.toggle("flex");
+        // modal.classList.toggle("overflow-y-auto");
+        // modal.classList.toggle("modal__overlap");
+        // var modal2 = document.getElementById("detail_dokumen_permohonan_"+id+"-backdrop");
+        // modal2.classList.toggle("hidden");
+        // modal2.classList.toggle("flex");
+    });
 
 });
 

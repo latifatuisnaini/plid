@@ -21,7 +21,7 @@ class FeedbackTableSeeder extends Seeder
         for ($i = 0; $i < 50; $i++) {
             $feedback[] = [
                 'ID_PERMOHONAN' => rand(301,400),
-                'KETERANGAN' => 1,
+                'KETERANGAN' => "isi keterangan feedback".$i,
                 'LINK_DOWNLOAD' => "link_download".$i,
                 'TGL_FEEDBACK' => date('Y-m-d'),
                 'WAKTU_ESTIMASI' => date('Y-m-d'),
@@ -35,7 +35,7 @@ class FeedbackTableSeeder extends Seeder
         for ($j = 0; $j < 50; $j++) {
             $feedback2[] = [
                 'ID_PERMOHONAN' => rand(401,500),
-                'KETERANGAN' => 1,
+                'KETERANGAN' => "isi keterangan feedback".$j,
                 'LINK_DOWNLOAD' => "link_download".$j,
                 'TGL_FEEDBACK' => date('Y-m-d'),
                 'WAKTU_ESTIMASI' => date('Y-m-d'),
@@ -49,7 +49,7 @@ class FeedbackTableSeeder extends Seeder
         for ($k = 0; $k < 50; $k++) {
             $feedback3[] = [
                 'ID_PERMOHONAN' => rand(201,300),
-                'KETERANGAN' => 1,
+                'KETERANGAN' => "isi keterangan feedback".$k,
                 'LINK_DOWNLOAD' => "link_download".$k,
                 'TGL_FEEDBACK' => date('Y-m-d'),
                 'WAKTU_ESTIMASI' => date('Y-m-d'),
