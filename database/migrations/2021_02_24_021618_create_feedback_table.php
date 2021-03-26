@@ -16,12 +16,13 @@ class CreateFeedbackTable extends Migration
         Schema::create('feedback', function (Blueprint $table) {
             $table->integer('ID_FEEDBACK', true);
             $table->integer('ID_PERMOHONAN')->index('FK_MELAKUKAN');
-            $table->text('KETERANGAN');
-            $table->string('LINK_DOWNLOAD');
-            $table->timestamp('TGL_FEEDBACK')->useCurrent();
-            $table->dateTime('WAKTU_ESTIMASI');
-            $table->string('NAMA_FILE');
-            $table->date('EXPIRED_DATE');
+            $table->text('KETERANGAN')->nullable();
+            $table->string('LINK_DOWNLOAD')->nullable();
+            $table->timestamp('TGL_FEEDBACK')->useCurrent()->nullable();
+            $table->dateTime('WAKTU_ESTIMASI')->nullable();
+            $table->text('KETERANGAN_ESTIMASI')->nullable();
+            $table->string('NAMA_FILE')->nullable();
+            $table->date('EXPIRED_DATE')->nullable();
         });
     }
 
