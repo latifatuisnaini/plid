@@ -44,8 +44,14 @@ class AdminController extends Controller
         $oktober= Permohonan::whereMonth('TANGGAL','10')->whereYear('TANGGAL',date('Y'))->count();
         $november = Permohonan::whereMonth('TANGGAL','11')->whereYear('TANGGAL',date('Y'))->count();
         $desember = Permohonan::whereMonth('TANGGAL','12')->whereYear('TANGGAL',date('Y'))->count();
-        return view('admin.dashboard', compact('permohonan_open', 'permohonan_diproses', 'permohonan_diterima', 'konfirmasi', 'jml_permohonan_last_month', 'jml_permohonan_this_month', 
+
+        $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
+        $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
+
+        return view('admin.dashboard', compact('permohonan_open', 'permohonan_diproses', 'permohonan_open_notif', 'permohonan_diproses_notif','permohonan_diterima', 'konfirmasi', 'jml_permohonan_last_month', 'jml_permohonan_this_month', 
         'current_year', 'list_permohonan', 'januari', 'februari', 'maret', 'april', 'mei', 'juni', 'juli', 'agustus', 'september', 'oktober', 'november', 'desember'));
     }
+
+    
 
 }
