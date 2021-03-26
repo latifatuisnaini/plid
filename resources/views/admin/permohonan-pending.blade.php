@@ -109,8 +109,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <td>{{$pp->KETERANGAN}}</td>
                     <td>{{ date('d F Y',strtotime($pp->TANGGAL)) }}</td>
                     <td>
-                        <a data-toggle="modal" data-target="#detail_{{ $pp->ID_USER }}">
-                            <button href="javascript:;" title="Detail Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
+                    <button href="javascript:;" title="Detail Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
+                            <a data-toggle="modal" data-target="#detail_{{ $pp->ID_PERMOHONAN }}">
                                 <span class="w-5 h-5 flex items-center justify-center">
                                     <i data-feather="more-horizontal" class="w-4 h-4 "></i>
                                 </span>
@@ -130,59 +130,71 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
         </table>
 
         @foreach($permohonan_pending as $pp)
-        <div class="modal" id="detail_{{ $pp->ID_USER }}">
+        <div class="modal" id="detail_{{ $pp->ID_PERMOHONAN }}">
             <div class="modal__content modal__content--lg py-5 pl-3 pr-1 ml-auto">
                 <div class="modal-header">
-                    <div class="modal__content relative"> <a data-dismiss="modal" href="javascript:;" class="absolute right-0 top-0 mt-3 mr-3"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
+                    <div class="modal__content relative"> 
                     </div>
-                    <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
-                        <h2 class="font-bold text-2xl flex"><i data-feather="user" class="w-8 h-8"></i>DETAIL USER ID {{ $pp->ID_USER }}</h2>
+                    <div class="flex px-2 sm:pb-3 sm:pt-1 border-b border-gray-200 dark:border-dark-5">
+                        <h2 class="font-bold text-2xl flex"><i data-feather="info" class="w-8 h-8 mr-2"></i>Detail Permohonan #{{ $pp->ID_PERMOHONAN }}</h2>
+                        <a data-dismiss="modal" href="javascript:;" class="mr-3 ml-auto" id="close_{{$pp->ID_PERMOHONAN}}"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
                     </div>
                 </div>
-            <div class="modal-body">
-                <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
-                    <div class="col-span-12 sm:col-span-6"> 
-                        <label class="font-semibold text-lg">Nama Dokumen</label>
-                        <div class="text-base">{{ $pp->DOKUMEN_PERMOHONAN }}</div>
-                    </div>
+                <div class="modal-body">
+                    <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg">Nama Dokumen</label>
+                            <div class="text-base">{{ $pp->DOKUMEN_PERMOHONAN }}</div>
+                        </div>
 
-                    <div class="col-span-12 sm:col-span-6"> 
-                        <label class="font-semibold text-lg">Keterangan</label>
-                        <div class="text-base">{{ $pp->KETERANGAN }}</div>
-                    </div>
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg">Keterangan</label>
+                            <div class="text-base">{{ $pp->KETERANGAN }}</div>
+                        </div>
 
-                    <div class="col-span-12 sm:col-span-6"> 
-                        <label class="font-semibold text-lg">Tanggal</label>
-                        <div class="text-base">{{ $pp->TANGGAL }}</div>
-                    </div>
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg">Tanggal</label>
+                            <div class="text-base">{{ $pp->TANGGAL }}</div>
+                        </div>
 
-                    <div class="col-span-12 sm:col-span-6"> 
-                        <label class="font-semibold text-lg">Diajukan Oleh :</label>
-                        <div class="text-base">{{ $pp->user->NAMA_LENGKAP }}</div>
-                        <button class="button w-32 mr-2 mb-2 flex items-center justify-center bg-theme-1 text-white"> 
-                            <i data-feather="activity" class="w-4 h-4 mr-2"></i> Detail User 
-                        </button>
-                    </div>
-                    
-                </div>
-                <hr>
-                <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg">Diajukan Oleh</label>
+                            <div class="text-base">{{ $pp->user->NAMA_LENGKAP }}</div>
+                            <a href="{{ route('user.show',$pp->user->ID_USER) }}" target="_blank">
+                                <button class="button w-32 mr-2 mb-2 mt-2 flex items-center justify-center bg-theme-1 text-white"> 
+                                    <i data-feather="external-link" class="w-6 h-6 mr-2"></i> Detail User 
+                                </button>
+                            </a>
+                        </div>
+                       
+        
+                        <div class="text-center"> <a href="javascript:;" data-toggle="modal" data-target="#modal_{{ $pp->ID_PERMOHONAN }}"  class="button w-32 mr-2 mb-5 mt-3 flex items-center justify-center bg-theme-6 text-white" style="margin:auto;"><i data-feather="upload-cloud" class="w-6 h-6 mr-2" ></i> Upload </a> </div>
+                        <div class="modal" id="modal-upload">
+
+                        @foreach($permohonan_pending as $pp)
+    <div class="modal__content" id="modal_{{ $pp->ID_PERMOHONAN }}">
+    <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
+        <h2 class="font-medium text-base mr-auto">Upload Dokumen Pendukung</h2>
+    </div>
+        <form action="{{ url('/admin/permohonan-pending/upload_dok')}}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                 <div class="col-span-12">
-                    <h2 class="font-semibold text-lg mr-auto">Berkas</h2>
-                </div>
-
-                <div class="col-span-12 sm:col-span-6">
-                    <div class="text-base">KTP</div>
-                </div>
-
-                <div class="col-span-12 ">
-                    <div class="w-full h-64 image-fit">
-                        <img alt="File KTP" src="{{ asset('dist/images/preview-8.jpg')}}" data-action="zoom" class="w-full rounded-md"> 
-                    </div>
-                </div>
-
+                    <label>KTP</label>
+                    <input type="file" class="input w-full border mt-2 flex-1" accept="image/png, image/jpeg" name="KTP" id="input-ktp" required> 
+                    <img class="mt-2" id="preview-ktp" height="80" src=""/>
                 </div>
             </div>
+            <div class="px-5 py-3 text-right border-t border-gray-200 dark:border-dark-5">
+                <button type="button" class="button w-20 border text-gray-700 dark:border-dark-5 dark:text-gray-300 mr-1" data-dismiss="modal">Cancel</button> 
+                <button type="submit" class="button w-20 bg-theme-1 text-white">Submit</button>
+            </div>
+        </form>
+    </div>
+    @endforeach
+</div>
+                    </div>
+                </div>
             </div>
         </div>
         @endforeach
