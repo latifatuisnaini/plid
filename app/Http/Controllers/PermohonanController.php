@@ -15,8 +15,11 @@ class PermohonanController extends Controller
     public function index()
     {
        $permohonan=Permohonan::
-       select('*')->where('ID_USER', Auth::user()->ID_USER)->get();
-
+       select('*','feedback.KETERANGAN')
+       ->join('feedback', 'feedback.ID_PERMOHONAN', '=', 'permohonan.ID_PERMOHONAN')
+       ->where('ID_USER', Auth::user()->ID_USER)
+       ->get();
+        
        return view('users.permohonan', compact('permohonan'));
     }
 

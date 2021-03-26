@@ -187,16 +187,16 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <input type="hidden" name="ID_USER" value="{{ Auth::user()->ID_USER }}">
                     
                     <div class="flex flex-col sm:flex-row items-center mt-3"> 
-                        <label class="w-full sm:w-20 sm:text-left sm:mr-5">Dokumen Permohonan</label> 
+                        <label class="w-full sm:w-20 sm:text-left sm:mr-5 font-medium">Dokumen Permohonan</label> 
                             <input type="text" class="input w-full border mt-2 flex-1" placeholder="Dokumen Permohonan" name="DOKUMEN_PERMOHONAN" id="DOKUMEN_PERMOHONAN" required >
                     </div>
                     
                     <div class="flex flex-col sm:flex-row items-center mt-3"> 
-                        <label class="w-full sm:w-20 sm:text-left sm:mr-5">Keterangan</label> 
+                        <label class="w-full sm:w-20 sm:text-left sm:mr-5 font-medium">Keterangan</label> 
                             <textarea class="input w-full border mt-2 flex-1" name="KETERANGAN" id="KETERANGAN"> </textarea>
                     </div>
                     <div class="flex flex-col sm:flex-row items-center mt-3"> 
-                    <label class="w-full sm:w-20 sm:text-left sm:mr-5">Tanggal</label> 
+                    <label class="w-full sm:w-20 sm:text-left sm:mr-5 font-medium">Tanggal</label> 
                         <div class="relative">
                             <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4"><i data-feather="calendar" class="w-4 h-4"></i> 
                             </div> 
@@ -228,7 +228,9 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <div class="flex items-center py-3 sm:py-3 border-b border-gray-200 dark:border-dark-5">
                         <h2 class="font-bold text-2xl flex"><i data-feather="file-text" class="w-8 h-8 mr-3"></i>Detail Dokumen Permohonan #{{ $p->ID_PERMOHONAN }}</h2>
                     </div>
+                    
                 </div>
+                    
                     <div class="modal-body">
                     <div class="flex sm:flex-row items-center mt-3"> 
                         <label class="w-full sm:w-20 sm:text-left sm:mr-5 font-medium">Dokumen Permohonan</label> 
@@ -236,8 +238,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     </div>
                     
                     <div class="flex flex-col sm:flex-row items-center mt-3"> 
-                        <label class="w-full sm:w-20 sm:text-right sm:mr-5 font-medium">Keterangan</label> 
-                        <div class="text-base ml-2">{{ $p->KETERANGAN }}</div>
+                        <label class="w-full sm:w-20 sm:text-right sm:mr-5 font-medium">Keterangan Dokumen</label> 
+                        <div class="text-base">{{ $p->KETERANGAN }}</div>
                     </div>
                     <div class="flex flex-col sm:flex-row items-center mt-3 mb-5"> 
                     <label class="w-full sm:w-20 sm:text-left sm:mr-5 font-medium">Tanggal</label> 
@@ -245,15 +247,35 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                                 <div class="text-base">{{ date('d-m-Y', strtotime($p->TANGGAL)) }}</div>
                         </div>
                     </div>
+                    <div class="flex flex-col sm:flex-row items-center mt-3"> 
+                        <label class="w-full sm:w-20 sm:text-left sm:mr-5 font-medium">Status</label> 
+                        @if ( $p->status->ID_STATUS == 4 )
+                        <div class="text-base">
+                                <div class="flex items-center justify-center text-theme-6"> <i data-feather="x-square" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
+                        </div>
+                        @elseif ( $p->status->ID_STATUS == 3 )
+                        <div class="text-base">
+                                <div class="flex items-center justify-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
+                            </div>
+                        @elseif ( $p->status->ID_STATUS == 2 )
+                        <div class="text-base">
+                                <div class="flex items-center justify-center text-theme-11"> <i data-feather="loader" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
+                            </div>
+                        @elseif ( $p->status->ID_STATUS == 1 )
+                        <div class="text-base">
+                                <div class="flex items-center justify-center text-theme-1"> <i data-feather="file-plus" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
+                            </div>
+                        @endif
+                    </div>
                 </div>
+                <br>
                 <hr>
-                <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+                <br>
+                <div class="grid grid-cols-12 gap-4 row-gap-3">
                 <div class="col-span-12">
-                    <h2 class="font-semibold text-lg mr-auto">Berkas</h2>
+                    <h2 class="font-semibold text-lg mr-auto">Keterangan</h2>
                 </div>
                 </div>
-
-    
 
                 <div class="modal-footer mt-5">
                     <div class="text-right">
