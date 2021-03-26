@@ -4,13 +4,7 @@
 <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
 <!--Responsive Extension Datatables CSS-->
 <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
-<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
-<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
-        
+       
 <style>
     /*Form fields*/
     .dataTables_wrapper select,
@@ -87,12 +81,11 @@
 <div class="container w-full ">
 
     <div class="intro-y block sm:flex items-center h-10">
-        <h2 class="text-lg font-medium truncate mr-5">
+        <!-- <h2 class="text-lg font-medium truncate mr-5">
             Print Tabel Permohonan yang Sudah Dikonfirmasi
-        </h2>
+        </h2> -->
         <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
-            <!-- <button class="button box flex items-center shadow-md bg-gray-200 text-gray-700"> <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel </button> -->
-            <button class="ml-3 button box flex items-center shadow-md bg-gray-200 text-gray-700" id="print"> <i data-feather="printer" class="hidden sm:block w-4 h-4 mr-2"></i> Print PDF </button>
+            <button class="ml-3 button box flex items-center shadow-md bg-gray-200 text-gray-700 buttons-html5 buttons-pdf" id="print"> <i data-feather="printer" class="hidden sm:block w-4 h-4 mr-2"></i> Print Tabel Permohonan  </button>
         </div>
     </div>  
     <br>
@@ -128,14 +121,20 @@
                     @endif
                     </td>
                     <td style="text-align: center;">
-                    <a data-toggle="modal" data-target="#detail_{{ $p->ID_PERMOHONAN }}">
-                        <button href="javascript:;" title="Detail Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
+                        <a data-toggle="modal" data-target="#detail_{{ $p->ID_PERMOHONAN }}">
+                            <button href="javascript:;" title="Detail Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
                                 <span class="w-5 h-5 flex items-center justify-center">
                                     <i data-feather="more-horizontal" class="w-4 h-4 "></i>
                                 </span>
-                            
-                        </button>
-                    </a>
+                            </button>
+                        </a>
+                        <a data-toggle="modal" data-target="#detail_{{ $p->ID_PERMOHONAN }}">
+                            <button href="javascript:;" title="Print Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-blue-300 dark:text-gray-300">
+                                <span class="w-5 h-5 flex items-center justify-center">
+                                    <i data-feather="printer" class="w-4 h-4 "></i>
+                                </span>
+                            </button>
+                        </a>
                     </td>
                 </tr>
             @endforeach
@@ -251,6 +250,13 @@
 <!--Datatables -->
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
+ 
 <script>
 $(document).ready(function() {
 
@@ -262,28 +268,17 @@ $(document).ready(function() {
 
 });
 
-$(document).ready(function() {
-    $('#print').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            {
-                extend: 'pdfHtml5',
-                download: 'open'
-            }
-        ]
-    } );
-} );
+// $(document).ready(function() {
+//     $('#print').DataTable( {
+//         dom: 'Bfrtip',
+//         buttons: [
+//             {
+//                 extend: 'pdfHtml5',
+//                 download: 'open'
+//             }
+//         ]
+//     } );
+// } );
 
-$(document).ready(function() {
-    $('#print_{{ $p->ID_PERMOHONAN }}').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            {
-                extend: 'pdfHtml5',
-                download: 'open'
-            }
-        ]
-    } );
-} );
 </script>
 @endsection

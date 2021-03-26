@@ -80,6 +80,16 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 <!--Container-->
 <div class="container w-full ">
       		 
+    <div class="intro-y block sm:flex items-center h-10">
+        <!-- <h2 class="text-lg font-medium truncate mr-5">
+            Print Tabel Permohonan yang Sudah Dikonfirmasi
+        </h2> -->
+        <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
+            <button class="ml-3 button box flex items-center shadow-md bg-gray-200 text-gray-700 buttons-html5 buttons-pdf" id="print"> <i data-feather="printer" class="hidden sm:block w-4 h-4 mr-2"></i> Print Tabel Permohonan  </button>
+        </div>
+    </div>  
+    <br>
+
     <!--Card-->
     <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
     
@@ -87,7 +97,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
             <thead>
                 <tr>
                     <th data-priority="1">Nama Dokumen</th>
-                    <th data-priority="2">Keterangan</th>
+                    <th data-priority="2" width="53%">Keterangan</th>
                     <th data-priority="3">Tanggal</th>
                     <th data-priority="6">Aksi</th>
                 </tr>
@@ -99,13 +109,20 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <td>{{$pp->KETERANGAN}}</td>
                     <td>{{ date('d F Y',strtotime($pp->TANGGAL)) }}</td>
                     <td>
-                        <button href="javascript:;" title="Detail User" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
-                            <a data-toggle="modal" data-target="#detail_{{ $pp->ID_USER }}">
+                        <a data-toggle="modal" data-target="#detail_{{ $pp->ID_USER }}">
+                            <button href="javascript:;" title="Detail Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
                                 <span class="w-5 h-5 flex items-center justify-center">
                                     <i data-feather="more-horizontal" class="w-4 h-4 "></i>
                                 </span>
-                            </a>
-                        </button>
+                            </button>
+                        </a>
+                        <a data-toggle="modal" data-target="#detail_{{ $pp->ID_PERMOHONAN }}">
+                            <button href="javascript:;" title="Print Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-blue-300 dark:text-gray-300">
+                                <span class="w-5 h-5 flex items-center justify-center">
+                                    <i data-feather="printer" class="w-4 h-4 "></i>
+                                </span>
+                            </button>
+                        </a>
                     </td>
                 </tr>
             @endforeach
