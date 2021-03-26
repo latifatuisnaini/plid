@@ -15,10 +15,8 @@ class PermohonanController extends Controller
     public function index()
     {
        $permohonan=Permohonan::
-       select('*','feedback.KETERANGAN')
-       ->join('feedback', 'feedback.ID_PERMOHONAN', '=', 'permohonan.ID_PERMOHONAN')
-       ->where('ID_USER', Auth::user()->ID_USER)
-       ->get();
+        where('ID_USER', Auth::user()->ID_USER)
+        ->get();
         
        return view('users.permohonan', compact('permohonan'));
     }
@@ -37,7 +35,7 @@ class PermohonanController extends Controller
 
         $date=Carbon::parse($request->TANGGAL);
         $date->format('Y-m-d');
-
+        
         Permohonan::insert([
             'DOKUMEN_PERMOHONAN'=> $request->DOKUMEN_PERMOHONAN,
             'KETERANGAN'=> $request->KETERANGAN,

@@ -57,6 +57,6 @@ class Permohonan extends Model
 
 	public function feedback()
 	{
-		return $this->hasMany(Feedback::class, 'ID_PERMOHONAN');
+		return $this->hasOne(Feedback::class, 'ID_PERMOHONAN');
 	}
 }

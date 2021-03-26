@@ -133,27 +133,36 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <th data-priority="1">ID Permohonan</th>
                         <th data-priority="2">Dokumen Permohonan</th>
                         <th data-priority="3">Keterangan</th>
-                        <th data-priority="4">Tanggal</th>
+                        <th data-priority="4">Tanggal Permohonan</th>
                         <th data-priority="5">Status Permohonan</th>
+                        <th data-priority="6">Aksi</th>
                     </tr>
                 </thead>
+
                 <tbody style="text-align: center;">
                 @foreach($permohonan as $p)
                     <tr id="{{$p->ID_PERMOHONAN}}">
                         <td>{{$p->ID_PERMOHONAN}}</td>
                         <td>{{$p->DOKUMEN_PERMOHONAN}}</td>
                         <td>{{$p->KETERANGAN}}</td>
-                        <td>{{ date('d-m-Y', strtotime($p->TANGGAL)) }}</td>
+                        <td>{{ date('d F Y',strtotime($p->TANGGAL)) }}</td>
                         <td>
                             <div class="mt-1 mb-1"> 
                             @if ($p->status->ID_STATUS == 1)
                                 <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-33 text-white">{{$p->status->STATUS}}</a>
                             @elseif ($p->status->ID_STATUS == 2)
-                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-12 text-white">{{$p->status->STATUS}}</a>
+                                <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-12 text-white">Diproses</a>
                             @elseif ($p->status->ID_STATUS == 3)
                                 <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-9 text-white">{{$p->status->STATUS}}</a>
                             @elseif ($p->status->ID_STATUS == 4)
                                 <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-6 text-white">{{$p->status->STATUS}}</a>
+                            @endif
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mt-1 mb-1"> 
+                            @if ($p->status->ID_STATUS == 3)
+                            <a href="javascript:;" class="px-3 py-2 w-24 rounded-full mr-1 mb-2 bg-theme-33 text-white"><i data-feather="download" class="w-6 h-6 mr-2"></i>Download</a>
                             @endif
                             </div>
                         </td>
@@ -174,10 +183,11 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
         <div class="modal" id="tambah_dokumen_permohonan">
             <div class="modal__content modal__content--lg py-5 pl-5 pr-5 ml-auto">
                 <div class="modal-header">
-                    <div class="modal__content relative"> <a data-dismiss="modal" href="javascript:;" class="top-0 mt-3 mr-0" style="float: right;"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
+                    <div class="modal__content relative">
                     </div>
-                    <div class="flex items-center py-3 sm:py-3 border-b border-gray-200 dark:border-dark-5">
-                        <h2 class="font-bold text-2xl flex"><i data-feather="folder" class="w-8 h-8 mr-3"></i>Tambah Dokumen Permohonan</h2>
+                     <div class="flex px-2 sm:pb-3 sm:pt-1 border-b border-gray-200 dark:border-dark-5">
+                        <h2 class="font-bold text-2xl flex"><i data-feather="info" class="w-8 h-8 mr-2"></i>Tambah Permohonan</h2>
+                        <a data-dismiss="modal" href="javascript:;" class="mr-3 ml-auto" id="close_{{$p->ID_PERMOHONAN}}"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
                     </div>
                 </div>
                     <div class="modal-body">
@@ -186,24 +196,30 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 
                     <input type="hidden" name="ID_USER" value="{{ Auth::user()->ID_USER }}">
                     
-                    <div class="flex flex-col sm:flex-row items-center mt-3"> 
-                        <label class="w-full sm:w-20 sm:text-left sm:mr-5 font-medium">Dokumen Permohonan</label> 
+                    <div class="grid grid-cols-12 gap-4 row-gap-3">
+                    <div class="col-span-12">
+                        <label class="font-semibold text-lg mr-auto mt-3">Dokumen Permohonan</label> 
                             <input type="text" class="input w-full border mt-2 flex-1" placeholder="Dokumen Permohonan" name="DOKUMEN_PERMOHONAN" id="DOKUMEN_PERMOHONAN" required >
                     </div>
+                    </div>
                     
-                    <div class="flex flex-col sm:flex-row items-center mt-3"> 
-                        <label class="w-full sm:w-20 sm:text-left sm:mr-5 font-medium">Keterangan</label> 
+                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
+                    <div class="col-span-12">
+                        <label class="font-semibold text-lg mr-auto">Keterangan</label> 
                             <textarea class="input w-full border mt-2 flex-1" name="KETERANGAN" id="KETERANGAN"> </textarea>
                     </div>
-                    <div class="flex flex-col sm:flex-row items-center mt-3"> 
-                    <label class="w-full sm:w-20 sm:text-left sm:mr-5 font-medium">Tanggal</label> 
+                    </div>
+
+                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
+                    <div class="col-span-12">
+                    <label class="font-semibold text-lg mr-auto">Tanggal Permohonan</label> 
                         <div class="relative">
                             <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4"><i data-feather="calendar" class="w-4 h-4"></i> 
                             </div> 
                             <input class="datepicker input pl-12 border" data-single-mode="true" name="TANGGAL" id ="TANGGAL" required>
                         </div>
                     </div>
-                    
+                    </div>
                     </div>
 
                 <div class="modal-footer mt-5">
@@ -223,64 +239,79 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 <div class="modal" id="detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}">
             <div class="modal__content modal__content--lg py-5 pl-5 pr-5 ml-auto">
                 <div class="modal-header">
-                    <div class="modal__content relative"> <a data-dismiss="modal" href="javascript:;" class="top-0 mt-3 mr-0" style="float: right;"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
+                <div class="modal__content relative">
                     </div>
-                    <div class="flex items-center py-3 sm:py-3 border-b border-gray-200 dark:border-dark-5">
-                        <h2 class="font-bold text-2xl flex"><i data-feather="file-text" class="w-8 h-8 mr-3"></i>Detail Dokumen Permohonan #{{ $p->ID_PERMOHONAN }}</h2>
+                <div class="flex px-2 sm:pb-3 sm:pt-1 border-b border-gray-200 dark:border-dark-5">
+                        <h2 class="font-bold text-2xl flex"><i data-feather="info" class="w-8 h-8 mr-2"></i>Detail Permohonan #{{ $p->ID_PERMOHONAN }}</h2>
+                        <a data-dismiss="modal" href="javascript:;" class="mr-3 ml-auto" id="close_{{$p->ID_PERMOHONAN}}"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
                     </div>
                     
                 </div>
                     
                     <div class="modal-body">
-                    <div class="flex sm:flex-row items-center mt-3"> 
-                        <label class="w-full sm:w-20 sm:text-left sm:mr-5 font-medium">Dokumen Permohonan</label> 
+                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
+                    <div class="col-span-12">
+                        <label class="font-semibold text-lg mr-auto">Dokumen Permohonan</label> 
                         <div class="text-base">{{ $p->DOKUMEN_PERMOHONAN }}</div>
                     </div>
+                    </div>
                     
-                    <div class="flex flex-col sm:flex-row items-center mt-3"> 
-                        <label class="w-full sm:w-20 sm:text-right sm:mr-5 font-medium">Keterangan Dokumen</label> 
+                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
+                    <div class="col-span-12"> 
+                        <label class="font-semibold text-lg mr-auto">Keterangan Dokumen</label> 
                         <div class="text-base">{{ $p->KETERANGAN }}</div>
                     </div>
-                    <div class="flex flex-col sm:flex-row items-center mt-3 mb-5"> 
-                    <label class="w-full sm:w-20 sm:text-left sm:mr-5 font-medium">Tanggal</label> 
+                    </div>
+
+                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
+                    <div class="col-span-12">
+                    <label class="font-semibold text-lg mr-auto">Tanggal Permohonan</label> 
                         <div class="relative">
-                                <div class="text-base">{{ date('d-m-Y', strtotime($p->TANGGAL)) }}</div>
+                                <div class="text-base">{{ date('d F Y',strtotime($p->TANGGAL)) }}</div>
                         </div>
                     </div>
-                    <div class="flex flex-col sm:flex-row items-center mt-3"> 
-                        <label class="w-full sm:w-20 sm:text-left sm:mr-5 font-medium">Status</label> 
+                    </div>
+
+                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
+                    <div class="col-span-12">
+                        <label class="font-semibold text-lg">Status</label> 
                         @if ( $p->status->ID_STATUS == 4 )
                         <div class="text-base">
-                                <div class="flex items-center justify-center text-theme-6"> <i data-feather="x-square" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
+                                <div class="flex items-center text-theme-6"> <i data-feather="x-square" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
                         </div>
                         @elseif ( $p->status->ID_STATUS == 3 )
                         <div class="text-base">
-                                <div class="flex items-center justify-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
+                                <div class="flex items-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
                             </div>
                         @elseif ( $p->status->ID_STATUS == 2 )
                         <div class="text-base">
-                                <div class="flex items-center justify-center text-theme-11"> <i data-feather="loader" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
+                                <div class="flex items-center text-theme-11"> <i data-feather="loader" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
                             </div>
                         @elseif ( $p->status->ID_STATUS == 1 )
                         <div class="text-base">
-                                <div class="flex items-center justify-center text-theme-1"> <i data-feather="file-plus" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
+                                <div class="flex items-center text-theme-1"> <i data-feather="file-plus" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
                             </div>
                         @endif
                     </div>
-                </div>
-                <br>
+                 </div>
+                    </div>
+               
                 <hr>
-                <br>
-                <div class="grid grid-cols-12 gap-4 row-gap-3">
+                <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
                 <div class="col-span-12">
-                    <h2 class="font-semibold text-lg mr-auto">Keterangan</h2>
+                    <h2 class="font-semibold text-lg mr-auto">Keterangan Status Dokumen</h2>
+                    <div class="text-base">{{ $p->feedback()->KETERANGAN }}</div>
+                </div>
+                </div>
+
+                <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
+                <div class="col-span-12">
+                    <h2 class="font-semibold text-lg mr-auto">Tanggal Feedback</h2>
+                    <div class="text-base">{{ date('h:i:s , d F Y ',strtotime($p->feedback->TGL_FEEDBACK)) }}</div>
                 </div>
                 </div>
 
                 <div class="modal-footer mt-5">
-                    <div class="text-right">
-                    <button type="button" class="button w-24 shadow-md mr-1 mb-2 bg-red-500 text-white" data-dismiss="modal">Cancel</button> 
-                    <button class="button items-right w-24 shadow-md mr-1 mb-2 justify-right bg-theme-1 text-white shadow-md" type="submit">Simpan</button>
                     </form>
                     </div>
                 </div>
@@ -314,7 +345,8 @@ $(document).ready(function() {
     $('tbody tr').on('click',function(){
         var id = $(this).attr('id');
         console.log('detail_dokumen_permohonan_'+id);
-        $('');
+        $("#close_"+id)[0].click();
+
         // var modal = document.getElementById("detail_dokumen_permohonan_"+id);
         // modal.classList.toggle("show");
         // modal.classList.toggle("flex");
@@ -324,6 +356,8 @@ $(document).ready(function() {
         // modal2.classList.toggle("hidden");
         // modal2.classList.toggle("flex");
     });
+
+    
 
 });
 
