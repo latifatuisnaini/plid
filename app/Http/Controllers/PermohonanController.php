@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Feedback;
 use App\Models\Permohonan;
 use App\Models\Status;
 use Carbon\Carbon;
@@ -49,9 +50,9 @@ class PermohonanController extends Controller
 
     }   
     public function show($id){
-        $permohonan = Permohonan::find($id);
+        $feedback = Feedback::find($id);
         
-        return Storage::disks('public')->download($permohonan->feedback->LINK_DOWNLOAD);
+        return Storage::disk('public')->download('dokumen/'.$feedback->LINK_DOWNLOAD);
         
     }
     
