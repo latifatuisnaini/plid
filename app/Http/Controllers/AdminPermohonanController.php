@@ -77,22 +77,29 @@ class AdminPermohonanController extends Controller
 
     
 
-    public function uploadDokumen(Request $request)
+    public function uploadDokumen(Request $request,$id)
     {
         $request->validate([
-            'LINK_DOWNLOAD' => 'required|file|mimes:jpeg,png,jpg,doc,docx,pdf,zip'
+            'LINK_DOWNLOAD' => 'required|file|mimes:jpeg,png,jpg,doc,docx,pdf,zip',
+            'NAMA_FILE' => 'required|file|mimes:jpeg,png,jpg,doc,docx,pdf,zip'
         ]);
 
         $feedback = Feedback::where('ID_PERMOHONAN', $request->ID_PERMOHONAN)->pluck('ID_FEEDBACK')->first();
         //dd($request->ID_PERMOHONAN);
         $feedbacks = Feedback::find($feedback);
-
         $date=date('Y-m-d_h:i:s');
         $link_download = $date.'_'.$request->file('LINK_DOWNLOAD')->getClientOriginalName();
-        File::put('dokumen',$request->LINK_DOWNLOAD,$link_download);
+        $nama_file= $request->file('NAMA_FILE')->getClientOriginalName();
+        $file = File::put('dokumen',$request->LINK_DOWNLOAD);
+        $file->move(public_path('storage/dokumen'),$link_download);
 
         $feedbacks->update([
-            'LINK_DOWNLOAD' => $link_download
+            'LINK_DOWNLOAD' => $link_download,
+            'NAMA_FILE' => $nama_file
+        ]);
+        
+        Permohonan::find($id)->update([
+            'ID_STATUS' => 3,
         ]);
         return redirect('admin/permohonan-pending');
     }
