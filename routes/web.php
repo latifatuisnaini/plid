@@ -73,6 +73,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::get('/cetak-permohonan-pending','AdminPermohonanController@cetakpdfPending');
     Route::get('/cetak-permohonan-confirm','AdminPermohonanController@cetakpdfConfirm');
     Route::post('/permohonan-pending/upload-dokumen/{id}','AdminPermohonanController@uploadDokumen')->name('');
+    Route::get('/permohonan/download/{id}', 'AdminPermohonanController@download')->name('admin-download');
 
 });
  

@@ -217,7 +217,7 @@
                                 <td>{{$p->feedback->NAMA_FILE}}</td>
                                 <td>{{date('d F Y ',strtotime($p->feedback->EXPIRED_DATE))}}</td>
                                 <td>
-                                <a href ="{{ route('downloadpermohonan', $p->feedback->ID_FEEDBACK) }}" class="button mb-5 mr-6 mt-3 flex items-center justify-center bg-theme-1 text-white tombol-tambah-download" style="float:right;" ><i data-feather="download" class="w-4 h-4 mr-2"></i>Download</a>
+                                <a href ="{{ route('admin-download', $p->feedback->ID_FEEDBACK) }}" class="button mb-5 mr-6 mt-3 flex items-center justify-center bg-theme-1 text-white tombol-tambah-download" style="float:right;" ><i data-feather="download" class="w-4 h-4 mr-2"></i>Download</a>
                                 </td>
                             </tr>
                         </tbody>

@@ -129,6 +129,12 @@ class AdminPermohonanController extends Controller
         return $pdf->stream();
     }
 
+    public function download($id){
+        $feedback = Feedback::find($id);
+        return Storage::disk('public')->download('dokumen/'.$feedback->LINK_DOWNLOAD);
+        
+    }
+
     /**
      * Show the form for creating a new resource.
      *
