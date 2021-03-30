@@ -28,10 +28,7 @@ class AdminPermohonanController extends Controller
 
     public function indexConfirm()
     {
-        $permohonan_confirm = Permohonan::select('permohonan.ID_PERMOHONAN', 'permohonan.ID_USER', 
-        'permohonan.ID_STATUS','permohonan.TANGGAL', 'permohonan.DOKUMEN_PERMOHONAN', 
-        'permohonan.KETERANGAN', 'feedback.EXPIRED_DATE', 'feedback.NAMA_FILE', 'feedback.KETERANGAN AS KETERANGAN_FEEDBACK')
-        ->join('feedback', 'feedback.ID_PERMOHONAN', '=', 'permohonan.ID_PERMOHONAN')
+        $permohonan_confirm = Permohonan::join('feedback', 'feedback.ID_PERMOHONAN', '=', 'permohonan.ID_PERMOHONAN')
         ->where('ID_STATUS',3)->orWhere('ID_STATUS', 4)->orderBy('permohonan.ID_PERMOHONAN','DESC')->get();
         $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
         $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
