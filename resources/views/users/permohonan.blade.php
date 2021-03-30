@@ -162,7 +162,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <td>
                             <div class="mt-1 mb-1"> 
                             
-                            <button href="javascript:;" title="Detail User" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300"><a data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}"><span class="w-5 h-5 flex items-center justify-center"> <i data-feather="more-horizontal" class="w-4 h-4 "></i></span></a> </button>  
+                            <button href="javascript:;" title="Detail Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300"><a data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}"><span class="w-5 h-5 flex items-center justify-center"> <i data-feather="more-horizontal" class="w-4 h-4 "></i></span></a> </button>  
                          
                             </div>
                         </td>
@@ -307,33 +307,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 </div>
                 </div>
                 @endif
-                @if($p->ID_STATUS == 3)
-                <div class="container w-full">
-                <div class="p-6 mt-6 lg:mt-0 rounded shadow">
-                    <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
-                    <thead>
-                        <tr>
-                            <th data-priority="1">Nama Dokumen</th>
-                            <th data-priority="2">Ukuran File</th>
-                            <th data-priority="3">Expired Date</th>
-                        </tr>
-                    </thead>
-                    </table>
-                </div>
-                <tbody style="text-align: center;">
-                @foreach($feedback as $f)
-                    <tr>
-                        <td>{{$f->NAMA_FILE}}</td>
-                        <td>{{$f->KETERANGAN}}</td>
-                        <td>{{$f->EXPIRED_DATE}}</td>
-                        <td>
-                        </td>
-                    </tr>
-                </tbody>
-                @endforeach
-                </div>
-
-                @endif
+                
                 <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
                 <div class="col-span-12">
                     <h2 class="font-semibold text-lg mr-auto">Keterangan Status Dokumen</h2>
@@ -341,13 +315,38 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 </div>
                 </div>
 
-                <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
+                <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3 mb-5">
                 <div class="col-span-12">
                     <h2 class="font-semibold text-lg mr-auto">Tanggal Feedback</h2>
                     <div class="text-base">{{ date('h:i:s , d F Y ',strtotime($p->feedback->TGL_FEEDBACK)) }}</div>
                 </div>
                 </div>
-                
+                @endif
+                <hr>
+                @if($p->ID_STATUS == 3)
+                <div class="container w-full mt-4">
+                <div class="p-3 mt-4 lg:mt-0 rounded shadow">
+                    <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+                    <thead>
+                        <tr>
+                            <th data-priority="1">Nama File</th>
+                            <th data-priority="2">Expired Date</th>
+                            <th data-priority="3">Aksi</th>
+                        </tr>
+                    </thead>
+                        </div>
+                    <tbody style="text-align: center;">
+                        <tr>
+                            <td>{{$p->feedback->NAMA_FILE}}</td>
+                            <td>{{date('d F Y ',strtotime($p->feedback->EXPIRED_DATE))}}</td>
+                            <td>
+                            <a href ="{{ route('downloadpermohonan', $permohonan->feedback->ID_FEEDBACK) }}" class="button mb-5 mr-6 mt-3 flex items-center justify-center bg-theme-1 text-white tombol-tambah-download" style="float:right;" ><i data-feather="download" class="w-4 h-4 mr-2"></i>Download</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+
                 @endif
 
                 <div class="modal-footer mt-5">

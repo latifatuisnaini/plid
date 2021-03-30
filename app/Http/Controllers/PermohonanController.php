@@ -7,6 +7,7 @@ use App\Models\Permohonan;
 use App\Models\Status;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Storage;
 use Auth;
 use DB;
 
@@ -46,7 +47,12 @@ class PermohonanController extends Controller
 
         return redirect('/users/permohonan')->with('success', 'Data Permohonan Berhasil Ditambahkan');
 
+    }   
+    public function show($id){
+        $permohonan = Permohonan::find($id);
+        
+        return Storage::disks('public')->download($permohonan->feedback->LINK_DOWNLOAD);
+        
     }
-
     
 }
