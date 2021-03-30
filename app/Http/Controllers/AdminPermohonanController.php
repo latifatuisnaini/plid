@@ -8,6 +8,7 @@ use App\Models\Permohonan;
 use App\Models\Feedback;
 use \Barryvdh\DomPDF\PDF;
 use Storage;
+use File;
 
 
 class AdminPermohonanController extends Controller
@@ -89,8 +90,9 @@ class AdminPermohonanController extends Controller
         //dd($request->ID_PERMOHONAN);
         $feedbacks = Feedback::find($feedback);
 
-        $link_download = date('Y-m-d_h:i:s').'_'.$request->file('LINK_DOWNLOAD')->getClientOriginalName();
-        Storage::disk('public')->put('dokumen/'.$link_download,$request->LINK_DOWNLOAD);
+        $date=date('Y-m-d_h:i:s');
+        $link_download = $date.'_'.$request->file('LINK_DOWNLOAD')->getClientOriginalName();
+        File::put('dokumen',$request->LINK_DOWNLOAD,$link_download);
 
         $feedbacks->update([
             'LINK_DOWNLOAD' => $link_download
