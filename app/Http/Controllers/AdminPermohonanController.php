@@ -83,20 +83,17 @@ class AdminPermohonanController extends Controller
     public function uploadDokumen(Request $request,$id)
     {
         $request->validate([
-            'LINK_DOWNLOAD' => 'required|file|mimes:jpeg,png,jpg,doc,docx,pdf,zip',
-            'NAMA_FILE' => 'required|file|mimes:jpeg,png,jpg,doc,docx,pdf,zip'
+            'LINK_DOWNLOAD' => 'required|file|mimes:jpeg,png,jpg,doc,docx,pdf,zip'
         ]);
 
-        $feedback = Feedback::where('ID_PERMOHONAN', $request->ID_PERMOHONAN)->pluck('ID_FEEDBACK')->first();
-        //dd($request->ID_PERMOHONAN);
-        $feedbacks = Feedback::find($feedback);
-        $date=date('Y-m-d_h:i:s');
+       
+        $date=date('Y-m-d_his');
         $link_download = $date.'_'.$request->file('LINK_DOWNLOAD')->getClientOriginalName();
-        $nama_file= $request->file('NAMA_FILE')->getClientOriginalName();
-        $file = File::put('dokumen',$request->LINK_DOWNLOAD);
-        $file->move(public_path('storage/dokumen'),$link_download);
+        $nama_file= $request->file('LINK_DOWNLOAD')->getClientOriginalName();
+        // $file = File::put('dokumen',$request->file('LINK_DOWNLOAD'));
+        $request->file('LINK_DOWNLOAD')->move(base_path('public/storage/dokumen'),$link_download);
 
-        $feedbacks->update([
+        Feedback::where('ID_PERMOHONAN','=',$id)->update([
             'LINK_DOWNLOAD' => $link_download,
             'NAMA_FILE' => $nama_file
         ]);
