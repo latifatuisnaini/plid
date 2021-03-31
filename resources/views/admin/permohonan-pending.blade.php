@@ -68,6 +68,11 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 </style>
 @endsection
 @section('content')
+@if(Session::has('success'))
+<div class="rounded-md w-35 flex items-center px-5 py-4 mb-2 ml-5 bg-theme-18 text-theme-9"> <i data-feather="alert-circle" class="w-6 h-6 mr-2"></i>{{@session::get('success') }}</div>
+@elseif(Session::has('alert_error'))
+<div class="rounded-md w-35 flex items-center px-5 py-4 mb-2 ml-5 bg-theme-31 text-theme-6"> <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i>{{@session::get('alert_error') }}</div>
+@endif
 <div class="intro-y box p-5 mt-5 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">                        
     <div class="flex flex-row">
         <i data-feather="list"></i>
@@ -143,7 +148,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     </div>
                 </div>
                 <div class="modal-body">
-                    <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+                    <div class="mt-5 ml-5 mr-5 grid grid-cols-12 gap-4 row-gap-3">
                         <div class="col-span-12 sm:col-span-6"> 
                             <label class="font-semibold text-lg">Nama Dokumen</label>
                             <div class="text-base">{{ $pp->DOKUMEN_PERMOHONAN }}</div>
@@ -168,40 +173,81 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                                 </button>
                             </a>
                         </div>
-                       
-        
-                        <div class="text-center"> <a href="javascript:;" data-toggle="modal" data-target="#modal_{{ $pp->ID_PERMOHONAN }}"  class="button w-32 mr-2 mb-5 mt-3 flex items-center justify-center bg-theme-9 text-white" style="margin:auto;"><i data-feather="upload-cloud" class="w-6 h-6 mr-2" ></i> Upload </a> </div>
+                        <form action="{{ url('/admin/permohonan-pending/upload-dokumen/'.$pp->ID_PERMOHONAN)}}" method="POST" enctype="multipart/form-data">
+                         @csrf
+                            <div class="grid grid-cols-12 gap-8 row-gap-4 mt-3 mb-5">
+
+                                <div class="col-span-12">
+                                    <label class="font-semibold  text-lg">Dokumen Permohonan</label>
+                                    <input type="hidden" value="{{ $pp->ID_PERMOHONAN }}" name="ID_PERMOHONAN">
+                                    <input type="file" class="input w-full border mt-2 flex-1" accept="file/zip, file/doc, file/docx, file/pdf" name="LINK_DOWNLOAD" id="input-dok" required>   
+                                    <img class="mt-2" id="preview-ktp" height="80" src=""/>
+                                </div>
+                                
+                                <div class="mr-5 mb-5 grid grid-cols-12 gap-4 row-gap-3">
+                                    <div class="col-span-12">
+                                        <label class="font-semibold text-lg">Expired Date</label> 
+                                        
+
+                                             <div class="relative mx-auto mt-2 mb-5"> 
+                                <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4"> 
+                                    <i data-feather="calendar" class="w-4 h-4"></i> 
+                                </div> 
+                                <input type="text" class="datepicker input pl-12 border" data-single-mode="true" name="EXPIRED_DATE"> 
+                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="modal-footer">
+                             <div class="px-5 py-3 text-right border-t border-gray-200 dark:border-dark-5">
+                                <button type="button" class="button w-20 border text-gray-700 dark:border-dark-5 dark:text-gray-300 mr-1" data-dismiss="modal">Cancel</button> 
+                                <button type="submit" class="button w-20 bg-theme-1 text-white">Submit</button>
+                             </div>
+                            </div>
+                        </form>
+                        <!-- <div class="text-center"> <a href="javascript:;" data-toggle="modal" data-target="#modal_{{ $pp->ID_PERMOHONAN }}"  class="button w-32 mr-2 mb-5 mt-3 flex items-center justify-center bg-theme-9 text-white" style="margin:auto;"><i data-feather="upload-cloud" class="w-6 h-6 mr-2" ></i> Upload </a> </div>
                         <div class="modal" id="modal-upload">
-                        </div>
+                        </div> -->
                     </div>
-                </div>
+               
             </div>
         </div>
         
         @endforeach
     @foreach($permohonan_pending as $pp)
     <div class="modal" id="modal_{{ $pp->ID_PERMOHONAN }}">
-    <div class="modal__content" >
-    <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
-        <h2 class="font-medium text-base mr-auto">Upload Dokumen Permohonan</h2>
-    </div>
-        <form action="{{ url('/admin/permohonan-pending/upload-dokumen/'.$pp->ID_PERMOHONAN)}}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
-                <div class="col-span-12">
-                    <label>Dokumen Permohonan</label>
-                    <input type="hidden" value="{{ $pp->ID_PERMOHONAN }}" name="ID_PERMOHONAN">
-                    <input type="file" class="input w-full border mt-2 flex-1" accept="file/zip, file/doc, file/docx, file/pdf" name="LINK_DOWNLOAD" id="input-ktp" required> 
-                    
-                    <img class="mt-2" id="preview-ktp" height="80" src=""/>
+     <div class="modal__content" >
+            <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
+                <h2 class="font-medium text-base mr-auto">Upload Dokumen Permohonan</h2>
+            </div>
+            <!-- <form action="{{ url('/admin/permohonan-pending/upload-dokumen/'.$pp->ID_PERMOHONAN)}}" method="POST" enctype="multipart/form-data">
+                @csrf -->
+                <!-- <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+                    <div class="col-span-12">
+                        <label class="font-semibold  mr-auto">Dokumen Permohonan</label>
+                        <input type="hidden" value="{{ $pp->ID_PERMOHONAN }}" name="ID_PERMOHONAN">
+                        <input type="file" class="input w-full border mt-2 flex-1" accept="file/zip, file/doc, file/docx, file/pdf" name="LINK_DOWNLOAD" id="input-dok" required> 
+                        
+                        <img class="mt-2" id="preview-ktp" height="80" src=""/>
+                    </div>
                 </div>
-            </div>
-            <div class="px-5 py-3 text-right border-t border-gray-200 dark:border-dark-5">
-                <button type="button" class="button w-20 border text-gray-700 dark:border-dark-5 dark:text-gray-300 mr-1" data-dismiss="modal">Cancel</button> 
-                <button type="submit" class="button w-20 bg-theme-1 text-white">Submit</button>
-            </div>
-        </form>
-    </div>
+                <div class="ml-5 mr-5 mb-5 grid grid-cols-12 gap-4 row-gap-3">
+                    <div class="col-span-12">
+                            <label class="font-semibold  mr-auto">Expired Date</label> 
+                                <div class="relative">
+                                <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4"> <i data-feather="calendar" class="w-4 h-4"></i> </div> 
+                                <input type="text" class="datepicker input pl-12 border" data-single-mode="true" name="EXPIRED_DATE" id ="EXPIRED_DATE">
+                            </div>
+                        </diV>
+                    </div> -->
+                        
+                <!-- <div class="px-5 py-3 text-right border-t border-gray-200 dark:border-dark-5">
+                    <button type="button" class="button w-20 border text-gray-700 dark:border-dark-5 dark:text-gray-300 mr-1" data-dismiss="modal">Cancel</button> 
+                    <button type="submit" class="button w-20 bg-theme-1 text-white">Submit</button>
+                </div> -->
+            <!-- </form> -->
+     </div>
     @endforeach
 
         
