@@ -162,7 +162,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <td>
                             <div class="mt-1 mb-1"> 
                             
-                            <button href="javascript:;" title="Detail User" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300"><a data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}"><span class="w-5 h-5 flex items-center justify-center"> <i data-feather="more-horizontal" class="w-4 h-4 "></i></span></a> </button>  
+                            <button href="javascript:;" title="Detail Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300"><a data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}"><span class="w-5 h-5 flex items-center justify-center"> <i data-feather="more-horizontal" class="w-4 h-4 "></i></span></a> </button>  
                          
                             </div>
                         </td>
@@ -192,7 +192,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 
                     <input type="hidden" name="ID_USER" value="{{ Auth::user()->ID_USER }}">
                     
-                    <div class="grid grid-cols-12 gap-4 row-gap-3">
+                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
                     <div class="col-span-12">
                         <label class="font-semibold text-lg mr-auto mt-3">Dokumen Permohonan</label> 
                             <input type="text" class="input w-full border mt-2 flex-1" placeholder="Dokumen Permohonan" name="DOKUMEN_PERMOHONAN" id="DOKUMEN_PERMOHONAN" required >
@@ -209,10 +209,10 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
                     <div class="col-span-12">
                     <label class="font-semibold text-lg mr-auto">Tanggal Permohonan</label> 
-                        <div class="relative">
+                        <div class="relative mt-3">
                             <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4"><i data-feather="calendar" class="w-4 h-4"></i> 
                             </div> 
-                            <input class="datepicker input pl-12 border" data-single-mode="true" name="TANGGAL" id ="TANGGAL" required>
+                            <input class="datepicker input pl-12 border flex" data-single-mode="true" name="TANGGAL" id ="TANGGAL" required>
                         </div>
                     </div>
                     </div>
@@ -225,7 +225,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     </form>
                     </div>
                 </div>
-                
 
                 </div>
             </div>
@@ -245,31 +244,27 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 </div>
                     
                     <div class="modal-body">
-                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
-                    <div class="col-span-12">
-                        <label class="font-semibold text-lg mr-auto">Dokumen Permohonan</label> 
-                        <div class="text-base">{{ $p->DOKUMEN_PERMOHONAN }}</div>
-                    </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
-                    <div class="col-span-12"> 
-                        <label class="font-semibold text-lg mr-auto">Keterangan Dokumen</label> 
-                        <div class="text-base">{{ $p->KETERANGAN }}</div>
-                    </div>
-                    </div>
-
-                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
-                    <div class="col-span-12">
-                    <label class="font-semibold text-lg mr-auto">Tanggal Permohonan</label> 
-                        <div class="relative">
-                                <div class="text-base">{{ date('d F Y',strtotime($p->TANGGAL)) }}</div>
+                <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg mr-auto">Dokumen Permohonan</label> 
+                            <div class="text-base">{{ $p->DOKUMEN_PERMOHONAN }}</div>
                         </div>
-                    </div>
-                    </div>
+                        
+                    
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg mr-auto">Keterangan Dokumen</label> 
+                            <div class="text-base">{{ $p->KETERANGAN }}</div>
+                        </div>
+                   
 
-                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3 mb-5">
-                    <div class="col-span-12">
+                        <div class="col-span-12 sm:col-span-6"> 
+                        <label class="font-semibold text-lg mr-auto">Tanggal Permohonan</label> 
+                            <div class="relative">
+                                    <div class="text-base">{{ date('d F Y',strtotime($p->TANGGAL)) }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-6"> 
                         <label class="font-semibold text-lg">Status</label> 
                         @if ( $p->status->ID_STATUS == 4 )
                         <div class="text-base">
@@ -288,76 +283,73 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                                 <div class="flex items-center text-theme-1 text-lg"> <i data-feather="file-plus" class="w-5 h-5 mr-2"></i> {{$p->status->STATUS}} </div>
                             </div>
                         @endif
-                    </div>
-                 </div>
-                    </div>
+                        </div>
+                </div>
                 @if(isset($p->feedback))
                 <hr>
-                @if($p->ID_STATUS == 2)
-                <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
-                <div class="col-span-12">
-                    <h2 class="font-semibold text-lg mr-auto">Tanggal Estimasi</h2>
-                    <div class="text-base">{{ $p->feedback->WAKTU_ESTIMASI }}</div>
+                <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+                        
+                        @if($p->ID_STATUS == 2)
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <h2 class="font-semibold text-lg mr-auto">Waktu Estimasi</h2>
+                            <div class="text-base">{{ $p->feedback->WAKTU_ESTIMASI }}</div>
+                        </div>
+                        
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <h2 class="font-semibold text-lg mr-auto">Keterangan Estimasi</h2>
+                            <div class="text-base">{{ $p->feedback->KETERANGAN_ESTIMASI }}</div>
+                        </div>
+                        
+                        @endif
+                
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <h2 class="font-semibold text-lg mr-auto">Keterangan Status Dokumen</h2>
+                            <div class="text-base">{{ $p->feedback->KETERANGAN }}</div>
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <h2 class="font-semibold text-lg mr-auto">Tanggal Feedback</h2>
+                            <div class="text-base">{{ date('h:i:s , d F Y ',strtotime($p->feedback->TGL_FEEDBACK)) }}</div>
+                        </div>
+                        
+                        @endif
+
                 </div>
-                </div>
-                <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
-                <div class="col-span-12">
-                    <h2 class="font-semibold text-lg mr-auto">Keterangan Estimasi</h2>
-                    <div class="text-base">{{ $p->feedback->KETERANGAN_ESTIMASI }}</div>
-                </div>
-                </div>
-                @endif
                 @if($p->ID_STATUS == 3)
-                <div class="container w-full">
-                <div class="p-6 mt-6 lg:mt-0 rounded shadow">
+                <hr>
+                    
+               
+                <div class="container w-full mt-4">
+                <div class="p-3 mt-4 lg:mt-0 rounded shadow">
                     <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
-                    <thead>
-                        <tr>
-                            <th data-priority="1">Nama Dokumen</th>
-                            <th data-priority="2">Ukuran File</th>
-                            <th data-priority="3">Expired Date</th>
-                        </tr>
-                    </thead>
+                        <thead>
+                            <tr>
+                                <th data-priority="1">Nama File</th>
+                                <th data-priority="2">Expired Date</th>
+                                <th data-priority="3">Aksi</th>
+                            </tr>
+                        </thead>
+                </div>
+                        <tbody style="text-align: center;">
+                            <tr>
+                                <td>{{$p->feedback->NAMA_FILE}}</td>
+                                <td>{{date('d F Y ',strtotime($p->feedback->EXPIRED_DATE))}}</td>
+                                <td>
+                                <a href ="{{ route('downloadpermohonan', $p->feedback->ID_FEEDBACK) }}" class="button mb-5 mr-6 mt-3 flex items-center justify-center bg-theme-1 text-white tombol-tambah-download" style="float:right;" ><i data-feather="download" class="w-4 h-4 mr-2"></i>Download</a>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
-                <tbody style="text-align: center;">
-                @foreach($feedback as $f)
-                    <tr>
-                        <td>{{$f->NAMA_FILE}}</td>
-                        <td>{{$f->KETERANGAN}}</td>
-                        <td>{{$f->EXPIRED_DATE}}</td>
-                        <td>
-                        </td>
-                    </tr>
-                </tbody>
-                @endforeach
-                </div>
 
                 @endif
-                <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
-                <div class="col-span-12">
-                    <h2 class="font-semibold text-lg mr-auto">Keterangan Status Dokumen</h2>
-                    <div class="text-base">{{ $p->feedback->KETERANGAN }}</div>
-                </div>
-                </div>
-
-                <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
-                <div class="col-span-12">
-                    <h2 class="font-semibold text-lg mr-auto">Tanggal Feedback</h2>
-                    <div class="text-base">{{ date('h:i:s , d F Y ',strtotime($p->feedback->TGL_FEEDBACK)) }}</div>
-                </div>
-                </div>
-                
-                @endif
+                    </div>
 
                 <div class="modal-footer mt-5">
                     </form>
                     </div>
+                    </div>
                 </div>
-                
-
-                </div>
-            </div>
 @endforeach
     
 @endif

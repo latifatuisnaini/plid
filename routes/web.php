@@ -72,12 +72,15 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::get('/cetak-permohonan-open','AdminPermohonanController@cetakpdfOpen');
     Route::get('/cetak-permohonan-pending','AdminPermohonanController@cetakpdfPending');
     Route::get('/cetak-permohonan-confirm','AdminPermohonanController@cetakpdfConfirm');
-    Route::post('/permohonan-pending/upload-dokumen','AdminPermohonanController@uploadDokumen')->name('');
-});
+    Route::post('/permohonan-pending/upload-dokumen/{id}','AdminPermohonanController@uploadDokumen')->name('');
+    Route::get('/permohonan/download/{id}', 'AdminPermohonanController@download')->name('admin-download');
 
+});
+ 
 Route::prefix('users')->middleware(['auth'])->group(function(){
     Route::get('/','UsersController@index');
     Route::resource('/permohonan','PermohonanController');
     Route::get('/users/permohonan', 'PermohonanController@index');
     Route::post('upload_dok','UsersController@uploadDokumen');
+    Route::get('/permohonan/download/{id}', 'PermohonanController@show')->name('downloadpermohonan');
 });

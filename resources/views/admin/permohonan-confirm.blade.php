@@ -186,18 +186,6 @@
                         <!-- <div class="text-base">{{ $p->status->STATUS }}</div> -->
                     </div>
 
-                    @if($p->ID_STATUS == 3)
-                    <div class="col-span-12 sm:col-span-6"> 
-                        <label class="font-semibold text-lg">Expired Date File</label>
-                        <div class="text-base">{{ date('d-m-Y',strtotime($p->EXPIRED_DATE)) }}</div>
-                    </div>
-
-                    <div class="col-span-12 sm:col-span-6"> 
-                        <label class="font-semibold text-lg">Keterangan </label>
-                        <div class="text-base">{{ $p->KETERANGAN_FEEDBACK }}</div>
-                    </div>
-
-                    @else
                     <div class="col-span-12 sm:col-span-6 mt-2"> 
                         <label class="font-semibold text-lg">Diajukan Oleh :</label>
                         <div class="text-base">{{ $p->user->NAMA_LENGKAP }}</div>
@@ -207,32 +195,40 @@
                             </button>
                         </a>
                     </div>
+                @if(isset($p->feedback))
                     <div class="col-span-12 sm:col-span-6 mt-2">
                         <label class="font-semibold text-lg">Keterangan </label>
-                        <div class="text-base">{{ $p->KETERANGAN_FEEDBACK }}</div>
+                        <div class="text-base">{{ $p->feedback->KETERANGAN}}</div>
+                     
                     </div>
-                    @endif
                 
                     @if($p->ID_STATUS == 3)
-                    <div class="col-span-12 sm:col-span-6"> 
-                            <label class="font-semibold text-lg">Diajukan Oleh :</label>
-                            <div class="text-base">{{ $p->user->NAMA_LENGKAP }}</div>
-                            <a href="{{ route('user.show',$p->ID_USER) }}" target="_blank">
-                                <button class="button w-32 mr-2 mb-2 mt-2 flex items-center justify-center bg-theme-1 text-white"> 
-                                    <i data-feather="external-link" class="w-4 h-4 mr-2"></i> Detail User 
-                                </button>
-                            </a>
-                    </div>
-                    <div class="col-span-12 sm:col-span-6">
-                        <label class="font-semibold text-lg">Nama File </label>
-                        <div class="text-base">{{ $p->NAMA_FILE}}</div>
-                        <a href="{{ route('user.show',$p->ID_USER) }}" target="_blank">
-                                <button class="button w-40 mr-2 mb-2 mt-2 flex items-center justify-center bg-theme-1 text-white"> 
-                                    <i data-feather="download" class="w-4 h-4 mr-2"></i> Download File 
-                                </button>
-                        </a>
+                    <div class="col-span-12 sm:col-span-12"> 
+                        <div class="p-3 mt-4 lg:mt-0 rounded shadow">
+                            <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+                            <thead>
+                                <tr style="text-align: center;">
+                                    <th data-priority="1">Nama File</th>
+                                    <th data-priority="2">Expired Date</th>
+                                    <th data-priority="3">Aksi</th>
+                                </tr>
+                            </thead>
+                                </div>
+                            <tbody >
+                                <tr style="text-align: center;">
+                                    <td>{{$p->feedback->NAMA_FILE}}</td>
+                                    <td>{{date('d F Y ',strtotime($p->feedback->EXPIRED_DATE))}}</td>
+                                    <td>
+                                    <a href ="{{ route('admin-download', $p->feedback->ID_FEEDBACK) }}" class="button mb-5 mr-6 mt-3 flex items-center justify-center bg-theme-1 text-white tombol-tambah-download" style="float:right;" ><i data-feather="download" class="w-4 h-4 mr-2"></i>Download</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    
                     </div>
                     @endif
+                @endif
                 </div>
             </div>
             </div>

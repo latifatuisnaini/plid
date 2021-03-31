@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Feedback;
 use App\Models\Permohonan;
 use App\Models\Status;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Storage;
 use Auth;
 use DB;
 
@@ -46,7 +48,12 @@ class PermohonanController extends Controller
 
         return redirect('/users/permohonan')->with('success', 'Data Permohonan Berhasil Ditambahkan');
 
+    }   
+    public function show($id){
+        $feedback = Feedback::find($id);
+        
+        return Storage::disk('public')->download('dokumen/'.$feedback->LINK_DOWNLOAD);
+        
     }
-
     
 }

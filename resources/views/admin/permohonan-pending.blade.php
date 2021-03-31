@@ -185,13 +185,14 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
     <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
         <h2 class="font-medium text-base mr-auto">Upload Dokumen Permohonan</h2>
     </div>
-        <form action="{{ url('/admin/permohonan-pending/upload-dokumen')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('/admin/permohonan-pending/upload-dokumen/'.$pp->ID_PERMOHONAN)}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                 <div class="col-span-12">
                     <label>Dokumen Permohonan</label>
                     <input type="hidden" value="{{ $pp->ID_PERMOHONAN }}" name="ID_PERMOHONAN">
                     <input type="file" class="input w-full border mt-2 flex-1" accept="file/zip, file/doc, file/docx, file/pdf" name="LINK_DOWNLOAD" id="input-ktp" required> 
+                    
                     <img class="mt-2" id="preview-ktp" height="80" src=""/>
                 </div>
             </div>
