@@ -195,36 +195,40 @@
                             </button>
                         </a>
                     </div>
+                @if(isset($p->feedback))
                     <div class="col-span-12 sm:col-span-6 mt-2">
                         <label class="font-semibold text-lg">Keterangan </label>
-                        <div class="text-base">{{ $p->KETERANGAN_FEEDBACK }}</div>
+                        <div class="text-base">{{ $p->feedback->KETERANGAN}}</div>
+                     
                     </div>
                 
                     @if($p->ID_STATUS == 3)
                     <div class="col-span-12 sm:col-span-12"> 
-                    <div class="p-3 mt-4 lg:mt-0 rounded shadow">
-                        <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
-                        <thead>
-                            <tr style="text-align: center;">
-                                <th data-priority="1">Nama File</th>
-                                <th data-priority="2">Expired Date</th>
-                                <th data-priority="3">Aksi</th>
-                            </tr>
-                        </thead>
-                            </div>
-                        <tbody >
-                            <tr style="text-align: center;">
-                                <td>{{$p->feedback->NAMA_FILE}}</td>
-                                <td>{{date('d F Y ',strtotime($p->feedback->EXPIRED_DATE))}}</td>
-                                <td>
-                                <a href ="{{ url('/permohonan/download/', $p->feedback->ID_FEEDBACK) }}" class="button mb-5 mr-6 mt-3 flex items-center justify-center bg-theme-1 text-white tombol-tambah-download" style="float:right;" ><i data-feather="download" class="w-4 h-4 mr-2"></i>Download</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                        </table>
+                        <div class="p-3 mt-4 lg:mt-0 rounded shadow">
+                            <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+                            <thead>
+                                <tr style="text-align: center;">
+                                    <th data-priority="1">Nama File</th>
+                                    <th data-priority="2">Expired Date</th>
+                                    <th data-priority="3">Aksi</th>
+                                </tr>
+                            </thead>
+                                </div>
+                            <tbody >
+                                <tr style="text-align: center;">
+                                    <td>{{$p->feedback->NAMA_FILE}}</td>
+                                    <td>{{date('d F Y ',strtotime($p->feedback->EXPIRED_DATE))}}</td>
+                                    <td>
+                                    <a href ="{{ route('admin-download', $p->feedback->ID_FEEDBACK) }}" class="button mb-5 mr-6 mt-3 flex items-center justify-center bg-theme-1 text-white tombol-tambah-download" style="float:right;" ><i data-feather="download" class="w-4 h-4 mr-2"></i>Download</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    
                     </div>
-                </div>
                     @endif
+                @endif
                 </div>
             </div>
             </div>
