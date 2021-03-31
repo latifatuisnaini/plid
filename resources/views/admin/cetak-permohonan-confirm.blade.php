@@ -3,24 +3,36 @@
 <head>
 	<title>Permohonan User yang Sudah Dikonfirmasi</title>
 	<link rel="stylesheet" href="{{$_SERVER['DOCUMENT_ROOT'] . '/public/dist/css/app.css'}}" >
+    <link rel="stylesheet" href="{{$_SERVER['DOCUMENT_ROOT'] . '/public/dist/images/logo-pal.png'}}" >
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<style type="text/css">
-        h5 {color: darkslateblue; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
-        table{
-            border: 1pt black;
+        h3 {
+            color: black; 
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            text-align: center;
         }
-
+        table,tr,th, td{
+            border: 1pt solid black;
+            border-collapse: collapse;
+        }
+        th, td{
+            padding: 5px;
+            font-size: 9pt;
+        }
 	    th{
             color: black;
             font-size: 10pt;
         } 
-        
 	</style>
     
-    <h5>Daftar Permohonan User yang Sudah Dikonfirmasi</h4>
-    <br>
-    <table id="view" class=" stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+    <img src="{{ public_path('dist/images/logo-pal.png') }}" style="width:8rem;"> 
+    <span style="font-size: 20px; color: #03428b; font-family: 'Lato', sans-serif;  display: inline-block; margin-left: 10px; font-weight: 400;">PT. PAL Indonesia (Persero)</span>
+
+    <h3>Daftar Permohonan User yang Sudah Dikonfirmasi</h3>
+
+    <table id="view" class=" display" style="width:100%; padding-top: 0.5em;  padding-bottom: 1em;">
         <thead>
             <tr>
                 <th data-priority="3" width="12%">Tanggal</th>
@@ -32,10 +44,10 @@
         <tbody>
         @foreach($permohonan_confirm as $p)
             <tr>
-                <td>{{ date('d F Y',strtotime($p->TANGGAL)) }}</td>
+                <td style="text-align: center;">{{ date('d F Y',strtotime($p->TANGGAL)) }}</td>
                 <td>{{$p->DOKUMEN_PERMOHONAN}}</td>
                 <td>{{$p->KETERANGAN}}</td>
-                <td>
+                <td style="text-align: center;">
                 @if($p->ID_STATUS == 3)
                     <!-- <div class="text-center"> -->
                         <div class="flex items-center justify-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
