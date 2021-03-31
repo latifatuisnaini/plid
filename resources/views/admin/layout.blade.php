@@ -120,6 +120,16 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="menu__title">Permohonan : Confirm</div>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{url('/admin/kategori-dokumen')}}" class="menu">
+                        <div class="menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trello"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        
+                        </div>
+                        <div class="menu__title"> Kategori Dokumen</div>
+                    </a>
+                </li>
                 
             </ul>
         </div>
@@ -205,6 +215,17 @@ License: You must have a valid license purchased only from themeforest(the above
                             <div class="side-menu__title"> Dokumen Publik </div>
                         </a>
                     </li>
+
+                    <li>
+                        <a href="{{url('/admin/kategori-dokumen')}}" class="side-menu @if(request() -> segment(1) == 'admin' && request()->segment(2) == 'kategori-dokumen') side-menu--active @endif">
+                            <div class="side-menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trello"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><rect x="7" y="7" width="3" height="9"/><rect x="14" y="7" width="3" height="5"/></svg>
+                            
+                            </div>
+                            <div class="side-menu__title"> Kategori Dokumen</div>
+                        </a>
+                    </li>
+
                 </ul>
             </nav>
             <!-- END: Side Menu -->

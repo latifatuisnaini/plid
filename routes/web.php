@@ -82,6 +82,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
         $kategori = KategoriDokumen::where('ID_JENIS_KATEGORI','=',$id)->get();
         return response()->json($kategori);
     });
+    Route::resource('/kategori-dokumen','KategoriDokumenController');
 });
  
 Route::prefix('users')->middleware(['auth'])->group(function(){
