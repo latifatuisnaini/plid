@@ -28,10 +28,7 @@ class AdminPermohonanController extends Controller
 
     public function indexConfirm()
     {
-        $permohonan_confirm = Permohonan::select('permohonan.ID_PERMOHONAN', 'permohonan.ID_USER', 
-        'permohonan.ID_STATUS','permohonan.TANGGAL', 'permohonan.DOKUMEN_PERMOHONAN', 
-        'permohonan.KETERANGAN', 'feedback.EXPIRED_DATE', 'feedback.NAMA_FILE', 'feedback.KETERANGAN AS KETERANGAN_FEEDBACK')
-        ->join('feedback', 'feedback.ID_PERMOHONAN', '=', 'permohonan.ID_PERMOHONAN')
+        $permohonan_confirm = Permohonan::join('feedback', 'feedback.ID_PERMOHONAN', '=', 'permohonan.ID_PERMOHONAN')
         ->where('ID_STATUS',3)->orWhere('ID_STATUS', 4)->orderBy('permohonan.ID_PERMOHONAN','DESC')->get();
         $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
         $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
@@ -80,22 +77,26 @@ class AdminPermohonanController extends Controller
 
     
 
-    public function uploadDokumen(Request $request)
+    public function uploadDokumen(Request $request,$id)
     {
         $request->validate([
             'LINK_DOWNLOAD' => 'required|file|mimes:jpeg,png,jpg,doc,docx,pdf,zip'
         ]);
 
-        $feedback = Feedback::where('ID_PERMOHONAN', $request->ID_PERMOHONAN)->pluck('ID_FEEDBACK')->first();
-        //dd($request->ID_PERMOHONAN);
-        $feedbacks = Feedback::find($feedback);
-
-        $date=date('Y-m-d_h:i:s');
+       
+        $date=date('Y-m-d_his');
         $link_download = $date.'_'.$request->file('LINK_DOWNLOAD')->getClientOriginalName();
-        File::put('dokumen',$request->LINK_DOWNLOAD,$link_download);
+        $nama_file= $request->file('LINK_DOWNLOAD')->getClientOriginalName();
+        // $file = File::put('dokumen',$request->file('LINK_DOWNLOAD'));
+        $request->file('LINK_DOWNLOAD')->move(base_path('public/storage/dokumen'),$link_download);
 
-        $feedbacks->update([
-            'LINK_DOWNLOAD' => $link_download
+        Feedback::where('ID_PERMOHONAN','=',$id)->update([
+            'LINK_DOWNLOAD' => $link_download,
+            'NAMA_FILE' => $nama_file
+        ]);
+        
+        Permohonan::find($id)->update([
+            'ID_STATUS' => 3,
         ]);
         return redirect('admin/permohonan-pending');
     }
@@ -123,6 +124,12 @@ class AdminPermohonanController extends Controller
         $permohonan_pending = Permohonan::where('ID_STATUS',2)->orderBy('ID_PERMOHONAN','DESC')->get();
         $pdf = \PDF::loadView('/admin/cetak-permohonan-pending', compact('permohonan_pending'), ['permohonan' => $permohonan_pending])->setPaper("f4");
         return $pdf->stream();
+    }
+
+    public function download($id){
+        $feedback = Feedback::find($id);
+        return Storage::disk('public')->download('dokumen/'.$feedback->LINK_DOWNLOAD);
+        
     }
 
     /**
