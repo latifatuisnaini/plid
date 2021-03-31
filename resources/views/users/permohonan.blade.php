@@ -326,9 +326,9 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 @if($p->ID_STATUS == 3)
                 <div class="container w-full mt-4">
                 <div class="p-3 mt-4 lg:mt-0 rounded shadow">
-                    <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+                    <table id="example" class=" table-auto shadow-lg stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
                     <thead>
-                        <tr>
+                        <tr class="font-semibold text-lg mr-auto mt-3">
                             <th data-priority="1">Nama File</th>
                             <th data-priority="2">Expired Date</th>
                             <th data-priority="3">Aksi</th>
@@ -336,7 +336,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     </thead>
                         </div>
                     <tbody style="text-align: center;">
-                        <tr>
+                        <tr class="text-base">
                             <td>{{$p->feedback->NAMA_FILE}}</td>
                             <td>{{date('d F Y ',strtotime($p->feedback->EXPIRED_DATE))}}</td>
                             <td>
