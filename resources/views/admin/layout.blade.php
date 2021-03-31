@@ -196,6 +196,14 @@ License: You must have a valid license purchased only from themeforest(the above
                             <div class="side-menu__title"> Permohonan : Confirm </div>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{url('/admin/dokumen-publik')}}" class="side-menu @if(request() -> segment(1) == 'admin' && request()->segment(2) == 'dokumen-publik') side-menu--active @endif">
+                            <div class="side-menu__icon">
+                                <i data-feather="file-text"></i>  
+                            </div>
+                            <div class="side-menu__title"> Dokumen Publik </div>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- END: Side Menu -->

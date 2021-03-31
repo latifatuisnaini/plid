@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\JenisKategoriDokumen;
+use App\Models\KategoriDokumen;
 
 Route::get('/', function () {
     return redirect('/beranda');
@@ -75,6 +77,11 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::post('/permohonan-pending/upload-dokumen/{id}','AdminPermohonanController@uploadDokumen')->name('');
     Route::get('/permohonan/download/{id}', 'AdminPermohonanController@download')->name('admin-download');
 
+    Route::resource('/dokumen-publik','DokumenPublikController');
+    Route::get('getKategori/{id}',function($id){
+        $kategori = KategoriDokumen::where('ID_JENIS_KATEGORI','=',$id)->get();
+        return response()->json($kategori);
+    });
 });
  
 Route::prefix('users')->middleware(['auth'])->group(function(){

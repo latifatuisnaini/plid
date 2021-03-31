@@ -15,7 +15,15 @@ class JenisKategoriDokumenTableSeeder extends Seeder
         
 
         \DB::table('jenis_kategori_dokumen')->delete();
-        
+        \DB::table('jenis_kategori_dokumen')->insert([
+            'JENIS_KATEGORI' => 'REGULASI'
+        ]);
+        \DB::table('jenis_kategori_dokumen')->insert([
+            'JENIS_KATEGORI' => 'REGULASI2'
+        ]);
+        \DB::table('jenis_kategori_dokumen')->insert([
+            'JENIS_KATEGORI' => 'REGULASI3'
+        ]);
         
         
     }
