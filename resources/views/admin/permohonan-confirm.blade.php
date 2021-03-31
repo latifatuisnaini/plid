@@ -214,7 +214,7 @@
                                 </tr>
                             </thead>
                                 </div>
-                            <tbody >
+                            <tbody>
                                 <tr style="text-align: center;">
                                     <td>{{$p->feedback->NAMA_FILE}}</td>
                                     <td>{{date('d F Y ',strtotime($p->feedback->EXPIRED_DATE))}}</td>
