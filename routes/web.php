@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InfoLayananPublik1;
 use Illuminate\Support\Facades\Route;
 use App\Models\JenisKategoriDokumen;
 use App\Models\KategoriDokumen;
@@ -16,25 +17,17 @@ Route::get('/profil', function () {
     return view('profil');
 });
 
-Route::get('/regulasi', function(){
-    return view('regulasi');
-});
+Route::get('/regulasi', 'RegulasiController@index');
 
 Route::get('/maklumat', function(){
     return view('maklumat');
 });
 
-Route::get('/info_layanan_publik_1', function(){
-    return view('info_layanan_publik_1');
-});
+Route::get('/info_layanan_publik_1', 'InfoLayananPublik1Controller@index');
 
-Route::get('/info_layanan_publik_2', function(){
-    return view('info_layanan_publik_2');
-});
+Route::get('/info_layanan_publik_2', 'InfoLayananPublik2Controller@index');
 
-Route::get('/info_layanan_publik_3', function(){
-    return view('info_layanan_publik_3');
-});
+Route::get('/info_layanan_publik_3', 'InfoLayananPublik3Controller@index');
 
 Route::get('/lp_prosedurp', function(){
     return view('lp_prosedurp');

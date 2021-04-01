@@ -14,11 +14,11 @@
 <br>
 <div class="overflow-x-auto">
 @foreach($kategori_dokumen as $kd)
-    <h2 class="text-lg font-medium mr-auto">
+    <h2 class="text-lg font-medium mr-auto mt-3">
         {{ $kd->KATEGORI }}
     </h2>
-@endforeach
-    <table class="table mt-5">
+
+    <table class="table mt-3 border">
         <thead>
             <tr class="bg-gray-200 text-gray-700">
                 <th class="border whitespace-no-wrap">No.</th>
@@ -28,7 +28,7 @@
             </tr>
         </thead>
         <tbody>
-                @foreach($dokumen as $d)
+                @foreach($kd->dokumen as $d)
                     <tr>
                             <td class="border-b dark:border-dark-5">{{ $loop->iteration }}</td>
                             <td class="border-b dark:border-dark-5">{{ $d->NAMA_DOKUMEN }}</td>
@@ -40,5 +40,6 @@
                 @endforeach
         </tbody>
     </table>
+    @endforeach
 </div>
 @endsection
