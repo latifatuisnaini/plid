@@ -16,8 +16,9 @@ class CreateKategoriDokumenTable extends Migration
         Schema::create('kategori_dokumen', function (Blueprint $table) {
             $table->integer('ID_KATEGORI', true);
             $table->integer('ID_JENIS_KATEGORI')->index('FK_MEMPUNYAI');
-            $table->string('KATEGORI', 100);
+            $table->string('KATEGORI');
             $table->integer('NOMOR_URUT');
+            $table->boolean('STATUS'); //0 = tidak aktif, 1 = aktif
         });
     }
 

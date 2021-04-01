@@ -68,6 +68,10 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 </style>
 @endsection
 @section('content')
+@if(Session::has('success'))
+<div class="rounded-md w-35 flex items-center px-5 py-4 mb-2 mt-3 ml-5 bg-theme-18 text-theme-9"> <i data-feather="alert-circle" class="w-6 h-6 mr-2"></i>{{@session::get('success') }}</div>
+@endif
+
 <div class="content">
 <div class="intro-y box p-5 mt-5 mb-5 sm:mt-5 bg-blue-400 text-white" style="background-color: #1c3faa;">                        
     <div class="flex flex-row">
@@ -80,19 +84,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 <div class="intro-y box mt-5">
     <!--Container-->
     <!--Card-->
-                                @if(Session::has('success'))
-                                    <div class="alert alert-arrow-left alert-icon-left alert-light-primary mb-4" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                                        {{ Session::get('success') }}
-                                    </div>
-                                @elseif(Session::has('alert_error'))
-                                    <div class="alert alert-arrow-right alert-icon-right alert-light-danger mb-4" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
-                                        {{ Session::get('alert_error') }}
-                                    </div>
-                                @endif
     
     <a href ="javascript:;" data-toggle="modal" data-target="#tambah_kategori" class="button mb-5 mr-6 mt-4 flex items-center justify-center bg-theme-1 text-white tombol-tambah-kategori" style="float:right;" ><i data-feather="plus-circle" class="w-6 h-6 mr-2"></i>Tambah Kategori Dokumen</a>
     
@@ -103,10 +94,11 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 <thead>
                     <tr>
                         <th data-priority="1">ID Kategori</th>
-                        <th data-priority="2">Jenis Kategori</th>
-                        <th data-priority="3">Kategori</th>
+                        <th data-priority="2" style="width: 30%;">Jenis Kategori</th>
+                        <th data-priority="3" style="width: 30%;">Kategori</th>
                         <th data-priority="4">Nomor Urut</th>
-                        <th data-priority="5">Aksi</th>
+                        <th data-priority="5" style="width: 15%;">Status</th>
+                        <th data-priority="6" style="width: 15%;">Aksi</th>
                     </tr>
                 </thead>
 
@@ -118,11 +110,40 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <td>{{$k->KATEGORI}}</td>
                         <td>{{$k->NOMOR_URUT}}</td>
                         <td>
-                            <div class="mt-1 mb-1"> 
-                            <button href="javascript:;" title="Edit Kategori" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300"><a data-toggle="modal" data-target="#editKategori_{{$k->ID_KATEGORI}}"><span class="w-5 h-5 flex items-center justify-center"> <i data-feather="more-horizontal" class="w-4 h-4 "></i></span></a> </button> 
+                        @if($k->STATUS == 1)
+                            <div class="text-center">
+                                <div class="flex items-center justify-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> Aktif </div>
+                            </div> 
+                        @else
+                            <div class="text-center">  
+                                <div class="flex items-center justify-center text-theme-6"> <i data-feather="x-square" class="w-4 h-4 mr-2"></i> Tidak Aktif </div>
                             </div>
+                        @endif
                         </td>
-                        
+                        <td>
+                        @if($k->STATUS == 1)
+                        <div class="flex" style="justify-content: center;">
+                            <a data-toggle="modal" data-target="#editKategori_{{ $k->ID_KATEGORI }}">
+                                <button href="javascript:;" title="Edit Kategori" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
+                                    <span class="w-5 h-5 flex items-center justify-center">
+                                        <i data-feather="edit" class="w-4 h-4 "></i>
+                                    </span>
+                                </button>
+                            </a>
+                            
+                            <form action="{{ route('kategori-dokumen.destroy', $k->ID_KATEGORI) }}" method="POST" class="needs-validation" novalidate 
+                            onsubmit="return confirm('Anda yakin ingin menonaktifkan data kategori dokumen ini?')" >
+                            @method('DELETE')
+                            @csrf
+                                <button title="Nonaktifkan Kategori" type="submit" class="tooltip button px-2 mr-1 mb-2 bg-red-400 dark:text-gray-300" >
+                                    <span class="w-5 h-5 flex items-center justify-center">
+                                        <i data-feather="x-square" class="w-4 h-4 "></i>
+                                    </span>
+                                </button>
+                            </form>
+                        </div>
+                        @endif
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -131,7 +152,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
     </div>
 </div>
 
-<!-- Modal Tambah Dokumen Permohonan -->
+<!-- Modal Tambah Kategori Dokumen -->
         <div class="modal" id="tambah_kategori">
             <div class="modal__content modal__content--lg py-5 pl-5 pr-5 ml-auto">
                 <div class="modal-header">
@@ -189,6 +210,62 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
             </div>
 
 
+        @foreach($kategori as $k)
+        <div class="modal" id="editKategori_{{ $k->ID_KATEGORI }}">
+            <div class="modal__content modal__content--lg py-5 pl-5 pr-5 ml-auto">
+                <div class="modal-header">
+                    <div class="modal__content relative"> 
+                    </div>
+                    <div class="flex px-2 sm:pb-3 sm:pt-1 border-b border-gray-200 dark:border-dark-5">
+                        <h2 class="font-bold text-2xl flex"><i data-feather="info" class="w-8 h-8 mr-2"></i>Edit Kategori Dokumen #{{ $k->ID_KATEGORI }}</h2>
+                        <a data-dismiss="modal" href="javascript:;" class="mr-3 ml-auto" id="close_{{$k->ID_KATEGORI}}"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('kategori-dokumen.update', $k->ID_KATEGORI) }}" method="POST" class="needs-validation" novalidate">
+                    @method('PUT')
+                    @csrf
+                    
+                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
+                        <div class="col-span-12">
+                            <label class="font-semibold text-lg mr-auto mt-3">Jenis Kategori Dokumen</label> 
+                            <select class="input w-full border mt-2 flex-1" name="ID_JENIS_KATEGORI" required>
+                                @foreach($jenis_kategori as $j)
+                                <option value="{{ $j->ID_JENIS_KATEGORI }}" {{ ( $j->ID_JENIS_KATEGORI == $k->ID_JENIS_KATEGORI) ? 'selected' : '' }} >{{ $j->JENIS_KATEGORI }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
+                        <div class="col-span-12">
+                            <label class="font-semibold text-lg mr-auto mt-3">Kategori Dokumen</label> 
+                                <input type="text" class="input w-full border mt-2 flex-1" placeholder="Kategori Dokumen" name="KATEGORI_DOKUMEN" value="{{ $k->KATEGORI }}" required >
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
+                        <div class="col-span-12">
+                            <label class="font-semibold text-lg mr-auto mt-3">Nomor Urut</label> 
+                                <input type="number" min="1" class="input w-full border mt-2 flex-1" placeholder="Nomor Urut" name="NOMOR_URUT" value="{{ $k->NOMOR_URUT }}" required >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer mt-5">
+                    <div class="text-right">
+                    <button type="button" class="button w-24 shadow-md mr-1 mb-2 bg-red-500 text-white" data-dismiss="modal">Cancel</button> 
+                    <button class="button items-right w-24 shadow-md mr-1 mb-2 justify-right bg-theme-1 text-white shadow-md" type="submit">Simpan</button>
+                   
+                    </div>
+                </div>
+
+                </form>
+            </div>
+        </div>
+        @endforeach
+
+
 
 
 @endsection
@@ -198,10 +275,10 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script>
-console.log('Sudah masuk');
 $(document).ready(function() {
 
     var table = $('#example').DataTable( {
+            order: [[ 4, "asc" ], [0,"asc"]],
             responsive: true
         } )
         .columns.adjust()

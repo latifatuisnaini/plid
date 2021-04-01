@@ -24,15 +24,6 @@ class KategoriDokumenController extends Controller
         return view('admin.kategori-dokumen', compact('kategori', 'jenis_kategori','permohonan_open_notif', 'permohonan_diproses_notif'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -53,32 +44,13 @@ class KategoriDokumenController extends Controller
         $kategori->ID_JENIS_KATEGORI = $request->ID_JENIS_KATEGORI;
         $kategori->KATEGORI = $request->KATEGORI_DOKUMEN;
         $kategori->NOMOR_URUT = $request->NOMOR_URUT;
+        $kategori->STATUS = 1;
         $kategori->save();
 
         return redirect()->route('kategori-dokumen.index')->with('success', 'Data Kategori Dokumen Berhasil Ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -89,7 +61,21 @@ class KategoriDokumenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate
+        ([  
+            'ID_JENIS_KATEGORI' => 'required',
+            'KATEGORI_DOKUMEN' => 'required',
+            'NOMOR_URUT' => 'required'
+        ]);
+
+        $kategori = KategoriDokumen::find($id);
+        $kategori->ID_JENIS_KATEGORI = $request->ID_JENIS_KATEGORI;
+        $kategori->KATEGORI = $request->KATEGORI_DOKUMEN;
+        $kategori->NOMOR_URUT = $request->NOMOR_URUT;
+        $kategori->STATUS = 1;
+        $kategori->save();
+
+        return redirect()->route('kategori-dokumen.index')->with('success', 'Data Kategori Dokumen dengan ID : '.$id.' Berhasil Diupdate.');
     }
 
     /**
@@ -100,6 +86,10 @@ class KategoriDokumenController extends Controller
      */
     public function destroy($id)
     {
-        //
+        KategoriDokumen::where('ID_KATEGORI',$id)->update([
+            'STATUS' => 0
+        ]);
+
+        return redirect()->route('kategori-dokumen.index')->with('success', 'Data Kategori Dokumen dengan ID : '.$id.' Telah Dinonaktifkan.');
     }
 }
