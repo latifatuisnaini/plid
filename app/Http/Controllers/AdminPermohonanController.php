@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dokumen;
 use Illuminate\Http\Request;
 use App\Models\Permohonan;
 use App\Models\Feedback;
@@ -75,15 +76,12 @@ class AdminPermohonanController extends Controller
         return response()->json('success');
     }
 
-    
-
     public function uploadDokumen(Request $request,$id)
     {
         $request->validate([
             'LINK_DOWNLOAD' => 'required|file|mimes:jpeg,png,jpg,doc,docx,pdf,zip',
             'EXPIRED_DATE'=>'required'
         ]);
-
        
         $date=date('Y-m-d_his');
         $link_download = $date.'_'.$request->file('LINK_DOWNLOAD')->getClientOriginalName();
@@ -135,6 +133,16 @@ class AdminPermohonanController extends Controller
         $feedback = Feedback::find($id);
         return Storage::disk('public')->download('dokumen/'.$feedback->LINK_DOWNLOAD);
         
+    }
+
+    public function cetakpermohonan($id){
+        $dokumen = Dokumen::where('ID_PERMOHONAN',$id)
+        ->get();
+
+        
+
+
+        return view('admin.cetak-permohonan', compact('dokumen'));
     }
 
     /**
