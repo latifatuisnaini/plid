@@ -21,10 +21,10 @@
     <table class="table mt-5">
         <thead>
             <tr class="bg-gray-200 text-gray-700">
-                <th class="whitespace-no-wrap">No.</th>
-                <th class="whitespace-no-wrap">Aturan</th>
-                <th class="whitespace-no-wrap">Keterangan</th>
-                <th class="whitespace-no-wrap">Download</th>
+                <th class="border whitespace-no-wrap">No.</th>
+                <th class="border whitespace-no-wrap">Aturan</th>
+                <th class="border whitespace-no-wrap">Keterangan</th>
+                <th class="border whitespace-no-wrap">Download</th>
             </tr>
         </thead>
         <tbody>

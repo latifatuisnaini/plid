@@ -13,6 +13,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <head>
         <meta charset="utf-8">
         <link href="{{ asset('dist/images/favicon.png')}}" rel="shortcut icon">
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Midone admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
         <meta name="keywords" content="admin template, Midone admin template, dashboard template, flat admin template, responsive admin template, web app">
@@ -119,6 +120,16 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="menu__title">Permohonan : Confirm</div>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{url('/admin/kategori-dokumen')}}" class="menu">
+                        <div class="menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trello"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        
+                        </div>
+                        <div class="menu__title"> Kategori Dokumen</div>
+                    </a>
+                </li>
                 
             </ul>
         </div>
@@ -196,6 +207,25 @@ License: You must have a valid license purchased only from themeforest(the above
                             <div class="side-menu__title"> Permohonan : Confirm </div>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{url('/admin/dokumen-publik')}}" class="side-menu @if(request() -> segment(1) == 'admin' && request()->segment(2) == 'dokumen-publik') side-menu--active @endif">
+                            <div class="side-menu__icon">
+                                <i data-feather="file-text"></i>  
+                            </div>
+                            <div class="side-menu__title"> Dokumen Publik </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{url('/admin/kategori-dokumen')}}" class="side-menu @if(request() -> segment(1) == 'admin' && request()->segment(2) == 'kategori-dokumen') side-menu--active @endif">
+                            <div class="side-menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trello"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><rect x="7" y="7" width="3" height="9"/><rect x="14" y="7" width="3" height="5"/></svg>
+                            
+                            </div>
+                            <div class="side-menu__title"> Kategori Dokumen</div>
+                        </a>
+                    </li>
+
                 </ul>
             </nav>
             <!-- END: Side Menu -->
@@ -254,9 +284,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="p-2 border-t border-theme-40 dark:border-dark-3">
                                     <form action="{{ route('logout') }}" method="POST">
                                         @csrf
-                                        <button class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> 
-                                            <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Logout 
-                                        </button>
+                                        <a class="button flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md">
+                                            <button class="flex items-center" > 
+                                                <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Logout 
+                                            </button>
+                                        </a>
                                     </form>
                                 </div>
                             </div>
