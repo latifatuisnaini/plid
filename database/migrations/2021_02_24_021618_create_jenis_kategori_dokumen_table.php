@@ -16,6 +16,7 @@ class CreateJenisKategoriDokumenTable extends Migration
         Schema::create('jenis_kategori_dokumen', function (Blueprint $table) {
             $table->integer('ID_JENIS_KATEGORI', true);
             $table->string('JENIS_KATEGORI');
+
         });
     }
 

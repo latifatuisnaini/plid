@@ -116,6 +116,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <td>{{$pp->KETERANGAN}}</td>
                     <td>{{ date('d F Y',strtotime($pp->TANGGAL)) }}</td>
                     <td>
+                    <div class="flex" style="justify-content: center;">
                     <button href="javascript:;" title="Detail Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
                             <a data-toggle="modal" data-target="#detail_{{ $pp->ID_PERMOHONAN }}">
                                 <span class="w-5 h-5 flex items-center justify-center">
@@ -130,6 +131,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                                 </span>
                             </button>
                         </a>
+                    </div>
                     </td>
                 </tr>
             @endforeach
