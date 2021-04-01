@@ -8,6 +8,7 @@ use App\Models\Permohonan;
 use App\Models\Feedback;
 use \Barryvdh\DomPDF\PDF;
 use Storage;
+use Carbon\Carbon;
 use File;
 
 
@@ -79,7 +80,8 @@ class AdminPermohonanController extends Controller
     public function uploadDokumen(Request $request,$id)
     {
         $request->validate([
-            'LINK_DOWNLOAD' => 'required|file|mimes:jpeg,png,jpg,doc,docx,pdf,zip'
+            'LINK_DOWNLOAD' => 'required|file|mimes:jpeg,png,jpg,doc,docx,pdf,zip',
+            'EXPIRED_DATE'=>'required'
         ]);
 
        
@@ -88,16 +90,20 @@ class AdminPermohonanController extends Controller
         $nama_file= $request->file('LINK_DOWNLOAD')->getClientOriginalName();
         // $file = File::put('dokumen',$request->file('LINK_DOWNLOAD'));
         $request->file('LINK_DOWNLOAD')->move(base_path('public/storage/dokumen'),$link_download);
+       
+        $dates=Carbon::parse($request->EXPIRED_DATE);
+        $dates->format('Y-m-d');
 
         Feedback::where('ID_PERMOHONAN','=',$id)->update([
             'LINK_DOWNLOAD' => $link_download,
-            'NAMA_FILE' => $nama_file
+            'NAMA_FILE' => $nama_file,
+            'EXPIRED_DATE'=> $dates,
         ]);
         
         Permohonan::find($id)->update([
             'ID_STATUS' => 3,
         ]);
-        return redirect('admin/permohonan-pending');
+        return redirect('admin/permohonan-pending')->with('success', 'Dokumen Permohonan Berhasil Diupload');
     }
 
     public function cetakpdfOpen()

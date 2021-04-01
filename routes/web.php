@@ -55,6 +55,7 @@ Route::get('/faq', function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/faq', 'FaqController@index');
 
 Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::get('/','AdminController@index');
@@ -92,3 +93,5 @@ Route::prefix('users')->middleware(['auth'])->group(function(){
     Route::post('upload_dok','UsersController@uploadDokumen');
     Route::get('/permohonan/download/{id}', 'PermohonanController@show')->name('downloadpermohonan');
 });
+
+
