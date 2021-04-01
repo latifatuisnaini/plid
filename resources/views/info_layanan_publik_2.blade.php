@@ -210,7 +210,7 @@
                 <tbody>
                      <tr>
                          <td class="border-b dark:border-dark-5">1</td>
-                         <td class="border-b dark:border-dark-5">Protokol Covid-19 di lingkungan PT PAL Indonesia (Persero)</td>
+                         <td class="border-b dark:border-dark-5">Protokol Covid-19 di lingkungan <br>  PT PAL Indonesia (Persero)</td>
                          <td class="border-b dark:border-dark-5"></td>
                          <td class="border-b dark:border-dark-5">
                             <a href="#" class="button w-24 inline-block mr-1 mb-2 bg-theme-1 text-white">Download</a>
