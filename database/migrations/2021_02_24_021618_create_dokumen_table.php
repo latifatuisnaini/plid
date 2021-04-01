@@ -19,7 +19,9 @@ class CreateDokumenTable extends Migration
             $table->integer('ID_JENIS_DOKUMEN')->index('FK_MEMILIKI3');
             $table->string('NAMA_DOKUMEN', 100);
             $table->integer('NOMOR_URUT');
-            $table->string('LINK_FILE');
+            $table->text('KETERANGAN');
+            $table->text('PATH_FILE')->nullable();
+            $table->text('LINK_FILE')->nullable();
         });
     }
 
