@@ -7,6 +7,7 @@ use App\Models\Dokumen;
 use Illuminate\Http\Request;
 use App\Models\Permohonan;
 use App\Models\Feedback;
+use App\Models\User;
 use \Barryvdh\DomPDF\PDF;
 use Storage;
 use Carbon\Carbon;
@@ -136,13 +137,13 @@ class AdminPermohonanController extends Controller
     }
 
     public function cetakpermohonan($id){
-        $dokumen = Dokumen::where('ID_PERMOHONAN',$id)
-        ->get();
+        $permohonan = Permohonan::where('ID_PERMOHONAN',$id)
+        ->get();    
 
-        
+        $pdf = \PDF::loadView('/admin.cetak-permohonan', compact('permohonan'), ['permohonan' => $permohonan])->setPaper("f4");
+        return $pdf->stream();
 
-
-        return view('admin.cetak-permohonan', compact('dokumen'));
+        // return view('admin.cetak-permohonan', compact('permohonan'));
     }
 
     /**
