@@ -7,16 +7,16 @@
 @endsection
 @section('content')
 <div class="overflow-x-auto">
-    <table class="table mt-5">
+    <table class="table mt-5 border">
         <thead>
-            <tr class="bg-gray-200 text-gray-700 float-left">
-                <th class="whitespace-no-wrap">No.</th>
-                <th class="whitespace-no-wrap">FAQ</th>
+            <tr class="bg-gray-200 text-gray-700">
+                <th class="border whitespace-no-wrap">No.</th>
+                <th class="border whitespace-no-wrap">FAQ</th>
             </tr>
         </thead>
         <tbody>
         @foreach($faq as $f)
-            <tr id="{{$f->ID_FAQ}}" class="float-left">
+            <tr id="{{$f->ID_FAQ}}" >
                 <td class="border-b dark:border-dark-5">{{$f->ID_FAQ}}</td>
                 <td class="border-b dark:border-dark-5">Q : {{$f->QUESTION}}</td>
             </tr>

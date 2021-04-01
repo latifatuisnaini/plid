@@ -84,6 +84,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
         return response()->json($kategori);
     });
     Route::resource('/kategori-dokumen','KategoriDokumenController');
+    Route::resource('/faq-create','FaqAdminController');
 });
  
 Route::prefix('users')->middleware(['auth'])->group(function(){
