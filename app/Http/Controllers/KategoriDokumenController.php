@@ -17,7 +17,7 @@ class KategoriDokumenController extends Controller
      */
     public function index()
     {
-        $kategori = KategoriDokumen::all();
+        $kategori = KategoriDokumen::where('STATUS', 1)->get();
         $jenis_kategori = JenisKategoriDokumen::all();
         $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
         $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
@@ -90,6 +90,6 @@ class KategoriDokumenController extends Controller
             'STATUS' => 0
         ]);
 
-        return redirect()->route('kategori-dokumen.index')->with('success', 'Data Kategori Dokumen dengan ID : '.$id.' Telah Dinonaktifkan.');
+        return redirect()->route('kategori-dokumen.index')->with('success', 'Data Kategori Dokumen dengan ID : '.$id.' Berhasil Dihapus.');
     }
 }

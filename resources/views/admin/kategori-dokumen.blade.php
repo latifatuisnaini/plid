@@ -97,7 +97,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <th data-priority="2" style="width: 30%;">Jenis Kategori</th>
                         <th data-priority="3" style="width: 30%;">Kategori</th>
                         <th data-priority="4">Nomor Urut</th>
-                        <th data-priority="5" style="width: 15%;">Status</th>
                         <th data-priority="6" style="width: 15%;">Aksi</th>
                     </tr>
                 </thead>
@@ -110,18 +109,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <td>{{$k->KATEGORI}}</td>
                         <td>{{$k->NOMOR_URUT}}</td>
                         <td>
-                        @if($k->STATUS == 1)
-                            <div class="text-center">
-                                <div class="flex items-center justify-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> Aktif </div>
-                            </div> 
-                        @else
-                            <div class="text-center">  
-                                <div class="flex items-center justify-center text-theme-6"> <i data-feather="x-square" class="w-4 h-4 mr-2"></i> Tidak Aktif </div>
-                            </div>
-                        @endif
-                        </td>
-                        <td>
-                        @if($k->STATUS == 1)
                         <div class="flex" style="justify-content: center;">
                             <a data-toggle="modal" data-target="#editKategori_{{ $k->ID_KATEGORI }}">
                                 <button href="javascript:;" title="Edit Kategori" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
@@ -132,17 +119,16 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             </a>
                             
                             <form action="{{ route('kategori-dokumen.destroy', $k->ID_KATEGORI) }}" method="POST" class="needs-validation" novalidate 
-                            onsubmit="return confirm('Anda yakin ingin menonaktifkan data kategori dokumen ini?')" >
+                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus data kategori dokumen ini?')" >
                             @method('DELETE')
                             @csrf
-                                <button title="Nonaktifkan Kategori" type="submit" class="tooltip button px-2 mr-1 mb-2 bg-red-400 dark:text-gray-300" >
+                                <button title="Hapus Kategori" type="submit" class="tooltip button px-2 mr-1 mb-2 bg-red-400 dark:text-gray-300" >
                                     <span class="w-5 h-5 flex items-center justify-center">
-                                        <i data-feather="x-square" class="w-4 h-4 "></i>
+                                        <i data-feather="delete" class="w-4 h-4 "></i>
                                     </span>
                                 </button>
                             </form>
                         </div>
-                        @endif
                         </td>
                     </tr>
                 @endforeach
