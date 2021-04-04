@@ -30,7 +30,14 @@
                             <td class="border border-b dark:border-dark-5">{{ $d->NAMA_DOKUMEN }}</td>
                             <td class="border border-b dark:border-dark-5">{{ $d->KETERANGAN }}</td>
                             <td class="border border-b dark:border-dark-5">
-                                <a href="#" class="flex-1 button w-24 inline-block mr-1 mb-2 bg-theme-1 text-white">{{ $d->jenis_dokumen->JENIS_DOKUMEN }}</a>
+                            @if($d->ID_JENIS_DOKUMEN == 1)
+                                <a href="#" class="flex-1 button w-24 inline-block mr-1 mb-2 bg-theme-1 text-white">View</a>
+                            @elseif($d->ID_JENIS_DOKUMEN == 2)
+                                <a href="#" class="flex-1 button w-24 inline-block mr-1 mb-2 bg-theme-1 text-white">Download</a>
+                            @elseif($d->ID_JENIS_DOKUMEN == 3)
+                                <a href="#" class="flex-1 button w-24 inline-block mr-1 mb-2 bg-theme-1 text-white">View</a>
+                                <a href="#" class="flex-1 button w-24 inline-block mr-1 mb-2 bg-theme-1 text-white">Download</a>
+                            @endif
                             </td>
                     </tr>  
                 @endforeach
