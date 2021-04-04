@@ -8,6 +8,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Dokumen;
 
 /**
  * Class KategoriDokumen
@@ -47,5 +48,10 @@ class KategoriDokumen extends Model
 	public function dokumen()
 	{
 		return $this->hasMany(Dokumen::class, 'ID_KATEGORI');
+	}
+
+	public static function dokumenKategori($id)
+	{
+		return Dokumen::where('ID_KATEGORI','=',$id)->orderBy('NOMOR_URUT')->get();
 	}
 }

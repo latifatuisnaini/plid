@@ -18,6 +18,7 @@ Route::get('/profil', function () {
 });
 
 Route::get('/regulasi', 'RegulasiController@index');
+Route::get('/regulasi/download/{id}', 'RegulasiController@show')->name('downloadregulasi');
 
 Route::get('/maklumat', function(){
     return view('maklumat');

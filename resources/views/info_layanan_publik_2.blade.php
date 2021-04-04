@@ -24,13 +24,13 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($kd->dokumen as $d)
+                @foreach($kd->dokumenKategori($kd->ID_KATEGORI) as $d)
                     <tr>
-                            <td class="border-b dark:border-dark-5">{{ $loop->iteration }}</td>
-                            <td class="border-b dark:border-dark-5">{{ $d->NAMA_DOKUMEN }}</td>
-                            <td class="border-b dark:border-dark-5">{{ $d->KETERANGAN }}</td>
-                            <td class="border-b dark:border-dark-5">
-                                <a href="#" class="button w-24 inline-block mr-1 mb-2 bg-theme-1 text-white">{{ $d->jenis_dokumen->JENIS_DOKUMEN }}/a>
+                            <td class="border border-b dark:border-dark-5">{{ $loop->iteration }}</td>
+                            <td class="border border-b dark:border-dark-5">{{ $d->NAMA_DOKUMEN }}</td>
+                            <td class="border border-b dark:border-dark-5">{{ $d->KETERANGAN }}</td>
+                            <td class="border border-b dark:border-dark-5">
+                                <a href="#" class="button w-24 inline-block mr-1 mb-2 bg-theme-1 text-white">{{ $d->jenis_dokumen->JENIS_DOKUMEN }}</a>
                             </td>
                     </tr>  
                 @endforeach

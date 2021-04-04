@@ -25,5 +25,10 @@ class RegulasiController extends Controller
 
         return view('regulasi', compact('kategori_dokumen'));
     } 
-    
+    public function show($id){
+        $regulasi = Dokumen::find($id);
+        
+        return Storage::disk('public')->download('dokumen/'.$regulasi->LINK_FILE);
+        
+    }
 }
