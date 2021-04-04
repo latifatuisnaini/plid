@@ -71,6 +71,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::get('/cetak-permohonan-confirm','AdminPermohonanController@cetakpdfConfirm');
     Route::post('/permohonan-pending/upload-dokumen/{id}','AdminPermohonanController@uploadDokumen')->name('');
     Route::get('/permohonan/download/{id}', 'AdminPermohonanController@download')->name('admin-download');
+    Route::get('/cetakpermohonan/{id}','AdminPermohonanController@cetakpermohonan');
 
     Route::resource('/dokumen-publik','DokumenPublikController');
     Route::get('getKategori/{id}',function($id){
@@ -78,6 +79,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
         return response()->json($kategori);
     });
     Route::resource('/kategori-dokumen','KategoriDokumenController');
+    Route::resource('/faq-create','FaqAdminController');
 });
  
 Route::prefix('users')->middleware(['auth'])->group(function(){
