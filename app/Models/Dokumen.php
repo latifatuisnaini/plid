@@ -40,7 +40,9 @@ class Dokumen extends Model
 		'ID_JENIS_DOKUMEN',
 		'NAMA_DOKUMEN',
 		'NOMOR_URUT',
-		'LINK_FILE'
+		'LINK',
+		'KETERANGAN',
+		'PATH_FILE'
 	];
 
 	public function jenis_dokumen()
