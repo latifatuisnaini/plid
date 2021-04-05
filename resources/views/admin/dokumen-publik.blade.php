@@ -118,46 +118,80 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <a data-dismiss="modal" href="javascript:;" class="mr-3 ml-auto"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
                     </div>
                 </div>
-                <div class="modal-body">
-                    <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+                <form action="{{ route('dokumen-publik.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+                            <div class="col-span-12"> 
+                                <label class="font-semibold text-lg">Jenis Dokumen</label>
+                                <select class="input border mr-2 w-full mt-2" name="ID_JENIS_DOKUMEN" id="jenis_dokumen" required>
+                                    <option selected disabled>Pilih jenis dokumen.....</option>
+                                    @foreach($jenis_dokumen as $j)
+                                        <option value="{{ $j->ID_JENIS_DOKUMEN }}">{{ $j->JENIS_DOKUMEN }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-span-12"> 
+                                <label class="font-semibold text-lg">Jenis Kategori Dokumen</label>
+                                <select class="input border mr-2 w-full mt-2" name="ID_JENIS_KATEGORI" id="jenis_kategori" required>
+                                    <option selected disabled>Pilih jenis kategori.....</option>
+                                    @foreach($jenis_kategoris as $j)
+                                        <option value="{{ $j->ID_JENIS_KATEGORI }}">{{ $j->JENIS_KATEGORI }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                        <div class="col-span-12"> 
-                            <label class="font-semibold text-lg">Jenis Kategori Dokumen</label>
-                            <select class="input border mr-2 w-full mt-2" name="ID_JENIS_KATEGORI" id="jenis_kategori">
-                                <option selected disabled>Pilih jenis kategori.....</option>
-                                @foreach($jenis_kategoris as $j)
-                                    <option value="{{ $j->ID_JENIS_KATEGORI }}">{{ $j->JENIS_KATEGORI }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                            <div class="col-span-12"> 
+                                <label class="font-semibold text-lg">Kategori Dokumen</label>
+                                <select class="input border mr-2 w-full mt-2" name="ID_KATEGORI" id="kategori" required>
+                                    <option selected disabled>Pilih kategori.....</option>
+                                    @foreach($kategori_dokumen as $j)
+                                        <option value="{{ $j->ID_KATEGORI }}">{{ $j->KATEGORI }}</option>
+                                    @endforeach
+                                    
+                                </select>
+                            </div>
 
-                        <div class="col-span-12"> 
-                            <label class="font-semibold text-lg">Kategori Dokumen</label>
-                            <select class="input border mr-2 w-full mt-2" name="ID_KATEGORI" id="kategori">
-                                <option selected disabled>Pilih kategori.....</option>
-                                @foreach($kategori_dokumen as $j)
-                                    <option value="{{ $j->ID_KATEGORI }}">{{ $j->KATEGORI }}</option>
-                                @endforeach
-                                
-                            </select>
-                        </div>
+                            <div class="col-span-12 sm:col-span-9"> 
+                                <label class="font-semibold text-lg">Nama Dokumen</label>
+                                <input type="text" class="input w-full border mt-2 flex-1" placeholder="Nama Dokumen" name="NAMA_DOKUMEN" id="NAMA_DOKUMEN" required>
+                            </div>
 
-                        <div class="col-span-12 sm:col-span-6"> 
-                            <label class="font-semibold text-lg">Nama Dokumen</label>
-                            <input type="text" class="input w-full border mt-2 flex-1" placeholder="Nama Dokumen" name="NAMA_DOKUMEN" id="NAMA_DOKUMEN" required>
-                        </div>
+                            <div class="col-span-12 sm:col-span-3"> 
+                                <label class="font-semibold text-lg">No. Urut</label>
+                                <input type="number" class="input w-full border mt-2 flex-1" placeholder="No. Urut" name="NOMOR_URUT" id="NOMOR_URUT" required min="1">
+                            </div>
 
-                        <div class="col-span-12 sm:col-span-6"> 
-                            <label class="font-semibold text-lg">Nomor Urut</label>
-                            <input type="text" class="input w-full border mt-2 flex-1" placeholder="Nomor Urut" name="NOMOR_URUT" id="NOMOR_URUT" required>
-                        </div>
+                            <div class="col-span-12" id="input-file"> 
+                                <label class="font-semibold text-lg">File</label>
+                                <input type="file" class="input w-full border mt-2 flex-1" placeholder="File Dokumen" name="FILE" id="FILE">
+                                @error('FILE')
+                                <small class="text-danger">Anda harus mengupload dokumen.</small>
+                                @enderror
+                            </div>
 
-                        <div class="col-span-12"> 
-                            <label class="font-semibold text-lg">File</label>
-                            <input type="file" class="input w-full border mt-2 flex-1" placeholder="File Dokumen" name="FILE" id="FILE" required >
+                            <div class="col-span-12" id="input-link"> 
+                                <label class="font-semibold text-lg">Link</label>
+                                <input type="url" class="input w-full border mt-2 flex-1" placeholder="Link Dokumen" name="LINK_DOKUMEN" id="LINK_DOKUMEN">
+                                @error('LINK_DOKUMEN')
+                                <small class="text-danger">Link harus diisi.</small>
+                                @enderror
+                            </div>
+
+                            <div class="col-span-12"> 
+                                <label class="font-semibold text-lg">Keterangan</label>
+                                <textarea class="input w-full border mt-2" name="KETERANGAN"></textarea>
+                            </div>
+
                         </div>
                     </div>
-                </div>
+                    <div class="modal-footer mt-5">
+                        <div class="text-right">
+                            <button type="button" class="button w-24 shadow-md mr-1 mb-2 bg-red-500 text-white" data-dismiss="modal">Cancel</button> 
+                            <button class="button items-right w-24 shadow-md mr-1 mb-2 justify-right bg-theme-1 text-white shadow-md" type="submit">Simpan</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         
@@ -184,6 +218,22 @@ $(document).ready(function() {
         .columns.adjust()
         .responsive.recalc();
 
+    $("#input-file").hide();
+    $("#input-link").hide();
+
+    if($('#jenis_dokumen').val() == 1){
+        $("#input-link").show();
+        $("#input-file").hide();
+    }
+    else if($('#jenis_dokumen').val() == 2){
+        $("#input-link").hide();
+        $("#input-file").show();
+    }
+    else if($('#jenis_dokumen').val() == 3){
+        $("#input-link").show();
+        $("#input-file").show();
+    }
+
     $("#jenis_kategori").on('change',function(){
         var id = $(this).val();
         $.get("getKategori/"+id,
@@ -191,10 +241,25 @@ $(document).ready(function() {
                 $('#kategori').empty();
 
                 $.each(data, function (id, name) {
-                    $('#kategori').append(new Option(name.KATEGORI, id.ID_KATEGORI));
+                    $('#kategori').append(new Option( id.ID_KATEGORI, name.KATEGORI));
                 });
             }
         );
+    });
+
+    $("#jenis_dokumen").on('change',function(){
+        if($(this).val() == 1){
+            $("#input-link").show();
+            $("#input-file").hide();
+        }
+        else if($(this).val() == 2){
+            $("#input-link").hide();
+            $("#input-file").show();
+        }
+        else if($(this).val() == 3){
+            $("#input-link").show();
+            $("#input-file").show();
+        }
     });
 
     $(".btn-tolak").on('click',function(){
