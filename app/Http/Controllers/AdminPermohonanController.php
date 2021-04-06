@@ -137,10 +137,12 @@ class AdminPermohonanController extends Controller
     }
 
     public function cetakpermohonan($id){
-        $permohonan = Permohonan::where('ID_PERMOHONAN',$id)
-        ->get();    
+        // $permohonan = Permohonan::where('ID_PERMOHONAN',$id)
+        // ->get();    
 
-        $pdf = \PDF::loadView('/admin.cetak-permohonan', compact('permohonan'), ['permohonan' => $permohonan]);
+        $user = User::where('ID_USER',$id)->get();
+
+        $pdf = \PDF::loadView('/admin.cetak-permohonan', compact('user'), ['user' => $user]);
         return $pdf->stream();
 
         // return view('admin.cetak-permohonan', compact('permohonan'));

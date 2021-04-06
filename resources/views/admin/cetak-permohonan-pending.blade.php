@@ -20,9 +20,10 @@
             text-align: center;
             text-decoration: underline;
             font-size: 10pt;
+            line-height: 1px;
         }
         .foot1 {
-            font-size: 9pt;
+            font-size: 8pt;
             text-align: center;
             font-weight: bold;
             font-family: Arial, Helvetica, sans-serif;
@@ -30,7 +31,7 @@
             line-height: 2px;
         }
         .foot2 {
-            font-size: 7pt;
+            font-size: 6pt;
             text-align: center;
             font-family: Arial, Helvetica, sans-serif;
             color: black;
@@ -50,26 +51,26 @@
         }
         footer{
             position: fixed;
-            bottom: 0px; 
+            bottom: -20px; 
             left: 0px; 
             right: 0px;
             height: 40px;
         } 
-        header{
+        /* header{
             position: fixed;
             top: 0px; 
             left: 0px; 
             right: 0px;
             height: 50px;
-        }
+        } */
 	</style>
     
-    <header>
+    <!-- <header>
         <img src="{{ public_path('dist/images/logo-pal.png') }}" style="width:8rem; float:right"> 
         <img src="{{ public_path('dist/images/logo_bumn.png') }}" style="width:9rem; float:left"> 
     </header>
 
-    <br><br><br>
+    <br><br><br> -->
 
     <footer>
         <p class="foot1">PT PAL INDONESIA (PERSERO)</p>
@@ -79,7 +80,10 @@
     </footer>
 
     <main>
-        <h3>LEMBAR PERMINTAAN INFORMASI DAN DOKUMEN USER</h3>
+        <img src="{{ public_path('dist/images/logo-pal.png') }}" style="width:8rem; float:right"> 
+        <img src="{{ public_path('dist/images/logo_bumn.png') }}" style="width:9rem; float:left"> 
+        <br><br>
+        <h3>DAFTAR PERMINTAAN INFORMASI DAN DOKUMEN USER</h3>
         <h4>PUSAT PELAYANAN INFORMASI DAN DOKUMENTASI</h4>
         <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <thead>
