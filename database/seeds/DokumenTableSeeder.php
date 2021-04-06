@@ -27,7 +27,7 @@ class DokumenTableSeeder extends Seeder
                 'NOMOR_URUT' => $j,
                 'KETERANGAN' => "Keterangan".$i,
                 'PATH_FILE' => '#',
-                'LINK_FILE' => '#',
+                'LINK' => '#',
             ];
             if($j==5){
                 $j=0;
