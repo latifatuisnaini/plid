@@ -32,9 +32,9 @@ class DokumenPublikController extends Controller
             'ID_JENIS_KATEGORI' => 'required',
             'ID_KATEGORI' => 'required',
             'ID_JENIS_DOKUMEN' => 'required',
-            'FILE' => 'required_if:ID_JENIS_DOKUMEN,2,3|file',
+            'FILE' => 'required_if:ID_JENIS_DOKUMEN,2,3|nullable|file',
             'NOMOR_URUT' => 'required|integer',
-            'LINK_DOKUMEN' => 'required_if:ID_JENIS_DOKUMEN,1,3|url'
+            'LINK_DOKUMEN' => 'required_if:ID_JENIS_DOKUMEN,1,3|nullable|url'
         ]);
 
         if(isset($request->FILE) && !isset($request->LINK_DOKUMEN)){

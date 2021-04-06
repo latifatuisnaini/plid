@@ -242,12 +242,12 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 
                             <div class="col-span-12" id="input-file"> 
                                 <label class="font-semibold text-lg">File</label>
-                                <input type="file" class="input w-full border mt-2 flex-1" placeholder="File Dokumen" name="FILE" id="FILE" value="{{@old('FILE')}}">
+                                <input type="file" class="input w-full border mt-2 flex-1" placeholder="File Dokumen" name="FILE" id="FILE">
                             </div>
 
                             <div class="col-span-12" id="input-link"> 
                                 <label class="font-semibold text-lg">Link</label>
-                                <input type="url" class="input w-full border mt-2 flex-1" placeholder="Link Dokumen" name="LINK_DOKUMEN" id="LINK_DOKUMEN" value="{{@old('LINK_DOKUMEN')}}">
+                                <input type="url" class="input w-full border mt-2 flex-1" placeholder="Link Dokumen" name="LINK_DOKUMEN" id="LINK_DOKUMEN">
                             </div>
 
                             <div class="col-span-12"> 

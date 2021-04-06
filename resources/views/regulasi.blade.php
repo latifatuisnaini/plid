@@ -21,10 +21,10 @@
     <table class="table mt-3 border">
         <thead>
             <tr class="bg-gray-200 text-gray-700 text-center">
-                <th class="border whitespace-no-wrap">No.</th>
-                <th class="border whitespace-no-wrap">Aturan</th>
-                <th class="border whitespace-no-wrap">Keterangan</th>
-                <th class="border whitespace-no-wrap">Download</th>
+                    <th class="border whitespace-no-wrap" style="width:10%;">No.</th>
+                     <th class="border whitespace-no-wrap" style="width:30%;">Judul</th>
+                     <th class="border whitespace-no-wrap" style="width:20%;">Keterangan</th>
+                     <th class="border whitespace-no-wrap" style="width:40%;">Option</th>
             </tr>
         </thead>
         <tbody>
@@ -33,14 +33,34 @@
                             <td class="border border-b dark:border-dark-5 text-center">{{ $loop->iteration }}</td>
                             <td class="border border-b dark:border-dark-5 text-center">{{ $d->NAMA_DOKUMEN }}</td>
                             <td class="border border-b dark:border-dark-5 text-center">{{ $d->KETERANGAN }}</td>
-                            <td class="border border-b dark:border-dark-5">
+                            <td class="border border-b dark:border-dark-5 flex">
                             @if($d->ID_JENIS_DOKUMEN == 1)
-                                <a href="#" class="flex-1 button w-24 inline-block mr-1 mb-2 bg-theme-1 text-white">View</a>
+                                <a href="{{ $d->LINK }}" target="_blank">
+                                    <button class="button mr-2 mb-2 flex bg-theme-1 text-white">
+                                            <i data-feather="external-link" class="w-5 h-5"></i>
+                                                <div class="ml-2">View</div>
+                                    </button>
+                                </a>
                             @elseif($d->ID_JENIS_DOKUMEN == 2)
-                                <a href="{{ route('downloadregulasi', $kd->dokumen->ID_DOKUMEN) }}" class="flex-1 button w-24 inline-block mr-1 mb-2 bg-theme-1 text-white">Download</a>
+                                <a href="{{ url('download/dokumen-publik/'.$d->ID_DOKUMEN) }}"> 
+                                    <button class="button mr-2 mb-2 flex bg-theme-1 text-white">
+                                            <i data-feather="download" class="w-5 h-5"></i>
+                                                <div class="ml-2">Download</div>
+                                    </button>
+                                </a>
                             @elseif($d->ID_JENIS_DOKUMEN == 3)
-                                <a href="#" class="flex-1 button w-24 inline-block mr-1 mb-2 bg-theme-1 text-white">View</a>
-                                <a href="#" class="flex-1 button w-24 inline-block mr-1 mb-2 bg-theme-1 text-white">Download</a>
+                                <a href="{{ $d->LINK }}" target="_blank">
+                                        <button class="button mr-2 mb-2 flex bg-theme-1 text-white">
+                                                <i data-feather="external-link" class="w-5 h-5"></i>
+                                                    <div class="ml-2">View</div>
+                                        </button>
+                                </a>
+                                <a href="{{ url('download/dokumen-publik/'.$d->ID_DOKUMEN) }}"> 
+                                    <button class="button mr-2 mb-2 flex bg-theme-1 text-white">
+                                            <i data-feather="download" class="w-5 h-5"></i>
+                                                <div class="ml-2">Download</div>
+                                    </button>
+                                </a>
                             @endif
                             </td>
                     </tr>  
