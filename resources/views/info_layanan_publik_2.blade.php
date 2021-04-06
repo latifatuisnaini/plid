@@ -16,7 +16,7 @@
     </h2>
     <table class="table mt-3 border">
         <thead>
-            <tr class="bg-gray-200 text-gray-700">
+            <tr class="bg-gray-200 text-gray-700 text-center">
                      <th class="border whitespace-no-wrap" style="width:10%;">No.</th>
                      <th class="border whitespace-no-wrap" style="width:30%;">Judul</th>
                      <th class="border whitespace-no-wrap" style="width:20%;">Keterangan</th>
@@ -26,9 +26,9 @@
         <tbody>
                 @foreach($kd->dokumenKategori($kd->ID_KATEGORI) as $d)
                     <tr>
-                            <td class="border border-b dark:border-dark-5">{{ $loop->iteration }}</td>
-                            <td class="border border-b dark:border-dark-5">{{ $d->NAMA_DOKUMEN }}</td>
-                            <td class="border border-b dark:border-dark-5">{{ $d->KETERANGAN }}</td>
+                            <td class="border border-b dark:border-dark-5 text-center">{{ $loop->iteration }}</td>
+                            <td class="border border-b dark:border-dark-5 text-center">{{ $d->NAMA_DOKUMEN }}</td>
+                            <td class="border border-b dark:border-dark-5 text-center">{{ $d->KETERANGAN }}</td>
                             <td class="border border-b dark:border-dark-5 flex">
                             @if($d->ID_JENIS_DOKUMEN == 1)
                                 <a href="{{ $d->LINK }}" target="_blank">
