@@ -108,7 +108,7 @@ class AdminPermohonanController extends Controller
     public function cetakpdfOpen()
     {
         $permohonans = Permohonan::where('ID_STATUS',1)->orderBy('ID_PERMOHONAN','DESC')->get();
-        $pdf = \PDF::loadView('/admin/cetak-permohonan-open', compact('permohonans'), ['permohonan' => $permohonans])->setPaper("f4");
+        $pdf = \PDF::loadView('/admin/cetak-permohonan-open', compact('permohonans'), ['permohonan' => $permohonans]);
         return $pdf->stream();
     }
 
@@ -119,14 +119,14 @@ class AdminPermohonanController extends Controller
         'permohonan.KETERANGAN', 'feedback.EXPIRED_DATE', 'feedback.NAMA_FILE', 'feedback.KETERANGAN AS KETERANGAN_FEEDBACK')
         ->join('feedback', 'feedback.ID_PERMOHONAN', '=', 'permohonan.ID_PERMOHONAN')
         ->where('ID_STATUS',3)->orWhere('ID_STATUS', 4)->orderBy('permohonan.ID_PERMOHONAN','DESC')->get();
-        $pdf = \PDF::loadView('/admin/cetak-permohonan-confirm',compact('permohonan_confirm'),  ['permohonan' => $permohonan_confirm])->setPaper("f4");
+        $pdf = \PDF::loadView('/admin/cetak-permohonan-confirm',compact('permohonan_confirm'),  ['permohonan' => $permohonan_confirm]);
         return $pdf->stream();
     }
 
     public function cetakpdfPending()
     {
         $permohonan_pending = Permohonan::where('ID_STATUS',2)->orderBy('ID_PERMOHONAN','DESC')->get();
-        $pdf = \PDF::loadView('/admin/cetak-permohonan-pending', compact('permohonan_pending'), ['permohonan' => $permohonan_pending])->setPaper("f4");
+        $pdf = \PDF::loadView('/admin/cetak-permohonan-pending', compact('permohonan_pending'), ['permohonan' => $permohonan_pending]);
         return $pdf->stream();
     }
 
@@ -140,7 +140,7 @@ class AdminPermohonanController extends Controller
         $permohonan = Permohonan::where('ID_PERMOHONAN',$id)
         ->get();    
 
-        $pdf = \PDF::loadView('/admin.cetak-permohonan', compact('permohonan'), ['permohonan' => $permohonan])->setPaper("f4");
+        $pdf = \PDF::loadView('/admin.cetak-permohonan', compact('permohonan'), ['permohonan' => $permohonan]);
         return $pdf->stream();
 
         // return view('admin.cetak-permohonan', compact('permohonan'));
