@@ -110,41 +110,27 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 <tr>
                     <td>{{$u->ID_DOKUMEN}}</td>
                     <td>{{$u->kategori_dokumen->jenis_kategori_dokumen->JENIS_KATEGORI}} / {{$u->kategori_dokumen->KATEGORI}}</td>
-                    <td>{{$u->jenis_dokumen->JENIS_DOKUMEN}}</td>
-                    <td>{{$u->NAMA_DOKUMEN}}</td>
                     <td>
                         @if($u->jenis_dokumen->JENIS_DOKUMEN == "View")
-                        <a href="{{ $u->LINK }}" target="_blank">
-                            <button href="javascript:;" title="Link Dokumen" type="button" class="tooltip button px-2 mr-1 mb-2 bg-theme-1 text-white dark:text-gray-300">
-                                <span class="w-5 h-5 flex items-center justify-center">
-                                    <i data-feather="external-link" class="w-5 h-5"></i>
-                                </span>
-                            </button>
+                        <a href="{{ $u->LINK }}" target="_blank" class="underline text-blue-500">
+                            View
                         </a>
                         @elseif($u->jenis_dokumen->JENIS_DOKUMEN == "Download")
-                        <a href="{{ url('download/dokumen-publik/'.$u->ID_DOKUMEN) }}">
-                            <button href="javascript:;" title="Download Dokumen" type="button" class="tooltip button px-2 mr-1 mb-2 bg-theme-1 text-white dark:text-gray-300">
-                                <span class="w-5 h-5 flex items-center justify-center">
-                                    <i data-feather="download" class="w-5 h-5"></i>
-                                </span>
-                            </button>
+                        <a href="{{ url('download/dokumen-publik/'.$u->ID_DOKUMEN) }}" class="underline text-blue-500">
+                            Download
                         </a>
                         @elseif($u->jenis_dokumen->JENIS_DOKUMEN == "View dan Download")
-                        <a href="{{ $u->LINK }}" target="_blank">
-                            <button href="javascript:;" title="Link Dokumen" type="button" class="tooltip button px-2 mr-1 mb-2 bg-theme-1 text-white dark:text-gray-300">
-                                <span class="w-5 h-5 flex items-center justify-center">
-                                    <i data-feather="external-link" class="w-5 h-5"></i>
-                                </span>
-                            </button>
+                        <a href="{{ $u->LINK }}" target="_blank" class="underline text-blue-500">
+                            View
                         </a>
-                        <a href="{{ url('download/dokumen-publik/'.$u->ID_DOKUMEN) }}">
-                            <button href="javascript:;" title="Download Dokumen" type="button" class="tooltip button px-2 mr-1 mb-2 bg-theme-1 text-white dark:text-gray-300">
-                                <span class="w-5 h-5 flex items-center justify-center">
-                                    <i data-feather="download" class="w-5 h-5"></i>
-                                </span>
-                            </button>
+                        dan
+                        <a href="{{ url('download/dokumen-publik/'.$u->ID_DOKUMEN) }}" class="underline text-blue-500">
+                            Download
                         </a>
                         @endif
+                    </td>
+                    <td>{{$u->NAMA_DOKUMEN}}</td>
+                    <td>
                         <a data-toggle="modal" data-target="#detailDokumen_{{$u->ID_DOKUMEN}}" id="edit-dokumen_{{$u->ID_DOKUMEN}}" class="button-edit-dokumen">
                             <button href="javascript:;" title="Detail Dokumen" type="button" class="tooltip button px-2 mr-1 mb-2 bg-blue-300 dark:text-gray-300">
                                 <span class="w-5 h-5 flex items-center justify-center">
