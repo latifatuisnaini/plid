@@ -21,7 +21,7 @@ class CreateDokumenTable extends Migration
             $table->integer('NOMOR_URUT');
             $table->text('KETERANGAN')->nullable();
             $table->text('PATH_FILE')->nullable();
-            $table->text('LINK_FILE')->nullable();
+            $table->text('LINK')->nullable();
         });
     }
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\InfoLayananPublik1;
 use Illuminate\Support\Facades\Route;
 use App\Models\JenisKategoriDokumen;
 use App\Models\KategoriDokumen;
+use App\Models\Dokumen;
 
 Route::get('/', function () {
     return redirect('/beranda');
@@ -75,8 +76,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
 
     Route::resource('/dokumen-publik','DokumenPublikController');
     Route::get('getKategori/{id}',function($id){
-        $kategori = KategoriDokumen::where('ID_JENIS_KATEGORI','=',$id)->get();
-        return response()->json($kategori);
+        $kategori = KategoriDokumen::where('ID_JENIS_KATEGORI','=',$id)->pluck('ID_KATEGORI','KATEGORI');
+        return $kategori;
     });
     Route::resource('/kategori-dokumen','KategoriDokumenController');
     Route::resource('/faq-create','FaqAdminController');
@@ -90,4 +91,7 @@ Route::prefix('users')->middleware(['auth'])->group(function(){
     Route::get('/permohonan/download/{id}', 'PermohonanController@show')->name('downloadpermohonan');
 });
 
-
+Route::get('download/dokumen-publik/{id}',function($id){
+    $dokumen = Dokumen::find($id);
+    return Storage::disk('public')->download('dokumen/'.$dokumen->PATH_FILE);
+});
