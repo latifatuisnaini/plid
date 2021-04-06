@@ -21,7 +21,7 @@
     
             <div class="p-3" id="form-validation">
                 <div class="preview">
-                    <form action="{{ url('/lp_registrasip/store') }}" method="post" class="validate-form">
+                    <form action="{{ url('/lp_registrasip/store') }}"  method="post" class="validate-form">
                      @csrf
                         <div class="flex flex-col sm:flex-row items-center mt-3 ">
                             <label class="w-full sm:w-20 sm:text-left sm:mr-12">Jenis Pemohon</label>
@@ -87,8 +87,4 @@
                 
             </div>
             
-@endsection
-
-@section('script')
-
 @endsection
