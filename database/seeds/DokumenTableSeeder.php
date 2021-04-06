@@ -19,9 +19,10 @@ class DokumenTableSeeder extends Seeder
         
         $dokumen = [];
         $j=1;
-        for ($i = 0; $i < 100; $i++) {
+        $id_k = 1;
+        for ($i = 0; $i < 40; $i++) {
             $dokumen[] = [
-                'ID_KATEGORI' => rand(1,8),
+                'ID_KATEGORI' => $id_k,
                 'ID_JENIS_DOKUMEN' => rand(1,3),
                 'NAMA_DOKUMEN' => "Nama dokumen".$i,
                 'NOMOR_URUT' => $j,
@@ -31,6 +32,7 @@ class DokumenTableSeeder extends Seeder
             ];
             if($j==5){
                 $j=0;
+                $id_k++;
             }
             $j++;
         }
