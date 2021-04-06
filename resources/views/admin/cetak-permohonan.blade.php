@@ -94,7 +94,9 @@
                 </tr>
                 <tr>
                     <td>KTP</td>
-                    <td>: {{ $p->user->FILE_KTP }}</td>
+                    <td vertical-align="middle" > 
+                        <img src="{{ public_path('dist/images/ktpcontoh.png')}}" style="width: 10cm; height:5cm;"> 
+                    </td>
                 </tr>
                 <tr>
                     <td>Nama Lengkap</td>
@@ -123,7 +125,7 @@
             </tbody>
         </table>
 
-            <br>
+        <br>
         <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <tbody>
                 <tr>
@@ -135,7 +137,7 @@
                     <td>: {{ $p->KETERANGAN }}</td>
                 </tr>
                 <tr>
-                    <td>Status</td>
+                    <td>Status Dokumen</td>
                     <td> @if($p->ID_STATUS == 3)
                         : {{$p->status->STATUS}}
                          @else
