@@ -110,9 +110,22 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <td>{{$f->QUESTION}}</td>
                         <td>{{$f->ANSWER}}</td>
                         <td>
-                            <div class="mt-1 mb-1"> 
-                            <button href="javascript:;" title="Edit faq" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300"><a data-toggle="modal" data-target="#editFaq_{{$f->ID_FAQ}}"><span class="w-5 h-5 flex items-center justify-center"> <i data-feather="more-horizontal" class="w-4 h-4 "></i></span></a> </button> 
-                            </div>
+                        <div class="flex" style="justify-content: center;">
+                            <a data-toggle="modal" data-target="#editFaq_{{ $f->ID_FAQ }}">
+                                <button href="javascript:;" title="Edit FAQ" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
+                                    <span class="w-5 h-5 flex items-center justify-center">
+                                        <i data-feather="edit" class="w-4 h-4 "></i>
+                                    </span>
+                                </button>
+                            </a>
+                            <a data-toggle="modal" data-target="#deleteFaq_{{$f->ID_FAQ}}">
+                                <button href="javascript:;" title="Hapus FAQ" type="button" class="tooltip button px-2 mr-1 mb-2 bg-red-300 dark:text-gray-300">
+                                    <span class="w-5 h-5 flex items-center justify-center">
+                                        <i data-feather="trash-2" class="w-5 h-5 "></i>
+                                    </span>
+                                </button>
+                            </a>
+                        </div>
                         </td>
                         
                     </tr>
@@ -173,6 +186,78 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 </div>
             </div>
 
+            @foreach($faq as $f)
+        <div class="modal" id="editFaq_{{ $f->ID_FAQ }}">
+            <div class="modal__content modal__content--lg py-5 pl-5 pr-5 ml-auto">
+                <div class="modal-header">
+                    <div class="modal__content relative"> 
+                    </div>
+                    <div class="flex px-2 sm:pb-3 sm:pt-1 border-b border-gray-200 dark:border-dark-5">
+                        <h2 class="font-bold text-2xl flex"><i data-feather="info" class="w-8 h-8 mr-2"></i>Edit FAQ #{{ $f->ID_FAQ }}</h2>
+                        <a data-dismiss="modal" href="javascript:;" class="mr-3 ml-auto" id="close_{{$f->ID_FAQ}}"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('faq-create.update', $f->ID_FAQ) }}" method="POST" class="needs-validation" novalidate">
+                    @method('PUT')
+                    @csrf
+                    
+                    
+
+                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
+                        <div class="col-span-12">
+                            <label class="font-semibold text-lg mr-auto mt-3">QUESTION</label> 
+                                <input type="text" class="input w-full border mt-2 flex-1" placeholder="Question" name="QUESTION" value="{{ $f->QUESTION }}" required >
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
+                        <div class="col-span-12">
+                            <label class="font-semibold text-lg mr-auto mt-3">ANSWER</label> 
+                                <input type="text"  class="input w-full border mt-2 flex-1" placeholder="Answer" name="ANSWER" value="{{ $f->ANSWER }}" required >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer mt-5">
+                    <div class="text-right">
+                    <button type="button" class="button w-24 shadow-md mr-1 mb-2 bg-red-500 text-white" data-dismiss="modal">Cancel</button> 
+                    <button class="button items-right w-24 shadow-md mr-1 mb-2 justify-right bg-theme-1 text-white shadow-md" type="submit">Simpan</button>
+                   
+                    </div>
+                </div>
+
+                </form>
+            </div>
+        </div>
+
+        <div class="modal editModal" id="deleteFaq_{{ $f->ID_FAQ }}">
+            <div class="modal__content modal__content--lg p-5 ml-auto">
+                <div class="modal-header">
+                    <div class="modal__content relative"> 
+                    </div>
+                    <div class="flex px-2 sm:pb-3 sm:pt-1 border-b border-gray-200 dark:border-dark-5">
+                        <h2 class="font-bold text-2xl flex"><i data-feather="trash-2" class="w-8 h-8 mr-2"></i>Delete FAQ #{{ $f->ID_FAQ }}</h2>
+                        <a data-dismiss="modal" href="javascript:;" class="mr-3 ml-auto"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
+                    </div>
+                </div>
+                <form action="{{ route('faq-create.destroy',$f->ID_FAQ) }}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <div class="text-base mt-5">
+                        Apakah Anda yakin ingin menghapus FAQ "{{ $f->FAQ }}" ?
+                    </div>
+                    <div class="text-base text-theme-6">Data yang dihapus tidak dapat dikembalikan.</div>
+                    <div class="modal-footer mt-5">
+                        <div class="text-right">
+                            <button type="button" class="button shadow-md mr-1 mb-2 bg-red-500 text-white" data-dismiss="modal">Tidak, batalkan.</button> 
+                            <button class="button items-right shadow-md mr-1 mb-2 justify-right bg-theme-1 text-white shadow-md" type="submit">Ya, hapus.</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        @endforeach
 
 
 

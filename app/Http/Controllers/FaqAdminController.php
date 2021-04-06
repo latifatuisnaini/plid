@@ -34,5 +34,29 @@ class FaqAdminController extends Controller
 
     public function create(){
 
+
     }
+    public function update(Request $request, $id)
+    {
+        $request->validate
+        ([  
+            
+            'QUESTION' => 'required',
+            'ANSWER' => 'required'
+        ]);
+
+        $faq = Faq::find($id);
+        $faq->QUESTION = $request->QUESTION;
+        $faq->ANSWER = $request->ANSWER;
+        $faq->save();
+
+        return redirect()->route('faq-create.index')->with('success', 'Data FAQ dengan ID : '.$id.' Berhasil Diupdate.');
+    }
+
+    public function destroy($id)
+    {
+            Faq::find($id)->delete();
+        return redirect()->route('faq-create.index')->with('success', 'Data FAQ dengan ID : '.$id.' Berhasil Dihapus.');
+    }
+
 }
