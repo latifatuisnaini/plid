@@ -43,15 +43,15 @@ class RegistrasiController extends Controller
         $request->validate([
             'jenis_pemohon' => 'required',
             'jenis_identitas' => 'required',
-            'nomor_identitas' => 'required|string|max:20|regex:/^[0-9.\-\/]+$/',
-            'nama_lengkap' => 'required|string|max:100|regex:/^[a-zA-Z ]+$/',
-            'NPWP' => 'required|string|max:100|regex:/^[0-9.\-]+$/',
-            'email_pemohon' => 'required|string|email',
-            'pekerjaan' => 'required|string|max:100',
+            'nomor_identitas' => 'required|max:20|regex:/^[0-9.\-\/]+$/',
+            'nama_lengkap' => 'required|max:100|regex:/^[a-zA-Z ]+$/',
+            'NPWP' => 'required|max:100|regex:/^[0-9.\-]+$/',
+            'email_pemohon' => 'required|email',
+            'pekerjaan' => 'required|max:100',
             'alamat' => 'required',
-            'no_tlp' => 'required|string|max:15|regex:/^[0-9]+$/',
-            'no_fax'=> 'required|string|max:15|regex:/^[0-9]+$/',
-            'password_pemohon' => 'required|string',
+            'no_tlp' => 'required|max:15|regex:/^[0-9]+$/',
+            'no_fax'=> 'required|max:15|regex:/^[0-9]+$/',
+            'password_pemohon' => 'required',
         ]);
 
         User::insert([
