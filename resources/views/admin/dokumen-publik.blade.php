@@ -98,17 +98,19 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
         <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <thead>
                 <tr>
-                    <th data-priority="1">ID</th>
+                    <th data-priority="1">No.</th>
                     <th data-priority="3">Menu / Kategori</th>
                     <th data-priority="2">Jenis</th>
+                    <th data-priority="4">No. Urut</th>
                     <th data-priority="4">Nama</th>
-                    <th data-priority="5">Aksi</th>
+                    <th data-priority="5" width="20%">Aksi</th>
                 </tr>
             </thead>
             <tbody>
+                {{-- Sorting berdasarkan menu/kategori dan nomor urut. --}}
             @foreach($dokumens as $u)
                 <tr>
-                    <td>{{$u->ID_DOKUMEN}}</td>
+                    <td class="text-center">{{ $loop->iteration }}</td>
                     <td>{{$u->kategori_dokumen->jenis_kategori_dokumen->JENIS_KATEGORI}} / {{$u->kategori_dokumen->KATEGORI}}</td>
                     <td>
                         @if($u->jenis_dokumen->JENIS_DOKUMEN == "View")
@@ -129,25 +131,26 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         </a>
                         @endif
                     </td>
+                    <td>{{$u->NOMOR_URUT}}</td>
                     <td>{{$u->NAMA_DOKUMEN}}</td>
-                    <td>
+                    <td class="text-center">
                         <a data-toggle="modal" data-target="#detailDokumen_{{$u->ID_DOKUMEN}}" id="edit-dokumen_{{$u->ID_DOKUMEN}}" class="button-edit-dokumen">
                             <button href="javascript:;" title="Detail Dokumen" type="button" class="tooltip button px-2 mr-1 mb-2 bg-blue-300 dark:text-gray-300">
-                                <span class="w-5 h-5 flex items-center justify-center">
+                                <span class="w-5 h-5">
                                     <i data-feather="more-vertical" class="w-5 h-5 "></i>
                                 </span>
                             </button>
                         </a>
                         <a data-toggle="modal" data-target="#editDokumen_{{$u->ID_DOKUMEN}}" id="edit-dokumen_{{$u->ID_DOKUMEN}}" class="button-edit-dokumen">
                             <button href="javascript:;" title="Edit Dokumen" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
-                                <span class="w-5 h-5 flex items-center justify-center">
+                                <span class="w-5 h-5">
                                     <i data-feather="edit" class="w-5 h-5 "></i>
                                 </span>
                             </button>
                         </a>
                         <a data-toggle="modal" data-target="#deleteDokumen_{{$u->ID_DOKUMEN}}" id="edit-dokumen_{{$u->ID_DOKUMEN}}" class="button-edit-dokumen">
                             <button href="javascript:;" title="Hapus Dokumen" type="button" class="tooltip button px-2 mr-1 mb-2 bg-red-300 dark:text-gray-300">
-                                <span class="w-5 h-5 flex items-center justify-center">
+                                <span class="w-5 h-5">
                                     <i data-feather="trash-2" class="w-5 h-5 "></i>
                                 </span>
                             </button>
@@ -219,6 +222,9 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             <div class="col-span-12 sm:col-span-3"> 
                                 <label class="font-semibold text-lg">No. Urut</label>
                                 <input type="number" class="input w-full border mt-2 flex-1" placeholder="No. Urut" name="NOMOR_URUT" id="NOMOR_URUT" required min="1" value="{{@old('NOMOR_URUT')}}">
+                                @error('ID_KATEGORI')
+                                <small class="text-theme-6">Nomor urut sudah digunakan.</small>
+                                @enderror
                             </div>
 
                             <div class="col-span-12 sm:col-span-9"> 
@@ -461,12 +467,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
         </div>
         @endforeach
 
-        
-        
     </div>
     <!--/Card-->
-
-
 </div>
 <!--/container-->
 </div>
@@ -483,7 +485,6 @@ $(document).ready(function() {
             columnDefs: [
                 { orderable: false, targets: 4 }
             ],
-            "order": [[ 0, 'desc' ]],
         } )
         .columns.adjust()
         .responsive.recalc();

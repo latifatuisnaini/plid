@@ -15,7 +15,7 @@ class DokumenPublikController extends Controller
 {
     public function index()
     {
-        $dokumens = Dokumen::all();
+        $dokumens = Dokumen::orderBy('ID_KATEGORI','ASC')->orderBy('NOMOR_URUT','ASC')->get();
         $jenis_kategoris = JenisKategoriDokumen::all();
         $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
         $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
@@ -30,10 +30,10 @@ class DokumenPublikController extends Controller
         $request->validate([
             'NAMA_DOKUMEN' => 'required',
             'ID_JENIS_KATEGORI' => 'required',
-            'ID_KATEGORI' => 'required',
+            'ID_KATEGORI' => "required",
             'ID_JENIS_DOKUMEN' => 'required',
             'FILE' => 'required_if:ID_JENIS_DOKUMEN,2,3|nullable|file',
-            'NOMOR_URUT' => 'required|integer',
+            'NOMOR_URUT' => "required|integer",
             'LINK_DOKUMEN' => 'required_if:ID_JENIS_DOKUMEN,1,3|nullable|url'
         ]);
 
