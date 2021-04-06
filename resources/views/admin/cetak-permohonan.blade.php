@@ -38,16 +38,17 @@
             line-height: 2px;
         }
         table,tr,th, td{
-            border: 1pt solid black;
+            border: 1pt solid white;
             border-collapse: collapse;
         }
         th, td{
             padding: 5px;
-            font-size: 9pt;
+            font-size: 12pt;
         }
 	    th{
+            padding: 5px;
             color: black;
-            font-size: 10pt;
+            font-size: 15pt;
         }
         footer{
             position: fixed;
@@ -82,82 +83,69 @@
     <main>
         <h3>LEMBAR PERMOHONAN INFORMASI DAN DOKUMEN USER</h3>
         <h4>PUSAT PELAYANAN INFORMASI DAN DOKUMENTASI</h4>
-        @foreach($user as $p)
-        <div class="container ">
-            <div class="row">
-                <div class="col-sm-12">
-                    
-                <div class="col-span-6"> 
-                    <label class="font-semibold text-lg">Nomor Identitas</label>
-                    <div class="text-base">{{ $p->user->NOMOR_IDENTITAS }}</div>
-                </div><br>
 
-                <div class="col-span-6"> 
-                    <label class="font-semibold text-lg">NPWP</label>
-                    <div class="text-base">{{ $p->user->NPWP }}</div>
-                </div><br>
+        @foreach($permohonan as $p)
 
-                <div class="col-sm-6"> 
-                    <label class="font-semibold text-lg">Nama Lengkap</label>
-                    <div class="text-base">{{ $p->user->NAMA_LENGKAP }}</div>
-                </div><br>
+        <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+            <tbody>
+                <tr>
+                    <td width="20%">Nomor Identitas</td>
+                    <td>: {{ $p->user->NOMOR_IDENTITAS }}</td>
+                </tr>
+                <tr>
+                    <td>KTP</td>
+                    <td>: {{ $p->user->FILE_KTP }}</td>
+                </tr>
+                <tr>
+                    <td>Nama Lengkap</td>
+                    <td>: {{ $p->user->NAMA_LENGKAP }}</td>
+                </tr>
+                <tr>
+                    <td>E-mail</td>
+                    <td>: {{ $p->user->email }}</td>
+                </tr>
+                <tr>
+                    <td>Pekerjaan</td>
+                    <td>: {{ $p->user->PEKERJAAN }}</td>
+                </tr>
+                <tr>
+                    <td>Alamat</td>
+                    <td>: {{ $p->user->ALAMAT }}</td>
+                </tr>
+                <tr>
+                    <td>Nomor Telepon</td>
+                    <td>: {{ $p->user->NO_TLP }}</td>
+                </tr>
+                <tr>
+                    <td>Nomor Fax</td>
+                    <td>: {{ $p->user->NO_FAX }}</td>
+                </tr>
+            </tbody>
+        </table>
 
-                <div class="col-sm-6"> 
-                    <label class="font-semibold text-lg">Email</label>
-                    <div class="text-base">{{ $p->user->email }}</div>
-                </div><br>
+            <br>
+        <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+            <tbody>
+                <tr>
+                    <td width="27%">Nama Dokumen</td>
+                    <td>: {{ $p->DOKUMEN_PERMOHONAN }}</td>
+                </tr>
+                <tr>
+                    <td>Keterangan Dokumen</td>
+                    <td>: {{ $p->KETERANGAN }}</td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td> @if($p->ID_STATUS == 3)
+                        : {{$p->status->STATUS}}
+                         @else
+                        : {{$p->status->STATUS}}
+                        @endif
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-                <div class="col-sm-6">
-                    <label class="font-semibold text-lg">Pekerjaan</label>
-                    <div class="text-base">{{ $p->user->PEKERJAAN }}</div>
-                </div><br>
-
-                <div class="col-sm-6"> 
-                    <label class="font-semibold text-lg">Alamat</label>
-                    <div class="text-base">{{ $p->user->ALAMAT }}</div>
-                </div><br>
-
-                <div class="col-sm-6">
-                    <label class="font-semibold text-lg">No.Telp</label>
-                    <div class="text-base">{{ $p->user->NO_TLP }}</div>
-                </div><br>
-
-                <div class="col-sm-6">
-                    <label class="font-semibold text-lg">No.Fax</label>
-                    <div class="text-base">{{ $p->user->NO_FAX }}</div>
-                </div><br>
-
-                </div>
-                
-            </div>
-        </div>
-
-            <br><br>
-        <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
-            <div class="col-span-12 sm:col-span-6"> 
-                <label class="font-semibold text-lg">Nama Dokumen</label>
-                <div class="text-base">{{ $p->DOKUMEN_PERMOHONAN }}</div>
-            </div><br>
-
-            <div class="col-span-12 sm:col-span-6"> 
-                <label class="font-semibold text-lg">Keterangan Dokumen</label>
-                <div class="text-base">{{ $p->KETERANGAN }}</div>
-            </div><br>
-
-            <div class="col-span-12 sm:col-span-6"> 
-                <label class="font-semibold text-lg">Status</label>
-                @if($p->ID_STATUS == 3)
-                    <div class="text-base">
-                    <div class="flex items-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
-                    </div>
-                @else
-                    <div class="text-base">
-                    <div class="flex items-center text-theme-6"> <i data-feather="x-square" class="w-4 h-4 mr-2"></i> {{$p->status->STATUS}} </div>
-                    </div>
-                @endif
-                <!-- <div class="text-base">{{ $p->status->STATUS }}</div> -->
-            </div>
-        </div>
         @endforeach
     </main>
 
