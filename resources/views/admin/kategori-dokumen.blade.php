@@ -117,17 +117,13 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                                     </span>
                                 </button>
                             </a>
-                            
-                            <form action="{{ route('kategori-dokumen.destroy', $k->ID_KATEGORI) }}" method="POST" class="needs-validation" novalidate 
-                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus data kategori dokumen ini?')" >
-                            @method('DELETE')
-                            @csrf
-                                <button title="Hapus Kategori" type="submit" class="tooltip button px-2 mr-1 mb-2 bg-red-400 dark:text-gray-300" >
+                            <a data-toggle="modal" data-target="#deleteKategori_{{$k->ID_KATEGORI}}">
+                                <button href="javascript:;" title="Hapus Kategori" type="button" class="tooltip button px-2 mr-1 mb-2 bg-red-300 dark:text-gray-300">
                                     <span class="w-5 h-5 flex items-center justify-center">
-                                        <i data-feather="delete" class="w-4 h-4 "></i>
+                                        <i data-feather="trash-2" class="w-5 h-5 "></i>
                                     </span>
                                 </button>
-                            </form>
+                            </a>
                         </div>
                         </td>
                     </tr>
@@ -246,6 +242,33 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     </div>
                 </div>
 
+                </form>
+            </div>
+        </div>
+
+        <div class="modal editModal" id="deleteKategori_{{ $k->ID_KATEGORI }}">
+            <div class="modal__content modal__content--lg p-5 ml-auto">
+                <div class="modal-header">
+                    <div class="modal__content relative"> 
+                    </div>
+                    <div class="flex px-2 sm:pb-3 sm:pt-1 border-b border-gray-200 dark:border-dark-5">
+                        <h2 class="font-bold text-2xl flex"><i data-feather="trash-2" class="w-8 h-8 mr-2"></i>Delete Kategori Dokumen #{{ $k->ID_KATEGORI }}</h2>
+                        <a data-dismiss="modal" href="javascript:;" class="mr-3 ml-auto"><i data-feather="x" class="w-8 h-8 text-gray-500"></i></a>
+                    </div>
+                </div>
+                <form action="{{ route('kategori-dokumen.destroy',$k->ID_KATEGORI) }}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <div class="text-base mt-5">
+                        Apakah Anda yakin ingin menghapus kategori dokumen "{{ $k->KATEGORI }}" ?
+                    </div>
+                    <div class="text-base text-theme-6">Data yang dihapus tidak dapat dikembalikan.</div>
+                    <div class="modal-footer mt-5">
+                        <div class="text-right">
+                            <button type="button" class="button shadow-md mr-1 mb-2 bg-red-500 text-white" data-dismiss="modal">Tidak, batalkan.</button> 
+                            <button class="button items-right shadow-md mr-1 mb-2 justify-right bg-theme-1 text-white shadow-md" type="submit">Ya, hapus.</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
