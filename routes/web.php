@@ -81,15 +81,16 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     });
     Route::resource('/kategori-dokumen','KategoriDokumenController');
     Route::resource('/faq-create','FaqAdminController');
+    Route::get('/profile/{id}','UserController@profile');
 });
  
 Route::prefix('users')->middleware(['auth'])->group(function(){
     Route::get('/','UsersController@index');
-    Route::get('/profile/{id}','UsersController@show');
     Route::resource('/permohonan','PermohonanController');
     Route::get('/users/permohonan', 'PermohonanController@index');
     Route::post('upload_dok','UsersController@uploadDokumen');
     Route::get('/permohonan/download/{id}', 'PermohonanController@show')->name('downloadpermohonan');
+    Route::get('/profile/{id}','UsersController@show');
 });
 
 Route::get('download/dokumen-publik/{id}',function($id){

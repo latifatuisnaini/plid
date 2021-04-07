@@ -41,4 +41,12 @@ class UserController extends Controller
         return view('admin.detail_user',compact('user','permohonan_open_notif', 'permohonan_diproses_notif'));
     }
 
+    public function profile($id)
+    {
+        $user = User::find($id);
+        $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
+        $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
+        return view('admin.profile',compact('user','permohonan_open_notif', 'permohonan_diproses_notif'));
+    }
+
 }
