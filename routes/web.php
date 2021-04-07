@@ -85,6 +85,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
  
 Route::prefix('users')->middleware(['auth'])->group(function(){
     Route::get('/','UsersController@index');
+    Route::get('/profile/{id}','UsersController@show');
     Route::resource('/permohonan','PermohonanController');
     Route::get('/users/permohonan', 'PermohonanController@index');
     Route::post('upload_dok','UsersController@uploadDokumen');
