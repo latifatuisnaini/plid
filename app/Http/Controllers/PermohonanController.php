@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dokumen;
 use App\Models\Feedback;
 use App\Models\Permohonan;
 use App\Models\Status;
@@ -19,8 +20,19 @@ class PermohonanController extends Controller
        $permohonan=Permohonan::where('ID_USER', Auth::user()->ID_USER)->get();
         $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
         $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
+        $dokumen=Dokumen::all();
+        $feedback=Feedback::all();
+        $now=Carbon::now('Asia/Jakarta');
         
-       return view('users.permohonan', compact('permohonan','permohonan_open_notif', 'permohonan_diproses_notif'));
+        foreach($feedback as $f){
+        
+            $exp=Carbon::createFromFormat('Y-m-d',$f->EXPIRED_DATE);
+            if($now->greaterThan($exp)){
+                Storage::disk('public')->delete('dokumen/'.$f->LINK_DOWNLOAD);
+            }
+        }
+
+       return view('users.permohonan', compact('permohonan','permohonan_open_notif', 'permohonan_diproses_notif','now','exp'));
     }
 
     public function create(){

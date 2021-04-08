@@ -326,7 +326,12 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             <tr>
                                 <th data-priority="1">Nama File</th>
                                 <th data-priority="2">Expired Date</th>
-                                <th data-priority="3">Aksi</th>
+                               
+                                <th data-priority="3">Status</th>
+                                
+                                <th data-priority="4">Aksi</th>
+                             
+
                             </tr>
                         </thead>
                 </div>
@@ -334,9 +339,13 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             <tr>
                                 <td>{{$p->feedback->NAMA_FILE}}</td>
                                 <td>{{date('d F Y ',strtotime($p->feedback->EXPIRED_DATE))}}</td>
+                              
+                                <td>Dokumen sudah expired</td>
+                                
                                 <td>
                                 <a href ="{{ route('downloadpermohonan', $p->feedback->ID_FEEDBACK) }}" class="button mb-5 mr-6 mt-3 flex items-center justify-center bg-theme-1 text-white tombol-tambah-download" style="float:right;" ><i data-feather="download" class="w-4 h-4 mr-2"></i>Download</a>
                                 </td>
+                                    
                             </tr>
                         </tbody>
                     </table>
