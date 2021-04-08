@@ -22,17 +22,21 @@ class PermohonanController extends Controller
         $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
         $dokumen=Dokumen::all();
         $feedback=Feedback::all();
-        $now=Carbon::now('Asia/Jakarta');
+        $now=Carbon::now()->format('Y-m-d');
         
-        foreach($feedback as $f){
-        
-            $exp=Carbon::createFromFormat('Y-m-d',$f->EXPIRED_DATE);
-            if($now->greaterThan($exp)){
-                Storage::disk('public')->delete('dokumen/'.$f->LINK_DOWNLOAD);
+        foreach($permohonan as $p){
+            if(isset($p->feedback)){
+                if($now > $p->feedback->EXPIRED_DATE){
+                    $path = Feedback::find($p->feedback->ID_FEEDBACK)->value('LINK_DOWNLOAD');
+                    Storage::disk('public')->delete('dokumen/'.$path);
+                    Feedback::find($p->feedback->ID_FEEDBACK)->update([
+                        'LINK_DOWNLOAD' => NULL
+                    ]);
+                }
             }
         }
 
-       return view('users.permohonan', compact('permohonan','permohonan_open_notif', 'permohonan_diproses_notif','now','exp'));
+       return view('users.permohonan', compact('permohonan','permohonan_open_notif', 'permohonan_diproses_notif','now'));
     }
 
     public function create(){
