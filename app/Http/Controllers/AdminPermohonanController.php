@@ -32,9 +32,24 @@ class AdminPermohonanController extends Controller
     public function indexConfirm()
     {
         $permohonan_confirm = Permohonan::where('ID_STATUS',3)->orWhere('ID_STATUS', 4)->orderBy('permohonan.ID_PERMOHONAN','DESC')->get();
+        $todayDate = Carbon::now()->format('Y-m-d');
         $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
         $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
-        return view('admin.permohonan-confirm', compact('permohonan_confirm', 'permohonan_open_notif', 'permohonan_diproses_notif'));
+
+        foreach($permohonan_confirm as $p){
+            if(isset($p->feedback)){
+                if($todayDate > $p->feedback->EXPIRED_DATE){
+                    $path = Feedback::find($p->feedback->ID_FEEDBACK)->value('LINK_DOWNLOAD');
+                    Storage::disk('public')->delete('dokumen/'.$path);
+                    Feedback::find($p->feedback->ID_FEEDBACK)->update([
+                        'LINK_DOWNLOAD' => NULL
+                    ]);
+                }
+            }
+        }
+        
+    
+        return view('admin.permohonan-confirm', compact('permohonan_confirm', 'permohonan_open_notif', 'permohonan_diproses_notif', 'todayDate'));
     }
 
     public function indexPending()
