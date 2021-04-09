@@ -31,20 +31,23 @@ class AdminPermohonanController extends Controller
 
     public function indexConfirm()
     {
-        $permohonan_confirm = Permohonan::where('ID_STATUS',3)->orWhere('ID_STATUS', 4)->orderBy('permohonan.ID_PERMOHONAN','DESC')->get();
-        $todayDate = Carbon::now();
+        $permohonan_confirm = Permohonan::where('ID_STATUS',3)->orWhere('ID_STATUS', 4)->orderBy('ID_PERMOHONAN','DESC')->get();
+        $todayDate = date('Y-m-d');
+        
         $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
         $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
 
-        $feedback = Feedback::all();
+        $feedback = Feedback::where('ID_FEEDBACK',152)->get();
 
-        foreach($feedback as $p){
-            $exp = date('Y-m-d',strtotime($p->EXPIRED_DATE));
-            if($todayDate->greaterThan($exp)){
-                Storage::disk('public')->delete('dokumen/'.$p->LINK_DOWNLOAD);
-                // Feedback::where('ID_FEEDBACK',$p->ID_FEEDBACK)->update([
-                //     'LINK_DOWNLOAD' => NULL
-                // ]);
+        foreach($feedback as $f){
+            $exp_date = date('Y-m-d',strtotime($f->EXPIRED_DATE));
+            if($todayDate > $exp_date){
+                // echo "<br>".$exp_date;
+                // echo "<br> aku expired";
+                // echo "<br>".$todayDate;
+                // echo "<br>dokumen/".$f->LINK_DOWNLOAD;
+                Storage::disk('public')->delete('dokumen/'.$f->LINK_DOWNLOAD);
+                
             }
         }
         

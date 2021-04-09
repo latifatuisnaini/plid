@@ -98,9 +98,10 @@
         <table id="view" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <thead>
                 <tr>
-                    <th data-priority="3">Tanggal</th>
+                    <th data-priority="1" width="5%">ID Permohonan</th>
                     <th data-priority="1">Nama Dokumen</th>
-                    <th data-priority="2" width="40%">Keterangan Dokumen</th>
+                    <th data-priority="2" width="30%">Keterangan Dokumen</th>
+                    <th data-priority="3">Tanggal Permohonan</th>
                     <th data-priority="2">Status</th>
                     <th data-priority="6">Aksi</th>
                 </tr>
@@ -108,9 +109,10 @@
             <tbody>
             @foreach($permohonan_confirm as $p)
                 <tr>
-                    <td>{{ date('d F Y',strtotime($p->TANGGAL)) }}</td>
+                    <td>{{$p->ID_PERMOHONAN}}</td>
                     <td>{{$p->DOKUMEN_PERMOHONAN}}</td>
                     <td>{{$p->KETERANGAN}}</td>
+                    <td>{{ date('d F Y',strtotime($p->TANGGAL)) }}</td>
                     <td>
                     @if($p->ID_STATUS == 3)
                             <div class="text-center">
@@ -267,13 +269,7 @@ $(document).ready(function() {
 
     var table = $('#view').DataTable( {
         responsive: true,
-        // dom: 'Bfrtip',
-        // buttons: [
-        //     {
-        //         extend: 'pdfHtml5',
-        //         download: 'open'
-        //     }
-        // ]
+        "order": [ 0, 'desc' ],
     } )
     .columns.adjust()
     .responsive.recalc();
