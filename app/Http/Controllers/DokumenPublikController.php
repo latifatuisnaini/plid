@@ -139,7 +139,7 @@ class DokumenPublikController extends Controller
 
     public function destroy($id)
     {
-        $path = Dokumen::find($id)->value('PATH_FILE');
+        $path = Dokumen::where('ID_DOKUMEN',$id)->value('PATH_FILE');
         Storage::disk('public')->delete('dokumen/'.$path);
         Dokumen::find($id)->delete();
         return redirect('admin/dokumen-publik')->with('alert_sukses', 'Dokumen berhasil dihapus.');
