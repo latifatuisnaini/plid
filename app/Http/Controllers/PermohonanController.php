@@ -17,26 +17,25 @@ class PermohonanController extends Controller
 {
     public function index()
     {
-       $permohonan=Permohonan::where('ID_USER', Auth::user()->ID_USER)->get();
+        $permohonan=Permohonan::where('ID_USER', Auth::user()->ID_USER)->get();
+        $permohonan2=Permohonan::
+        select('feedback.ID_FEEDBACK','feedback.LINK_DOWNLOAD','feedback.EXPIRED_DATE')
+        ->join('feedback', 'feedback.ID_PERMOHONAN', '=', 'permohonan.ID_PERMOHONAN')
+        ->where('ID_USER', Auth::user()->ID_USER)
+        ->get();
+
         $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
         $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
         $dokumen=Dokumen::all();
-        $feedback=Feedback::all();
         $now=Carbon::now()->format('Y-m-d');
         
-        foreach($permohonan as $p){
-            if(isset($p->feedback)){
-                if($now > $p->feedback->EXPIRED_DATE){
-                    $path = Feedback::find($p->feedback->ID_FEEDBACK)->value('LINK_DOWNLOAD');
-                    Storage::disk('public')->delete('dokumen/'.$path);
-                    Feedback::find($p->feedback->ID_FEEDBACK)->update([
-                        'LINK_DOWNLOAD' => NULL
-                    ]);
-                }
+        foreach($permohonan2 as $p){
+            if($now > $p->EXPIRED_DATE){
+                Storage::disk('public')->delete('dokumen/'.$p->LINK_DOWNLOAD);
             }
         }
 
-       return view('users.permohonan', compact('permohonan','permohonan_open_notif', 'permohonan_diproses_notif','now'));
+       return view('users.permohonan', compact('permohonan','permohonan_open_notif', 'permohonan_diproses_notif','now','permohonan2'));
     }
 
     public function create(){
@@ -67,7 +66,7 @@ class PermohonanController extends Controller
     }   
     public function show($id){
         $feedback = Feedback::find($id);
-        
+        //dd($feedback);
         return Storage::disk('public')->download('dokumen/'.$feedback->LINK_DOWNLOAD);
         
     }

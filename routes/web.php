@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\JenisKategoriDokumen;
 use App\Models\KategoriDokumen;
 use App\Models\Dokumen;
+use App\Models\Feedback;
 
 Route::get('/', function () {
     return redirect('/beranda');
@@ -89,11 +90,16 @@ Route::prefix('users')->middleware(['auth'])->group(function(){
     Route::resource('/permohonan','PermohonanController');
     Route::get('/users/permohonan', 'PermohonanController@index');
     Route::post('upload_dok','UsersController@uploadDokumen');
-    Route::get('/permohonan/download/{id}', 'PermohonanController@show')->name('downloadpermohonan');
+    Route::get('download/dokumen-permohonan/{id}', 'PermohonanController@show');
     Route::get('/profile/{id}','UsersController@show');
 });
 
 Route::get('download/dokumen-publik/{id}',function($id){
     $dokumen = Dokumen::find($id);
     return Storage::disk('public')->download('dokumen/'.$dokumen->PATH_FILE);
+});
+
+Route::get('download/dokumen-permohonan/{id}',function($id){
+    $feedback = Feedback::find($id);
+    return Storage::disk('public')->download('dokumen/'.$feedback->LINK_DOWNLOAD);
 });
