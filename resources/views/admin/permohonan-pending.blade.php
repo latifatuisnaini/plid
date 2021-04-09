@@ -103,9 +103,10 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
         <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <thead>
                 <tr>
-                    <th data-priority="1">Nama Dokumen</th>
-                    <th data-priority="2" width="53%">Keterangan</th>
-                    <th data-priority="3">Tanggal</th>
+                    <th data-priority="1" width="25%">Nama Dokumen</th>
+                    <th data-priority="2" width="25%">Keterangan</th>
+                    <th data-priority="3">Tanggal Permohonan</th>
+                    <th data-priority="3">Waktu Estimasi</th>
                     <th data-priority="6">Aksi</th>
                 </tr>
             </thead>
@@ -115,6 +116,9 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <td>{{$pp->DOKUMEN_PERMOHONAN}}</td>
                     <td>{{$pp->KETERANGAN}}</td>
                     <td>{{ date('d F Y',strtotime($pp->TANGGAL)) }}</td>
+                    @if(isset($pp->feedback))
+                    <td>{{ date('d F Y',strtotime($pp->feedback->WAKTU_ESTIMASI)) }}</td>
+                    @endif
                     <td>
                     <div class="flex" style="justify-content: center;">
                     <button href="javascript:;" title="Detail Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
