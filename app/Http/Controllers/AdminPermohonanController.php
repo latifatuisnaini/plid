@@ -54,7 +54,9 @@ class AdminPermohonanController extends Controller
 
     public function indexPending()
     {
-        $permohonan_pending = Permohonan::where('ID_STATUS',2)->orderBy('ID_PERMOHONAN','DESC')->get();
+        $permohonan_pending = Permohonan::where('ID_STATUS',2)->orderBy('ID_PERMOHONAN','DESC')
+        
+        ->get();
         $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
         $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
         return view('admin.permohonan-pending', compact('permohonan_pending', 'permohonan_open_notif', 'permohonan_diproses_notif'));
