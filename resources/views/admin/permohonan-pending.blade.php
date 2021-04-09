@@ -103,16 +103,18 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
         <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <thead>
                 <tr>
-                    <th data-priority="1" width="25%">Nama Dokumen</th>
-                    <th data-priority="2" width="25%">Keterangan</th>
-                    <th data-priority="3">Tanggal Permohonan</th>
-                    <th data-priority="3">Waktu Estimasi</th>
+                <th data-priority="1">No</th>
+                    <th data-priority="2" width="25%">Nama Dokumen</th>
+                    <th data-priority="3" width="25%">Keterangan</th>
+                    <th data-priority="4">Tanggal Permohonan</th>
+                    <th data-priority="5">Waktu Estimasi</th>
                     <th data-priority="6">Aksi</th>
                 </tr>
             </thead>
             <tbody>
             @foreach($permohonan_pending as $pp)
                 <tr>
+                <td>{{$pp->ID_PERMOHONAN}}</td>
                     <td>{{$pp->DOKUMEN_PERMOHONAN}}</td>
                     <td>{{$pp->KETERANGAN}}</td>
                     <td>{{ date('d F Y',strtotime($pp->TANGGAL)) }}</td>
