@@ -22,6 +22,14 @@
             font-size: 10pt;
             line-height: 1px;
         }
+        .h4text{
+            color: black;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: justify;
+            font-style: bold;
+            font-size: 10pt;
+            line-height: 2px;
+        }
         .foot1 {
             font-size: 9pt;
             text-align: center;
@@ -84,6 +92,7 @@
     <main>
         <h3>LEMBAR PERMOHONAN INFORMASI DAN DOKUMEN USER</h3>
         <h4>PUSAT PELAYANAN INFORMASI DAN DOKUMENTASI</h4>
+        <br>
 
         @foreach($permohonan as $p)
 
@@ -96,7 +105,7 @@
                 
                     <!-- <td>KTP</td> -->
                     <td vertical-align="top"  rowspan="7"> 
-                        <img class="float-right" src="{{ public_path('dist/images/ktpcontoh.png')}}" style="vertical-align:top ; float:right ; width: 9cm; height:5cm;"> 
+                        <img class="float-right" src="{{ public_path().'storage/dokumen/'.$p->user->FILE_KTP}}" style="vertical-align:top ; float:right ; width: 9cm; height:5cm;"> 
                     </td>
                 </tr>
                 <tr>
@@ -131,9 +140,12 @@
                 </tr>
             </tbody>
         </table>
-
-        <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+        <br>
+        <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">   
             <tbody>
+                <tr>
+                    <td colspan="3" style="font-style: bold; font-size: 12pt; text-decoration:underline;">Dokumen yang Diminta User</td>
+                </tr>
                 <tr>
                     <td width="27%">Nama Dokumen</td>
                     <td width="2%">: </td>

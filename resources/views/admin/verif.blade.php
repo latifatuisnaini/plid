@@ -82,7 +82,6 @@
 <!--Container-->
 <div class="container w-full ">
     
-
     @if( session('message') )
         <div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-18 text-theme-9"> <i data-feather="check-circle" class="w-6 h-6 mr-2"></i> Dokumen Verifikasi User berhasil disimpan </div> <br>
     @endif
@@ -209,21 +208,11 @@
                     <div class="text-base">KTP</div>
                 </div>
 
-                <!-- <div class="col-span-12 sm:col-span-6">
-                    <div class="text-base">NPWP</div>
-                </div> -->
-
                 <div class="col-span-12 ">
                     <div class="w-full h-64 image-fit">
-                        <img alt="File KTP" src="{{ asset('dist/images/preview-8.jpg')}}" data-action="zoom" class="w-full rounded-md"> 
+                        <img alt="File KTP" src="{{ asset('storage/dokumen/'.$u->FILE_KTP) }}" data-action="zoom" class="w-full rounded-md"> 
                     </div>
                 </div>
-
-                <!-- <div class="col-span-12 sm:col-span-6">
-                    <div class="w-full h-64 image-fit">
-                        <img alt="File NPWP" src="{{ asset('dist/images/preview-8.jpg')}}" data-action="zoom" class="w-full rounded-md"> 
-                    </div> 
-                </div> -->
 
                 <div class="col-span-12 sm:col-span-6">
                     <form action="{{ route('verif.update1') }}" method="post">
