@@ -43,7 +43,7 @@
                     <div class="rounded-md px-5 py-4 mb-2 bg-theme-18 text-theme-9">
                         <div class="flex items-center">
                             <i data-feather="check-circle" class="mr-2"></i>
-                            <div class="font-medium text-lg">Akun Anda telah aktif.</div>
+                            <div class="font-medium text-lg">Akun Anda sudah terverifikasi.</div>
                         </div>
                         <div class="mt-3">Anda dapat mengajukan permohonan dokumen</div>
                     </div>
@@ -53,7 +53,7 @@
                     <div class="rounded-md px-5 py-4 mb-2 bg-theme-31 text-theme-6">
                         <div class="flex items-center">
                             <i data-feather="alert-triangle" class="mr-2"></i>
-                            <div class="font-medium text-lg">Akun Anda belum aktif.</div>
+                            <div class="font-medium text-lg">Akun Anda belum diverifikasi.</div>
                         </div>
                         <div class="mt-3">Mohon maaf, Anda belum dapat mengajukan permohonan dokumen.</div>
                     </div>
