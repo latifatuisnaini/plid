@@ -37,17 +37,15 @@ class AdminPermohonanController extends Controller
         $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
         $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
 
-        $feedback = Feedback::where('ID_FEEDBACK',152)->get();
+        $feedback = Feedback::all();
 
         foreach($feedback as $f){
             $exp_date = date('Y-m-d',strtotime($f->EXPIRED_DATE));
             if($todayDate > $exp_date){
-                // echo "<br>".$exp_date;
-                // echo "<br> aku expired";
-                // echo "<br>".$todayDate;
-                // echo "<br>dokumen/".$f->LINK_DOWNLOAD;
                 Storage::disk('public')->delete('dokumen/'.$f->LINK_DOWNLOAD);
-                
+                Feedback::where('ID_FEEDBACK', $f->ID_FEEDBACK)->update([
+                    'LINK_DOWNLOAD' => NULL
+                ]);
             }
         }
         
