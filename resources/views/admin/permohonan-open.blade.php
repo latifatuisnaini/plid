@@ -101,7 +101,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <th data-priority="1" width="10%">ID Permohonan</th>
                     <th data-priority="2">Nama Dokumen</th>
                     <th data-priority="3" width="40%">Keterangan</th>
-                    <th data-priority="4">Tanggal</th>
+                    <th data-priority="4">Tanggal Permohonan</th>
                     <th data-priority="5">Aksi</th>
                 </tr>
             </thead>
@@ -160,7 +160,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 
                         <div class="col-span-12 sm:col-span-6"> 
                             <label class="font-semibold text-lg">Tanggal</label>
-                            <div class="text-base">{{ $u->TANGGAL }}</div>
+                            <div class="text-base">{{ date('d F Y',strtotime($u->TANGGAL)) }}</div>
                         </div>
 
                         <div class="col-span-12 sm:col-span-6"> 
@@ -182,12 +182,12 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                                 </div> 
                                 <input type="text" class="datepicker input pl-12 border" data-single-mode="true" name="estimasi" id="estimasi_{{$u->ID_PERMOHONAN}}"> 
                             </div>
-                            <label class="font-semibold text-lg mt-3">Keterangan Estimasi</label>
+                            <label class="font-semibold text-lg mt-3">Keterangan Estimasi (Opsional)</label>
                             <textarea class="input w-full border mt-2"  id="keterangan_estimasi_{{$u->ID_PERMOHONAN}}"></textarea> 
                         </div>
 
                         <div class="col-span-12 sm:col-span-6"> 
-                            <label class="font-semibold text-lg">Keterangan Terima/Tolak</label>
+                            <label class="font-semibold text-lg">Keterangan Terima/Tolak (Opsional)</label>
                             <textarea class="input w-full border mt-2" id="keterangan_{{$u->ID_PERMOHONAN}}"></textarea>
                         </div>
 
@@ -247,9 +247,10 @@ $(document).ready(function() {
                     title: 'Sukses!',
                     text: 'Status permohonan berhasil diubah menjadi Ditolak.',
                     icon: 'success',
-                }
-            );
-        });
+                });
+                location.reload();
+            }
+        );
     });
 
     $(".btn-terima").on('click',function(){
@@ -268,6 +269,7 @@ $(document).ready(function() {
                     text: 'Status permohonan berhasil diubah menjadi Sedang diproses.',
                     icon: 'success',
                 });
+                location.reload();
             }
         );
     });
