@@ -45,7 +45,6 @@ class RegistrasiController extends Controller
             'jenis_identitas' => 'required',
             'nomor_identitas' => 'required|max:20|regex:/^[0-9.\-\/]+$/',
             'nama_lengkap' => 'required|max:100|regex:/^[a-zA-Z ]+$/',
-            'NPWP' => 'required|max:100|regex:/^[0-9.\-]+$/',
             'email_pemohon' => 'required|email',
             'pekerjaan' => 'required|max:100',
             'alamat' => 'required',
