@@ -201,7 +201,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     
                     <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
                     <div class="col-span-12">
-                        <label class="font-semibold text-lg mr-auto">Keterangan</label> 
+                        <label class="font-semibold text-lg mr-auto">Keperluan</label> 
                             <textarea class="input w-full border mt-2 flex-1" name="KETERANGAN" id="KETERANGAN"> </textarea>
                     </div>
                     </div>
@@ -215,6 +215,21 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             <input class="datepicker input pl-12 border flex" data-single-mode="true" name="TANGGAL" id ="TANGGAL" required>
                         </div>
                     </div>
+                    </div>
+                    </div>
+
+                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
+                    <div class="col-span-12">
+                        <label class="font-semibold text-lg mr-auto mb-3">Bentuk Dokumen</label><br> 
+                        <input class="text-2xl mr-1" name="SOFTCOPY" id="SOFTCOPY" type="radio" value="Softcopy">Softcopy</input>
+                        <input class="text-2xl ml-2 mr-1" name="HARDCOPY" id="HARDCOPY" type="radio" value="Hardcopy">Hardcopy</input>
+                    </div>
+                    </div>
+
+                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
+                    <div class="col-span-12">
+                        <label class="font-semibold text-lg mr-auto mt-3">Jenis Dokumen</label> 
+                            <input type="text" class="input w-full border mt-2 flex-1" placeholder="Jenis Dokumen" name="JENIS_DOKUMEN" id="JENIS_DOKUMEN" >
                     </div>
                     </div>
 
@@ -345,7 +360,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                                 </td>
                                 @else
                                 <td>
-                                <a href ="{{ route('downloadpermohonan', $p->feedback->ID_FEEDBACK) }}" class="button mb-5 mr-6 mt-3 flex items-center justify-center bg-theme-1 text-white tombol-tambah-download" style="float:right;" ><i data-feather="download" class="w-4 h-4 mr-2"></i>Download</a>
+                                <a href ="{{ url('/users/download/dokumen-permohonan', $p->feedback->ID_FEEDBACK) }}" class="button mb-5 mr-6 mt-3 flex items-center justify-center bg-theme-1 text-white tombol-tambah-download" style="float:right;" ><i data-feather="download" class="w-4 h-4 mr-2"></i>Download</a>
                                 </td>
                                 @endif    
                             </tr>

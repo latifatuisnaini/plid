@@ -19,7 +19,7 @@ class PermohonanController extends Controller
     {
         $permohonan=Permohonan::where('ID_USER', Auth::user()->ID_USER)->get();
         $permohonan2=Permohonan::
-        select('feedback.ID_FEEDBACK','feedback.LINK_DOWNLOAD')
+        select('feedback.ID_FEEDBACK','feedback.LINK_DOWNLOAD','feedback.EXPIRED_DATE')
         ->join('feedback', 'feedback.ID_PERMOHONAN', '=', 'permohonan.ID_PERMOHONAN')
         ->where('ID_USER', Auth::user()->ID_USER)
         ->get();
@@ -32,9 +32,6 @@ class PermohonanController extends Controller
         foreach($permohonan2 as $p){
             if($now > $p->EXPIRED_DATE){
                 Storage::disk('public')->delete('dokumen/'.$p->LINK_DOWNLOAD);
-                Feedback::find($p->ID_FEEDBACK)->update([
-                    'LINK_DOWNLOAD' => NULL
-                ]);
             }
         }
 
@@ -69,7 +66,7 @@ class PermohonanController extends Controller
     }   
     public function show($id){
         $feedback = Feedback::find($id);
-        
+        //dd($feedback);
         return Storage::disk('public')->download('dokumen/'.$feedback->LINK_DOWNLOAD);
         
     }
