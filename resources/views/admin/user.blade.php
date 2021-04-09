@@ -80,6 +80,10 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 <!--Container-->
 <div class="container w-full ">
       		 
+    @if( session('message') )
+        <div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-18 text-theme-9"> <i data-feather="check-circle" class="w-6 h-6 mr-2"></i> Akun User telah berhasil diaktifkan </div> <br>
+    @endif
+
     <!--Card-->
     <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
     
