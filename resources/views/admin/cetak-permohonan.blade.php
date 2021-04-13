@@ -7,7 +7,7 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<style type="text/css">
+    <style type="text/css">
         h3 {
             color: black; 
             font-family: Arial, Helvetica, sans-serif;
@@ -105,7 +105,7 @@
                 
                     <!-- <td>KTP</td> -->
                     <td vertical-align="top"  rowspan="7"> 
-                        <img class="float-right" src="{{ public_path().'storage/dokumen/'.$p->user->FILE_KTP}}" style="vertical-align:top ; float:right ; width: 9cm; height:5cm;"> 
+                        <img class="float-right" src="{{ $_SERVER['DOCUMENT_ROOT'].'\storage\dokumen\'.$p->user->FILE_KTP}}" style="vertical-align:top ; float:right ; width: 9cm; height:5cm;"> 
                     </td>
                 </tr>
                 <tr>
