@@ -214,7 +214,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 
                 <div class="col-span-12 ">
                     <div class="w-full h-64 image-fit">
-                        <img alt="File KTP" src="{{ asset('dist/images/preview-8.jpg')}}" data-action="zoom" class="w-full rounded-md"> 
+                        <img alt="File KTP" src="{{ asset('storage/dokumen/'.$u->FILE_KTP)}}" data-action="zoom" class="w-full rounded-md"> 
                     </div>
                 </div>
 
