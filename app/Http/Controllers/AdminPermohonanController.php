@@ -151,14 +151,12 @@ class AdminPermohonanController extends Controller
     public function download($id){
         $feedback = Feedback::find($id);
         return Storage::disk('public')->download('dokumen/'.$feedback->LINK_DOWNLOAD);
-        
     }
 
     public function cetakpermohonan($id){
-        $permohonan = Permohonan::where('ID_PERMOHONAN',$id)
-        ->get();    
+        $permohonan = Permohonan::where('ID_PERMOHONAN','=',$id)->first();
 
-        $pdf = \PDF::loadView('/admin.cetak-permohonan', compact('permohonan'), ['permohonan' => $permohonan]);
+        $pdf = \PDF::loadView('/admin.cetak-permohonan', compact('permohonan'));
         return $pdf->stream();
 
         // return view('admin.cetak-permohonan', compact('permohonan'));
