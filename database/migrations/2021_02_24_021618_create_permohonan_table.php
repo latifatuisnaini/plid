@@ -19,7 +19,9 @@ class CreatePermohonanTable extends Migration
             $table->integer('ID_STATUS')->index('FK_MEMILIKI4');
             $table->string('DOKUMEN_PERMOHONAN', 100);
             $table->text('KETERANGAN');
-            $table->date('TANGGAL');
+            $table->timestamp('TANGGAL')->useCurrent()->nullable();
+            $table->boolean('BENTUK_DOK');
+            $table->string('JENIS_DOK', 50);
         });
     }
 

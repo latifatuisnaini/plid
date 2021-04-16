@@ -17,7 +17,7 @@ class PermohonanController extends Controller
 {
     public function index()
     {
-        $permohonan=Permohonan::where('ID_USER', Auth::user()->ID_USER)->get();
+        $permohonan=Permohonan::where('ID_USER', Auth::user()->ID_USER)->orderByDesc('ID_PERMOHONAN')->get();
         $permohonan2=Permohonan::
         select('feedback.ID_FEEDBACK','feedback.LINK_DOWNLOAD','feedback.EXPIRED_DATE')
         ->join('feedback', 'feedback.ID_PERMOHONAN', '=', 'permohonan.ID_PERMOHONAN')
@@ -47,21 +47,20 @@ class PermohonanController extends Controller
         $request->validate([
             'DOKUMEN_PERMOHONAN'=> 'required|string|max:100|regex:/^[0-9.\a-zA-Z ]+$/',
             'KETERANGAN'=> 'required|string|max:255|regex:/^[0-9.\a-zA-Z ]+$/',
-            'TANGGAL'=>'required',
+            'BENTUK_DOK'=>'required',
+            'JENIS_DOK'=>'required|string|max:50|regex:/^[0-9.\a-zA-Z ]+$/',
         ]);
-
-        $date=Carbon::parse($request->TANGGAL);
-        $date->format('Y-m-d');
         
         Permohonan::insert([
             'DOKUMEN_PERMOHONAN'=> $request->DOKUMEN_PERMOHONAN,
             'KETERANGAN'=> $request->KETERANGAN,
-            'TANGGAL'=> $date,
             'ID_STATUS'=>1,
             'ID_USER'=>$request->ID_USER,
+            'BENTUK_DOK'=>$request->BENTUK_DOK,
+            'JENIS_DOK'=>$request->JENIS_DOK,
         ]);
 
-        return redirect('/users/permohonan')->with('success', 'Data Permohonan Berhasil Ditambahkan');
+        return redirect('/users/permohonan')->with('success', 'Data Permohonan Berhasil Ditambahkan. Silahkan lakukan pengecekan secara berkala');
 
     }   
     public function show($id){

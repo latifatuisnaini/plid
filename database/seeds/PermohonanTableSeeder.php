@@ -34,6 +34,8 @@ class PermohonanTableSeeder extends Seeder
                 'DOKUMEN_PERMOHONAN' => "Nama dokumen".$i,
                 'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
                 'TANGGAL' => date('Y-m-d'),
+                'BENTUK_DOK'=> rand(1,2),
+                'JENIS_DOK' => "Jenis dokumen".$i,
             ];
         }
         DB::table('permohonan')->insert($users);
@@ -46,6 +48,8 @@ class PermohonanTableSeeder extends Seeder
                 'DOKUMEN_PERMOHONAN' => "Nama dokumen".$j,
                 'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
                 'TANGGAL' => date('Y-m-d'),
+                'BENTUK_DOK'=> rand(1,2),
+                'JENIS_DOK' => "Jenis dokumen".$i,
             ];
         }
         DB::table('permohonan')->insert($users2);
@@ -58,6 +62,8 @@ class PermohonanTableSeeder extends Seeder
                 'DOKUMEN_PERMOHONAN' => "Nama dokumen".$k,
                 'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
                 'TANGGAL' => date('Y-m-d'),
+                'BENTUK_DOK'=> rand(1,2),
+                'JENIS_DOK' => "Jenis dokumen".$i,
             ];
         }
         DB::table('permohonan')->insert($users3);
@@ -70,6 +76,8 @@ class PermohonanTableSeeder extends Seeder
                 'DOKUMEN_PERMOHONAN' => "Nama dokumen".$l,
                 'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
                 'TANGGAL' => date('Y-m-d'),
+                'BENTUK_DOK'=> rand(1,2),
+                'JENIS_DOK' => "Jenis dokumen".$i,
             ];
         }
         DB::table('permohonan')->insert($users4);

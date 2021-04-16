@@ -123,6 +123,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                                 @endif
     
     <a href ="javascript:;" data-toggle="modal" data-target="#tambah_dokumen_permohonan" class="button mb-5 mr-6 mt-4 flex items-center justify-center bg-theme-1 text-white tombol-tambah-dokumen-permohonan" style="float:right;" ><i data-feather="plus-circle" class="w-6 h-6 mr-2"></i>Tambah Permohonan</a>
+    <a href="{{ url('/registrasi') }}" class="text flex mt-4 ml-2" style="color:blue;"><u>Syarat dan Ketentuan</u></a>
     
     <div class="container w-full">
 
@@ -130,19 +131,21 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
             <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
                 <thead>
                     <tr>
-                        <th data-priority="1">ID Permohonan</th>
+                        <th data-priority="1">No</th>
                         <th data-priority="2">Dokumen Permohonan</th>
-                        <th data-priority="3">Keterangan</th>
-                        <th data-priority="4">Tanggal Permohonan</th>
-                        <th data-priority="5">Status Permohonan</th>
-                        <th data-priority="6">Aksi</th>
+                        <th data-priority="3">Tujuan Penggunaan Informasi</th>
+                        <th data-priority="4">Tanggal</th>
+                        <th data-priority="5">Status</th>
+                        <th data-priority="6">Bentuk Dokumen</th>
+                        <th data-priority="7">Jenis Dokumen</th>
+                        <th data-priority="8">Aksi</th>
                     </tr>
                 </thead>
 
                 <tbody style="text-align: center;">
                 @foreach($permohonan as $p)
                     <tr id="{{$p->ID_PERMOHONAN}}">
-                        <td>{{$p->ID_PERMOHONAN}}</td>
+                        <td>{{$loop->iteration}}</td>
                         <td>{{$p->DOKUMEN_PERMOHONAN}}</td>
                         <td>{{$p->KETERANGAN}}</td>
                         <td>{{ date('d F Y',strtotime($p->TANGGAL)) }}</td>
@@ -159,6 +162,14 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             @endif
                             </div>
                         </td>
+                        <td>
+                        @if($p->BENTUK_DOK == 1)
+                        <div class="text">Softcopy</div>
+                        @elseif($p->BENTUK_DOK == 2)
+                        <div class="text">Hardcopy</div>
+                        @endif
+                        </td>
+                        <td>{{$p->JENIS_DOK}}</td>
                         <td>
                             <div class="mt-1 mb-1"> 
                             
@@ -201,37 +212,35 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     
                     <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
                     <div class="col-span-12">
-                        <label class="font-semibold text-lg mr-auto">Keperluan</label> 
+                        <label class="font-semibold text-lg mr-auto">Tujuan Penggunaan Informasi</label> 
                             <textarea class="input w-full border mt-2 flex-1" name="KETERANGAN" id="KETERANGAN"> </textarea>
                     </div>
                     </div>
 
                     <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
                     <div class="col-span-12">
-                    <label class="font-semibold text-lg mr-auto">Tanggal Permohonan</label> 
-                        <div class="relative mt-3">
-                            <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4"><i data-feather="calendar" class="w-4 h-4"></i> 
-                            </div> 
-                            <input class="datepicker input pl-12 border flex" data-single-mode="true" name="TANGGAL" id ="TANGGAL" required>
-                        </div>
-                    </div>
-                    </div>
-                    </div>
-
-                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
-                    <div class="col-span-12">
                         <label class="font-semibold text-lg mr-auto mb-3">Bentuk Dokumen</label><br> 
-                        <input class="text-2xl mr-1" name="SOFTCOPY" id="SOFTCOPY" type="radio" value="Softcopy">Softcopy</input>
-                        <input class="text-2xl ml-2 mr-1" name="HARDCOPY" id="HARDCOPY" type="radio" value="Hardcopy">Hardcopy</input>
+                        <input class="border text-2xl mt-2 mr-1" name="BENTUK_DOK" id="SOFTCOPY" type="radio" value="1">Softcopy</input><br>
+                        <input class="border text-2xl mt-2 mr-1" name="BENTUK_DOK" id="HARDCOPY" type="radio" value="2">Hardcopy</input>
                     </div>
                     </div>
 
                     <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
                     <div class="col-span-12">
                         <label class="font-semibold text-lg mr-auto mt-3">Jenis Dokumen</label> 
-                            <input type="text" class="input w-full border mt-2 flex-1" placeholder="Jenis Dokumen" name="JENIS_DOKUMEN" id="JENIS_DOKUMEN" >
+                            <input type="text" class="input w-full border mt-2 flex-1" placeholder="Jenis Dokumen" name="JENIS_DOK" id="JENIS_DOK" >
                     </div>
                     </div>
+                    
+                    <br>
+                    <hr>
+
+                    <div class="grid grid-cols-12 gap-4 row-gap-3 ">
+                    <div class="col-span-12">
+                        <input type="checkbox" class="input w-full border mt-2 mr-2 flex-1" required>Saya telah membaca dan menyetujui <a href="{{ url('/registrasi') }}" style="color:blue;"><u>Syarat dan Ketentuan</u></a> yang berlaku
+                    </div>
+                    </div>
+
 
                 <div class="modal-footer mt-5">
                     <div class="text-right">
@@ -277,6 +286,20 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             <div class="relative">
                                     <div class="text-base">{{ date('d F Y',strtotime($p->TANGGAL)) }}</div>
                             </div>
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg mr-auto">Bentuk Dokumen</label> 
+                            @if($p->BENTUK_DOK == 1)
+                            <div class="text-base">Softcopy</div>
+                            @elseif($p->BENTUK_DOK == 2)
+                            <div class="text-base">Hardcopy</div>
+                            @endif
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg mr-auto">Jenis Dokumen</label> 
+                            <div class="text-base">{{ $p->JENIS_DOK }}</div>
                         </div>
 
                         <div class="col-span-12 sm:col-span-6"> 

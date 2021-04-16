@@ -52,6 +52,4 @@ class AdminController extends Controller
         'current_year', 'list_permohonan', 'januari', 'februari', 'maret', 'april', 'mei', 'juni', 'juli', 'agustus', 'september', 'oktober', 'november', 'desember'));
     }
 
-    
-
 }
