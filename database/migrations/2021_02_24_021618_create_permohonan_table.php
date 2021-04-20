@@ -21,7 +21,6 @@ class CreatePermohonanTable extends Migration
             $table->text('KETERANGAN');
             $table->timestamp('TANGGAL')->useCurrent()->nullable();
             $table->boolean('BENTUK_DOK');
-            $table->string('JENIS_DOK', 50);
         });
     }
 

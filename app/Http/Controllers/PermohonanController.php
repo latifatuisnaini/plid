@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Storage;
 use Auth;
+use Response;
 use DB;
 
 class PermohonanController extends Controller
@@ -49,6 +50,7 @@ class PermohonanController extends Controller
             'KETERANGAN'=> 'required|string|max:255|regex:/^[0-9.\a-zA-Z ]+$/',
             'BENTUK_DOK'=>'required',
             'JENIS_DOK'=>'required|string|max:50|regex:/^[0-9.\a-zA-Z ]+$/',
+            'mycheckbox'=>'required',
         ]);
         
         Permohonan::insert([
@@ -67,6 +69,16 @@ class PermohonanController extends Controller
         $feedback = Feedback::find($id);
         //dd($feedback);
         return Storage::disk('public')->download('dokumen/'.$feedback->LINK_DOWNLOAD);
+        
+    }
+
+    public function getDownload(){
+        $filename = 'S&K Permohonan Dokumen PT.PAL Indonesia.pdf';
+
+        return Response::make(Storage::disk('public')->get('dokumen/Syarat_dan_Ketentuan.pdf'),200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="'.$filename.'"'
+        ]);   
         
     }
     
