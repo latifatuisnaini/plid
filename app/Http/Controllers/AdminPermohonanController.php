@@ -31,20 +31,21 @@ class AdminPermohonanController extends Controller
 
     public function indexConfirm()
     {
-        $permohonan_confirm = Permohonan::where('ID_STATUS',3)->orWhere('ID_STATUS', 4)->orderBy('permohonan.ID_PERMOHONAN','DESC')->get();
-        $todayDate = Carbon::now()->format('Y-m-d');
+        $permohonan_confirm = Permohonan::where('ID_STATUS',3)->orWhere('ID_STATUS', 4)->orderBy('ID_PERMOHONAN','DESC')->get();
+        $todayDate = date('Y-m-d');
+        
         $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
         $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
 
-        foreach($permohonan_confirm as $p){
-            if(isset($p->feedback)){
-                if($todayDate > $p->feedback->EXPIRED_DATE){
-                    $path = Feedback::find($p->feedback->ID_FEEDBACK)->value('LINK_DOWNLOAD');
-                    Storage::disk('public')->delete('dokumen/'.$path);
-                    Feedback::find($p->feedback->ID_FEEDBACK)->update([
-                        'LINK_DOWNLOAD' => NULL
-                    ]);
-                }
+        $feedback = Feedback::all();
+
+        foreach($feedback as $f){
+            $exp_date = date('Y-m-d',strtotime($f->EXPIRED_DATE));
+            if($todayDate > $exp_date){
+                Storage::disk('public')->delete('dokumen/'.$f->LINK_DOWNLOAD);
+                Feedback::where('ID_FEEDBACK', $f->ID_FEEDBACK)->update([
+                    'LINK_DOWNLOAD' => NULL
+                ]);
             }
         }
         
@@ -150,14 +151,12 @@ class AdminPermohonanController extends Controller
     public function download($id){
         $feedback = Feedback::find($id);
         return Storage::disk('public')->download('dokumen/'.$feedback->LINK_DOWNLOAD);
-        
     }
 
     public function cetakpermohonan($id){
-        $permohonan = Permohonan::where('ID_PERMOHONAN',$id)
-        ->get();    
+        $permohonan = Permohonan::where('ID_PERMOHONAN','=',$id)->first();
 
-        $pdf = \PDF::loadView('/admin.cetak-permohonan', compact('permohonan'), ['permohonan' => $permohonan]);
+        $pdf = \PDF::loadView('/admin.cetak-permohonan', compact('permohonan'));
         return $pdf->stream();
 
         // return view('admin.cetak-permohonan', compact('permohonan'));

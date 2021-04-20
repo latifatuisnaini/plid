@@ -29,7 +29,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->STATUS_KONFIRMASI = 1;
         $user->save();
-     	return redirect()->route('user.index');
+     	return redirect()->route('user.index')->with('message', 'Success');
          
     } 
 

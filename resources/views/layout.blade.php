@@ -115,12 +115,6 @@ License: You must have a valid license purchased only from themeforest(the above
                     </ul>
                 </li>
                 <li>
-                    <a href="{{url('/agenda')}}" class="menu">
-                        <div class="menu__icon">  </div>
-                        <div class="menu__title"> AGENDA </div>
-                    </a>
-                </li>
-                <li>
                     <a href="{{url('/faq')}}" class="menu">
                         <div class="menu__icon">  </div>
                         <div class="menu__title"> FAQ </div>
@@ -228,12 +222,6 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                         </li>
                     </ul>
-                </li>
-                <li>
-                    <a href="{{url('/agenda')}}" class="top-menu @if(request() -> segment(1) == 'agenda') top-menu--active @endif">
-                        <div class="top-menu__icon">  </div>
-                        <div class="top-menu__title"> AGENDA </div>
-                    </a>
                 </li>
                 <li>
                     <a href="{{url('/faq')}}" class="top-menu @if(request() -> segment(1) == 'faq') top-menu--active @endif">

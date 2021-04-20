@@ -195,6 +195,7 @@ function readURLKTP(input) {
         reader.readAsDataURL(input.files[0]); // convert to base64 string
     }
 }
+
 $("#input-ktp").change(function() {
     readURLKTP(this);
 });

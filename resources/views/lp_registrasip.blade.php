@@ -61,7 +61,7 @@
                             @endif
                         <div class="flex flex-col sm:flex-row items-center mt-4 input-form">
                             <label class="w-full sm:w-20 sm:text-left sm:mr-12">NPWP</label>
-                            <input type="text" name="NPWP" class="input w-full border border-gray-500 mt-2 flex-1" value="{{ @old('NPWP') }}"  required>
+                            <input type="text" name="NPWP" class="input w-full border border-gray-500 mt-2 flex-1" value="{{ @old('NPWP') }}">
                         </div>
                             @if($errors->has('NPWP'))
                             <div class="flex flex-col sm:flex-row items-center flex-auto mt-1 input-form ">

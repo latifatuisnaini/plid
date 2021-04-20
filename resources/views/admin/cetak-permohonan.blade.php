@@ -7,7 +7,7 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<style type="text/css">
+    <style type="text/css">
         h3 {
             color: black; 
             font-family: Arial, Helvetica, sans-serif;
@@ -21,6 +21,14 @@
             text-decoration: underline;
             font-size: 10pt;
             line-height: 1px;
+        }
+        .h4text{
+            color: black;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: justify;
+            font-style: bold;
+            font-size: 10pt;
+            line-height: 2px;
         }
         .foot1 {
             font-size: 9pt;
@@ -84,92 +92,97 @@
     <main>
         <h3>LEMBAR PERMOHONAN INFORMASI DAN DOKUMEN USER</h3>
         <h4>PUSAT PELAYANAN INFORMASI DAN DOKUMENTASI</h4>
+        <br>
 
-        @foreach($permohonan as $p)
 
         <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <tbody>
                 <tr>
                     <td width="18%">Nomor Identitas</td>
                     <td width="2%">:</td>
-                    <td>{{ $p->user->NOMOR_IDENTITAS }}</td>
+                    <td>{{ $permohonan->user->NOMOR_IDENTITAS }}</td>
                 
-                    <!-- <td>KTP</td> -->
-                    <td vertical-align="top"  rowspan="7"> 
-                        <img class="float-right" src="{{ public_path('dist/images/ktpcontoh.png')}}" style="vertical-align:top ; float:right ; width: 9cm; height:5cm;"> 
+                    <td vertical-align="top"  rowspan="7">
+                        @if( $permohonan->user->FILE_KTP == null )
+                        <img class="float-right" src="" style="vertical-align:top ; float:right ; width: 9cm; height:5cm;"> 
+                        @else
+                        <img class="float-right" src="{{ public_path('storage/dokumen/'.$permohonan->user->FILE_KTP)}}" style="vertical-align:top ; float:right ; width: 9cm; height:5cm;">
+                        @endif
                     </td>
                 </tr>
                 <tr>
                     <td>Nama Lengkap</td>
                     <td>:</td>
-                    <td> {{ $p->user->NAMA_LENGKAP }}</td>
+                    <td> {{ $permohonan->user->NAMA_LENGKAP }}</td>
                 </tr>
                 <tr>
                     <td>E-mail</td>
                     <td>:</td>
-                    <td>{{ $p->user->email }}</td>
+                    <td>{{ $permohonan->user->email }}</td>
                 </tr>
                 <tr>
                     <td>Pekerjaan</td>
                     <td>:</td>
-                    <td>{{ $p->user->PEKERJAAN }}</td>
+                    <td>{{ $permohonan->user->PEKERJAAN }}</td>
                 </tr>
                 <tr>
                     <td>Alamat</td>
                     <td>:</td>
-                    <td>{{ $p->user->ALAMAT }}</td>
+                    <td>{{ $permohonan->user->ALAMAT }}</td>
                 </tr>
                 <tr>
                     <td>Nomor Telepon</td>
                     <td>:</td>
-                    <td> {{ $p->user->NO_TLP }}</td>
+                    <td> {{ $permohonan->user->NO_TLP }}</td>
                 </tr>
                 <tr>
                     <td>Nomor Fax</td>
                     <td>:</td>
-                    <td> {{ $p->user->NO_FAX }}</td>
+                    <td> {{ $permohonan->user->NO_FAX }}</td>
                 </tr>
             </tbody>
         </table>
-
-        <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+        <br>
+        <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">   
             <tbody>
+                <tr>
+                    <td colspan="3" style="font-style: bold; font-size: 12pt; text-decoration:underline;">Dokumen yang Diminta User</td>
+                </tr>
                 <tr>
                     <td width="27%">Nama Dokumen</td>
                     <td width="2%">: </td>
-                    <td>{{ $p->DOKUMEN_PERMOHONAN }}</td>
+                    <td>{{ $permohonan->DOKUMEN_PERMOHONAN }}</td>
                 </tr>
                 <tr>
                     <td>Keterangan Dokumen</td>
                     <td>:</td>
-                    <td> {{ $p->KETERANGAN }}</td>
+                    <td> {{ $permohonan->KETERANGAN }}</td>
                 </tr>
                 <tr>
                     <td>Status Dokumen</td>
                     <td> : </td>
-                    @if($p->ID_STATUS == 4)
-                    <td style="color:red;"> <button style="background-color:#ffcccc; border-radius:6px; padding:2px 10px; border-color:#ffcccc">  {{ $p->status->STATUS }} </button> </td>
-                    @elseif( $p->ID_STATUS == 1 )
-                    <td style="color: blue;"> <button style="background-color:#ccd9ff; border-radius:6px; padding:2px 10px; border-color:#ccd9ff">  {{ $p->status->STATUS }} </button></td>
-                    @elseif( $p->ID_STATUS == 3 )
-                    <td style="color: green;">   <button style="background-color:#e6ffcc; border-radius:6px; padding:2px 10px; border-color:#e6ffcc">  {{ $p->status->STATUS }} </button> </td>
-                    @elseif( $p->ID_STATUS == 2 )
-                    <td style="color: #e67300;">   <button style="background-color:#ffe6cc; border-radius:6px; padding:2px 10px; border-color:#ffe6cc">  {{ $p->status->STATUS }} </button> </td>
+                    @if($permohonan->ID_STATUS == 4)
+                    <td style="color:red;"> <button style="background-color:#ffcccc; border-radius:6px; padding:2px 10px; border-color:#ffcccc">  {{ $permohonan->status->STATUS }} </button> </td>
+                    @elseif( $permohonan->ID_STATUS == 1 )
+                    <td style="color: blue;"> <button style="background-color:#ccd9ff; border-radius:6px; padding:2px 10px; border-color:#ccd9ff">  {{ $permohonan->status->STATUS }} </button></td>
+                    @elseif( $permohonan->ID_STATUS == 3 )
+                    <td style="color: green;">   <button style="background-color:#e6ffcc; border-radius:6px; padding:2px 10px; border-color:#e6ffcc">  {{ $permohonan->status->STATUS }} </button> </td>
+                    @elseif( $permohonan->ID_STATUS == 2 )
+                    <td style="color: #e67300;">   <button style="background-color:#ffe6cc; border-radius:6px; padding:2px 10px; border-color:#ffe6cc">  {{ $permohonan->status->STATUS }} </button> </td>
                     @endif
                 </tr>
-                @if( isset ($p->feedback->KETERANGAN) )
+                @if( isset ($permohonan->feedback->KETERANGAN) )
                 <tr>
                     <td>Keterangan Permohonan yang Diajukan</td>
                     <td>:</td>
                     <td> 
-                    {{ $p->feedback->KETERANGAN }}
+                    {{ $permohonan->feedback->KETERANGAN }}
                     </td>
                 </tr>
                 @endif
             </tbody>
         </table>
 
-        @endforeach
     </main>
 
 </body>

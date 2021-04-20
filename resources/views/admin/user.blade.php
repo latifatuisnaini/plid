@@ -80,6 +80,10 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 <!--Container-->
 <div class="container w-full ">
       		 
+    @if( session('message') )
+        <div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-18 text-theme-9"> <i data-feather="check-circle" class="w-6 h-6 mr-2"></i> Akun User telah berhasil diaktifkan </div> <br>
+    @endif
+
     <!--Card-->
     <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
     
@@ -210,7 +214,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 
                 <div class="col-span-12 ">
                     <div class="w-full h-64 image-fit">
-                        <img alt="File KTP" src="{{ asset('dist/images/preview-8.jpg')}}" data-action="zoom" class="w-full rounded-md"> 
+                        <img alt="File KTP" src="{{ asset('storage/dokumen/'.$u->FILE_KTP)}}" data-action="zoom" class="w-full rounded-md"> 
                     </div>
                 </div>
 
