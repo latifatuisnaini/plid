@@ -102,9 +102,12 @@
                     <td width="2%">:</td>
                     <td>{{ $permohonan->user->NOMOR_IDENTITAS }}</td>
                 
-                    <!-- <td>KTP</td> -->
                     <td vertical-align="top"  rowspan="7">
+                        @if( $permohonan->user->FILE_KTP == null )
+                        <img class="float-right" src="" style="vertical-align:top ; float:right ; width: 9cm; height:5cm;"> 
+                        @else
                         <img class="float-right" src="{{ public_path('storage/dokumen/'.$permohonan->user->FILE_KTP)}}" style="vertical-align:top ; float:right ; width: 9cm; height:5cm;">
+                        @endif
                     </td>
                 </tr>
                 <tr>
