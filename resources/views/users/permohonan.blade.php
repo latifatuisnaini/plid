@@ -105,26 +105,26 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     </div>
 </div>
 @elseif(Auth::user()->STATUS_KONFIRMASI == 3)
-@if($errors->any())
-<div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-31 text-theme-6">
-    <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i>
-    Data tidak berhasil disimpan. Mohon cek form kembali.
-</div>
-@endif
+    @if($errors->any())
+    <div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-31 text-theme-6">
+        <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i>
+        Data tidak berhasil disimpan. Mohon cek form kembali.
+    </div>
+    @endif
 
-@if(Session::has('succcess'))
-    <div class="alert alert-arrow-left alert-icon-left alert-light-primary mb-4" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-        {{ Session::get('succcess') }}
-    </div>
-@elseif(Session::has('alert_error'))
-    <div class="alert alert-arrow-right alert-icon-right alert-light-danger mb-4" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
-        {{ Session::get('alert_error') }}
-    </div>
-@endif
+    @if(Session::has('succcess'))
+        <div class="alert alert-arrow-left alert-icon-left alert-light-primary mb-4" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            {{ Session::get('succcess') }}
+        </div>
+    @elseif(Session::has('alert_error'))
+        <div class="alert alert-arrow-right alert-icon-right alert-light-danger mb-4" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
+            {{ Session::get('alert_error') }}
+        </div>
+    @endif
 
 <div class="intro-y box mt-5">
     <!--Container-->
@@ -363,8 +363,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 </div>
                 @if($p->ID_STATUS == 3)
                 <hr>
-                    
-               
+
                 <div class="container w-full mt-4">
                 <div class="p-3 mt-4 lg:mt-0 rounded shadow">
                     <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
@@ -409,10 +408,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 </div>
 @endforeach
     
-@endif
-
-
-
+@endif  
 
 @endsection
 
