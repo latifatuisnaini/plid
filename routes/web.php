@@ -93,6 +93,8 @@ Route::prefix('users')->middleware(['auth'])->group(function(){
     Route::get('download/dokumen-permohonan/{id}', 'PermohonanController@show');
     Route::get('/profile/{id}','UsersController@show');
     Route::get('/syarat_dan_ketentuan' , 'PermohonanController@getDownload');
+    Route::get('/formpermohonan','UsersController@formpermohonan');
+    Route::get('/formpemberitahuan/{id}', 'UsersController@formpemberitahuan');
 });
 
 Route::get('download/dokumen-publik/{id}',function($id){

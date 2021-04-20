@@ -6,63 +6,63 @@
 <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
         
 <style>
-/*Form fields*/
+/Form fields/
 .dataTables_wrapper select,
 .dataTables_wrapper .dataTables_filter input {
-    color: #4a5568; 			/*text-gray-700*/
-    padding-left: 1rem; 		/*pl-4*/
-    padding-right: 1rem; 		/*pl-4*/
-    padding-top: .5rem; 		/*pl-2*/
-    padding-bottom: .5rem; 		/*pl-2*/
-    line-height: 1.25; 			/*leading-tight*/
-    border-width: 2px; 			/*border-2*/
+    color: #4a5568; 			/text-gray-700/
+    padding-left: 1rem; 		/pl-4/
+    padding-right: 1rem; 		/pl-4/
+    padding-top: .5rem; 		/pl-2/
+    padding-bottom: .5rem; 		/pl-2/
+    line-height: 1.25; 			/leading-tight/
+    border-width: 2px; 			/border-2/
     border-radius: .25rem; 		
-    border-color: #edf2f7; 		/*border-gray-200*/
-    background-color: #edf2f7; 	/*bg-gray-200*/
+    border-color: #edf2f7; 		/border-gray-200/
+    background-color: #edf2f7; 	/bg-gray-200/
 }
 
-/*Row Hover*/
+/Row Hover/
 table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
-    background-color: #ebf4ff;	/*bg-indigo-100*/
+    background-color: #ebf4ff;	/bg-indigo-100/
 }
 
-/*Pagination Buttons*/
+/Pagination Buttons/
 .dataTables_wrapper .dataTables_paginate .paginate_button		{
-    font-weight: 700;				/*font-bold*/
-    border-radius: .25rem;			/*rounded*/
-    border: 1px solid transparent;	/*border border-transparent*/
+    font-weight: 700;				/font-bold/
+    border-radius: .25rem;			/rounded/
+    border: 1px solid transparent;	/border border-transparent/
 }
 
 /*Pagination Buttons - Current selected */
 .dataTables_wrapper .dataTables_paginate .paginate_button.current	{
-    color: #fff !important;				/*text-white*/
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06); 	/*shadow*/
-    font-weight: 700;					/*font-bold*/
-    border-radius: .25rem;				/*rounded*/
-    background: #667eea !important;		/*bg-indigo-500*/
-    border: 1px solid transparent;		/*border border-transparent*/
+    color: #fff !important;				/text-white/
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06); 	/shadow/
+    font-weight: 700;					/font-bold/
+    border-radius: .25rem;				/rounded/
+    background: #667eea !important;		/bg-indigo-500/
+    border: 1px solid transparent;		/border border-transparent/
 }
 
 /*Pagination Buttons - Hover */
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover		{
-    color: #fff !important;				/*text-white*/
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);	 /*shadow*/
-    font-weight: 700;					/*font-bold*/
-    border-radius: .25rem;				/*rounded*/
-    background: #667eea !important;		/*bg-indigo-500*/
-    border: 1px solid transparent;		/*border border-transparent*/
+    color: #fff !important;				/text-white/
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);	 /shadow/
+    font-weight: 700;					/font-bold/
+    border-radius: .25rem;				/rounded/
+    background: #667eea !important;		/bg-indigo-500/
+    border: 1px solid transparent;		/border border-transparent/
 }
 
 /*Add padding to bottom border */
 table.dataTable.no-footer {
-    border-bottom: 1px solid #e2e8f0;	/*border-b-1 border-gray-300*/
+    border-bottom: 1px solid #e2e8f0;	/border-b-1 border-gray-300/
     margin-top: 0.75em;
     margin-bottom: 0.75em;
 }
 
-/*Change colour of responsive icon*/
+/Change colour of responsive icon/
 table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
-    background-color: #667eea !important; /*bg-indigo-500*/
+    background-color: #667eea !important; /bg-indigo-500/
 }
 
 </style>
@@ -105,32 +105,39 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     </div>
 </div>
 @elseif(Auth::user()->STATUS_KONFIRMASI == 3)
-@if($errors->any())
-<div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-31 text-theme-6">
-    <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i>
-    Data tidak berhasil disimpan. Mohon cek form kembali.
-</div>
-@endif
+    @if($errors->any())
+    <div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-31 text-theme-6">
+        <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i>
+        Data tidak berhasil disimpan. Mohon cek form kembali.
+    </div>
+    @endif
 
-@if(Session::has('succcess'))
-    <div class="alert alert-arrow-left alert-icon-left alert-light-primary mb-4" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-        {{ Session::get('succcess') }}
-    </div>
-@elseif(Session::has('alert_error'))
-    <div class="alert alert-arrow-right alert-icon-right alert-light-danger mb-4" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
-        {{ Session::get('alert_error') }}
-    </div>
-@endif
+    @if(Session::has('succcess'))
+        <div class="alert alert-arrow-left alert-icon-left alert-light-primary mb-4" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            {{ Session::get('succcess') }}
+        </div>
+    @elseif(Session::has('alert_error'))
+        <div class="alert alert-arrow-right alert-icon-right alert-light-danger mb-4" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
+            {{ Session::get('alert_error') }}
+        </div>
+    @endif
 
 <div class="intro-y box mt-5">
     <!--Container-->
     <!--Card-->
-    <a href ="javascript:;" data-toggle="modal" data-target="#tambah_dokumen_permohonan" class="button mb-5 mr-6 mt-4 flex items-center justify-center bg-theme-1 text-white tombol-tambah-dokumen-permohonan" style="float:right;" ><i data-feather="plus-circle" class="w-6 h-6 mr-2"></i>Tambah Permohonan</a>
-    <a href="{{ url ('/users/syarat_dan_ketentuan') }}" target="blank" class="button mb-5 mr-6 mt-4 flex items-center justify-center bg-theme-9 text-white tombol-syarat-dokumen-permohonan" style="float:right;"><i data-feather="info" class="w-6 h-6 mr-2"></i>Syarat dan Ketentuan</a>
+    <a href ="javascript:;" data-toggle="modal" data-target="#tambah_dokumen_permohonan" class="button mb-5 mr-6 mt-4 flex items-center justify-center bg-blue-200 text-gray-700 tombol-tambah-dokumen-permohonan" style="float:right;" >
+        <i data-feather="plus-circle" class="w-6 h-6 mr-2"></i>Tambah Permohonan
+    </a>
+    <a target="_blank" href="{{url('/users/formpermohonan')}}" class="button mb-5 mr-4 mt-4 flex items-center justify-center bg-blue-200 text-gray-700 tombol-tambah-dokumen-permohonan" style="float:right;" >
+        <i data-feather="download" class="w-6 h-6 mr-2"></i>Formulir Permohonan
+    </a>
+    <a href="{{ url ('/users/syarat_dan_ketentuan') }}" target="blank" class="button mb-5 mr-4 mt-4 flex items-center justify-center bg-blue-200 text-gray-700 tombol-syarat-dokumen-permohonan" style="float:right;">
+        <i data-feather="info" class="w-6 h-6 mr-2"></i>Syarat dan Ketentuan
+    </a>    
     
     <div class="container w-full">
     
@@ -144,7 +151,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <th data-priority="4">Tanggal</th>
                         <th data-priority="5">Bentuk Dokumen</th>
                         <th data-priority="6">Status</th>
-                        <th data-priority="7">Aksi</th>
+                        <th data-priority="7">Feedback</th>
                     </tr>
                 </thead>
 
@@ -176,11 +183,13 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             </div>
                         </td>
                         <td>
-                            <div class="mt-1 mb-1"> 
-                            
-                            <button href="javascript:;" title="Detail Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300"><a data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}"><span class="w-5 h-5 flex items-center justify-center"> <i data-feather="more-horizontal" class="w-4 h-4 "></i></span></a> </button>  
-                         
-                            </div>
+                            <a target="_blank" href="{{url('/users/formpemberitahuan/'.$p->ID_STATUS)}}">
+                                <button href="javascript:;" title="Print Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-orange-300 dark:text-gray-300">
+                                    <span class="w-5 h-5 flex items-center justify-center">
+                                        <i data-feather="printer" class="w-4 h-4 "></i>
+                                    </span>
+                                </button>
+                            </a>
                         </td>
                         
                     </tr>
@@ -193,7 +202,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 
 <!-- Modal Tambah Dokumen Permohonan -->
         <div class="modal" id="tambah_dokumen_permohonan">
-            <div class="modal__content modal__content--lg py-5 pl-5 pr-5 ml-auto">
+            <div class="modal_content modal_content--lg py-5 pl-5 pr-5 ml-auto">
                 <div class="modal-header">
                     <div class="modal__content relative">
                     </div>
@@ -269,7 +278,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 @foreach($permohonan as $p)
 <!-- Modal Detail Dokumen Permohonan -->
 <div class="modal" id="detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}">
-            <div class="modal__content modal__content--lg py-5 pl-5 pr-5 ml-auto">
+            <div class="modal_content modal_content--lg py-5 pl-5 pr-5 ml-auto">
                 <div class="modal-header">
                 <div class="modal__content relative">
                     </div>
@@ -363,8 +372,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 </div>
                 @if($p->ID_STATUS == 3)
                 <hr>
-                    
-               
+
                 <div class="container w-full mt-4">
                 <div class="p-3 mt-4 lg:mt-0 rounded shadow">
                     <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
@@ -409,10 +417,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 </div>
 @endforeach
     
-@endif
-
-
-
+@endif  
 
 @endsection
 
