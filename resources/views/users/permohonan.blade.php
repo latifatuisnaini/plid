@@ -105,47 +105,71 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     </div>
 </div>
 @elseif(Auth::user()->STATUS_KONFIRMASI == 3)
+    @if($errors->any())
+    <div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-31 text-theme-6">
+        <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i>
+        Data tidak berhasil disimpan. Mohon cek form kembali.
+    </div>
+    @endif
+
+    @if(Session::has('succcess'))
+        <div class="alert alert-arrow-left alert-icon-left alert-light-primary mb-4" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            {{ Session::get('succcess') }}
+        </div>
+    @elseif(Session::has('alert_error'))
+        <div class="alert alert-arrow-right alert-icon-right alert-light-danger mb-4" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
+            {{ Session::get('alert_error') }}
+        </div>
+    @endif
+
 <div class="intro-y box mt-5">
     <!--Container-->
     <!--Card-->
-    @if(Session::has('succcess'))
-                                    <div class="alert alert-arrow-left alert-icon-left alert-light-primary mb-4" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                                        {{ Session::get('succcess') }}
-                                    </div>
-                                @elseif(Session::has('alert_error'))
-                                    <div class="alert alert-arrow-right alert-icon-right alert-light-danger mb-4" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
-                                        {{ Session::get('alert_error') }}
-                                    </div>
-                                @endif
-    
-    <a href ="javascript:;" data-toggle="modal" data-target="#tambah_dokumen_permohonan" class="button mb-5 mr-6 mt-4 flex items-center justify-center bg-theme-1 text-white tombol-tambah-dokumen-permohonan" style="float:right;" ><i data-feather="plus-circle" class="w-6 h-6 mr-2"></i>Tambah Permohonan</a>
+
+    <a href ="javascript:;" data-toggle="modal" data-target="#tambah_dokumen_permohonan" class="button mb-5 mr-6 mt-4 flex items-center justify-center bg-blue-200 text-gray-700 tombol-tambah-dokumen-permohonan" style="float:right;" >
+        <i data-feather="plus-circle" class="w-6 h-6 mr-2"></i>Tambah Permohonan
+    </a>
+    <a target="_blank" href="{{url('/users/formpermohonan')}}" class="button mb-5 mr-4 mt-4 flex items-center justify-center bg-blue-200 text-gray-700 tombol-tambah-dokumen-permohonan" style="float:right;" >
+        <i data-feather="download" class="w-6 h-6 mr-2"></i>Formulir Permohonan
+    </a>
+    <a target="_blank" href="{{ url ('/users/syarat_dan_ketentuan') }}" class="button mb-5 mr-4 mt-4 flex items-center justify-center bg-blue-200 text-gray-700 tombol-tambah-dokumen-permohonan" style="float:right;" >
+        <i data-feather="info" class="w-6 h-6 mr-2"></i>Syarat dan Ketentuan
+    </a>
     
     <div class="container w-full">
-
+    
         <div class="p-6 mt-6 lg:mt-0 rounded shadow">
             <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
                 <thead>
                     <tr>
-                        <th data-priority="1">ID Permohonan</th>
+                        <th data-priority="1">No</th>
                         <th data-priority="2">Dokumen Permohonan</th>
-                        <th data-priority="3">Keterangan</th>
-                        <th data-priority="4">Tanggal Permohonan</th>
-                        <th data-priority="5">Status Permohonan</th>
-                        <th data-priority="6">Aksi</th>
+                        <th data-priority="3">Tujuan Penggunaan Informasi</th>
+                        <th data-priority="4">Tanggal</th>
+                        <th data-priority="5">Bentuk Dokumen</th>
+                        <th data-priority="6">Status</th>
+                        <th data-priority="7">Feedback</th>
                     </tr>
                 </thead>
 
                 <tbody style="text-align: center;">
                 @foreach($permohonan as $p)
-                    <tr id="{{$p->ID_PERMOHONAN}}">
-                        <td>{{$p->ID_PERMOHONAN}}</td>
+                    <tr>
+                        <td>{{$loop->iteration}}</td>
                         <td>{{$p->DOKUMEN_PERMOHONAN}}</td>
                         <td>{{$p->KETERANGAN}}</td>
                         <td>{{ date('d F Y',strtotime($p->TANGGAL)) }}</td>
+                        <td>
+                        @if($p->BENTUK_DOK == 1)
+                        <div class="text">Softcopy</div>
+                        @elseif($p->BENTUK_DOK == 2)
+                        <div class="text">Hardcopy</div>
+                        @endif
+                        </td>
                         <td>
                             <div class="mt-1 mb-1"> 
                             @if ($p->status->ID_STATUS == 1)
@@ -160,11 +184,13 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             </div>
                         </td>
                         <td>
-                            <div class="mt-1 mb-1"> 
-                            
-                            <button href="javascript:;" title="Detail Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300"><a data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}"><span class="w-5 h-5 flex items-center justify-center"> <i data-feather="more-horizontal" class="w-4 h-4 "></i></span></a> </button>  
-                         
-                            </div>
+                            <a target="_blank" href="{{url('/users/formpemberitahuan/'.$p->ID_STATUS)}}">
+                                <button href="javascript:;" title="Print Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-orange-300 dark:text-gray-300">
+                                    <span class="w-5 h-5 flex items-center justify-center">
+                                        <i data-feather="printer" class="w-4 h-4 "></i>
+                                    </span>
+                                </button>
+                            </a>
                         </td>
                         
                     </tr>
@@ -195,48 +221,54 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
                     <div class="col-span-12">
                         <label class="font-semibold text-lg mr-auto mt-3">Dokumen Permohonan</label> 
-                            <input type="text" class="input w-full border mt-2 flex-1" placeholder="Dokumen Permohonan" name="DOKUMEN_PERMOHONAN" id="DOKUMEN_PERMOHONAN" required >
+                            <input type="text" class="input w-full border mt-2 flex-1" placeholder="Dokumen Permohonan" name="DOKUMEN_PERMOHONAN" id="DOKUMEN_PERMOHONAN" value="{{ @old('DOKUMEN_PERMOHONAN') }}" required >
+                            @if($errors->has('DOKUMEN_PERMOHONAN'))
+                            <div class="flex flex-col sm:flex-row flex-auto mt-1 input-form ">
+                                <small class="text-theme-6">Dokumen permohonan wajib diisi dengan data yang valid</small>
+                            </div>
+                            @endif
                     </div>
                     </div>
                     
                     <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
                     <div class="col-span-12">
-                        <label class="font-semibold text-lg mr-auto">Keperluan</label> 
-                            <textarea class="input w-full border mt-2 flex-1" name="KETERANGAN" id="KETERANGAN"> </textarea>
-                    </div>
-                    </div>
-
-                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
-                    <div class="col-span-12">
-                    <label class="font-semibold text-lg mr-auto">Tanggal Permohonan</label> 
-                        <div class="relative mt-3">
-                            <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4"><i data-feather="calendar" class="w-4 h-4"></i> 
-                            </div> 
-                            <input class="datepicker input pl-12 border flex" data-single-mode="true" name="TANGGAL" id ="TANGGAL" required>
-                        </div>
-                    </div>
+                        <label class="font-semibold text-lg mr-auto">Tujuan Penggunaan Informasi</label> 
+                            <textarea class="input w-full border mt-2 flex-1" name="KETERANGAN" id="KETERANGAN" value="{{ @old('KETERANGAN') }}" required> </textarea>
+                            @if($errors->has('KETERANGAN'))
+                            <div class="flex flex-col sm:flex-row flex-auto mt-1 input-form ">
+                                <small class="text-theme-6">Tujuan penggunaan informasi wajib diisi dengan data yang valid</small>
+                            </div>
+                            @endif
                     </div>
                     </div>
 
                     <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
                     <div class="col-span-12">
                         <label class="font-semibold text-lg mr-auto mb-3">Bentuk Dokumen</label><br> 
-                        <input class="text-2xl mr-1" name="SOFTCOPY" id="SOFTCOPY" type="radio" value="Softcopy">Softcopy</input>
-                        <input class="text-2xl ml-2 mr-1" name="HARDCOPY" id="HARDCOPY" type="radio" value="Hardcopy">Hardcopy</input>
+                        <input class="border text-2xl mt-2 mr-1" name="BENTUK_DOK" id="SOFTCOPY" type="radio" value="1" checked>Softcopy</input><br>
+                        <input class="border text-2xl mt-2 mr-1" name="BENTUK_DOK" id="HARDCOPY" type="radio" value="2">Hardcopy</input>
+                    </div>
+                    </div>
+                    
+                    <br>
+                    <hr>
+
+                    <div class="grid grid-cols-12 gap-4 row-gap-3 ">
+                    <div class="col-span-12">
+                        <input type="checkbox" class="input w-full border mt-2 mr-2 flex-1" id="myCheck" name="mycheckbox" required>Saya telah membaca dan menyetujui <a href="{{ url ('/users/syarat_dan_ketentuan') }}" target="blank" style="color:blue;"><u>Syarat dan Ketentuan</u></a> yang berlaku
+                        @if($errors->has('mycheckbox'))
+                            <div class="flex flex-col sm:flex-row flex-auto mt-1 input-form ">
+                                <small class="text-theme-6">Wajib dicentang</small>
+                            </div>
+                            @endif
                     </div>
                     </div>
 
-                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
-                    <div class="col-span-12">
-                        <label class="font-semibold text-lg mr-auto mt-3">Jenis Dokumen</label> 
-                            <input type="text" class="input w-full border mt-2 flex-1" placeholder="Jenis Dokumen" name="JENIS_DOKUMEN" id="JENIS_DOKUMEN" >
-                    </div>
-                    </div>
 
                 <div class="modal-footer mt-5">
                     <div class="text-right">
                     <button type="button" class="button w-24 shadow-md mr-1 mb-2 bg-red-500 text-white" data-dismiss="modal">Cancel</button> 
-                    <button class="button items-right w-24 shadow-md mr-1 mb-2 justify-right bg-theme-1 text-white shadow-md" type="submit">Simpan</button>
+                    <button class="button items-right w-24 shadow-md mr-1 mb-2 justify-right bg-theme-1 text-white shadow-md" type="submit" >Simpan</button>
                     </form>
                     </div>
                 </div>
@@ -277,6 +309,15 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             <div class="relative">
                                     <div class="text-base">{{ date('d F Y',strtotime($p->TANGGAL)) }}</div>
                             </div>
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg mr-auto">Bentuk Dokumen</label> 
+                            @if($p->BENTUK_DOK == 1)
+                            <div class="text-base">Softcopy</div>
+                            @elseif($p->BENTUK_DOK == 2)
+                            <div class="text-base">Hardcopy</div>
+                            @endif
                         </div>
 
                         <div class="col-span-12 sm:col-span-6"> 
@@ -332,8 +373,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 </div>
                 @if($p->ID_STATUS == 3)
                 <hr>
-                    
-               
+
                 <div class="container w-full mt-4">
                 <div class="p-3 mt-4 lg:mt-0 rounded shadow">
                     <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
@@ -378,10 +418,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 </div>
 @endforeach
     
-@endif
-
-
-
+@endif  
 
 @endsection
 
@@ -391,7 +428,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script>
 console.log('Sudah masuk');
-$(document).ready(function() {
+$(document).ready(function() {  
 
     var table = $('#example').DataTable( {
             responsive: true
