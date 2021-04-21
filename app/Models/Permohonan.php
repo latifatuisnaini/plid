@@ -40,6 +40,7 @@ class Permohonan extends Model
 	protected $fillable = [
 		'ID_USER',
 		'ID_STATUS',
+		'NOMOR_URUT',
 		'DOKUMEN_PERMOHONAN',
 		'KETERANGAN',
 		'TANGGAL'

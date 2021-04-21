@@ -31,6 +31,7 @@ class PermohonanTableSeeder extends Seeder
             $users[] = [
                 'ID_USER' => rand(5,100),
                 'ID_STATUS' => 1,
+                'NOMOR_URUT' => $i,
                 'DOKUMEN_PERMOHONAN' => "Nama dokumen".$i,
                 'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
                 'TANGGAL' => date('Y-m-d'),
@@ -44,6 +45,7 @@ class PermohonanTableSeeder extends Seeder
             $users2[] = [
                 'ID_USER' => rand(5,100),
                 'ID_STATUS' => 2,
+                'NOMOR_URUT' => $j,
                 'DOKUMEN_PERMOHONAN' => "Nama dokumen".$j,
                 'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
                 'TANGGAL' => date('Y-m-d'),
@@ -57,6 +59,7 @@ class PermohonanTableSeeder extends Seeder
             $users3[] = [
                 'ID_USER' => rand(5,100),
                 'ID_STATUS' => 3,
+                'NOMOR_URUT' => $k,
                 'DOKUMEN_PERMOHONAN' => "Nama dokumen".$k,
                 'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
                 'TANGGAL' => date('Y-m-d'),
@@ -70,6 +73,7 @@ class PermohonanTableSeeder extends Seeder
             $users4[] = [
                 'ID_USER' => rand(5,100),
                 'ID_STATUS' => 4,
+                'NOMOR_URUT' => $l,
                 'DOKUMEN_PERMOHONAN' => "Nama dokumen".$l,
                 'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
                 'TANGGAL' => date('Y-m-d'),

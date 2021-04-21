@@ -46,6 +46,7 @@ class PermohonanController extends Controller
 
     public function store(Request $request){
         $request->validate([
+            'NOMOR_URUT' => 'required',
             'DOKUMEN_PERMOHONAN'=> 'required|string|max:100|regex:/^[0-9.\a-zA-Z ]+$/',
             'KETERANGAN'=> 'required|string|max:255|regex:/^[0-9.\a-zA-Z ]+$/',
             'BENTUK_DOK'=>'required',
@@ -54,6 +55,7 @@ class PermohonanController extends Controller
         ]);
         
         Permohonan::insert([
+            'NOMOR_URUT' => $request->NOMOR_URUT,
             'DOKUMEN_PERMOHONAN'=> $request->DOKUMEN_PERMOHONAN,
             'KETERANGAN'=> $request->KETERANGAN,
             'ID_STATUS'=>1,
