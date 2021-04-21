@@ -129,8 +129,16 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 <div class="intro-y box mt-5">
     <!--Container-->
     <!--Card-->
-    <a href ="javascript:;" data-toggle="modal" data-target="#tambah_dokumen_permohonan" class="button mb-5 mr-6 mt-4 flex items-center justify-center bg-theme-1 text-white tombol-tambah-dokumen-permohonan" style="float:right;" ><i data-feather="plus-circle" class="w-6 h-6 mr-2"></i>Tambah Permohonan</a>
-    <a href="{{ url ('/users/syarat_dan_ketentuan') }}" target="blank" class="button mb-5 mr-6 mt-4 flex items-center justify-center bg-theme-9 text-white tombol-syarat-dokumen-permohonan" style="float:right;"><i data-feather="info" class="w-6 h-6 mr-2"></i>Syarat dan Ketentuan</a>
+
+    <a href ="javascript:;" data-toggle="modal" data-target="#tambah_dokumen_permohonan" class="button mb-5 mr-6 mt-4 flex items-center justify-center bg-blue-200 text-gray-700 tombol-tambah-dokumen-permohonan" style="float:right;" >
+        <i data-feather="plus-circle" class="w-6 h-6 mr-2"></i>Tambah Permohonan
+    </a>
+    <a target="_blank" href="{{url('/users/formpermohonan')}}" class="button mb-5 mr-4 mt-4 flex items-center justify-center bg-blue-200 text-gray-700 tombol-tambah-dokumen-permohonan" style="float:right;" >
+        <i data-feather="download" class="w-6 h-6 mr-2"></i>Formulir Permohonan
+    </a>
+    <a target="_blank" href="{{ url ('/users/syarat_dan_ketentuan') }}" class="button mb-5 mr-4 mt-4 flex items-center justify-center bg-blue-200 text-gray-700 tombol-tambah-dokumen-permohonan" style="float:right;" >
+        <i data-feather="info" class="w-6 h-6 mr-2"></i>Syarat dan Ketentuan
+    </a>
     
     <div class="container w-full">
     
@@ -144,13 +152,13 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <th data-priority="4">Tanggal</th>
                         <th data-priority="5">Bentuk Dokumen</th>
                         <th data-priority="6">Status</th>
-                        <th data-priority="7">Aksi</th>
+                        <th data-priority="7">Feedback</th>
                     </tr>
                 </thead>
 
                 <tbody style="text-align: center;">
                 @foreach($permohonan as $p)
-                    <tr id="{{$p->ID_PERMOHONAN}}">
+                    <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$p->DOKUMEN_PERMOHONAN}}</td>
                         <td>{{$p->KETERANGAN}}</td>
@@ -176,11 +184,13 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             </div>
                         </td>
                         <td>
-                            <div class="mt-1 mb-1"> 
-                            
-                            <button href="javascript:;" title="Detail Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300"><a data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}"><span class="w-5 h-5 flex items-center justify-center"> <i data-feather="more-horizontal" class="w-4 h-4 "></i></span></a> </button>  
-                         
-                            </div>
+                            <a target="_blank" href="{{url('/users/formpemberitahuan/'.$p->ID_STATUS)}}">
+                                <button href="javascript:;" title="Print Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-orange-300 dark:text-gray-300">
+                                    <span class="w-5 h-5 flex items-center justify-center">
+                                        <i data-feather="printer" class="w-4 h-4 "></i>
+                                    </span>
+                                </button>
+                            </a>
                         </td>
                         
                     </tr>

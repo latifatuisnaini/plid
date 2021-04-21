@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Permohonan;
+use App\Models\Feedback;
 use DB;
 use Storage;
 
@@ -72,4 +73,21 @@ class UsersController extends Controller
         return view('users.profile',compact('user','permohonan_open_notif', 'permohonan_diproses_notif'));
     }
     
+    public function formpermohonan(){
+        $permohonan = Permohonan::where('ID_USER','=', Auth::user()->ID_USER)->first();
+        $pdf = \PDF::loadView('/users/form-permohonan', compact('permohonan'));
+        return $pdf->stream();
+    }
+
+    public function formpemberitahuan($id){
+        $pemberitahuan = Permohonan::where('ID_PERMOHONAN','=',$id)->first();
+        $feedback = Permohonan::select(DB::raw('DATE_FORMAT(permohonan.TANGGAL, "%d %M %Y") as tgl_permohonan'), 'permohonan.DOKUMEN_PERMOHONAN', 'status.STATUS')
+        ->join('status', 'status.ID_STATUS', '=', 'permohonan.ID_STATUS')
+        ->where('ID_USER', '=', Auth::user()->ID_USER)
+        ->orderByDesc('ID_PERMOHONAN')
+        ->limit(4)
+        ->get();
+        $pdf = \PDF::loadView('/users/form-pemberitahuan', compact('pemberitahuan','feedback'));
+        return $pdf->stream();
+    }
 }
