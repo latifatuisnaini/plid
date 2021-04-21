@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Permohonan;
+use Carbon\Carbon;
 use Faker\Factory as Faker;
 
 class PermohonanTableSeeder extends Seeder
@@ -31,7 +33,7 @@ class PermohonanTableSeeder extends Seeder
             $users[] = [
                 'ID_USER' => rand(5,100),
                 'ID_STATUS' => 1,
-                'NOMOR_URUT' => $i,
+                'NOMOR_URUT' => $i+1,
                 'DOKUMEN_PERMOHONAN' => "Nama dokumen".$i,
                 'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
                 'TANGGAL' => date('Y-m-d'),
@@ -44,7 +46,7 @@ class PermohonanTableSeeder extends Seeder
             $users2[] = [
                 'ID_USER' => rand(5,100),
                 'ID_STATUS' => 2,
-                'NOMOR_URUT' => $j,
+                'NOMOR_URUT' =>  $j+1,
                 'DOKUMEN_PERMOHONAN' => "Nama dokumen".$j,
                 'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
                 'TANGGAL' => date('Y-m-d'),
@@ -57,7 +59,7 @@ class PermohonanTableSeeder extends Seeder
             $users3[] = [
                 'ID_USER' => rand(5,100),
                 'ID_STATUS' => 3,
-                'NOMOR_URUT' => $k,
+                'NOMOR_URUT' => $k+1,
                 'DOKUMEN_PERMOHONAN' => "Nama dokumen".$k,
                 'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
                 'TANGGAL' => date('Y-m-d'),
@@ -70,7 +72,7 @@ class PermohonanTableSeeder extends Seeder
             $users4[] = [
                 'ID_USER' => rand(5,100),
                 'ID_STATUS' => 4,
-                'NOMOR_URUT' => $l,
+                'NOMOR_URUT' => $l+1,
                 'DOKUMEN_PERMOHONAN' => "Nama dokumen".$l,
                 'KETERANGAN' => "Isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen isi keterangan dokumen.",
                 'TANGGAL' => date('Y-m-d'),

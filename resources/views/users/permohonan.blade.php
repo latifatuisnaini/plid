@@ -296,15 +296,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         </div>
 
                         <div class="col-span-12 sm:col-span-6"> 
-                            <label class="font-semibold text-lg mr-auto">Bentuk Dokumen</label> 
-                            @if($p->BENTUK_DOK == 1)
-                            <div class="text-base">Softcopy</div>
-                            @elseif($p->BENTUK_DOK == 2)
-                            <div class="text-base">Hardcopy</div>
-                            @endif
-                        </div>
-
-                        <div class="col-span-12 sm:col-span-6"> 
                         <label class="font-semibold text-lg">Status</label> 
                         @if ( $p->status->ID_STATUS == 4 )
                         <div class="text-base">

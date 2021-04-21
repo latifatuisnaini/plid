@@ -25,6 +25,7 @@ class PermohonanController extends Controller
         ->where('ID_USER', Auth::user()->ID_USER)
         ->get();
 
+    
         $permohonan_open_notif = Permohonan::where('ID_STATUS', '1')->count();
         $permohonan_diproses_notif = Permohonan::where('ID_STATUS', '2')->count();
         $dokumen=Dokumen::all();
@@ -52,8 +53,12 @@ class PermohonanController extends Controller
             'mycheckbox'=>'required',
         ]);
         
+        $jumlah_no_urut=Permohonan::whereMonth('TANGGAL', '=', Carbon::now()->month)
+        ->whereYear('TANGGAL', date('Y'))
+        ->count();
+
         Permohonan::insert([
-            'NOMOR_URUT' => $request->NOMOR_URUT,
+            'NOMOR_URUT' => $jumlah_no_urut+1,
             'DOKUMEN_PERMOHONAN'=> $request->DOKUMEN_PERMOHONAN,
             'KETERANGAN'=> $request->KETERANGAN,
             'ID_STATUS'=>1,
