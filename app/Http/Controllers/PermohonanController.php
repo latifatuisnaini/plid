@@ -49,8 +49,6 @@ class PermohonanController extends Controller
             'NOMOR_URUT' => 'required',
             'DOKUMEN_PERMOHONAN'=> 'required|string|max:100|regex:/^[0-9.\a-zA-Z ]+$/',
             'KETERANGAN'=> 'required|string|max:255|regex:/^[0-9.\a-zA-Z ]+$/',
-            'BENTUK_DOK'=>'required',
-            'JENIS_DOK'=>'required|string|max:50|regex:/^[0-9.\a-zA-Z ]+$/',
             'mycheckbox'=>'required',
         ]);
         
@@ -60,8 +58,6 @@ class PermohonanController extends Controller
             'KETERANGAN'=> $request->KETERANGAN,
             'ID_STATUS'=>1,
             'ID_USER'=>$request->ID_USER,
-            'BENTUK_DOK'=>$request->BENTUK_DOK,
-            'JENIS_DOK'=>$request->JENIS_DOK,
         ]);
 
         return redirect('/users/permohonan')->with('success', 'Data Permohonan Berhasil Ditambahkan. Silahkan lakukan pengecekan secara berkala');

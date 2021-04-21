@@ -150,9 +150,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <th data-priority="2">Dokumen Permohonan</th>
                         <th data-priority="3">Tujuan Penggunaan Informasi</th>
                         <th data-priority="4">Tanggal</th>
-                        <th data-priority="5">Bentuk Dokumen</th>
-                        <th data-priority="6">Status</th>
-                        <th data-priority="7">Feedback</th>
+                        <th data-priority="5">Status</th>
+                        <th data-priority="6">Feedback</th>
                     </tr>
                 </thead>
 
@@ -163,13 +162,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <td>{{$p->DOKUMEN_PERMOHONAN}}</td>
                         <td>{{$p->KETERANGAN}}</td>
                         <td>{{ date('d F Y',strtotime($p->TANGGAL)) }}</td>
-                        <td>
-                        @if($p->BENTUK_DOK == 1)
-                        <div class="text">Softcopy</div>
-                        @elseif($p->BENTUK_DOK == 2)
-                        <div class="text">Hardcopy</div>
-                        @endif
-                        </td>
                         <td>
                             <div class="mt-1 mb-1"> 
                             @if ($p->status->ID_STATUS == 1)
@@ -239,14 +231,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                                 <small class="text-theme-6">Tujuan penggunaan informasi wajib diisi dengan data yang valid</small>
                             </div>
                             @endif
-                    </div>
-                    </div>
-
-                    <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
-                    <div class="col-span-12">
-                        <label class="font-semibold text-lg mr-auto mb-3">Bentuk Dokumen</label><br> 
-                        <input class="border text-2xl mt-2 mr-1" name="BENTUK_DOK" id="SOFTCOPY" type="radio" value="1" checked>Softcopy</input><br>
-                        <input class="border text-2xl mt-2 mr-1" name="BENTUK_DOK" id="HARDCOPY" type="radio" value="2">Hardcopy</input>
                     </div>
                     </div>
                     
