@@ -28,26 +28,24 @@
     <br>
     3. <a href="{{ url('/info_layanan_publik_3') }}" class="no-underline hover:underline"> Informasi yang wajib sedia setiap saat;</a>
     </p>
-    <p>
+    
     Untuk pengajuan permohonan informasi, silakan melakukan registrasi melalui kolom yang tersedia.
     <br>
     Informasi lebih lanjut dapat menghubungi:
-    <br>
+    <p class="mt-2">
     PPID PT PAL Indonesia (Persero)
-    <br>
-    
-        Jl. Perak Timur No. 610 
+    </p>
+    <p class="mt-2">
+        Jl. Ujung, Surabaya 60165 - Indonesia  
         <br>
-        Surabaya 60165 - Indonesia 
-        <br>
-        Jam Layanan : Senin - Jumat pukul 08:00 - 16:00 WIB
+        Jam Layanan : Senin - Jumat pukul 07.30 - 16:30 WIB
         ( kecuali hari libur nasional )
         <br>
-        Telpon   : +62 31 3298631-37 
+        Telpon   : +62 31 3292275 (Ext. 2030, 2020, 20002) 
         <br>
-        Fax       : +62 31 3295207 
+        Fax       : +62 31 3292530 
         <br>
-        Email    : info@pelindo.co.id
+        Email    : humas@pal.co.id
     </p>
     </div>
   </div>
