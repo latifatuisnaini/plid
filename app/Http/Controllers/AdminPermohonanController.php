@@ -126,7 +126,7 @@ class AdminPermohonanController extends Controller
     public function cetakpdfOpen()
     {
         $permohonans = Permohonan::where('ID_STATUS',1)->orderBy('ID_PERMOHONAN','DESC')->get();
-        $pdf = \PDF::loadView('/admin/cetak-permohonan-open', compact('permohonans'), ['permohonan' => $permohonans]);
+        $pdf = \PDF::loadView('/admin/cetak-permohonan-open', compact('permohonans'), ['permohonan' => $permohonans])->setPaper( 'landscape');;
         return $pdf->stream();
     }
 
