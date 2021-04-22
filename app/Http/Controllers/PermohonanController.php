@@ -47,11 +47,11 @@ class PermohonanController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'NOMOR_URUT' => 'required',
             'DOKUMEN_PERMOHONAN'=> 'required|string|max:100|regex:/^[0-9.\a-zA-Z ]+$/',
             'KETERANGAN'=> 'required|string|max:255|regex:/^[0-9.\a-zA-Z ]+$/',
-            'mycheckbox'=>'required',
+            'mycheckbox'=> 'accepted'
         ]);
+        
         
         $jumlah_no_urut=Permohonan::whereMonth('TANGGAL', '=', Carbon::now()->month)
         ->whereYear('TANGGAL', date('Y'))

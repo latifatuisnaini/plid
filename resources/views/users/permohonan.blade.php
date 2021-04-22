@@ -225,7 +225,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
                     <div class="col-span-12">
                         <label class="font-semibold text-lg mr-auto">Tujuan Penggunaan Informasi</label> 
-                            <textarea class="input w-full border mt-2 flex-1" name="KETERANGAN" id="KETERANGAN" value="{{ @old('KETERANGAN') }}" required> </textarea>
+                            <textarea class="input w-full border mt-2 flex-1" name="KETERANGAN" id="KETERANGAN" required>{{ @old('KETERANGAN') }} </textarea>
                             @if($errors->has('KETERANGAN'))
                             <div class="flex flex-col sm:flex-row flex-auto mt-1 input-form ">
                                 <small class="text-theme-6">Tujuan penggunaan informasi wajib diisi dengan data yang valid</small>
