@@ -23,6 +23,8 @@ class CreateFeedbackTable extends Migration
             $table->text('KETERANGAN_ESTIMASI')->nullable();
             $table->string('NAMA_FILE')->nullable();
             $table->date('EXPIRED_DATE')->nullable();
+            $table->text('KETERANGAN_PENGHITAMAN')->nullable();
+            $table->text('PENGUASAAN_INFORMASI')->default('Kami')->nullable();
         });
     }
 

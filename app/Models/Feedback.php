@@ -48,7 +48,9 @@ class Feedback extends Model
 		'TGL_FEEDBACK',
 		'WAKTU_ESTIMASI',
 		'NAMA_FILE',
-		'EXPIRED_DATE'
+		'EXPIRED_DATE',
+		'KETERANGAN_PENGHITAMAN',
+		'PENGUASAAN_INFORMASI'
 	];
 
 	public function permohonan()

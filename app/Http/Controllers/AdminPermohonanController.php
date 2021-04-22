@@ -73,7 +73,9 @@ class AdminPermohonanController extends Controller
             'WAKTU_ESTIMASI' => date('Y-m-d',strtotime($request->estimasi)),
             'KETERANGAN' => $request->keterangan,
             'ID_PERMOHONAN' => $id,
-            'KETERANGAN_ESTIMASI' => $request->keterangan_estimasi
+            'KETERANGAN_ESTIMASI' => $request->keterangan_estimasi,
+            'PENGUASAAN_INFORMASI' => $request->penguasaan,
+            'KETERANGAN_PENGHITAMAN' => $request->penghitaman
         ]);
 
         return response()->json('success');
@@ -89,7 +91,9 @@ class AdminPermohonanController extends Controller
             'WAKTU_ESTIMASI' => date('Y-m-d',strtotime($request->estimasi)),
             'KETERANGAN' => $request->keterangan,
             'ID_PERMOHONAN' => $id,
-            'KETERANGAN_ESTIMASI' => $request->keterangan_estimasi
+            'KETERANGAN_ESTIMASI' => $request->keterangan_estimasi,
+            'PENGUASAAN_INFORMASI' => $request->penguasaan,
+            'KETERANGAN_PENGHITAMAN' => $request->penghitaman
         ]);
 
         return response()->json('success');

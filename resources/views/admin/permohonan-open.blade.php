@@ -174,7 +174,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         </div>
                         <hr class="col-span-12">
 
-                        <div class="col-span-12 sm:col-span-6"> 
+                        <div class="col-span-12"> 
                             <label class="font-semibold text-lg pb-12">Estimasi</label>
                             <div class="relative mx-auto mt-2 mb-5"> 
                                 <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4"> 
@@ -186,9 +186,19 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             <textarea class="input w-full border mt-2"  id="keterangan_estimasi_{{$u->ID_PERMOHONAN}}"></textarea> 
                         </div>
 
-                        <div class="col-span-12 sm:col-span-6"> 
+                        <div class="col-span-12"> 
                             <label class="font-semibold text-lg">Keterangan Terima/Tolak (Opsional)</label>
                             <textarea class="input w-full border mt-2" id="keterangan_{{$u->ID_PERMOHONAN}}"></textarea>
+                        </div>
+
+                        <div class="col-span-12"> 
+                            <label class="font-semibold text-lg">Keterangan Penghitaman (Opsional)</label>
+                            <textarea class="input w-full border mt-2" id="penghitaman_{{$u->ID_PERMOHONAN}}"></textarea>
+                        </div>
+
+                        <div class="col-span-12"> 
+                            <label class="font-semibold text-lg">Penguasaan Informasi</label>
+                            <textarea class="input w-full border mt-2" id="penguasaan_{{$u->ID_PERMOHONAN}}"></textarea>
                         </div>
 
                         <div class="col-span-12 sm:col-span-6" style="justify-self: end;">
@@ -239,7 +249,9 @@ $(document).ready(function() {
                 _token : '{{ csrf_token() }}',
                 estimasi : $("#estimasi_"+id).val(),
                 keterangan : $("#keterangan_"+id).val(),
-                keterangan_estimasi : $("#keterangan_estimasi_"+id).val()
+                keterangan_estimasi : $("#keterangan_estimasi_"+id).val(),
+                penghitaman : $("#penghitaman_"+id).val(),
+                penguasaan : $("#penguasaan_"+id).val()
             }, 
             function(){
                 $("#close_"+id)[0].click();
@@ -260,7 +272,9 @@ $(document).ready(function() {
                 _token : '{{ csrf_token() }}',
                 estimasi : $("#estimasi_"+id).val(),
                 keterangan : $("#keterangan_"+id).val(),
-                keterangan_estimasi : $("#keterangan_estimasi_"+id).val()
+                keterangan_estimasi : $("#keterangan_estimasi_"+id).val(),
+                penghitaman : $("#penghitaman_"+id).val(),
+                penguasaan : $("#penguasaan_"+id).val()
             },
             function(){
                 $("#close_"+id)[0].click();
