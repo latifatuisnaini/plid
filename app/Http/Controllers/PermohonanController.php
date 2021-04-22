@@ -80,7 +80,7 @@ class PermohonanController extends Controller
 
         return Response::make(Storage::disk('public')->get('dokumen/Syarat_dan_Ketentuan.pdf'),200, [
             'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; filename="'.$filename.'"'
+            'Content-Disposition' => 'inline; filename="'.$filename.'"',
         ]);   
         
     }

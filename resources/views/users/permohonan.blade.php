@@ -175,7 +175,14 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             @endif
                             </div>
                         </td>
-                        <td>
+                        <td width="15%">
+                            <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}" id="status_{{$p->ID_PERMOHONAN}}">
+                                <button type="button" title="Detail Permohonan" class="tooltip button px-2 mr-1 mb-2 bg-blue-300 dark:text-gray-300">
+                                    <span class="w-5 h-5 flex items-center justify-center">
+                                        <i data-feather="list" class="w-4 h-4 "></i>
+                                    </span>
+                                </button>
+                            </a>
                             <a target="_blank" href="{{url('/users/formpemberitahuan/'.$p->ID_STATUS)}}">
                                 <button href="javascript:;" title="Print Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-orange-300 dark:text-gray-300">
                                     <span class="w-5 h-5 flex items-center justify-center">
@@ -184,8 +191,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                                 </button>
                             </a>
                         </td>
-                        
                     </tr>
+
                 @endforeach
                 </tbody>
             </table>
@@ -348,8 +355,10 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 </div>
                 @if($p->ID_STATUS == 3)
                 <hr>
-
-                <div class="container w-full mt-4">
+                <div class="pl-5 mt-2 text-sm text-theme-1">
+                <b>* Expired Date</b> adalah batas waktu file dapat diakses.<br>Jika sudah melebihi batas waktu maka file akan otomatis terhapus
+                </div>
+                <div class="pl-5 pr-5 container w-full mt-4">
                 <div class="p-3 mt-4 lg:mt-0 rounded shadow">
                     <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
                         <thead>
