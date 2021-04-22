@@ -94,10 +94,10 @@
             <tbody>
             @foreach($permohonans as $u)
                 <tr>
-                    <td>{{$u->ID_PERMOHONAN}}</td>
-                    <td>{{$u->DOKUMEN_PERMOHONAN}}</td>
-                    <td>{{$u->KETERANGAN}}</td>
-                    <td>{{ date('d F Y',strtotime($u->TANGGAL)) }}</td>
+                    <td style="text-align: center;">{{$u->ID_PERMOHONAN}}</td>
+                    <td style="text-align: center;">{{$u->DOKUMEN_PERMOHONAN}}</td>
+                    <td style="text-align: center;">{{$u->KETERANGAN}}</td>
+                    <td style="text-align: center;">{{ date('d F Y',strtotime($u->TANGGAL)) }}</td>
                 </tr>
             @endforeach
             </tbody>

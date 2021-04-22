@@ -95,9 +95,9 @@
             <tbody>
             @foreach($permohonan_pending as $pp)
                 <tr>
-                    <td>{{$pp->DOKUMEN_PERMOHONAN}}</td>
-                    <td>{{$pp->KETERANGAN}}</td>
-                    <td>{{ date('d F Y',strtotime($pp->TANGGAL)) }}</td>
+                    <td style="text-align: center;">{{$pp->DOKUMEN_PERMOHONAN}}</td>
+                    <td style="text-align: center;">{{$pp->KETERANGAN}}</td>
+                    <td style="text-align: center;">{{ date('d F Y',strtotime($pp->TANGGAL)) }}</td>
                 </tr>
             @endforeach
             </tbody>
