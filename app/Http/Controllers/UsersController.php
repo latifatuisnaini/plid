@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Permohonan;
 use App\Models\Feedback;
 use DB;
+use Illuminate\Support\Facades\DB as FacadesDB;
 use Storage;
 
 class UsersController extends Controller
@@ -79,15 +80,15 @@ class UsersController extends Controller
         return $pdf->stream();
     }
 
-    public function formpemberitahuan($id){
-        $pemberitahuan = Permohonan::where('ID_PERMOHONAN','=',$id)->first();
-        $feedback = Permohonan::select(DB::raw('DATE_FORMAT(permohonan.TANGGAL, "%d %M %Y") as tgl_permohonan'), 'permohonan.DOKUMEN_PERMOHONAN', 'status.STATUS')
-        ->join('status', 'status.ID_STATUS', '=', 'permohonan.ID_STATUS')
-        ->where('ID_USER', '=', Auth::user()->ID_USER)
-        ->orderByDesc('ID_PERMOHONAN')
-        ->limit(4)
-        ->get();
-        $pdf = \PDF::loadView('/users/form-pemberitahuan', compact('pemberitahuan','feedback'));
+    public function formpemberitahuan($id){        
+        $pemberitahuan = Permohonan::select(DB::raw('DATE_FORMAT(permohonan.TANGGAL, "%d %M %Y") as tgl_permohonan'),'permohonan.ID_PERMOHONAN','permohonan.KETERANGAN','feedback.TGL_FEEDBACK','feedback.WAKTU_ESTIMASI','feedback.KETERANGAN_ESTIMASI')
+        ->join('feedback', 'feedback.ID_PERMOHONAN', '=', 'permohonan.ID_PERMOHONAN')
+        ->where('permohonan.ID_PERMOHONAN','=',$id)
+        ->first();
+        $pemberitahuan = Permohonan::find($id);
+        // dd($pemberitahuan);
+        $id_user = Auth::user();
+        $pdf = \PDF::loadView('/users/form-pemberitahuan', compact('pemberitahuan','id_user'));
         return $pdf->stream();
     }
 }
