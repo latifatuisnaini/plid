@@ -130,7 +130,7 @@ class AdminPermohonanController extends Controller
     public function cetakpdfOpen()
     {
         $permohonans = Permohonan::where('ID_STATUS',1)->orderBy('ID_PERMOHONAN','DESC')->get();
-        $pdf = \PDF::loadView('/admin/cetak-permohonan-open', compact('permohonans'), ['permohonan' => $permohonans])->setPaper( 'landscape');;
+        $pdf = \PDF::loadView('/admin/cetak-permohonan-open', compact('permohonans'), ['permohonan' => $permohonans])->setPaper( 'a4','landscape');
         return $pdf->stream();
     }
 
@@ -141,14 +141,14 @@ class AdminPermohonanController extends Controller
         'permohonan.KETERANGAN', 'feedback.EXPIRED_DATE', 'feedback.NAMA_FILE', 'feedback.KETERANGAN AS KETERANGAN_FEEDBACK')
         ->join('feedback', 'feedback.ID_PERMOHONAN', '=', 'permohonan.ID_PERMOHONAN')
         ->where('ID_STATUS',3)->orWhere('ID_STATUS', 4)->orderBy('permohonan.ID_PERMOHONAN','DESC')->get();
-        $pdf = \PDF::loadView('/admin/cetak-permohonan-confirm',compact('permohonan_confirm'),  ['permohonan' => $permohonan_confirm]);
+        $pdf = \PDF::loadView('/admin/cetak-permohonan-confirm',compact('permohonan_confirm'),  ['permohonan' => $permohonan_confirm])->setPaper( 'a4','landscape');
         return $pdf->stream();
     }
 
     public function cetakpdfPending()
     {
         $permohonan_pending = Permohonan::where('ID_STATUS',2)->orderBy('ID_PERMOHONAN','DESC')->get();
-        $pdf = \PDF::loadView('/admin/cetak-permohonan-pending', compact('permohonan_pending'), ['permohonan' => $permohonan_pending]);
+        $pdf = \PDF::loadView('/admin/cetak-permohonan-pending', compact('permohonan_pending'), ['permohonan' => $permohonan_pending])->setPaper( 'a4','landscape');;
         return $pdf->stream();
     }
 

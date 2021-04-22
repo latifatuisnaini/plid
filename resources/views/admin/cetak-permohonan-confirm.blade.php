@@ -97,8 +97,8 @@
             @foreach($permohonan_confirm as $p)
                 <tr>
                     <td style="text-align: center;">{{ date('d F Y',strtotime($p->TANGGAL)) }}</td>
-                    <td>{{$p->DOKUMEN_PERMOHONAN}}</td>
-                    <td>{{$p->KETERANGAN}}</td>
+                    <td style="text-align: center;">{{$p->DOKUMEN_PERMOHONAN}}</td>
+                    <td style="text-align: center;">{{$p->KETERANGAN}}</td>
                     <td style="text-align: center;">
                     @if($p->ID_STATUS == 3)
                         <!-- <div class="text-center"> -->
