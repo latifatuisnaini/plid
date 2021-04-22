@@ -127,7 +127,7 @@
                     <td colspan="4">Pemberitahuan sebagai berikut:</td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="font-weight: bold;">A. Informasi dapat diberikan</td>
+                    <td colspan="4" style="font-weight: bold; font-size:14pt">Informasi dapat diberikan</td>
                 </tr>
                 <tr style="border: 1pt solid black;">
                     <td style="border: 1pt solid black;text-align:center" width="5%">No.</td>
@@ -147,18 +147,21 @@
                 <tr style="border: 1pt solid black;">
                     <td style="border: 1pt solid black; text-align:center">3.</td>
                     <td style="border: 1pt solid black;">Waktu penyediaan</td>
-                    <td colspan="2" style="border: 1pt solid black;">{{ date('d',strtotime($pemberitahuan->feedback->WAKTU_ESTIMASI)) }} hari</td>
+                    <td colspan="2" style="border: 1pt solid black;">
+                        {{ $interval->d }} 
+                        hari
+                    </td>
                 </tr>
                 <tr style="border: 1pt solid black;">
                     <td style="border: 1pt solid black; text-align:center">4.</td>
                     <td colspan="3" style="border: 1pt solid black;">Penjelasan penghitaman/pengaburan Informasi yang dimohon : {{ $pemberitahuan->feedback->KETERANGAN_PENGHITAMAN }} </td>
                 </tr>
-                <tr>
-                    <td colspan="4" style="font-weight: bold;">B. Informasi tidak dapat diberikan karena</td>
-                </tr>
-                <tr>
+                <!-- <tr>
+                    <td colspan="4" style="font-weight: bold; font-size:14pt">Informasi tidak dapat diberikan karena</td>
+                </tr> -->
+                <!-- <tr>
                     <td><div class="square"></div>coba</td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
 

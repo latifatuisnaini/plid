@@ -98,7 +98,7 @@
     <main>
         <h3>FORMULIR PERMOHONAN INFORMASI PUBLIK</h3>
         <h4>PUSAT PELAYANAN INFORMASI DAN DOKUMENTASI</h4>
-        <p class="foot4">No. Pendaftaran (diisi petugas)*: {{ $permohonan->NOMOR_URUT }}/E-PPID/{{ date('m',strtotime($permohonan->TANGGAL)) }}/{{ date('Y',strtotime($permohonan->TANGGAL)) }}</p>
+        <p class="foot4">No. Pendaftaran : {{ $permohonan->NOMOR_URUT }}/E-PPID/{{ date('m',strtotime($permohonan->TANGGAL)) }}/{{ date('Y',strtotime($permohonan->TANGGAL)) }}</p>
         <br>
 
         <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">

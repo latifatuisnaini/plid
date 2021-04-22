@@ -85,10 +85,14 @@ class UsersController extends Controller
         ->join('feedback', 'feedback.ID_PERMOHONAN', '=', 'permohonan.ID_PERMOHONAN')
         ->where('permohonan.ID_PERMOHONAN','=',$id)
         ->first();
-        $pemberitahuan = Permohonan::find($id);
-        // dd($pemberitahuan);
         $id_user = Auth::user();
-        $pdf = \PDF::loadView('/users/form-pemberitahuan', compact('pemberitahuan','id_user'));
+        $pemberitahuan = Permohonan::find($id);
+        $waktuestimasi = date_create($pemberitahuan->feedback->WAKTU_ESTIMASI);
+        $waktupengajuan = date_create($pemberitahuan->TANGGAL);
+        $interval = date_diff($waktupengajuan,$waktuestimasi);
+
+        $pdf = \PDF::loadView('/users/form-pemberitahuan', compact('pemberitahuan','id_user','interval'));
         return $pdf->stream();
     }
+
 }
