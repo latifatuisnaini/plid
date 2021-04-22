@@ -49,7 +49,7 @@
             text-align: center;
             font-family: Arial, Helvetica, sans-serif;
             color: black;
-            /* line-height: 2px; */
+            line-height: 20px;
         }
         table,tr,th, td{
             /* border: 1pt solid none; */
@@ -98,7 +98,8 @@
     <main>
         <h3>FORMULIR PERMOHONAN INFORMASI PUBLIK</h3>
         <h4>PUSAT PELAYANAN INFORMASI DAN DOKUMENTASI</h4>
-        <p class="foot4">No. Pendaftaran (diisi petugas)*: {{ $permohonan->NOMOR_URUT }}/E-PPID/{{ date('M',strtotime($permohonan->TANGGAL)) }}/{{ date('Y',strtotime($permohonan->TANGGAL)) }}</p>
+        <p class="foot4">No. Pendaftaran (diisi petugas)*: {{ $permohonan->NOMOR_URUT }}/E-PPID/{{ date('m',strtotime($permohonan->TANGGAL)) }}/{{ date('Y',strtotime($permohonan->TANGGAL)) }}</p>
+        <br>
 
         <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <tbody>
@@ -120,12 +121,12 @@
                 <tr>
                     <td width="40%">Rincian Informasi yang Dibutuhkan</td>
                     <td width="2%">:</td>
-                    <td></td>
+                    <td>{{ $permohonan->DOKUMEN_PERMOHONAN }}</td>
                 </tr>
                 <tr>
                     <td width="40%">Tujuan Penggunaan Informasi</td>
                     <td width="2%">:</td>
-                    <td></td>
+                    <td>{{ $permohonan->KETERANGAN }}</td>
                 </tr>
                 <tr>
                     <td width="40%">Cara Memperoleh Informasi</td>
