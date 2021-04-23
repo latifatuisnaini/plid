@@ -74,8 +74,10 @@ class UsersController extends Controller
         return view('users.profile',compact('user','permohonan_open_notif', 'permohonan_diproses_notif'));
     }
     
-    public function formpermohonan(){
-        $permohonan = Permohonan::where('ID_USER','=', Auth::user()->ID_USER)->first();
+    public function formpermohonan($id){
+        $permohonan = Permohonan::where('ID_USER','=', Auth::user()->ID_USER)
+        ->where('ID_PERMOHONAN','=',$id)
+        ->first();
         $idadmin = User::where('TIPE_USER','=',1)->first();
 
         $pdf = \PDF::loadView('/users/form-permohonan', compact('permohonan','idadmin'));
