@@ -81,7 +81,7 @@ class UsersController extends Controller
         $idadmin = User::where('TIPE_USER','=',1)->first();
 
         $pdf = \PDF::loadView('/users/form-permohonan', compact('permohonan','idadmin'));
-        return $pdf->stream();
+        return $pdf->stream('Format Permohonan Informasi PAL.pdf');
     }
 
     public function formpemberitahuan($id){        
@@ -96,7 +96,7 @@ class UsersController extends Controller
         $interval = date_diff($waktupengajuan,$waktuestimasi);
 
         $pdf = \PDF::loadView('/users/form-pemberitahuan', compact('pemberitahuan','id_user','interval'));
-        return $pdf->stream();
+        return $pdf->stream('Formulir Pemberitahuan Tertulis.pdf');
     }
 
 }
