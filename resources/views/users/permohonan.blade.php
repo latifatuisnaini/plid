@@ -183,7 +183,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                                     </span>
                                 </button>
                             </a>
-                            <a target="_blank" href="{{url('/users/formpemberitahuan/'.$p->ID_STATUS)}}">
+                            <a target="_blank" href="{{url('/users/formpemberitahuan/'.$p->ID_PERMOHONAN)}}">
                                 <button href="javascript:;" title="Print Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-orange-300 dark:text-gray-300">
                                     <span class="w-5 h-5 flex items-center justify-center">
                                         <i data-feather="printer" class="w-4 h-4 "></i>

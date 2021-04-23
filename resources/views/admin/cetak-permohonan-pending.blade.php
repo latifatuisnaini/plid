@@ -4,7 +4,6 @@
 	<title>Permohonan User yang Sedang Diproses</title>
 	<link rel="stylesheet" href="{{$_SERVER['DOCUMENT_ROOT'] . '/public/dist/css/app.css'}}" >
     <link rel="stylesheet" href="{{$_SERVER['DOCUMENT_ROOT'] . '/public/dist/images/logo-pal.png'}}" >
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<style type="text/css">
@@ -96,9 +95,9 @@
             <tbody>
             @foreach($permohonan_pending as $pp)
                 <tr>
-                    <td>{{$pp->DOKUMEN_PERMOHONAN}}</td>
-                    <td>{{$pp->KETERANGAN}}</td>
-                    <td>{{ date('d F Y',strtotime($pp->TANGGAL)) }}</td>
+                    <td style="text-align: center;">{{$pp->DOKUMEN_PERMOHONAN}}</td>
+                    <td style="text-align: center;">{{$pp->KETERANGAN}}</td>
+                    <td style="text-align: center;">{{ date('d F Y',strtotime($pp->TANGGAL)) }}</td>
                 </tr>
             @endforeach
             </tbody>

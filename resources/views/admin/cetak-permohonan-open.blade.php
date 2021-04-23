@@ -4,7 +4,6 @@
 	<title>Permohonan User yang Belum Dikonfirmasi</title>
 	<link rel="stylesheet" href="{{$_SERVER['DOCUMENT_ROOT'] . '/public/dist/css/app.css'}}" >
     <link rel="stylesheet" href="{{$_SERVER['DOCUMENT_ROOT'] . '/public/dist/images/logo-pal.png'}}" >
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<style type="text/css">
@@ -95,10 +94,10 @@
             <tbody>
             @foreach($permohonans as $u)
                 <tr>
-                    <td>{{$u->ID_PERMOHONAN}}</td>
-                    <td>{{$u->DOKUMEN_PERMOHONAN}}</td>
-                    <td>{{$u->KETERANGAN}}</td>
-                    <td>{{ date('d F Y',strtotime($u->TANGGAL)) }}</td>
+                    <td style="text-align: center;">{{$u->ID_PERMOHONAN}}</td>
+                    <td style="text-align: center;">{{$u->DOKUMEN_PERMOHONAN}}</td>
+                    <td style="text-align: center;">{{$u->KETERANGAN}}</td>
+                    <td style="text-align: center;">{{ date('d F Y',strtotime($u->TANGGAL)) }}</td>
                 </tr>
             @endforeach
             </tbody>

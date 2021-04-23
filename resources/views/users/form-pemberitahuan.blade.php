@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Formulir Permohonan</title>
+	<title>Formulir Pemberitahuan</title>
 	<link rel="stylesheet" href="{{$_SERVER['DOCUMENT_ROOT'] . '/public/dist/css/app.css'}}" >
     <link rel="stylesheet" href="{{$_SERVER['DOCUMENT_ROOT'] . '/public/dist/images/logo-pal.png'}}" >
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
     <style type="text/css">
@@ -22,6 +21,12 @@
             font-size: 10pt;
             line-height: 1px;
         }
+        .square {
+            height: 10px;
+            width: 10px;
+            background-color: none;
+            border-color: #555;
+        }
         .foot1 {
             font-size: 9pt;
             text-align: center;
@@ -33,14 +38,6 @@
         .foot2 {
             font-size: 7pt;
             text-align: center;
-            font-family: Arial, Helvetica, sans-serif;
-            color: black;
-            line-height: 2px;
-        }
-        .foot3 {
-            font-size: 9pt;
-            text-align: center;
-            font-style: italic;
             font-family: Arial, Helvetica, sans-serif;
             color: black;
             line-height: 2px;
@@ -97,13 +94,14 @@
 
     <main>
         <h3>PEMBERITAHUAN TERTULIS</h3>
+
         <!-- <h4>PUSAT PELAYANAN INFORMASI DAN DOKUMENTASI</h4> -->
         <p class="foot4">Surabaya, {{ date('d F Y',strtotime($pemberitahuan->TANGGAL)) }}</p>
 
         <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <tbody>
                 <tr>
-                    <td colspan="4">Berdasarkan permohonan Informasi pada tanggal {{ date('d',strtotime($pemberitahuan->TANGGAL)) }} bulan {{ date('F',strtotime($pemberitahuan->TANGGAL)) }} tahun {{ date('Y',strtotime($pemberitahuan->TANGGAL)) }} dengan nomor pendaftaran* {{$pemberitahuan->ID_PERMOHONAN}} Kami menyampaikan kepada Saudara/i</td>
+                    <td colspan="4">Berdasarkan permohonan Informasi pada tanggal {{ date('d',strtotime($pemberitahuan->TANGGAL)) }} bulan {{ date('F',strtotime($pemberitahuan->TANGGAL)) }} tahun {{ date('Y',strtotime($pemberitahuan->TANGGAL)) }} dengan nomor pendaftaran* {{ $pemberitahuan->NOMOR_URUT }}/E-PPID/{{ date('m',strtotime($pemberitahuan->TANGGAL)) }}/{{ date('Y',strtotime($pemberitahuan->TANGGAL)) }} Kami menyampaikan kepada Saudara/i</td>
                 </tr>
                 <tr>
                     <td width="30%" style="font-weight:bold">Nama</td>
@@ -120,31 +118,50 @@
                     <td width="2%">:</td>
                     <td colspan="2">{{ $pemberitahuan->user->NO_TLP }} / {{ $pemberitahuan->user->email }}</td>
                 </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                </tr>
+            </tbody>
+        </table>
+
+        <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">   
+            <tbody>
                 <tr>
                     <td colspan="4">Pemberitahuan sebagai berikut:</td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="font-weight: bold;">A. Informasi dapat diberikan</td>
-                    <!-- <td width="98%" colspan="3" style="font-weight: bold; text-align:left"></td> -->
+                    <td colspan="4" style="font-weight: bold; font-size:14pt">Informasi dapat diberikan</td>
                 </tr>
-            </tbody>
-        </table>
-        <br><br><br>
-        <table style="width:100%; padding-top: 1em;  padding-bottom: 1em; border:1pt solid black;">   
-            <tbody>
-                <tr>
-                    <td>No.</td>
-                    <td>Hal-hal Terkait Informasi Publik</td>
-                    <td colspan="2">Keterangan</td>
+                <tr style="border: 1pt solid black;">
+                    <td style="border: 1pt solid black;text-align:center" width="5%">No.</td>
+                    <td style="border: 1pt solid black;text-align:center">Hal-hal Terkait Informasi Publik</td>
+                    <td colspan="2" style="border: 1pt solid black;">Keterangan</td>
                 </tr>
-                <tr>
-                    <td>1.</td>
-                    <td>Tanggal Estimasi</td>
-                    <td colspan="2">{{ $pemberitahuan->feedback->WAKTU_ESTIMASI }}</td>
+                <tr style="border: 1pt solid black;">
+                    <td style="border: 1pt solid black; text-align:center">1.</td>
+                    <td style="border: 1pt solid black;">Penguasaan Informasi Publik</td>
+                    <td colspan="2" style="border: 1pt solid black;">{{ $pemberitahuan->feedback->PENGUASAAN_INFORMASI }}</td>
                 </tr>
+                <tr style="border: 1pt solid black;">
+                    <td style="border: 1pt solid black; text-align:center">2.</td>
+                    <td style="border: 1pt solid black;">Bentuk fisik yang tersedia</td>
+                    <td colspan="2" style="border: 1pt solid black;">Softcopy</td>
+                </tr>
+                <tr style="border: 1pt solid black;">
+                    <td style="border: 1pt solid black; text-align:center">3.</td>
+                    <td style="border: 1pt solid black;">Waktu penyediaan</td>
+                    <td colspan="2" style="border: 1pt solid black;">
+                        {{ $interval->d }} 
+                        hari
+                    </td>
+                </tr>
+                <tr style="border: 1pt solid black;">
+                    <td style="border: 1pt solid black; text-align:center">4.</td>
+                    <td colspan="3" style="border: 1pt solid black;">Penjelasan penghitaman/pengaburan Informasi yang dimohon : {{ $pemberitahuan->feedback->KETERANGAN_PENGHITAMAN }} </td>
+                </tr>
+                <!-- <tr>
+                    <td colspan="4" style="font-weight: bold; font-size:14pt">Informasi tidak dapat diberikan karena</td>
+                </tr> -->
+                <!-- <tr>
+                    <td><div class="square"></div>coba</td>
+                </tr> -->
             </tbody>
         </table>
 
