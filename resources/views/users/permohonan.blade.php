@@ -183,6 +183,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                                     </span>
                                 </button>
                             </a>
+
+                            @if( $p->status->ID_STATUS == 3 || $p->status->ID_STATUS == 4)
                             <a target="_blank" href="{{url('/users/formpemberitahuan/'.$p->ID_PERMOHONAN)}}">
                                 <button href="javascript:;" title="Print Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-orange-300 dark:text-gray-300">
                                     <span class="w-5 h-5 flex items-center justify-center">
@@ -190,6 +192,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                                     </span>
                                 </button>
                             </a>
+                            @endif
+
                         </td>
                     </tr>
 

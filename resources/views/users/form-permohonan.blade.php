@@ -161,7 +161,7 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="text-align: center;">( .............................. )</td>
+                    <td style="text-align: center;">( {{ $idadmin->NAMA_LENGKAP }} )</td>
                     <td></td>
                     <td style="text-align: center;">( {{$permohonan->user->NAMA_LENGKAP}} )</td>
                 </tr>
