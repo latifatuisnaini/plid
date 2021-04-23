@@ -174,30 +174,38 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         </div>
                         <hr class="col-span-12">
 
+                        <div class="col-span-12">
+                            <small class="text-red-600 align-top text-sm">*</small><small class="text-red-600 text-sm">Harus diisi jika diterima</small>
+                        </div>
+
+                        <div class="col-span-12">
+                            <small class="text-red-600 align-top text-sm">**</small><small class="text-red-600 text-sm">Harus diisi jika ditolak</small>
+                        </div>
+
                         <div class="col-span-12"> 
-                            <label class="font-semibold text-lg pb-12">Estimasi</label>
+                            <label class="font-semibold text-lg pb-12">Estimasi<small class="text-red-600 align-top"> *</small></label>
                             <div class="relative mx-auto mt-2 mb-5"> 
                                 <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4"> 
                                     <i data-feather="calendar" class="w-4 h-4"></i> 
                                 </div> 
                                 <input type="text" class="datepicker input pl-12 border" data-single-mode="true" name="estimasi" id="estimasi_{{$u->ID_PERMOHONAN}}"> 
                             </div>
-                            <label class="font-semibold text-lg mt-3">Keterangan Estimasi (Opsional)</label>
+                            <label class="font-semibold text-lg mt-3">Keterangan Estimasi <small class="text-red-600 align-top"> *</small></label>
                             <textarea class="input w-full border mt-2"  id="keterangan_estimasi_{{$u->ID_PERMOHONAN}}"></textarea> 
                         </div>
 
                         <div class="col-span-12"> 
-                            <label class="font-semibold text-lg">Keterangan Terima/Tolak (Opsional)</label>
+                            <label class="font-semibold text-lg">Keterangan Terima/Tolak<small class="text-red-600 align-top"> **</small></label>
                             <textarea class="input w-full border mt-2" id="keterangan_{{$u->ID_PERMOHONAN}}"></textarea>
                         </div>
 
                         <div class="col-span-12"> 
-                            <label class="font-semibold text-lg">Keterangan Penghitaman (Opsional)</label>
+                            <label class="font-semibold text-lg">Keterangan Penghitaman <small class="text-red-600 align-top"> *</small></label>
                             <textarea class="input w-full border mt-2" id="penghitaman_{{$u->ID_PERMOHONAN}}"></textarea>
                         </div>
 
                         <div class="col-span-12"> 
-                            <label class="font-semibold text-lg">Penguasaan Informasi</label>
+                            <label class="font-semibold text-lg">Penguasaan Informasi<small class="text-red-600 align-top"> *</small></label>
                             <textarea class="input w-full border mt-2" id="penguasaan_{{$u->ID_PERMOHONAN}}"></textarea>
                         </div>
 
