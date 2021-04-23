@@ -53,8 +53,7 @@ class PermohonanController extends Controller
         ]);
         
         
-        $jumlah_no_urut=Permohonan::whereMonth('TANGGAL', '=', Carbon::now()->month)
-        ->whereYear('TANGGAL', date('Y'))
+        $jumlah_no_urut=Permohonan::whereYear('TANGGAL', date('Y'))
         ->count();
 
         Permohonan::insert([
@@ -80,7 +79,7 @@ class PermohonanController extends Controller
 
         return Response::make(Storage::disk('public')->get('dokumen/Syarat_dan_Ketentuan.pdf'),200, [
             'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; filename="'.$filename.'"'
+            'Content-Disposition' => 'inline; filename="'.$filename.'"',
         ]);   
         
     }

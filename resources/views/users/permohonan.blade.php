@@ -133,9 +133,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
     <a href ="javascript:;" data-toggle="modal" data-target="#tambah_dokumen_permohonan" class="button mb-5 mr-6 mt-4 flex items-center justify-center bg-blue-200 text-gray-700 tombol-tambah-dokumen-permohonan" style="float:right;" >
         <i data-feather="plus-circle" class="w-6 h-6 mr-2"></i>Tambah Permohonan
     </a>
-    <a target="_blank" href="{{url('/users/formpermohonan')}}" class="button mb-5 mr-4 mt-4 flex items-center justify-center bg-blue-200 text-gray-700 tombol-tambah-dokumen-permohonan" style="float:right;" >
-        <i data-feather="download" class="w-6 h-6 mr-2"></i>Formulir Permohonan
-    </a>
     <a target="_blank" href="{{ url ('/users/syarat_dan_ketentuan') }}" class="button mb-5 mr-4 mt-4 flex items-center justify-center bg-blue-200 text-gray-700 tombol-tambah-dokumen-permohonan" style="float:right;" >
         <i data-feather="info" class="w-6 h-6 mr-2"></i>Syarat dan Ketentuan
     </a>
@@ -161,7 +158,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <td>{{$loop->iteration}}</td>
                         <td>{{$p->DOKUMEN_PERMOHONAN}}</td>
                         <td>{{$p->KETERANGAN}}</td>
-                        <td>{{ date('d F Y',strtotime($p->TANGGAL)) }}</td>
+                        <td width="15%">{{ date('d F Y',strtotime($p->TANGGAL)) }}</td>
                         <td>
                             <div class="mt-1 mb-1"> 
                             @if ($p->status->ID_STATUS == 1)
@@ -175,17 +172,35 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             @endif
                             </div>
                         </td>
-                        <td>
-                            <a target="_blank" href="{{url('/users/formpemberitahuan/'.$p->ID_PERMOHONAN)}}">
-                                <button href="javascript:;" title="Print Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-orange-300 dark:text-gray-300">
+                        <td width="20%" style="text-align:left;">
+                            <a href="javascript:;" data-toggle="modal" data-target="#detail_dokumen_permohonan_{{$p->ID_PERMOHONAN}}" id="status_{{$p->ID_PERMOHONAN}}">
+                                <button type="button" title="Detail Permohonan" class="tooltip button px-2 mr-1 mb-2 bg-blue-300 dark:text-gray-300">
+                                    <span class="w-5 h-5 flex items-center justify-center">
+                                        <i data-feather="list" class="w-4 h-4 "></i>
+                                    </span>
+                                </button>
+                            </a>
+                            <a target="_blank" href="{{url('/users/formpermohonan/'.$p->ID_PERMOHONAN)}}">
+                                <button href="javascript:;" title="Print Permohonan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-green-300 dark:text-gray-300">
                                     <span class="w-5 h-5 flex items-center justify-center">
                                         <i data-feather="printer" class="w-4 h-4 "></i>
                                     </span>
                                 </button>
                             </a>
+
+                            @if( $p->status->ID_STATUS == 3 || $p->status->ID_STATUS == 4)
+                            <a target="_blank" href="{{url('/users/formpemberitahuan/'.$p->ID_PERMOHONAN)}}">
+                                <button href="javascript:;" title="Print Pemberitahuan" type="button" class="tooltip button px-2 mr-1 mb-2 bg-orange-300 dark:text-gray-300">
+                                    <span class="w-5 h-5 flex items-center justify-center">
+                                        <i data-feather="printer" class="w-4 h-4 "></i>
+                                    </span>
+                                </button>
+                            </a>
+                            @endif
+
                         </td>
-                        
                     </tr>
+
                 @endforeach
                 </tbody>
             </table>
@@ -331,7 +346,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             <div class="text-base">{{ $p->feedback->KETERANGAN_ESTIMASI }}</div>
                         </div>
                         
-                        @endif
+                        @elseif($p->ID_STATUS == 3 || $p->ID_STATUS == 4)
                 
                         <div class="col-span-12 sm:col-span-6"> 
                             <h2 class="font-semibold text-lg mr-auto">Keterangan Status Dokumen</h2>
@@ -342,14 +357,18 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             <h2 class="font-semibold text-lg mr-auto">Tanggal Feedback</h2>
                             <div class="text-base">{{ date('h:i:s , d F Y ',strtotime($p->feedback->TGL_FEEDBACK)) }}</div>
                         </div>
-                        
+
                         @endif
+                        
+                @endif
 
                 </div>
                 @if($p->ID_STATUS == 3)
                 <hr>
-
-                <div class="container w-full mt-4">
+                <div class="pl-5 mt-2 text-sm text-theme-1">
+                <b>* Expired Date</b> adalah batas waktu file dapat diakses.<br>Jika sudah melebihi batas waktu maka file akan otomatis terhapus
+                </div>
+                <div class="pl-5 pr-5 container w-full mt-4">
                 <div class="p-3 mt-4 lg:mt-0 rounded shadow">
                     <table id="example" class="stripe hover display cell-border" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
                         <thead>

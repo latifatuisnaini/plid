@@ -49,7 +49,6 @@
             color: black;
         }
         table,tr,th, td{
-            /* border: 1pt solid none; */
             font-family: Arial, Helvetica, sans-serif;
             border-collapse: collapse;
         }
@@ -95,13 +94,12 @@
     <main>
         <h3>PEMBERITAHUAN TERTULIS</h3>
 
-        <!-- <h4>PUSAT PELAYANAN INFORMASI DAN DOKUMENTASI</h4> -->
         <p class="foot4">Surabaya, {{ date('d F Y',strtotime($pemberitahuan->TANGGAL)) }}</p>
 
         <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <tbody>
                 <tr>
-                    <td colspan="4">Berdasarkan permohonan Informasi pada tanggal {{ date('d',strtotime($pemberitahuan->TANGGAL)) }} bulan {{ date('F',strtotime($pemberitahuan->TANGGAL)) }} tahun {{ date('Y',strtotime($pemberitahuan->TANGGAL)) }} dengan nomor pendaftaran* {{ $pemberitahuan->NOMOR_URUT }}/E-PPID/{{ date('m',strtotime($pemberitahuan->TANGGAL)) }}/{{ date('Y',strtotime($pemberitahuan->TANGGAL)) }} Kami menyampaikan kepada Saudara/i</td>
+                    <td colspan="4" style="text-align: justify;">Berdasarkan permohonan Informasi pada tanggal {{ date('d',strtotime($pemberitahuan->TANGGAL)) }} bulan {{ date('F',strtotime($pemberitahuan->TANGGAL)) }} tahun {{ date('Y',strtotime($pemberitahuan->TANGGAL)) }} dengan nomor pendaftaran* {{ $pemberitahuan->NOMOR_URUT }}/E-PPID/{{ date('m',strtotime($pemberitahuan->TANGGAL)) }}/{{ date('Y',strtotime($pemberitahuan->TANGGAL)) }} Kami menyampaikan kepada Saudara/i</td>
                 </tr>
                 <tr>
                     <td width="30%" style="font-weight:bold">Nama</td>
@@ -122,12 +120,14 @@
         </table>
 
         <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">   
-            <tbody>
+            <tbody>             
                 <tr>
                     <td colspan="4">Pemberitahuan sebagai berikut:</td>
                 </tr>
+                
+                @if( $pemberitahuan->ID_STATUS == 3 )
                 <tr>
-                    <td colspan="4" style="font-weight: bold; font-size:14pt">Informasi dapat diberikan</td>
+                    <td colspan="4" style="font-size:14pt;font-weight: bold;">Informasi dapat diberikan</td>
                 </tr>
                 <tr style="border: 1pt solid black;">
                     <td style="border: 1pt solid black;text-align:center" width="5%">No.</td>
@@ -148,20 +148,54 @@
                     <td style="border: 1pt solid black; text-align:center">3.</td>
                     <td style="border: 1pt solid black;">Waktu penyediaan</td>
                     <td colspan="2" style="border: 1pt solid black;">
-                        {{ $interval->d }} 
-                        hari
+                        {{ $interval->d }} hari
                     </td>
                 </tr>
                 <tr style="border: 1pt solid black;">
                     <td style="border: 1pt solid black; text-align:center">4.</td>
                     <td colspan="3" style="border: 1pt solid black;">Penjelasan penghitaman/pengaburan Informasi yang dimohon : {{ $pemberitahuan->feedback->KETERANGAN_PENGHITAMAN }} </td>
                 </tr>
-                <!-- <tr>
-                    <td colspan="4" style="font-weight: bold; font-size:14pt">Informasi tidak dapat diberikan karena</td>
-                </tr> -->
-                <!-- <tr>
-                    <td><div class="square"></div>coba</td>
-                </tr> -->
+
+                @elseif( $pemberitahuan->ID_STATUS == 4 )
+                <tr>
+                    <td colspan="4" style="font-size:14pt;font-weight: bold;">Informasi tidak dapat diberikan karena</td>
+                </tr>
+                <tr>
+                    <td>{{ $pemberitahuan->feedback->KETERANGAN }}</td>
+                </tr>
+
+                @endif
+            </tbody>
+        </table>
+
+        <br><br>
+
+        <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">   
+            <tbody>
+                <tr>
+                    <td colspan="4" style="font-weight: bold; text-align:right">Pejabat Pengelola Informasi dan Dokumentasi</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td colspan="2" style="font-weight: bold; text-align:center">(PPID)</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td colspan="2" style="text-align:center">( ............................................ )</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td colspan="2" style="text-align:center">Nama & Tanda Tangan</td>
+                </tr>
             </tbody>
         </table>
 

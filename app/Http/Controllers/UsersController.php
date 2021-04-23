@@ -74,14 +74,18 @@ class UsersController extends Controller
         return view('users.profile',compact('user','permohonan_open_notif', 'permohonan_diproses_notif'));
     }
     
-    public function formpermohonan(){
-        $permohonan = Permohonan::where('ID_USER','=', Auth::user()->ID_USER)->first();
-        $pdf = \PDF::loadView('/users/form-permohonan', compact('permohonan'));
+    public function formpermohonan($id){
+        $permohonan = Permohonan::where('ID_USER','=', Auth::user()->ID_USER)
+        ->where('ID_PERMOHONAN','=',$id)
+        ->first();
+        $idadmin = User::where('TIPE_USER','=',1)->first();
+
+        $pdf = \PDF::loadView('/users/form-permohonan', compact('permohonan','idadmin'));
         return $pdf->stream();
     }
 
     public function formpemberitahuan($id){        
-        $pemberitahuan = Permohonan::select(DB::raw('DATE_FORMAT(permohonan.TANGGAL, "%d %M %Y") as tgl_permohonan'),'permohonan.ID_PERMOHONAN','permohonan.KETERANGAN','feedback.TGL_FEEDBACK','feedback.WAKTU_ESTIMASI','feedback.KETERANGAN_ESTIMASI')
+        $pemberitahuan = Permohonan::select(DB::raw('DATE_FORMAT(permohonan.TANGGAL, "%d %M %Y") as tgl_permohonan'),'permohonan.ID_PERMOHONAN','permohonan.KETERANGAN','feedback.TGL_FEEDBACK','feedback.WAKTU_ESTIMASI','feedback.KETERANGAN_ESTIMASI','permohonan.ID_STATUS')
         ->join('feedback', 'feedback.ID_PERMOHONAN', '=', 'permohonan.ID_PERMOHONAN')
         ->where('permohonan.ID_PERMOHONAN','=',$id)
         ->first();
