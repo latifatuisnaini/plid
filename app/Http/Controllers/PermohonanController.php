@@ -53,8 +53,7 @@ class PermohonanController extends Controller
         ]);
         
         
-        $jumlah_no_urut=Permohonan::whereMonth('TANGGAL', '=', Carbon::now()->month)
-        ->whereYear('TANGGAL', date('Y'))
+        $jumlah_no_urut=Permohonan::whereYear('TANGGAL', date('Y'))
         ->count();
 
         Permohonan::insert([

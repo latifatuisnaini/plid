@@ -338,7 +338,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             <div class="text-base">{{ $p->feedback->KETERANGAN_ESTIMASI }}</div>
                         </div>
                         
-                        @endif
+                        @elseif($p->ID_STATUS == 3 || $p->ID_STATUS == 4)
                 
                         <div class="col-span-12 sm:col-span-6"> 
                             <h2 class="font-semibold text-lg mr-auto">Keterangan Status Dokumen</h2>
@@ -349,8 +349,10 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             <h2 class="font-semibold text-lg mr-auto">Tanggal Feedback</h2>
                             <div class="text-base">{{ date('h:i:s , d F Y ',strtotime($p->feedback->TGL_FEEDBACK)) }}</div>
                         </div>
-                        
+
                         @endif
+                        
+                @endif
 
                 </div>
                 @if($p->ID_STATUS == 3)
