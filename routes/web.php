@@ -53,7 +53,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/faq', 'FaqController@index');
 
-Route::prefix('admin')->middleware(['auth'])->group(function(){
+Route::prefix('admin')->middleware(['auth','cekAdmin'])->group(function(){
     Route::get('/','AdminController@index');
 
     Route::resource('/user','UserController');
@@ -85,7 +85,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::get('/profile/{id}','UserController@profile');
 });
  
-Route::prefix('users')->middleware(['auth'])->group(function(){
+Route::prefix('users')->middleware(['auth','cekUser'])->group(function(){
     Route::get('/','UsersController@index');
     Route::resource('/permohonan','PermohonanController');
     Route::get('/users/permohonan', 'PermohonanController@index');
