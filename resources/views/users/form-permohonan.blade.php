@@ -119,13 +119,13 @@
                     <td>{{ $permohonan->user->NO_TLP }} / {{ $permohonan->user->email }}</td>
                 </tr>
                 <tr>
-                    <td width="40%">Rincian Informasi yang Dibutuhkan</td>
-                    <td width="2%">:</td>
+                    <td width="40%" style="vertical-align: top;">Rincian Informasi yang Dibutuhkan</td>
+                    <td width="2%" style="vertical-align: top;">:</td>
                     <td>{{ $permohonan->DOKUMEN_PERMOHONAN }}</td>
                 </tr>
                 <tr>
-                    <td width="40%">Tujuan Penggunaan Informasi</td>
-                    <td width="2%">:</td>
+                    <td width="40%" style="vertical-align: top;">Tujuan Penggunaan Informasi</td>
+                    <td width="2%" style="vertical-align: top;">:</td>
                     <td>{{ $permohonan->KETERANGAN }}</td>
                 </tr>
                 <tr>

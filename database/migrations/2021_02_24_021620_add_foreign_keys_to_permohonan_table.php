@@ -16,6 +16,7 @@ class AddForeignKeysToPermohonanTable extends Migration
         Schema::table('permohonan', function (Blueprint $table) {
             $table->foreign('ID_STATUS', 'FK_MEMILIKI4')->references('ID_STATUS')->on('status')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('ID_USER', 'FK_MENGAJUKAN')->references('ID_USER')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('ID_PETUGAS', 'FK_PETUGAS')->references('ID_USER')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -29,6 +30,7 @@ class AddForeignKeysToPermohonanTable extends Migration
         Schema::table('permohonan', function (Blueprint $table) {
             $table->dropForeign('FK_MEMILIKI4');
             $table->dropForeign('FK_MENGAJUKAN');
+            $table->dropForeign('FK_PETUGAS');
         });
     }
 }

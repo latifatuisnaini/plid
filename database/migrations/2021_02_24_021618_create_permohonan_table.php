@@ -16,6 +16,7 @@ class CreatePermohonanTable extends Migration
         Schema::create('permohonan', function (Blueprint $table) {
             $table->integer('ID_PERMOHONAN', true);
             $table->integer('ID_USER')->index('FK_MENGAJUKAN');
+            $table->integer('ID_PETUGAS')->index('FK_PETUGAS');
             $table->integer('ID_STATUS')->index('FK_MEMILIKI4');
             $table->integer('NOMOR_URUT');
             $table->string('DOKUMEN_PERMOHONAN', 100);
