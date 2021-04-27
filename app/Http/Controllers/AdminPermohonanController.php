@@ -66,7 +66,8 @@ class AdminPermohonanController extends Controller
     public function tolakPermohonan(Request $request,$id)
     {
         Permohonan::find($id)->update([
-            'ID_STATUS' => 4
+            'ID_STATUS' => 4,
+            'ID_PETUGAS' => Auth::user()->ID_USER
         ]);
 
         Feedback::insert([
@@ -75,7 +76,7 @@ class AdminPermohonanController extends Controller
             'ID_PERMOHONAN' => $id,
             'KETERANGAN_ESTIMASI' => $request->keterangan_estimasi,
             'PENGUASAAN_INFORMASI' => $request->penguasaan,
-            'KETERANGAN_PENGHITAMAN' => $request->penghitaman
+            'KETERANGAN_PENGHITAMAN' => $request->penghitaman,
         ]);
 
         return response()->json('success');
@@ -85,6 +86,7 @@ class AdminPermohonanController extends Controller
     {
         Permohonan::find($id)->update([
             'ID_STATUS' => 2,
+            'ID_PETUGAS' => Auth::user()->ID_USER
         ]);
 
         Feedback::insert([
@@ -93,7 +95,7 @@ class AdminPermohonanController extends Controller
             'ID_PERMOHONAN' => $id,
             'KETERANGAN_ESTIMASI' => $request->keterangan_estimasi,
             'PENGUASAAN_INFORMASI' => $request->penguasaan,
-            'KETERANGAN_PENGHITAMAN' => $request->penghitaman
+            'KETERANGAN_PENGHITAMAN' => $request->penghitaman,
         ]);
 
         return response()->json('success');
