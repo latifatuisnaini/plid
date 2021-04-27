@@ -78,7 +78,7 @@ class UsersController extends Controller
         $permohonan = Permohonan::where('ID_USER','=', Auth::user()->ID_USER)
         ->where('ID_PERMOHONAN','=',$id)
         ->first();
-        $idadmin = User::where('TIPE_USER','=',1)->first();
+        $idadmin = User::where('ID_USER','=',$permohonan->ID_PETUGAS)->first();
 
         $pdf = \PDF::loadView('/users/form-permohonan', compact('permohonan','idadmin'));
         return $pdf->stream('Format Permohonan Informasi PAL.pdf');

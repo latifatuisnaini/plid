@@ -170,7 +170,7 @@
 
         <br><br>
 
-        <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">   
+        <!-- <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">   
             <tbody>
                 <tr>
                     <td colspan="4" style="font-weight: bold; text-align:right">Pejabat Pengelola Informasi dan Dokumentasi</td>
@@ -197,7 +197,7 @@
                     <td colspan="2" style="text-align:center">Nama & Tanda Tangan</td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
 
     </main>
 
