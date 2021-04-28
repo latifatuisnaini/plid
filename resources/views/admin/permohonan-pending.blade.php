@@ -181,6 +181,12 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                                 </button>
                             </a>
                         </div>
+
+                        <div class="col-span-12 sm:col-span-6"> 
+                            <label class="font-semibold text-lg">Keterangan TERIMA / TOLAK</label>
+                            <div class="text-base">{{$pp->feedback->KETERANGAN}}</div>
+                        </div>
+
                         <form action="{{ url('/admin/permohonan-pending/upload-dokumen/'.$pp->ID_PERMOHONAN)}}" method="POST" enctype="multipart/form-data">
                          @csrf
                             <div class="grid grid-cols-12 gap-8 row-gap-4 mt-3 mb-5">
