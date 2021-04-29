@@ -107,8 +107,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 @foreach($faq as $f)
                     <tr>
                         <td>{{$f->ID_FAQ}}</td>
-                        <td>{{$f->QUESTION}}</td>
-                        <td>{{$f->ANSWER}}</td>
+                        <td style="text-align: left;">{{$f->QUESTION}}</td>
+                        <td style="text-align: left;">{{$f->ANSWER}}</td>
                         <td>
                         <div class="flex" style="justify-content: center;">
                             <a data-toggle="modal" data-target="#editFaq_{{ $f->ID_FAQ }}">
