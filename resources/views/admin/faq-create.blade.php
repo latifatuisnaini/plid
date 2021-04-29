@@ -156,14 +156,14 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                     <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
                         <div class="col-span-12">
                             <label class="font-semibold text-lg mr-auto mt-3">Question</label> 
-                                <input type="text" class="input w-full border mt-2 flex-1" placeholder="Question" name="QUESTION" required >
+                                <textarea type="text" class="input w-full border mt-2 flex-1" placeholder="Question" name="QUESTION" required ></textarea>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-12 gap-4 row-gap-3 mt-3">
                         <div class="col-span-12">
                             <label class="font-semibold text-lg mr-auto mt-3">Answer</label> 
-                                <input type="text" class="input w-full border mt-2 flex-1" placeholder="Answer" name="ANSWER" required >
+                                <textarea type="text" class="input w-full border mt-2 flex-1" placeholder="Answer" name="ANSWER" required ></textarea>
                         </div>
                     </div>
 
