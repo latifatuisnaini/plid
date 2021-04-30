@@ -169,17 +169,13 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
 
                         <div class="col-span-12 sm:col-span-6"> 
                             <label class="font-semibold text-lg">Tanggal</label>
-                            <div class="text-base">{{ $pp->TANGGAL }}</div>
+                            <div class="text-base">{{ date('d F Y',strtotime($pp->TANGGAL)) }}</div>
                         </div>
 
                         <div class="col-span-12 sm:col-span-6"> 
                             <label class="font-semibold text-lg">Diajukan Oleh</label>
                             <div class="text-base">{{ $pp->user->NAMA_LENGKAP }}</div>
-                            <a href="{{ route('user.show',$pp->user->ID_USER) }}" target="_blank">
-                                <button class="button w-32 mr-2 mb-2 mt-2 flex items-center justify-center bg-theme-1 text-white"> 
-                                    <i data-feather="external-link" class="w-6 h-6 mr-2"></i> Detail User 
-                                </button>
-                            </a>
+                            
                         </div>
 
                         <div class="col-span-12 sm:col-span-6"> 
@@ -187,30 +183,36 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                             <div class="text-base">{{$pp->feedback->KETERANGAN}}</div>
                         </div>
 
+                        <div class="col-span-12 sm:col-span-6"> 
+                        <a href="{{ route('user.show',$pp->user->ID_USER) }}" target="_blank">
+                                <button class="button w-32 mr-2 mb-2 mt-2 flex items-center justify-center bg-theme-1 text-white"> 
+                                    <i data-feather="external-link" class="w-6 h-6 mr-2"></i> Detail User 
+                                </button>
+                            </a>
+                        </div>
+                        
+
                         <form action="{{ url('/admin/permohonan-pending/upload-dokumen/'.$pp->ID_PERMOHONAN)}}" method="POST" enctype="multipart/form-data">
                          @csrf
                             <div class="grid grid-cols-12 gap-8 row-gap-4 mt-3 mb-5">
 
-                                <div class="col-span-12">
-                                    <label class="font-semibold  text-lg">Dokumen Permohonan</label>
-                                    <input type="hidden" value="{{ $pp->ID_PERMOHONAN }}" name="ID_PERMOHONAN">
-                                    <input type="file" class="input w-full border mt-2 flex-1" accept="file/zip, file/doc, file/docx, file/pdf" name="LINK_DOWNLOAD" id="input-dok" required>   
-                                    <img class="mt-2" id="preview-ktp" height="80" src=""/>
-                                </div>
-                                
-                                <div class="mr-5 mb-5 grid grid-cols-12 gap-4 row-gap-3">
-                                    <div class="col-span-12">
-                                        <label class="font-semibold text-lg">Expired Date</label> 
-                                        
-
-                                             <div class="relative mx-auto mt-2 mb-5"> 
-                                <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4"> 
-                                    <i data-feather="calendar" class="w-4 h-4"></i> 
-                                </div> 
-                                <input type="text" class="datepicker input pl-12 border" data-single-mode="true" name="EXPIRED_DATE"> 
-                            </div>
+                                    <div class="col-span-12 sm:col-span-12"> 
+                                        <label class="font-semibold  text-lg">Dokumen Permohonan</label>
+                                        <input type="hidden" value="{{ $pp->ID_PERMOHONAN }}" name="ID_PERMOHONAN">
+                                        <input type="file" class="input w-full border mt-2 flex-1" accept="file/zip, file/doc, file/docx, file/pdf" name="LINK_DOWNLOAD" id="input-dok" required>   
+                                        <img class="mt-2" id="preview-ktp" height="80" src=""/>
                                     </div>
-                                </div>
+                                
+                                     <div class="col-span-12 sm:col-span-12"> 
+                                        <label class="font-semibold text-lg">Expired Date</label> 
+                                                 <div class="relative mx-auto mt-2 mb-5"> 
+                                                        <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4"> 
+                                                            <i data-feather="calendar" class="w-4 h-4"></i> 
+                                                        </div> 
+                                                     <input type="text" class="datepicker input pl-12 border" data-single-mode="true" name="EXPIRED_DATE"> 
+                                                </div>
+                                    </div>
+                             </div>
                             </div>
                             </div>
                             <div class="modal-footer">
@@ -223,7 +225,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <!-- <div class="text-center"> <a href="javascript:;" data-toggle="modal" data-target="#modal_{{ $pp->ID_PERMOHONAN }}"  class="button w-32 mr-2 mb-5 mt-3 flex items-center justify-center bg-theme-9 text-white" style="margin:auto;"><i data-feather="upload-cloud" class="w-6 h-6 mr-2" ></i> Upload </a> </div>
                         <div class="modal" id="modal-upload">
                         </div> -->
-                    </div>
+                 
                
             </div>
         </div>
