@@ -75,13 +75,11 @@ class UsersController extends Controller
     }
     
     public function formpermohonan($id){
-        $id_user = Auth::user();
-        $permohonan = Permohonan::where('ID_PERMOHONAN','=',$id)
-        ->first();
+        $id_user = Auth::user()->ID_USER;
+        $permohonan = Permohonan::where('ID_PERMOHONAN','=',$id)->first();
         $idadmin = User::where('ID_USER','=',$permohonan->ID_PETUGAS)->first();
-        // dd($idadmin);
 
-        $pdf = \PDF::loadView('/users/form-permohonan', compact('permohonan','idadmin'));
+        $pdf = \PDF::loadView('/users/form-permohonan', compact('permohonan','idadmin','id_user'));
         return $pdf->stream('Format Permohonan Informasi PAL.pdf');
     }
 
