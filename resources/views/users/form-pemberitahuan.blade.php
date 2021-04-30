@@ -170,15 +170,19 @@
 
         <br><br>
 
-        <!-- <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">   
+        <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">   
             <tbody>
                 <tr>
-                    <td colspan="4" style="font-weight: bold; text-align:right">Pejabat Pengelola Informasi dan Dokumentasi</td>
+                    <td colspan="5" style="font-weight: bold; text-align:right">Pejabat Pengelola Informasi dan Dokumentasi</td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td colspan="2" style="font-weight: bold; text-align:center">(PPID)</td>
+                    <td colspan="3" style="font-weight: bold; text-align:center">(PPID)</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="3"><img src="{{ public_path('dist/images/ttd.png') }}" style="width:8rem; float:right"></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -189,15 +193,15 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td colspan="2" style="text-align:center">( ............................................ )</td>
+                    <td colspan="3" style="text-align:center">( {{ $idadmin->NAMA_LENGKAP }} )</td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td colspan="2" style="text-align:center">Nama & Tanda Tangan</td>
-                </tr>
+                    <td colspan="3" style="text-align:center">Nama & Tanda Tangan</td>
+                </tr> -->
             </tbody>
-        </table> -->
+        </table>
 
     </main>
 

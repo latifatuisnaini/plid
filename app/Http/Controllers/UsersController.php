@@ -75,10 +75,11 @@ class UsersController extends Controller
     }
     
     public function formpermohonan($id){
-        $permohonan = Permohonan::where('ID_USER','=', Auth::user()->ID_USER)
-        ->where('ID_PERMOHONAN','=',$id)
+        $id_user = Auth::user();
+        $permohonan = Permohonan::where('ID_PERMOHONAN','=',$id)
         ->first();
         $idadmin = User::where('ID_USER','=',$permohonan->ID_PETUGAS)->first();
+        // dd($idadmin);
 
         $pdf = \PDF::loadView('/users/form-permohonan', compact('permohonan','idadmin'));
         return $pdf->stream('Format Permohonan Informasi PAL.pdf');
@@ -94,8 +95,9 @@ class UsersController extends Controller
         $waktuestimasi = date_create($pemberitahuan->feedback->WAKTU_ESTIMASI);
         $waktupengajuan = date_create($pemberitahuan->TANGGAL);
         $interval = date_diff($waktupengajuan,$waktuestimasi);
+        $idadmin = User::where('ID_USER','=',$pemberitahuan->ID_PETUGAS)->first();
 
-        $pdf = \PDF::loadView('/users/form-pemberitahuan', compact('pemberitahuan','id_user','interval'));
+        $pdf = \PDF::loadView('/users/form-pemberitahuan', compact('pemberitahuan','id_user','interval','idadmin'));
         return $pdf->stream('Formulir Pemberitahuan Tertulis.pdf');
     }
 

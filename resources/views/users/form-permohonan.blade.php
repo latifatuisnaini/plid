@@ -145,9 +145,7 @@
         <table style="width:100%; padding-top: 1em;  padding-bottom: 1em;">   
             <tbody>
                 <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td style=" font-size: 12pt; text-align:center">Surabaya, {{ date('d F Y',strtotime($permohonan->TANGGAL)) }}</td>
+                    <td colspan="4" style=" font-size: 12pt; text-align:right">Surabaya, {{ date('d F Y',strtotime($permohonan->TANGGAL)) }}</td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -155,19 +153,25 @@
                 <tr>
                     <td style="text-align: center;">Petugas Penerima Permohonan</td>
                     <td>&nbsp;</td>
+                    <td>&nbsp;</td>
                     <td style="text-align: center;">Pemohon Informasi</td>
                 </tr>
                 <tr>
+                    <td style="text-align: center;"><img src="{{ public_path('dist/images/ttd.png') }}" style="width:8rem;"></td>
                     <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td style="text-align: center;"><img src="{{ public_path('dist/images/ttd.png') }}" style="width:8rem;"></td>
                 </tr>
                 <tr>
                     <td style="text-align: center;">( {{ $idadmin->NAMA_LENGKAP }} )</td>
-                    <td></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
                     <td style="text-align: center;">( {{$permohonan->user->NAMA_LENGKAP}} )</td>
                 </tr>
                 <tr>
                     <td style="text-align: center;">PT. PAL Indonesia (Persero)</td>
                     <td>&nbsp;</td>
+
                 </tr>
             </tbody>
         </table>
