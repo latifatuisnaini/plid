@@ -62,6 +62,7 @@ class PermohonanController extends Controller
             'KETERANGAN'=> $request->KETERANGAN,
             'ID_STATUS'=>1,
             'ID_USER'=>$request->ID_USER,
+            'ID_PETUGAS'=>1,
         ]);
 
         return redirect('/users/permohonan')->with('success', 'Data Permohonan Berhasil Ditambahkan. Silahkan lakukan pengecekan secara berkala');
