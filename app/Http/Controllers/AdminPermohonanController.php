@@ -12,7 +12,7 @@ use \Barryvdh\DomPDF\PDF;
 use Storage;
 use Carbon\Carbon;
 use File;
-
+use Auth;
 
 class AdminPermohonanController extends Controller
 {
