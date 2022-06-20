@@ -210,14 +210,14 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         </div>
 
                         <div class="col-span-12 sm:col-span-6" style="justify-self: end;">
-                            <button class="button button--lg w-32 mr-2 mb-2 mt-2 flex items-center justify-center bg-theme-6 text-white btn-tolak" id="tolak_{{$u->ID_PERMOHONAN}}" type="button"> 
+                            <button class="button button--lg w-32 mr-2 mb-2 mt-2 flex items-center justify-center bg-theme-6 text-white btn-tolak" id="tolak_{{$u->ID_PERMOHONAN}}" type="submit"> 
                                 <i data-feather="x" class="w-8 h-8 mr-2"></i> Tolak
                             </button>
                         </div>
         
                         <div class="col-span-12 sm:col-span-6">
                             {{-- <a data-toggle="modal" data-target="#upload_{{ $u->ID_PERMOHONAN }}"> --}}
-                                <button class="button button--lg w-32 mr-2 mb-2 mt-2 flex items-center justify-center bg-theme-9 text-white btn-terima" id="terima_{{$u->ID_PERMOHONAN}}" type="button"> 
+                                <button class="button button--lg w-32 mr-2 mb-2 mt-2 flex items-center justify-center bg-theme-9 text-white btn-terima" id="terima_{{$u->ID_PERMOHONAN}}" type="submit"> 
                                     <i data-feather="check" class="w-8 h-8 mr-2"></i> Terima
                                 </button>
                             {{-- </a> --}}
